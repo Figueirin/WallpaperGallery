@@ -30,6 +30,8 @@ export interface WallpaperItem {
   author: WallpaperAuthor;
   /** URL pública da imagem de miniatura (CDN Akamai da Steam ou similar) */
   previewUrl: string;
+  /** URL direta de vídeo opcional para preview interativo (MP4/WebM) */
+  videoPreviewUrl?: string;
   type: WallpaperType;
   /** Resolução nominal, ex: "1920x1080", "2560x1440", "3840x2160", "3440x1440" */
   resolution: string;

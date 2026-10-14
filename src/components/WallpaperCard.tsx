@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { WallpaperItem } from '../types/wallpaper';
 import {
   ExternalLink,
@@ -9,6 +9,7 @@ import {
   User,
   ImageOff,
   MonitorPlay,
+  Play,
 } from 'lucide-react';
 
 interface WallpaperCardProps {
@@ -19,6 +20,11 @@ interface WallpaperCardProps {
 export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
   const [imageError, setImageError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Ícone representativo do tipo de wallpaper do Wallpaper Engine
   const renderTypeIcon = () => {
@@ -30,6 +36,37 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
       case 'Scene':
       default:
         return <Layers className="w-3 h-3" aria-hidden="true" />;
+    }
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+
+    // Se o wallpaper tem vídeo e usuário não solicitou redução de movimento
+    if (wallpaper.videoPreviewUrl && !videoError) {
+      const prefersReducedMotion =
+        typeof window !== 'undefined' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReducedMotion && videoRef.current) {
+        videoRef.current.currentTime = 0;
+        const playPromise = videoRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => setIsVideoPlaying(true))
+            .catch(() => setIsVideoPlaying(false));
+        }
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setIsVideoPlaying(false);
+
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
     }
   };
 
@@ -52,10 +89,12 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
       role="button"
       onClick={handleCardClick}
       onKeyDown={handleKeyDown}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       aria-label={`Visualizar detalhes do wallpaper: ${wallpaper.title}`}
       className="group relative flex flex-col rounded-2xl bg-zinc-900/80 border border-zinc-800/80 overflow-hidden hover:border-zinc-700 hover:shadow-2xl hover:shadow-black/60 transition-all duration-300 ease-out hover:scale-[1.03] hover:z-20 motion-reduce:hover:scale-100 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
     >
-      {/* Área da Imagem de Prévia */}
+      {/* Área da Imagem de Prévia / Vídeo */}
       <div className="relative aspect-video w-full overflow-hidden bg-zinc-950 flex items-center justify-center">
         {!imageError ? (
           <>
@@ -76,6 +115,23 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
             />
+
+            {/* Vídeo preview reproduzido sob hover se disponível */}
+            {wallpaper.videoPreviewUrl && !videoError && (
+              <video
+                ref={videoRef}
+                src={wallpaper.videoPreviewUrl}
+                muted
+                loop
+                playsInline
+                preload="none"
+                onError={() => setVideoError(true)}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${
+                  isHovered && isVideoPlaying ? 'opacity-100' : 'opacity-0'
+                }`}
+                aria-hidden="true"
+              />
+            )}
           </>
         ) : (
           /* Fallback visual caso a imagem falhe ao carregar */
@@ -89,12 +145,22 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
           </div>
         )}
 
-        {/* Badges superiores na imagem: Tipo e Resolução */}
+        {/* Badges superiores na imagem: Tipo, Vídeo e Resolução */}
         <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-zinc-950/80 backdrop-blur-md border border-white/10 text-[11px] font-medium text-zinc-200">
             {renderTypeIcon()}
             <span>{wallpaper.type}</span>
           </span>
+
+          {wallpaper.videoPreviewUrl && (
+            <span
+              className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-indigo-950/80 backdrop-blur-md border border-indigo-500/30 text-[10px] font-medium text-indigo-300"
+              title="Este wallpaper possui prévia em vídeo"
+            >
+              <Play className="w-2.5 h-2.5 fill-current" aria-hidden="true" />
+              <span>Vídeo</span>
+            </span>
+          )}
         </div>
 
         <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5">
