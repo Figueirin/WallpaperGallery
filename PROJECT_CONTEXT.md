@@ -46,6 +46,21 @@
 - [x] **Etapa 2:** Inicialização da estrutura do projeto em `WallpaperGallery`, configuração do Tailwind CSS v4, definição dos tipos TypeScript (`wallpaper.ts`), interface `IWallpaperDataProvider`, classe `MockWallpaperProvider` e dataset `mock-wallpapers.json`. *(Concluído)*
 - [x] **Etapa 3:** Interface base da galeria: Layout responsivo, cards visuais refinados, badges de resolução/tipo, tratamento de erro de imagem, barra de busca com debounce, estados vazios e tema escuro. *(Concluído)*
 - [x] **Etapa 4:** Pesquisa avançada, filtros combináveis (tags com OR, resolução e tipo com AND) e ordenação por popularidade/data/título. Testes automatizados (22 testes). *(Concluído)*
-- [ ] **Etapa 5:** Modal de detalhes com prévia expandida, metadados e links Steam (web e aplicativo cliente).
-- [ ] **Etapa 6:** Paginação com carregamento progressivo (infinite scroll / lazy loading).
-- [ ] **Etapa 7:** Script gerador de catálogo via Steam Web API.
+- [x] **Etapa 5 (Layout Desktop):** Refinamento do layout para monitores desktop e ultrawide: expansão de containers para `max-w-[2400px]`, grid responsivo dinâmico (4 colunas em 1366px, 5 em 1920px Full HD e 6 em 2560px ultrawide), barra de busca ampliada e painel de filtros otimizado em 2 colunas. *(Concluído)*
+- [ ] **Etapa 6:** Modal de detalhes com prévia expandida, metadados e links Steam (web e aplicativo cliente).
+- [ ] **Etapa 7:** Paginação com carregamento progressivo (infinite scroll / lazy loading).
+- [ ] **Etapa 8:** Script gerador de catálogo via Steam Web API.
+
+## 6. Especificações de Layout Responsivo (Desktop & Ultrawide)
+- **Container Fluido:** Largura máxima de 2400px com margens laterais progressivas (`px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12`).
+- **Densidade da Grade (`GalleryGrid` & `LoadingSkeleton`):**
+  - Mobile (< 640px): 1 coluna
+  - Tablet (640px - 768px): 2 colunas
+  - Notebooks / Telas médias (768px - 1280px): 3 colunas
+  - Desktop 1366px (1280px - 1536px): 4 colunas
+  - Desktop Full HD 1920px (1536px - 2100px): 5 colunas
+  - Ultrawide / 4K (2100px+): 6 colunas
+- **Distribuição de Filtros (`FilterBar`):**
+  - Seletores de Tipo e Resolução dispostos em grade de 2 colunas em telas `lg:` (1024px+), reduzindo o consumo de altura vertical em 50%.
+  - Seletor de ordenação e ação de limpeza alinhados na barra superior.
+  - Barra de busca do `Navbar` ampliada de `max-w-md` para até `xl:max-w-2xl` em telas amplas.

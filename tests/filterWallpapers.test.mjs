@@ -210,3 +210,4 @@ describe('Imutabilidade e Utilitários', () => {
     assert.strictEqual(getResolutionLabel('1280x720'), '1280x720');
   });
 });
+
