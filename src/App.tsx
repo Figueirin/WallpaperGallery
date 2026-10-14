@@ -126,7 +126,7 @@ export function App() {
       />
 
       {/* Conteúdo Principal */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 max-w-[2400px] w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-6 sm:py-8">
         {/* Banner Informativo de Ambiente e Compatibilidade */}
         <section
           aria-label="Informações do catálogo"

@@ -3,7 +3,7 @@ import { Heart, ExternalLink } from 'lucide-react';
 export function Footer() {
   return (
     <footer className="w-full border-t border-zinc-850 mt-16 py-8 text-xs text-zinc-500 bg-zinc-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="max-w-[2400px] w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex flex-col items-center sm:items-start gap-1 text-center sm:text-left">
           <p className="text-zinc-400">
             <span className="font-semibold text-zinc-300">Workshop Gallery</span> — Catálogo de descoberta visual para Wallpaper Engine.

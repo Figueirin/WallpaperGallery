@@ -24,7 +24,7 @@ export function Navbar({
 
   return (
     <header className="sticky top-0 z-30 w-full bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
+      <div className="max-w-[2400px] w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 h-18 flex items-center justify-between gap-4">
         {/* Identidade do Projeto / Logo */}
         <div className="flex items-center gap-3 shrink-0">
           <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center">
@@ -47,7 +47,7 @@ export function Navbar({
         </div>
 
         {/* Barra de Pesquisa */}
-        <div className="flex-1 max-w-md mx-2 sm:mx-4">
+        <div className="flex-1 max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-2 sm:mx-4">
           <div className="relative">
             <label htmlFor="wallpaper-search" className="sr-only">
               Pesquisar wallpapers por título, tags ou autor
