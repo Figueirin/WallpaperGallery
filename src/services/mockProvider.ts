@@ -9,6 +9,7 @@ import fallbackMockData from '../../public/data/mock-wallpapers.json';
 import {
   filterAndSortWallpapers,
   extractFilterMetadata,
+  findWallpaperById,
 } from '../utils/filterWallpapers';
 
 export class MockWallpaperProvider implements IWallpaperDataProvider {
@@ -64,7 +65,7 @@ export class MockWallpaperProvider implements IWallpaperDataProvider {
 
   async getWallpaperById(id: string): Promise<WallpaperItem | null> {
     const data = await this.loadData();
-    return data.find((item) => item.id === id) || null;
+    return findWallpaperById(data, id);
   }
 
   async getFilterMetadata(): Promise<FilterMetadata> {

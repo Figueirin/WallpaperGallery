@@ -134,3 +134,17 @@ export function extractFilterMetadata(items: readonly WallpaperItem[]): FilterMe
     types: Array.from(typeSet).sort(),
   };
 }
+
+/**
+ * Localiza um wallpaper específico por seu ID único no catálogo.
+ */
+export function findWallpaperById(
+  items: readonly WallpaperItem[],
+  id: string
+): WallpaperItem | null {
+  if (!id || typeof id !== 'string') {
+    return null;
+  }
+  return items.find((item) => item.id === id) || null;
+}
+

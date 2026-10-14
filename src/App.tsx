@@ -9,6 +9,7 @@ import {
 import { Navbar } from './components/Navbar';
 import { FilterBar } from './components/FilterBar';
 import { GalleryGrid } from './components/GalleryGrid';
+import { WallpaperDetailView } from './components/WallpaperDetailView';
 import { LoadingSkeleton } from './components/LoadingSkeleton';
 import { EmptyState } from './components/EmptyState';
 import { Footer } from './components/Footer';
@@ -17,7 +18,17 @@ import { getResolutionLabel } from './utils/filterWallpapers';
 
 const provider = new MockWallpaperProvider();
 
+function parseWallpaperIdFromUrl(): string | null {
+  if (typeof window === 'undefined') return null;
+  const pathMatch = window.location.pathname.match(/^\/wallpaper\/([^/]+)\/?$/);
+  if (pathMatch) return decodeURIComponent(pathMatch[1]);
+  const hashMatch = window.location.hash.match(/^#\/wallpaper\/([^/]+)\/?$/);
+  if (hashMatch) return decodeURIComponent(hashMatch[1]);
+  return null;
+}
+
 export function App() {
+  const [selectedWallpaperId, setSelectedWallpaperId] = useState<string | null>(parseWallpaperIdFromUrl);
   const [wallpapers, setWallpapers] = useState<WallpaperItem[]>([]);
   const [metadata, setMetadata] = useState<FilterMetadata | null>(null);
   const [totalCatalogCount, setTotalCatalogCount] = useState(0);
@@ -30,6 +41,17 @@ export function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Sincroniza histórico de navegação SPA (popstate)
+  useEffect(() => {
+    const handleLocationChange = () => {
+      const id = parseWallpaperIdFromUrl();
+      setSelectedWallpaperId(id);
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+    return () => window.removeEventListener('popstate', handleLocationChange);
+  }, []);
 
   // Carrega metadados iniciais do catálogo (tags, resoluções e tipos reais)
   useEffect(() => {
@@ -109,6 +131,30 @@ export function App() {
     setSortBy('popularity_desc');
   };
 
+  const handleSelectWallpaper = (item: WallpaperItem) => {
+    setSelectedWallpaperId(item.id);
+    window.history.pushState({ wallpaperId: item.id }, '', `/wallpaper/${item.id}`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToGallery = () => {
+    if (window.history.state?.wallpaperId) {
+      window.history.back();
+    } else {
+      setSelectedWallpaperId(null);
+      window.history.pushState(null, '', '/');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+    if (selectedWallpaperId) {
+      setSelectedWallpaperId(null);
+      window.history.pushState(null, '', '/');
+    }
+  };
+
   const hasActiveFilters =
     selectedType !== 'ALL' ||
     selectedResolutions.length > 0 ||
@@ -121,22 +167,31 @@ export function App() {
       {/* Barra Superior com Identidade e Pesquisa Global */}
       <Navbar
         searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
+        onSearchChange={handleSearchChange}
         totalCount={totalCatalogCount}
+        onNavigateHome={selectedWallpaperId ? handleBackToGallery : undefined}
       />
 
       {/* Conteúdo Principal */}
       <main className="flex-1 max-w-[2400px] w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-6 sm:py-8">
-        {/* Banner Informativo de Ambiente e Compatibilidade */}
-        <section
-          aria-label="Informações do catálogo"
-          className="mb-6 p-4 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-zinc-400"
-        >
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 shrink-0">
-              <Info className="w-4 h-4" aria-hidden="true" />
-            </div>
-            <div>
+        {selectedWallpaperId ? (
+          <WallpaperDetailView
+            wallpaperId={selectedWallpaperId}
+            provider={provider}
+            onBack={handleBackToGallery}
+          />
+        ) : (
+          <>
+            {/* Banner Informativo de Ambiente e Compatibilidade */}
+            <section
+              aria-label="Informações do catálogo"
+              className="mb-6 p-4 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-zinc-400"
+            >
+              <div className="flex items-center gap-2.5">
+                <div className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 shrink-0">
+                  <Info className="w-4 h-4" aria-hidden="true" />
+                </div>
+                <div>
               <p className="font-medium text-zinc-300">
                 Catálogo em Modo de Demonstração (Steam Workshop • AppID 431960)
               </p>
@@ -270,9 +325,12 @@ export function App() {
             wallpapers={wallpapers}
             onResetSearch={handleResetAll}
             searchQuery={searchQuery}
+            onSelectWallpaper={handleSelectWallpaper}
           />
         )}
-      </main>
+      </>
+    )}
+  </main>
 
       {/* Rodapé */}
       <Footer />

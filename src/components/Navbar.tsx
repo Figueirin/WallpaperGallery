@@ -5,12 +5,14 @@ interface NavbarProps {
   searchQuery: string;
   onSearchChange: (query: string) => void;
   totalCount: number;
+  onNavigateHome?: () => void;
 }
 
 export function Navbar({
   searchQuery,
   onSearchChange,
   totalCount,
+  onNavigateHome,
 }: NavbarProps) {
   const handleClear = () => {
     onSearchChange('');
@@ -26,7 +28,23 @@ export function Navbar({
     <header className="sticky top-0 z-30 w-full bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/80">
       <div className="max-w-[2400px] w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 h-18 flex items-center justify-between gap-4">
         {/* Identidade do Projeto / Logo */}
-        <div className="flex items-center gap-3 shrink-0">
+        <div
+          onClick={onNavigateHome}
+          role={onNavigateHome ? 'button' : undefined}
+          tabIndex={onNavigateHome ? 0 : undefined}
+          onKeyDown={(e) => {
+            if (onNavigateHome && (e.key === 'Enter' || e.key === ' ')) {
+              e.preventDefault();
+              onNavigateHome();
+            }
+          }}
+          aria-label={onNavigateHome ? 'Ir para a página inicial da galeria' : undefined}
+          className={`flex items-center gap-3 shrink-0 ${
+            onNavigateHome
+              ? 'cursor-pointer hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-xl'
+              : ''
+          }`}
+        >
           <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center">
             <Sparkles className="w-5 h-5" aria-hidden="true" />
           </div>
