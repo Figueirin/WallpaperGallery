@@ -97,71 +97,74 @@ export function FilterBar({
         </div>
       </div>
 
-      {/* Linha 1: Seletor de Tipo de Wallpaper */}
-      <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-        <span className="text-zinc-400 font-medium shrink-0 w-24">Tipo:</span>
-        <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filtrar por tipo de wallpaper">
-          <button
-            type="button"
-            onClick={() => onSelectType('ALL')}
-            className={`px-2.5 py-1 rounded-lg border font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
-              selectedType === 'ALL'
-                ? 'bg-indigo-600 text-white border-indigo-500'
-                : 'bg-zinc-950/80 text-zinc-400 border-zinc-800 hover:text-zinc-200 hover:border-zinc-700'
-            }`}
-          >
-            Todos
-          </button>
-          {metadata.types.map((type) => (
+      {/* Linha de Filtros Principais: Tipo e Resolução distribuídos em desktop */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
+        {/* Seletor de Tipo de Wallpaper */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+          <span className="text-zinc-400 font-medium shrink-0 w-20">Tipo:</span>
+          <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filtrar por tipo de wallpaper">
             <button
-              key={`type-${type}`}
               type="button"
-              onClick={() => onSelectType(selectedType === type ? 'ALL' : type)}
-              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
-                selectedType === type
+              onClick={() => onSelectType('ALL')}
+              className={`px-2.5 py-1 rounded-lg border font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
+                selectedType === 'ALL'
                   ? 'bg-indigo-600 text-white border-indigo-500'
                   : 'bg-zinc-950/80 text-zinc-400 border-zinc-800 hover:text-zinc-200 hover:border-zinc-700'
               }`}
             >
-              {typeIcons[type]}
-              <span>{type}</span>
+              Todos
             </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Linha 2: Filtro por Resolução */}
-      {metadata.resolutions.length > 0 && (
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-          <span className="text-zinc-400 font-medium shrink-0 w-24">Resolução:</span>
-          <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filtrar por resolução">
-            {metadata.resolutions.map((res) => {
-              const isSelected = selectedResolutions.includes(res);
-              return (
-                <button
-                  key={`res-${res}`}
-                  type="button"
-                  onClick={() => onToggleResolution(res)}
-                  aria-pressed={isSelected}
-                  className={`px-2.5 py-1 rounded-lg border font-mono transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
-                    isSelected
-                      ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40 font-semibold'
-                      : 'bg-zinc-950/80 text-zinc-400 border-zinc-800 hover:text-zinc-200 hover:border-zinc-700'
-                  }`}
-                  title={`Resolução nominal: ${res}`}
-                >
-                  {getResolutionLabel(res)}
-                </button>
-              );
-            })}
+            {metadata.types.map((type) => (
+              <button
+                key={`type-${type}`}
+                type="button"
+                onClick={() => onSelectType(selectedType === type ? 'ALL' : type)}
+                className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
+                  selectedType === type
+                    ? 'bg-indigo-600 text-white border-indigo-500'
+                    : 'bg-zinc-950/80 text-zinc-400 border-zinc-800 hover:text-zinc-200 hover:border-zinc-700'
+                }`}
+              >
+                {typeIcons[type]}
+                <span>{type}</span>
+              </button>
+            ))}
           </div>
         </div>
-      )}
 
-      {/* Linha 3: Filtro por Tags (Multi-select com lógica OR) */}
+        {/* Filtro por Resolução */}
+        {metadata.resolutions.length > 0 && (
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+            <span className="text-zinc-400 font-medium shrink-0 w-20">Resolução:</span>
+            <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filtrar por resolução">
+              {metadata.resolutions.map((res) => {
+                const isSelected = selectedResolutions.includes(res);
+                return (
+                  <button
+                    key={`res-${res}`}
+                    type="button"
+                    onClick={() => onToggleResolution(res)}
+                    aria-pressed={isSelected}
+                    className={`px-2.5 py-1 rounded-lg border font-mono transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
+                      isSelected
+                        ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40 font-semibold'
+                        : 'bg-zinc-950/80 text-zinc-400 border-zinc-800 hover:text-zinc-200 hover:border-zinc-700'
+                    }`}
+                    title={`Resolução nominal: ${res}`}
+                  >
+                    {getResolutionLabel(res)}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Linha 2: Filtro por Tags (Multi-select com lógica OR) */}
       {metadata.tags.length > 0 && (
-        <div className="flex flex-col sm:flex-row sm:items-start gap-2 pt-1">
-          <span className="text-zinc-400 font-medium shrink-0 w-24 sm:pt-1">Tags (OU):</span>
+        <div className="flex flex-col sm:flex-row sm:items-start gap-2 pt-2 border-t border-zinc-800/40">
+          <span className="text-zinc-400 font-medium shrink-0 w-20 sm:pt-1">Tags (OU):</span>
           <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filtrar por tags temáticas">
             {metadata.tags.map((tag) => {
               const isSelected = selectedTags.includes(tag);
@@ -188,3 +191,4 @@ export function FilterBar({
     </section>
   );
 }
+
