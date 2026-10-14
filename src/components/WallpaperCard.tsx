@@ -13,9 +13,10 @@ import {
 
 interface WallpaperCardProps {
   wallpaper: WallpaperItem;
+  onSelect?: (wallpaper: WallpaperItem) => void;
 }
 
-export function WallpaperCard({ wallpaper }: WallpaperCardProps) {
+export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
   const [imageError, setImageError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -32,11 +33,27 @@ export function WallpaperCard({ wallpaper }: WallpaperCardProps) {
     }
   };
 
+  const handleCardClick = () => {
+    if (onSelect) {
+      onSelect(wallpaper);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    if ((e.key === 'Enter' || e.key === ' ') && onSelect) {
+      e.preventDefault();
+      onSelect(wallpaper);
+    }
+  };
+
   return (
     <article
       tabIndex={0}
-      aria-label={`Wallpaper: ${wallpaper.title}`}
-      className="group flex flex-col rounded-2xl bg-zinc-900/80 border border-zinc-800/80 overflow-hidden hover:border-zinc-700 hover:shadow-lg hover:shadow-black/40 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:border-transparent"
+      role="button"
+      onClick={handleCardClick}
+      onKeyDown={handleKeyDown}
+      aria-label={`Visualizar detalhes do wallpaper: ${wallpaper.title}`}
+      className="group relative flex flex-col rounded-2xl bg-zinc-900/80 border border-zinc-800/80 overflow-hidden hover:border-zinc-700 hover:shadow-2xl hover:shadow-black/60 transition-all duration-300 ease-out hover:scale-[1.03] hover:z-20 motion-reduce:hover:scale-100 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
     >
       {/* Área da Imagem de Prévia */}
       <div className="relative aspect-video w-full overflow-hidden bg-zinc-950 flex items-center justify-center">
@@ -142,6 +159,7 @@ export function WallpaperCard({ wallpaper }: WallpaperCardProps) {
             {wallpaper.steamClientUri && (
               <a
                 href={wallpaper.steamClientUri}
+                onClick={(e) => e.stopPropagation()}
                 title="Abrir diretamente no aplicativo Steam para Linux"
                 aria-label={`Abrir ${wallpaper.title} no aplicativo Steam`}
                 className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
@@ -154,6 +172,7 @@ export function WallpaperCard({ wallpaper }: WallpaperCardProps) {
             {wallpaper.steamUrl && (
               <a
                 href={wallpaper.steamUrl}
+                onClick={(e) => e.stopPropagation()}
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Visualizar página no Steam Workshop"
