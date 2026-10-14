@@ -6,6 +6,7 @@ import {
   WallpaperType,
 } from '../types/wallpaper';
 import { IWallpaperDataProvider } from './dataProvider';
+import fallbackMockData from '../../public/data/mock-wallpapers.json';
 
 export class MockWallpaperProvider implements IWallpaperDataProvider {
   private items: WallpaperItem[] = [];
@@ -32,8 +33,10 @@ export class MockWallpaperProvider implements IWallpaperDataProvider {
       this.isLoaded = true;
       return this.items;
     } catch (err) {
-      console.error('Falha ao carregar mock-wallpapers.json:', err);
-      return [];
+      console.warn('Usando catálogo simulado de fallback após falha no fetch:', err);
+      this.items = fallbackMockData as unknown as WallpaperItem[];
+      this.isLoaded = true;
+      return this.items;
     }
   }
 

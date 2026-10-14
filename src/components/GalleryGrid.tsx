@@ -1,0 +1,43 @@
+import { WallpaperItem } from '../types/wallpaper';
+import { WallpaperCard } from './WallpaperCard';
+import { EmptyState } from './EmptyState';
+
+interface GalleryGridProps {
+  wallpapers: WallpaperItem[];
+  onResetSearch?: () => void;
+  searchQuery?: string;
+}
+
+export function GalleryGrid({
+  wallpapers,
+  onResetSearch,
+  searchQuery,
+}: GalleryGridProps) {
+  if (wallpapers.length === 0) {
+    return (
+      <EmptyState
+        type="empty"
+        title="Nenhum wallpaper encontrado"
+        description={
+          searchQuery
+            ? `Nenhum resultado corresponde à busca por "${searchQuery}". Tente usar outros termos.`
+            : 'Nenhum wallpaper disponível no catálogo no momento.'
+        }
+        onReset={onResetSearch}
+        resetLabel="Limpar busca"
+      />
+    );
+  }
+
+  return (
+    <section
+      aria-label="Galeria de wallpapers do Steam Workshop"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+    >
+      {wallpapers.map((wallpaper) => (
+        <WallpaperCard key={wallpaper.id} wallpaper={wallpaper} />
+      ))}
+    </section>
+  );
+}
+

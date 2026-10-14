@@ -1,128 +1,149 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { MockWallpaperProvider } from './services/mockProvider';
-import { WallpaperItem, FilterMetadata } from './types/wallpaper';
-import { Sparkles, Tag, ExternalLink } from 'lucide-react';
+import { WallpaperItem } from './types/wallpaper';
+import { Navbar } from './components/Navbar';
+import { GalleryGrid } from './components/GalleryGrid';
+import { LoadingSkeleton } from './components/LoadingSkeleton';
+import { EmptyState } from './components/EmptyState';
+import { Footer } from './components/Footer';
+import { Info } from 'lucide-react';
 
 const provider = new MockWallpaperProvider();
 
 export function App() {
   const [wallpapers, setWallpapers] = useState<WallpaperItem[]>([]);
-  const [metadata, setMetadata] = useState<FilterMetadata | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [totalCount, setTotalCount] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function loadInitialData() {
-      try {
-        setLoading(true);
-        const [result, meta] = await Promise.all([
-          provider.getWallpapers({ pageSize: 4 }),
-          provider.getFilterMetadata(),
-        ]);
-        setWallpapers(result.items);
-        setMetadata(meta);
-      } catch (error) {
-        console.error('Erro ao inicializar provider:', error);
-      } finally {
-        setLoading(false);
-      }
+  const fetchWallpapers = useCallback(async (query: string) => {
+    try {
+      setIsLoading(true);
+      setHasError(false);
+      setErrorMessage(null);
+
+      const result = await provider.getWallpapers({
+        searchQuery: query,
+        pageSize: 24,
+      });
+
+      setWallpapers(result.items);
+      setTotalCount(result.total);
+    } catch (err) {
+      console.error('Falha ao carregar wallpapers:', err);
+      setHasError(true);
+      setErrorMessage(
+        err instanceof Error
+          ? err.message
+          : 'Ocorreu um erro inesperado ao carregar o catálogo.'
+      );
+    } finally {
+      setIsLoading(false);
     }
-    loadInitialData();
   }, []);
 
+  // Carrega catálogo inicial e atualiza na mudança da busca
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      fetchWallpapers(searchQuery);
+    }, 150);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery, fetchWallpapers]);
+
+  const handleRetry = () => {
+    fetchWallpapers(searchQuery);
+  };
+
+  const handleClearSearch = () => {
+    setSearchQuery('');
+  };
+
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-6 md:p-12">
-      <header className="max-w-6xl mx-auto mb-10 pb-6 border-b border-zinc-800">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-            <Sparkles className="w-6 h-6" />
-          </div>
-          <div>
-            <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-50">
-              Workshop Gallery
-            </h1>
-            <p className="text-sm text-zinc-400">
-              Catálogo visual para Wallpaper Engine • KDE Plasma / Linux
-            </p>
-          </div>
-        </div>
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+      {/* Barra de Navegação Superior e Busca */}
+      <Navbar
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        totalCount={totalCount}
+      />
 
-        <div className="mt-4 flex flex-wrap gap-2 text-xs text-zinc-400">
-          <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
-            ● Etapa 2 Concluída: Mock & Arquitetura Base
-          </span>
-          {metadata && (
-            <>
-              <span className="px-2.5 py-1 rounded-full bg-zinc-800/80 border border-zinc-700">
-                {metadata.tags.length} Tags detectadas
+      {/* Conteúdo Principal */}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Banner Informativo de Ambiente */}
+        <section
+          aria-label="Informações do catálogo"
+          className="mb-8 p-4 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-zinc-400"
+        >
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 shrink-0">
+              <Info className="w-4 h-4" aria-hidden="true" />
+            </div>
+            <div>
+              <p className="font-medium text-zinc-300">
+                Catálogo em Modo de Demonstração (Dados Simulados)
+              </p>
+              <p className="text-zinc-500 text-[11px]">
+                Navegue visualmente por wallpapers do Steam Workshop sem download de arquivos completos (.pkg).
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 shrink-0 text-[11px]">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-800/80 border border-zinc-700/60 text-zinc-300">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              {wallpapers.length} {wallpapers.length === 1 ? 'item exibido' : 'itens exibidos'}
+            </span>
+          </div>
+        </section>
+
+        {/* Feedback visual se houver busca ativa */}
+        {searchQuery.trim() !== '' && (
+          <div className="mb-6 flex items-center justify-between">
+            <h2 className="text-sm font-medium text-zinc-300">
+              Resultados para{' '}
+              <span className="text-indigo-400 font-semibold">"{searchQuery}"</span>
+              <span className="text-zinc-500 font-normal ml-2">
+                ({totalCount} {totalCount === 1 ? 'encontrado' : 'encontrados'})
               </span>
-              <span className="px-2.5 py-1 rounded-full bg-zinc-800/80 border border-zinc-700">
-                {metadata.resolutions.length} Resoluções disponíveis
-              </span>
-            </>
-          )}
-        </div>
-      </header>
+            </h2>
 
-      <main className="max-w-6xl mx-auto">
-        <h2 className="text-lg font-semibold mb-4 text-zinc-200">
-          Amostra do MockDataProvider (Validação de Tipagem e Estrutura)
-        </h2>
-
-        {loading ? (
-          <div className="p-8 text-center text-zinc-500 animate-pulse">
-            Carregando catálogo simulado...
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {wallpapers.map((item) => (
-              <div
-                key={item.id}
-                className="group flex flex-col rounded-2xl bg-zinc-900 border border-zinc-800 overflow-hidden hover:border-zinc-700 transition-all duration-200"
-              >
-                <div className="aspect-video w-full overflow-hidden bg-zinc-950 relative">
-                  <img
-                    src={item.previewUrl}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono text-zinc-300 border border-white/10">
-                    {item.resolution}
-                  </div>
-                </div>
-
-                <div className="p-4 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 className="font-medium text-sm text-zinc-100 line-clamp-1 group-hover:text-indigo-400 transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-zinc-400 mt-1 line-clamp-2">
-                      {item.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-4 pt-3 border-t border-zinc-800/60 flex items-center justify-between text-xs text-zinc-500">
-                    <span className="flex items-center gap-1">
-                      <Tag className="w-3 h-3" />
-                      {item.tags[0]}
-                    </span>
-                    <a
-                      href={item.steamUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-indigo-400 hover:text-indigo-300"
-                    >
-                      Steam <ExternalLink className="w-3 h-3" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <button
+              type="button"
+              onClick={handleClearSearch}
+              className="text-xs text-zinc-400 hover:text-zinc-200 transition-colors"
+            >
+              Limpar busca
+            </button>
           </div>
         )}
+
+        {/* Área de Exibição da Galeria / Skeleton / Erro */}
+        {isLoading ? (
+          <LoadingSkeleton count={8} />
+        ) : hasError ? (
+          <EmptyState
+            type="error"
+            title="Erro ao carregar o catálogo"
+            description={errorMessage || undefined}
+            onReset={handleRetry}
+            resetLabel="Tentar novamente"
+          />
+        ) : (
+          <GalleryGrid
+            wallpapers={wallpapers}
+            onResetSearch={handleClearSearch}
+            searchQuery={searchQuery}
+          />
+        )}
       </main>
+
+      {/* Rodapé */}
+      <Footer />
     </div>
   );
 }
-export default App;
 
+export default App;

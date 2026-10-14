@@ -23,9 +23,9 @@
 
 ## 4. Roteiro de Implementação do MVP
 - [x] **Etapa 1:** Análise de viabilidade técnica, estratégias de dados da Steam e plano de arquitetura. *(Concluído)*
-- [x] **Etapa 2:** Inicialização da estrutura do projeto em `WallpaperGallery`, configuração do Tailwind CSS v4, definição dos tipos TypeScript (`wallpaper.ts`), interface `IWallpaperDataProvider`, classe `MockWallpaperProvider` e dataset `mock-wallpapers.json`. *(Arquivos criados, aguardando execução de `npm install` e validação)*
-- [ ] **Etapa 3:** Interface base da galeria: Layout Pinterest (masonry multi-colunas responsivo), cards com prévias grandes, lazy loading e tema Dark refinado.
-- [ ] **Etapa 4:** Busca textual, filtros por categoria/resolução e ordenação (popularidade/data).
+- [x] **Etapa 2:** Inicialização da estrutura do projeto em `WallpaperGallery`, configuração do Tailwind CSS v4, definição dos tipos TypeScript (`wallpaper.ts`), interface `IWallpaperDataProvider`, classe `MockWallpaperProvider` e dataset `mock-wallpapers.json`. *(Concluído)*
+- [x] **Etapa 3:** Interface base da galeria: Layout responsivo, cards visuais refinados, badges de resolução/tipo, tratamento de erro de imagem, barra de busca com debounce, estados vazios e tema escuro. *(Concluído)*
+- [ ] **Etapa 4:** Pesquisa avançada, filtros combináveis (tags, resolução, tipo) e ordenação (popularidade/data).
 - [ ] **Etapa 5:** Modal de detalhes com prévia expandida, metadados e links Steam (web e aplicativo cliente).
 - [ ] **Etapa 6:** Carregamento progressivo (infinite scroll / lazy loading).
 - [ ] **Etapa 7:** Script gerador de catálogo via Steam Web API.
