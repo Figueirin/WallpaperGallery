@@ -97,11 +97,11 @@ export function FilterBar({
         </div>
       </div>
 
-      {/* Linha de Filtros Principais: Tipo e Resolução distribuídos em desktop */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
+      {/* Linha de Filtros Principais: Tipo e Resolução agrupados com proximidade */}
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
         {/* Seletor de Tipo de Wallpaper */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-          <span className="text-zinc-400 font-medium shrink-0 w-20">Tipo:</span>
+        <div className="flex items-center gap-2">
+          <span className="text-zinc-400 font-medium shrink-0">Tipo:</span>
           <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filtrar por tipo de wallpaper">
             <button
               type="button"
@@ -132,10 +132,15 @@ export function FilterBar({
           </div>
         </div>
 
-        {/* Filtro por Resolução */}
+        {/* Divisor vertical em telas maiores */}
         {metadata.resolutions.length > 0 && (
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-            <span className="text-zinc-400 font-medium shrink-0 w-20">Resolução:</span>
+          <div className="hidden sm:block h-5 w-px bg-zinc-800" aria-hidden="true" />
+        )}
+
+        {/* Filtro por Resolução aproximado */}
+        {metadata.resolutions.length > 0 && (
+          <div className="flex items-center gap-2">
+            <span className="text-zinc-400 font-medium shrink-0">Resolução:</span>
             <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filtrar por resolução">
               {metadata.resolutions.map((res) => {
                 const isSelected = selectedResolutions.includes(res);
@@ -163,8 +168,8 @@ export function FilterBar({
 
       {/* Linha 2: Filtro por Tags (Multi-select com lógica OR) */}
       {metadata.tags.length > 0 && (
-        <div className="flex flex-col sm:flex-row sm:items-start gap-2 pt-2 border-t border-zinc-800/40">
-          <span className="text-zinc-400 font-medium shrink-0 w-20 sm:pt-1">Tags (OU):</span>
+        <div className="flex flex-col sm:flex-row sm:items-start gap-2 pt-3 border-t border-zinc-800/40">
+          <span className="text-zinc-400 font-medium shrink-0 sm:pt-1">Tags (OU):</span>
           <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filtrar por tags temáticas">
             {metadata.tags.map((tag) => {
               const isSelected = selectedTags.includes(tag);
