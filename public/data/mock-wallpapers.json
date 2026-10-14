@@ -1,0 +1,219 @@
+[
+  {
+    "id": "mock-3001",
+    "title": "Neon Cyberpunk Alleyway Rain",
+    "description": "Uma rua chuvosa em Neo-Tokyo com reflexos de neon em tempo real, poças d'água dinâmicas e partículas de névoa.",
+    "author": {
+      "name": "KuroDev",
+      "steamId": "76561198000000001"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1000&q=80",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": ["Cyberpunk", "Rain", "City", "Relaxing"],
+    "rating": "Everyone",
+    "fileSizeBytes": 45200000,
+    "createdAt": "2025-08-14T10:00:00Z",
+    "updatedAt": "2025-09-02T14:30:00Z",
+    "stats": {
+      "views": 45200,
+      "subscriptions": 18300,
+      "favorited": 4200,
+      "votesUp": 3900
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3001",
+    "steamClientUri": "steam://url/CommunityFilePage/3001",
+    "isSimulated": true
+  },
+  {
+    "id": "mock-3002",
+    "title": "Cozy Lofi Mountain Cabin Sunset",
+    "description": "Cabana aconchegante nas montanhas com iluminação de entardecer suave, fumaça animada na chaminé e neve caindo lentamente.",
+    "author": {
+      "name": "AuraVisuals",
+      "steamId": "76561198000000002"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1000&q=80",
+    "type": "Video",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": ["Nature", "Cozy", "Sunset", "Relaxing"],
+    "rating": "Everyone",
+    "fileSizeBytes": 112000000,
+    "createdAt": "2025-07-20T18:22:00Z",
+    "updatedAt": "2025-07-20T18:22:00Z",
+    "stats": {
+      "views": 89400,
+      "subscriptions": 34100,
+      "favorited": 8900,
+      "votesUp": 7800
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3002",
+    "steamClientUri": "steam://url/CommunityFilePage/3002",
+    "isSimulated": true
+  },
+  {
+    "id": "mock-3003",
+    "title": "Deep Space Nebula & Planetary Ring (Ultrawide)",
+    "description": "Nebulosa interestelar com poeira estelar dinâmica, anéis planetários em rotação suave e estrelas cintilantes.",
+    "author": {
+      "name": "CosmicShader",
+      "steamId": "76561198000000003"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+    "type": "Scene",
+    "resolution": "3440x1440",
+    "aspectRatio": "21:9",
+    "tags": ["Space", "Sci-Fi", "Minimalist"],
+    "rating": "Everyone",
+    "fileSizeBytes": 68500000,
+    "createdAt": "2025-06-11T09:15:00Z",
+    "updatedAt": "2025-06-15T11:00:00Z",
+    "stats": {
+      "views": 61200,
+      "subscriptions": 22400,
+      "favorited": 5600,
+      "votesUp": 5100
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3003",
+    "steamClientUri": "steam://url/CommunityFilePage/3003",
+    "isSimulated": true
+  },
+  {
+    "id": "mock-3004",
+    "title": "Minimalist Forest Lake Fog",
+    "description": "Lago misterioso na floresta com névoa volumétrica e paleta de cores monocromática escura, ideal para monitores OLED.",
+    "author": {
+      "name": "NordicDesign",
+      "steamId": "76561198000000004"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1000&q=80",
+    "type": "Scene",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": ["Minimalist", "Nature", "Dark"],
+    "rating": "Everyone",
+    "fileSizeBytes": 28100000,
+    "createdAt": "2025-09-01T14:10:00Z",
+    "updatedAt": "2025-09-05T08:00:00Z",
+    "stats": {
+      "views": 32100,
+      "subscriptions": 12800,
+      "favorited": 3100,
+      "votesUp": 2900
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3004",
+    "steamClientUri": "steam://url/CommunityFilePage/3004",
+    "isSimulated": true
+  },
+  {
+    "id": "mock-3005",
+    "title": "Anime Shrine Maiden Cherry Blossom",
+    "description": "Cenário de templo xintoísta tradicional com pétalas de cerejeira (sakura) caindo com física de vento configurável.",
+    "author": {
+      "name": "SakuraArtist",
+      "steamId": "76561198000000005"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1528164344705-475426879c0d?auto=format&fit=crop&w=1000&q=80",
+    "type": "Video",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": ["Anime", "Nature", "Fantasy", "Relaxing"],
+    "rating": "Everyone",
+    "fileSizeBytes": 185000000,
+    "createdAt": "2025-05-18T16:45:00Z",
+    "updatedAt": "2025-05-20T12:00:00Z",
+    "stats": {
+      "views": 115000,
+      "subscriptions": 48200,
+      "favorited": 13200,
+      "votesUp": 11800
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3005",
+    "steamClientUri": "steam://url/CommunityFilePage/3005",
+    "isSimulated": true
+  },
+  {
+    "id": "mock-3006",
+    "title": "Audio Visualizer - Waveform Pulse",
+    "description": "Visualizador de áudio interativo baseado em WebGL com ondas reativas aos sons do sistema operacional e relógio digital integrado.",
+    "author": {
+      "name": "CodePulse",
+      "steamId": "76561198000000006"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1000&q=80",
+    "type": "Web",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": ["Abstract", "Audio Visualizer", "Interactive"],
+    "rating": "Everyone",
+    "fileSizeBytes": 14200000,
+    "createdAt": "2025-09-10T21:00:00Z",
+    "updatedAt": "2025-09-12T19:30:00Z",
+    "stats": {
+      "views": 54300,
+      "subscriptions": 21500,
+      "favorited": 6200,
+      "votesUp": 5400
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3006",
+    "steamClientUri": "steam://url/CommunityFilePage/3006",
+    "isSimulated": true
+  },
+  {
+    "id": "mock-3007",
+    "title": "Retrowave Sunset Grid Highway",
+    "description": "Rodovia synthwave infinita em direção a um sol retrô neon dos anos 80 com montanhas poligonais e linhas de grade.",
+    "author": {
+      "name": "SynthMaster",
+      "steamId": "76561198000000007"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1000&q=80",
+    "type": "Scene",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": ["Cyberpunk", "Abstract", "Retro"],
+    "rating": "Everyone",
+    "fileSizeBytes": 42000000,
+    "createdAt": "2025-04-12T11:20:00Z",
+    "updatedAt": "2025-04-15T15:00:00Z",
+    "stats": {
+      "views": 78900,
+      "subscriptions": 31200,
+      "favorited": 8100,
+      "votesUp": 7400
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3007",
+    "steamClientUri": "steam://url/CommunityFilePage/3007",
+    "isSimulated": true
+  },
+  {
+    "id": "mock-3008",
+    "title": "Japanese Garden Pond with Koi Fish",
+    "description": "Lago calmo de jardim japonês com carpas koi nadando em tempo real com ondulações de água interativas ao passar o mouse.",
+    "author": {
+      "name": "ZenCrafter",
+      "steamId": "76561198000000008"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1000&q=80",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": ["Nature", "Relaxing", "Interactive"],
+    "rating": "Everyone",
+    "fileSizeBytes": 89000000,
+    "createdAt": "2025-08-01T13:40:00Z",
+    "updatedAt": "2025-08-05T10:15:00Z",
+    "stats": {
+      "views": 92000,
+      "subscriptions": 39400,
+      "favorited": 10500,
+      "votesUp": 9600
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3008",
+    "steamClientUri": "steam://url/CommunityFilePage/3008",
+    "isSimulated": true
+  }
+]
+

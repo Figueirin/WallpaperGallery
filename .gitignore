@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+
+# Build output and coverage
+dist/
+coverage/
+.vite/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+*.ppk
+id_rsa
+id_ed25519
+*.pub
+
+# Credentials and authentication
+credentials.json
+secrets.json
+service-account*.json
+.netrc
+.auth/
+.ssh/
+
+# Local package-manager configuration
+.npmrc
+
+# Logs and temporary files
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+
+# TypeScript build artifacts
+*.tsbuildinfo
+
+# IDE and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local caches and generated tool state
+.cache/
+.turbo/
+
+# Local backups
+*.bak
+*.backup
+*~
