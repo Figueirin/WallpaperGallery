@@ -5,6 +5,7 @@ import {
   filterAndSortWallpapers,
   extractFilterMetadata,
   getResolutionLabel,
+  findWallpaperById,
 } from '../src/utils/filterWallpapers.ts';
 
 // Carrega o catálogo real do mock-wallpapers.json
@@ -210,4 +211,44 @@ describe('Imutabilidade e Utilitários', () => {
     assert.strictEqual(getResolutionLabel('1280x720'), '1280x720');
   });
 });
+
+describe('Recuperação e Detalhes do Wallpaper (Detail View)', () => {
+  it('deve localizar wallpaper existente por ID válido', () => {
+    const item = findWallpaperById(catalog, 'mock-3001');
+    assert.ok(item !== null);
+    assert.strictEqual(item?.id, 'mock-3001');
+    assert.strictEqual(item?.title, 'Neon Cyberpunk Alleyway Rain');
+    assert.strictEqual(item?.author?.name, 'KuroDev');
+  });
+
+  it('deve retornar null para ID inexistente', () => {
+    const item = findWallpaperById(catalog, 'mock-nao-existente-9999');
+    assert.strictEqual(item, null);
+  });
+
+  it('deve retornar null para IDs vazios ou inválidos', () => {
+    assert.strictEqual(findWallpaperById(catalog, ''), null);
+    assert.strictEqual(findWallpaperById(catalog, null), null);
+    assert.strictEqual(findWallpaperById(catalog, undefined), null);
+  });
+
+  it('deve conter previewUrl e links da Steam válidos para exibição detalhada', () => {
+    const item = findWallpaperById(catalog, 'mock-3001');
+    assert.ok(item?.previewUrl);
+    assert.ok(item?.steamUrl?.startsWith('https://steamcommunity.com/sharedfiles/filedetails/?id='));
+    assert.ok(item?.steamClientUri?.startsWith('steam://url/CommunityFilePage/'));
+    assert.ok(item?.stats);
+    assert.ok(typeof item?.stats.views === 'number');
+  });
+
+  it('deve identificar e fornecer videoPreviewUrl em itens animados suportados', () => {
+    const videoItem = findWallpaperById(catalog, 'mock-3002');
+    assert.ok(videoItem !== null);
+    assert.strictEqual(videoItem?.type, 'Video');
+    assert.ok(videoItem?.videoPreviewUrl !== undefined);
+    assert.ok(typeof videoItem?.videoPreviewUrl === 'string');
+    assert.ok(videoItem?.videoPreviewUrl.endsWith('.mp4'));
+  });
+});
+
 
