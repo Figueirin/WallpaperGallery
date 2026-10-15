@@ -29,6 +29,9 @@ import {
   paginateWallpapers,
 } from '../utils/filterWallpapers.ts';
 
+// Reuse the same collation semantics without constructing a collator per comparison.
+const compareTitles = new Intl.Collator('pt-BR', { sensitivity: 'base' }).compare;
+
 export interface StaticCatalogProviderOptions {
   baseUrl?: string;
   fetchImpl?: typeof fetch;
@@ -368,7 +371,7 @@ export class StaticCatalogProvider implements IWallpaperDataProvider {
           if (a.date !== b.date) return a.date - b.date;
           return b.pop - a.pop;
         case 'title_asc':
-          return a.title.localeCompare(b.title, 'pt-BR', { sensitivity: 'base' });
+          return compareTitles(a.title, b.title);
         default:
           return 0;
       }

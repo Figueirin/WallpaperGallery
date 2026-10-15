@@ -1,5 +1,39 @@
 [
   {
+    "id": "884307090",
+    "isSimulated": false,
+    "title": "Perfect Wallpaper-完美壁纸【落樱粒子+多风格动态音频响应+自定义+幻灯片+视频壁纸】-steam独此一家",
+    "description": "2022/10/23 问题修复：之前的免费天气接口挂了，已找到替换接口，已修复\n2022/03/26 小幅更新：樱花增加背景亮度和花瓣数量参数，樱花背景导致的白色背景过亮问题，可以调低背景亮度解决\n2022/03/21 小幅更新：优化樱花模块，可以关闭樱花的白色背景和色彩，还增加了樱花反向运动参数，新版完美壁纸已经在开发中了，大家敬请期待\n\n用不明白的小白，音频圈没反应的壁纸用着有问题的，欢迎加群552188051、673748076、1036775823、776830214 或我QQ394011315，也可以关注老陈的抖音或b站搜索【老陈的干货】，后面会有壁纸使用教程等等，对壁纸有建议，或者反馈bug的也可以加群，群里有各种壁纸视频模板音乐资源可以免费使用=。=大佬也可以来吹水，欢迎大家\n\n2017/12/10 修复更新：修复天气崩溃问题，国内免费还稳定的天气接口真的不多，还要带自动定位功能真的不好弄，熬了个通宵借用了别人的api接口，最后搞定了，非常感谢各位一直支持完美壁纸的朋友，看到你们的评论，我真的很有动力，作者平常还有工作要忙，有时候不能第一时间修复问题，希望有问题能耐心等待，可以加交流群或者我QQ反馈\n\n截图看不出动态壁纸的效果，在我心中这是趋近于完美的动态壁纸，希望你们能喜欢\n做这个也是很不容易的=。=，求订阅求好评\n\n前言：这是一款即时动态响应系统声音的可视化音频特效壁纸，不是用AE做好效果录视频的低端壁纸，这款壁纸拥有极高的自定义个性化功能，可以定制出各种你想要的风格，只有你想不到，没有它做不到\n\n2017/9/10 (完美壁纸6.0正式版) \n\n教师节更新，老师教会我们不要始乱终弃，完美壁纸会用心陪伴每一个用户，各位老师节日快乐\n\n1.修改自定义视频方式，支持直接选取视频文件作为自定义视频，只支持webm格式视频，想要无损转换的同学加群学习转换工具的使用\n\n2.修改自定义BGM方式，支持直接选取音乐文件，只支持OGG格式文件，转换工具交流群里有\n\n3.增加手动修改天气定位城市功能，输入城市名称即可，如北京，若没有获取到输入 \"xx市\"\n\n4.修正一些小bug增强稳定性\n\n5.增加2B小姐姐动态视频模板\n\n--感谢大家长久来对完美壁纸的厚爱，很久没有更新了，因为最近在工作还搬家，没有什么精力投入到壁纸上，但是完美壁纸不会断更，作者会持续为完美壁纸更新，萌新最好加群问问题别在评论下面误导别人，欢迎各位主播给大家介绍完美壁纸，感谢你们的支持\n--下个大版本将会优化完美壁纸性能，让更多然能完美体验完美壁纸\n\n2017/6/18 父亲节夜晚礼物，希望完美壁纸能让你们用到当父亲的那一天（完美壁纸6.0 beta）\n本次更新重大，请仔细看更新说明\n1.新增爱丽丝音频圈，一个全新的动态音频响应特效，在可视化音频模板参数可以切换，参数众多，可以实现多种效果\n2.增加爱丽丝粒子特效，和樱花特效共存，默认为下雪效果，可以替换粒子模型，实现各种粒子特效 ，参数无敌多，可以实现很多效果\n3.增加天气显示，有多种参数可以调整，多种天气格式可以选择，天气显示为免费查询，目前测试国内大陆使用均正常，新疆，香港国外可能定位不准确，天气默认为关，可以自己启动\n4.增加WLOP画师10张美图作为默认壁纸编号21-30wlop精选，增加交流群Prinz同学精选的壁纸一张编号31\n5.增加视频模板7个，46-EVA，47-Liquid Universe，48-Aeolion，49-黑暗之魂防火女，50-黑暗之魂阿尔特留斯，51-毛线小人，52-写轮眼\n6.增加日期格式MM/DD/YYY类型，共计13种新格式\n7.粒子特效默认模型贴图增加25张，有爱心，神烦狗，doge，滑稽表情等等粒子贴图模型\n8.修复BGM音乐损坏问题，请不要使用格式工厂转换ogg格式，转换出来100%存在问题\n9.新增5首纯音乐BGM，总共增加到10个可以替换的自定义bgm位置\n10.修复一些小问题，优化了代码\n\n--此次版本为完美壁纸6.0beta版，完美壁纸已经越来越接近完美，作为一款可以高度自定义化的壁纸，已经快达到极限了\n--特效的增加意味着对性能资源使用更多，作者E3机器，一般特效占用在8%-12%左右，视频壁纸+粒子特效+爱丽丝音频圈，会飙到20%左右，请根据机器性能选择自己的特效\n--下一版本会想办法增加视频幻灯片切换，默认bgm随机或顺序播放，最重要的是优化性能\n--注意天气功能因为是免费查询所以偶尔会不稳定，导致壁纸加载不出来，此时请关闭天气，重新打开壁纸\n--完美壁纸，希望可以让你们用到当爸爸的一天，对天下所有曾经被无解的父亲说声节日快乐\n\n--经历了很久，终于实现了当初承诺的绝大多数功能，感谢很多带着美丽心灵的朋友给予的建议，一些自我为中心的脑残二世祖小朋友请不要来加我Q，我人好说话，但是不代表我没脾气，自己脑残，别来恶心我，我又不欠你，用我的东西还不讲礼貌什么的最烦了=。=期待我下次更新把，选择这款壁纸的同学，你们的眼光绝对刚刚的！!\n--所有关于设置使用、CPU占用过高、等问题请移步到讨论，看我的常见问题说明贴，我会把常见问题解答发布在讨论里，方便大家解决壁纸设置使用问题=。=\n\n引用说明：\n截止18日更新，总共使用他人壁纸视频资源共52个，编号1-15、34-52为创意工坊壁纸，16-33为lol官方屏保软件动态视频，由于字数限制，引用说明写在讨论区了\nhttp://steamcommunity.com/workshop/filedetails/discussion/884307090/1291816569115387553/\n\n爱丽丝圆环，粒子特效来自于@Alice同学的作品，移植已获得同意，感兴趣的可以看看他的作品\nhttp://steamcommunity.com/profiles/76561198012801662\n\n2017/6/1 儿童节NB更新！！！完美壁纸5.5版本\n主要增加直线可是化音频效果，增加日期显示，增加纯色渐变和彩虹渐变色彩模式，时间变色效果，增加多个视频模板等，其他请查看更新日志\n\n2017/5/21 我爱你更新\n主要增加幻灯片特效，修正bug，其他请查看更新日志\n\n2017/5/18 小幅更新\n主要支持BGM，支持多边形变换，其他请查看更新日志\n\n--我要强调一下，完美壁纸是高端的即时可视化音频，音频可以随系统声音跳动，开个网易云听私人FM看着屏幕的音频跳动发呆，我可以呆一下午，要什么BGM，要什么自行车！=。=（虽然我还是屈服了加了音乐功能）\n--自定义音乐（也就是换背景音乐）需要找到壁纸根目录的Audio文件夹，按照里面文件的名称规则命名提供06-10共5个预留音乐位置，只支持OGG\n\n重大更新！重大更新！重大更新！\n2017/5/16 \n主要:支持视频模式，其他请查看更新日志\n\n2017/5/7凌晨-重要更新！重要更新！重要更新！\n请查看更新日志\n\n2017/3/16首次上传\n请查看更新日志\n\n我的QQ：394011315 \n遇见问题可以联系我，有对完美壁纸更好的建议想法也可以联系我，壁纸可调参数最下面有交流群联系方式，有问题也可以加群\n\n希望用了觉得不错的朋友给我点个赞哦！",
+    "author": {
+      "name": "",
+      "steamId": "76561198091998981"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1848171366529177079/D2ADB7FF006F8DCA73EC5CDAA200FB0C48132605/",
+    "type": "Web",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Wallpaper",
+      "Audio responsive",
+      "Relaxing",
+      "Approved",
+      "Customizable",
+      "Dynamic resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 669459522,
+    "createdAt": "2017-03-15T22:03:16.000Z",
+    "updatedAt": "2022-10-22T16:52:56.000Z",
+    "stats": {
+      "views": 1201821,
+      "subscriptions": 9223334,
+      "favorited": 355217,
+      "votesUp": 122686
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=884307090",
+    "steamClientUri": "steam://url/CommunityFilePage/884307090"
+  },
+  {
     "id": "3299228616",
     "isSimulated": false,
     "title": "Lonely Cat: Audio visualizer , Clock , Chill , Multi language",
@@ -96,6 +130,37 @@
     "steamClientUri": "steam://url/CommunityFilePage/2447928310"
   },
   {
+    "id": "1289832516",
+    "isSimulated": false,
+    "title": "Aeolian by WLOP",
+    "description": "[u][b]Illustrations by:[/b][/u]\r\nhttps://wlop.deviantart.com/\r\nhttps://www.artstation.com/wlop\r\nhttps://twitter.com/wlopwangling\r\n\r\n[u][b]BGM (Background music):[/b][/u]\r\nLights & Motion - Anomaly\r\n\r\n[u][b]Info:[/b][/u]\r\nMy first attempt at animating a wallpaper by WLOP. I have been pledged to WLOP's Patreon for a while now as I am a huge fan, and I completely fell in love with this piece, so I decided to try and make an animated wallpaper out of it. If you like the art as much as I do then consider supporting WLOP as all I did was animate parts of it.\r\n\r\n[u][b]Note:[/b][/u]\r\n- [b]I do not take commissions[/b] so please do not reach out to me for this reason! I animated this purely for fun in my spare time. \r\n- The preview gif is in low quality as the max upload size is 2mb. The wallpaper itself is not like this!\r\n\r\n[i]I just want to say thank you to everyone for your kind comments. I was NOT expecting this wallpaper to blow up like this as I was simply just trying to learn how to make wallpapers at the time. I am not active on here anymore, but your words of encouragement really means a lot![/i]",
+    "author": {
+      "name": "",
+      "steamId": "76561198075185446"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/933803870811193287/F387A574CD70E74ACA10FE8DC646A71C789DEF23/",
+    "type": "Video",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 225992811,
+    "createdAt": "2018-02-03T06:34:35.000Z",
+    "updatedAt": "2018-02-09T16:43:58.000Z",
+    "stats": {
+      "views": 328762,
+      "subscriptions": 2884252,
+      "favorited": 265226,
+      "votesUp": 76069
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1289832516",
+    "steamClientUri": "steam://url/CommunityFilePage/1289832516"
+  },
+  {
     "id": "3122339805",
     "isSimulated": false,
     "title": "Pixels",
@@ -130,6 +195,40 @@
     "steamClientUri": "steam://url/CommunityFilePage/3122339805"
   },
   {
+    "id": "1748506393",
+    "isSimulated": false,
+    "title": "Colorful Fluid Animation [Audio Responsive]",
+    "description": "[h1]FPS Issue[/h1]\r\n\r\n[img]https://i.imgur.com/tPLquEr.png[/img]\r\n[img]https://i.imgur.com/44vB6CY.png[/img]\r\n\r\n\r\nSource Code: https://github.com/Delivator/WebGL-Fluid-Simulation\r\nCredit: https://github.com/PavelDoGreat/WebGL-Fluid-Simulation\r\n\r\nCredit to https://github.com/fuchst for adding a fps limiter.",
+    "author": {
+      "name": "",
+      "steamId": "76561198194572149"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1629731131955451982/492E7509F2F6B229E310621B684501F880C8B05E/",
+    "type": "Web",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Abstract",
+      "Wallpaper",
+      "Audio responsive",
+      "Approved",
+      "Customizable",
+      "Dynamic resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 1502995,
+    "createdAt": "2019-05-22T08:24:16.000Z",
+    "updatedAt": "2024-02-12T10:08:02.000Z",
+    "stats": {
+      "views": 166868,
+      "subscriptions": 2837602,
+      "favorited": 145066,
+      "votesUp": 42011
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1748506393",
+    "steamClientUri": "steam://url/CommunityFilePage/1748506393"
+  },
+  {
     "id": "3314492008",
     "isSimulated": false,
     "title": "世界很温柔 —《龙族》上杉绘梨衣【4K】（龙族卡塞尔之门官方原创）",
@@ -158,6 +257,40 @@
     },
     "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3314492008",
     "steamClientUri": "steam://url/CommunityFilePage/3314492008"
+  },
+  {
+    "id": "893418273",
+    "isSimulated": false,
+    "title": "Audio Visualizer",
+    "description": "an Audio Responsive Wallpaper.\r\nA whole bunch of configuration options. literally a lotttt.\r\nWhole lot based on bass and beats! not perfect yet!!!! \r\n\r\nNew updates, new releases, new patches... everytime my brain sparks.. so yeah constant updates\r\n\r\n****Resolution independent\r\n****Low CPU usage... on basic settings, ... on basic settings..... (beware of shadow blur.... it takes up a lot)\r\nBasic options uses around 5~9% CPU (on my 5 year old lappy... so should be around 2% for the rest of the world)\r\n\r\nMost of the wallpaper is based on Bass of music.\r\nFor, specific reasons, this wallpaper works better on full volume.\r\n\r\nVolume will be based on application you are playing Audio/Video not the system volume.\r\n\r\nShow me your creativity!!!! Post them in discussions to showoff and inspire :D\r\n\r\nAm still new to coding so, Let me know your Feedback and Suggestions.\r\n\r\nCheck out of Second Wallpaper\r\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=923576681\r\n\r\nLatest Update notes:\r\nUpdate: 21 Jun\r\nAdded options to change the number of audio Counts displayed.\r\n\r\nUpdate: 20 Jun\r\nAdditional options to rotate spectrum and rotate rainbow colors\r\nfixed bug for Bars beat tolerance.\r\nfixed some bug causing to run a piece of code twice.\r\nadded more options for particle style 2 count.\r\n\r\nUpdate: 18 Jun\r\nBars update ~ Styles enhanced with Tolerance options\r\nBass Shake effects with blur with Tolerance options.\r\nNew Partilce Style\r\nchanged Bass effect multipler options. changed minimum and maximum values to have more specific values.\r\n\r\nUpdate: 8 Jun\r\nAudio Enhancement ~Normalization/Responsiveness/\r\nBackground Customization ~Color/Image/Slideshow/Video\r\nClock Updated ~Fonts/Day customizations/Positions/Shadow effect/Bass effect changes/\r\nNew Text Feature ~Fonts/Positions/Shadow effect/Bass effect changes\r\nCenter Circle update ~Logo\r\nBars update ~Shadow effect/new Styles\r\nParticles update ~ new Particle Model/Rainbow effect/ Twinkling effect/Particles when no Audio is played/ Size multiplier\r\nFPS alert if below 30frames per second with options\r\nOverlay option to place image on top most! ~ with positions\r\n\r\nKnow Bugs\r\nOverlay Image setting back to 'Initial' Option everytime WE launches!\r\nSmall bug with only one bar drawing one over the other (almost hard to notice!)",
+    "author": {
+      "name": "",
+      "steamId": "76561198068163730"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/82596531523781017/FCD42CDDED87493EC7C189C45948F4F48A6134CB/",
+    "type": "Web",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Wallpaper",
+      "Music",
+      "Audio responsive",
+      "Approved",
+      "Customizable",
+      "Dynamic resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 19847404,
+    "createdAt": "2017-03-28T18:37:31.000Z",
+    "updatedAt": "2022-07-12T16:51:52.000Z",
+    "stats": {
+      "views": 191299,
+      "subscriptions": 2542974,
+      "favorited": 50131,
+      "votesUp": 17923
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=893418273",
+    "steamClientUri": "steam://url/CommunityFilePage/893418273"
   },
   {
     "id": "827148653",
@@ -258,6 +391,37 @@
     "steamClientUri": "steam://url/CommunityFilePage/2981249186"
   },
   {
+    "id": "1403160205",
+    "isSimulated": false,
+    "title": "• Rainy Day",
+    "description": "https://github.com/codrops/RainEffect\r\n\r\nImportant Tutorial: https://www.youtube.com/watch?v=lDspvBkviT0",
+    "author": {
+      "name": "",
+      "steamId": "76561197961957434"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/930437282871892098/434BA38F50B7EBAB6AC19ABB9D7282452D1E8A75/",
+    "type": "Web",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Wallpaper",
+      "Relaxing",
+      "Dynamic resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 24697641,
+    "createdAt": "2018-06-05T03:14:35.000Z",
+    "updatedAt": "2018-09-02T11:06:21.000Z",
+    "stats": {
+      "views": 112573,
+      "subscriptions": 2190882,
+      "favorited": 136909,
+      "votesUp": 30979
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1403160205",
+    "steamClientUri": "steam://url/CommunityFilePage/1403160205"
+  },
+  {
     "id": "2370927443",
     "isSimulated": false,
     "title": "Lofi Cafe",
@@ -290,6 +454,37 @@
     },
     "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2370927443",
     "steamClientUri": "steam://url/CommunityFilePage/2370927443"
+  },
+  {
+    "id": "1781466079",
+    "isSimulated": false,
+    "title": "Wake up",
+    "description": "欢迎关注我的B站频道：https://space.bilibili.com/59514408\r\n6月29日更新：降了一半速度，帧率提升到60FPS，删除了BGM\r\n6月30日更新：BGM回来啦\r\n韩一杰老师的原画作品\r\nhttp://hanyijie.lofter.com\r\n微博@韩一杰\r\n大家好，我是大污师，首先感谢大家这几年的支持和厚爱，我有些话想说一下，也许你们注意到了，近些日子我的壁纸产量放缓了，我的收入并不高，还在使用五年前的电脑进行创作。\r\n制作壁纸几乎占据了我所有的业余时间，有时还需要熬夜，最近我的第二个宝宝降生了，我不知道还能在这里坚持多久。有条件想支持一下的朋友可以考虑捐助一下下。\r\n再次感谢大家的支持\r\n[url=https://steamuserimages-a.akamaihd.net/ugc/1664606352306261863/E37DB5F74D34430C703495BA70FB63C9F39CDF20/]二维码捐赠 [/url]\r\nHello everyone, I am DWS, first of all, thank you for your support and love over the years, I would like to say something, maybe you have noticed that my wallpaper production has declined recently, my income is not high, I still use the computer five years ago to create.\r\nWallpaper making takes up almost all of my spare time, and sometimes I have to stay up late. Recently my second baby was born, and I don't know how much longer I can stay here. Conditionally want to support a friend can consider a donation.\r\nThanks again for your support\r\n[url=https://paypal.me/DWS2018?locale.x=zh_XC] PAYPAL [/url]",
+    "author": {
+      "name": "",
+      "steamId": "76561198064225299"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/793112576574810730/32625B0FFEB7F070DE88BB2C202793D5BECE6FBF/",
+    "type": "Video",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 115343342,
+    "createdAt": "2019-06-26T10:00:48.000Z",
+    "updatedAt": "2019-06-30T02:31:18.000Z",
+    "stats": {
+      "views": 166616,
+      "subscriptions": 2095778,
+      "favorited": 143996,
+      "votesUp": 25817
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1781466079",
+    "steamClientUri": "steam://url/CommunityFilePage/1781466079"
   },
   {
     "id": "2482408967",
@@ -355,6 +550,101 @@
     "steamClientUri": "steam://url/CommunityFilePage/1195626192"
   },
   {
+    "id": "1551961057",
+    "isSimulated": false,
+    "title": "哔哩哔哩音频响应壁纸",
+    "description": "!!! 请注意, 不再更新 !!!\r\n\r\n网易云检测不出的 请使用PC最新版 UWP是不支持的\r\n歌词卡住是小葫芦的问题了 我是没办法解决的 那些音乐播放器也不开个API给我们这些第三方应用调用\r\n----12/29----\r\n感谢 @Rain酱 的提醒，BGM插件已更新到3.0，并在下面附上了如何自己修改小葫芦官方BGM插件的方法\r\n----12/5----\r\n更新日历样式 更接近原壁纸\r\n----12/4----\r\n添加实验性的歌曲信息显示(歌曲名/进度条/歌词/中文翻译歌词)\r\n需要运行一个小葫芦BGM插件控制台来获取信息（http://www.obsapp.com/apps/bgm/ ，非常感谢小葫芦的OBS插件！）\r\n需要在设置里开启，说明在设置内。\r\n----放学之后----\r\n添加禁用日历选项,禁用后频谱会回到日历上\r\n(打算添加歌名显示功能 会需要一个backend后台运行)\r\n----几分钟之后----\r\n补上了闰年的2月份天数检测\r\n----12/03----\r\n1.映评论区要求添加了日历\r\n2.频谱往前捎了捎（日历弟弟你往后稍稍）\r\n----12/01----\r\nbugfix\r\n---- 11/30日更新 ----\r\n映评论区要求添加了:\r\n1.夜间模式（我不是原画师啊你叫我弄个夜间和黄昏模式我很蛋疼的啊啊啊啊）\r\n2.超宽屏自动缩放功能\r\n3.手机上的文字可以修改了(JSON格式 建议外部编辑好再复制回来) \r\n默认手机文字: \r\n[code][{\"time\":0,\"text\":\"凌晨啦!\"},{\"time\":6,\"text\":\"早上好!\"},{\"time\":8,\"text\":\"上午好!\"},{\"time\":11,\"text\":\"你吃了吗\"},{\"time\":13,\"text\":\"下午好鸭!\"},{\"time\":16,\"text\":\"傍晚咯!\"},{\"time\":19,\"text\":\"晚安!\"}][/code]\r\n注:time对应的是时间(小时) 可以自己增加。\r\n\r\n--------------------\r\nemmm 无聊做的\r\n原静态壁纸地址: https://h.bilibili.com/17869\r\n有频谱显示\r\n----附录----\r\n- 如何自己手动更新小葫芦BGM插件？ (仅限对.NET有认识的人 不然做不了第四步)\r\n1.首先下载并安装小葫芦插件\r\n2.从OBS的plugins目录下将bgm目录拷贝出来\r\n3.使用De4Dot反混淆:  .\\de4dot.exe -r BGM -ro BGM\\cleaned\r\n4.使用dnSpy修改代码:\r\n[code]\r\n#region 插入新类\r\nusing System;\r\nusing System.IO;\r\nusing System.Net;\r\nusing System.Runtime.InteropServices;\r\nusing System.Text;\r\nusing System.Threading;\r\nusing BGM;\r\nusing CalabashFont;\r\nusing CalabashTools;\r\nusing Microsoft.Win32;\r\n\r\ninternal class BGMJsonRPC\r\n{\r\n\t[DllImport(\"user32\")]\r\n\tprivate static extern int GetWindowThreadProcessId(IntPtr intptr_0, out int int_3);\r\n\r\n\tprivate string FormatTime(double double_, double double_2)\r\n\t{\r\n\t\tif (double_ > 0.0 && double_2 >= 0.0)\r\n\t\t{\r\n\t\t\tdouble_ /= 1000.0;\r\n\t\t\tdouble_2 /= 1000.0;\r\n\t\t\tint num = (int)double_ / 60;\r\n\t\t\tint num2 = (int)double_ % 60;\r\n\t\t\tint num3 = (int)double_2 / 60;\r\n\t\t\tint num4 = (int)double_2 % 60;\r\n\t\t\treturn string.Format(\"({0}:{1}/{2}:{3})\", new object[]\r\n\t\t\t{\r\n\t\t\t\tnum3,\r\n\t\t\t\tnum4,\r\n\t\t\t\tnum,\r\n\t\t\t\tnum2\r\n\t\t\t});\r\n\t\t}\r\n\t\treturn null;\r\n\t}\r\n\r\n\tprivate void updateShit()\r\n\t{\r\n\t\ttry\r\n\t\t{\r\n\t\t\tstring text = this.MainWindow.gclass8_0.method_3();\r\n\t\t\tstring title = this.MainWindow.gclass8_0.method_1();\r\n\t\t\tif (string.IsNullOrEmpty(text))\r\n\t\t\t{\r\n\t\t\t\tthis.Title = \"\";\r\n\t\t\t}\r\n\t\t\telse\r\n\t\t\t{\r\n\t\t\t\tthis.AppName = text;\r\n\t\t\t\tthis.Title = title;\r\n\t\t\t\tif (this.MainWindow.gclass9_0 != null)\r\n\t\t\t\t{\r\n\t\t\t\t\tthis.ChineseLryic = this.MainWindow.gclass9_0.vmethod_1(ref this.Lryic, ref this.AllTime, ref this.Now);\r\n\t\t\t\t\tif (this.Now <= 0.0)\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\tthis.Now = this.NowBak;\r\n\t\t\t\t\t}\r\n\t\t\t\t\tif (this.AllTime <= 0.0)\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\tthis.AllTime = this.AllTimeBak;\r\n\t\t\t\t\t}\r\n\t\t\t\t\tthis.NowBak = this.Now;\r\n\t\t\t\t\tthis.AllTimeBak = this.AllTime;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t\tcatch\r\n\t\t{\r\n\t\t\tthis.Title = \"\";\r\n\t\t\tthis.AppName = \"\";\r\n\t\t\tthis.Lryic = \"\";\r\n\t\t\tthis.ChineseLryic = \"\";\r\n\t\t\tthis.AllTime = this.AllTimeBak;\r\n\t\t\tthis.Now = this.NowBak;\r\n\t\t}\r\n\t}\r\n\r\n\tprivate void TaskProc(object o)\r\n\t{\r\n\t\tHttpListenerContext httpListenerContext = (HttpListenerContext)o;\r\n\t\thttpListenerContext.Response.StatusCode = 200;\r\n\t\thttpListenerContext.Response.Headers.Add(\"Access-Control-Allow-Origin\", \"*\");\r\n\t\thttpListenerContext.Response.Headers.Add(\"Access-Control-Allow-Headers\", \"Origin, X-Requested-With, Content-Type, Accept\");\r\n\t\tPath.GetFileName(httpListenerContext.Request.RawUrl);\r\n\t\tnew StreamReader(httpListenerContext.Request.InputStream, Encoding.UTF8).ReadToEnd();\r\n\t\tusing (StreamWriter streamWriter = new StreamWriter(httpListenerContext.Response.OutputStream, Encoding.UTF8))\r\n\t\t{\r\n\t\t\tstreamWriter.Write(string.Format(\"{{ \\\"AppName\\\":\\\"{0}\\\", \\\"Title\\\":\\\"{1}\\\", \\\"AllTime\\\":\\\"{2}\\\", \\\"Now\\\":\\\"{3}\\\", \\\"ChineseLryic\\\":\\\"{4}\\\", \\\"Lryic\\\":\\\"{5}\\\", \\\"FormattedTime\\\":\\\"{6}\\\"}}\", new object[]\r\n\t\t\t{\r\n\t\t\t\tthis.AppName,\r\n\t\t\t\tthis.Title,\r\n\t\t\t\tthis.AllTime,\r\n\t\t\t\tthis.Now,\r\n\t\t\t\tthis.Lryic,\r\n\t\t\t\tthis.ChineseLryic,\r\n\t\t\t\tthis.FormatTime(this.AllTime, this.Now)\r\n\t\t\t}));\r\n\t\t\tstreamWriter.Close();\r\n\t\t\thttpListenerContext.Response.Close();\r\n\t\t}\r\n\t}\r\n\r\n\tpublic void main(GClass6 mainwindow)\r\n\t{\r\n\t\tthis.MainWindow = mainwindow;\r\n\t\tnew Thread(() =>\r\n\t\t{\r\n\t\t\tHttpListener httpListener = new HttpListener();\r\n\t\t\ttry\r\n\t\t\t{\r\n\t\t\t\thttpListener.AuthenticationSchemes = AuthenticationSchemes.Anonymous;\r\n\t\t\t\thttpListener.Prefixes.Add(\"http://127.0.0.1:62333/BGMName/\");\r\n\t\t\t\thttpListener.Start();\r\n\t\t\t}\r\n\t\t\tcatch (Exception)\r\n\t\t\t{\r\n\t\t\t\treturn;\r\n\t\t\t}\r\n\t\t\tint num;\r\n\t\t\tint num2;\r\n\t\t\tThreadPool.GetMaxThreads(out num, out num2);\r\n\t\t\tint num3;\r\n\t\t\tThreadPool.GetMinThreads(out num3, out num2);\r\n\t\t\tnew Thread(() =>\r\n\t\t\t{\r\n\t\t\t\tfor (;;)\r\n\t\t\t\t{\r\n\t\t\t\t\tthis.updateShit();\r\n\t\t\t\t\tThread.Sleep(500);\r\n\t\t\t\t}\r\n\t\t\t}).Start();\r\n\t\t\tfor (;;)\r\n\t\t\t{\r\n\t\t\t\tHttpListenerContext context = httpListener.GetContext();\r\n\t\t\t\tThreadPool.QueueUserWorkItem(new WaitCallback(this.TaskProc), context);\r\n\t\t\t}\r\n\t\t}).Start();\r\n\t}\r\n\r\n\tprivate static object o = new object();\r\n\r\n\tprivate string AppName;\r\n\r\n\tprivate string Title = \"\";\r\n\r\n\tprivate string Lryic = \"\";\r\n\r\n\tprivate double AllTime;\r\n\r\n\tprivate double Now;\r\n\r\n\tprivate string ChineseLryic;\r\n\r\n\tprivate GClass6 MainWindow;\r\n\r\n\tpublic double NowBak;\r\n\r\n\tpublic double AllTimeBak;\r\n}\r\n#endregion\r\n\r\n#region GClass6\r\n\r\npublic void InitializeComponent()\r\n{\r\n    // ....\r\n\tnew BGMJsonRPC().main(this);\r\n}\r\n\r\nprivate void method_18()\r\n{\r\n    this.notifyIcon_0.BalloonTipText = \"小葫芦歌曲显示插件(Bilibili壁纸修改版) 已最小化。\";\r\n\tthis.notifyIcon_0.ShowBalloonTip(2000);\r\n\tbase.Hide();\r\n}\r\n\r\n// 并且将gclass8_0和gclass9_0的可见性改为public或者internal\r\n[/code]",
+    "author": {
+      "name": "",
+      "steamId": "76561198114162501"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/954097729013486485/9F4C03CCB2AB915C8E72449F637634F26C716182/",
+    "type": "Web",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Wallpaper",
+      "Anime",
+      "Audio responsive",
+      "Customizable",
+      "Dynamic resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 14975866,
+    "createdAt": "2018-10-30T13:43:36.000Z",
+    "updatedAt": "2018-12-29T14:08:25.000Z",
+    "stats": {
+      "views": 192003,
+      "subscriptions": 1897299,
+      "favorited": 168604,
+      "votesUp": 50135
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1551961057",
+    "steamClientUri": "steam://url/CommunityFilePage/1551961057"
+  },
+  {
+    "id": "1275921440",
+    "isSimulated": false,
+    "title": "4K & 2K Aurora Lake",
+    "description": "This Aurora Lake Scene which is usable in any resolution\r\n\r\nNew version 1.3 is out after having so many problems i finally fixed it, sorry for any inconvenience.\r\n\r\nFixed: \r\nWater Speed\r\nSize of Stars\r\nClouds",
+    "author": {
+      "name": "",
+      "steamId": "76561198148667979"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/939432803452963615/60637F7A403B0528948FFDAE1BF634E11191562D/",
+    "type": "Scene",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Landscape",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 20015330,
+    "createdAt": "2018-01-20T18:49:17.000Z",
+    "updatedAt": "2018-01-26T16:42:18.000Z",
+    "stats": {
+      "views": 104021,
+      "subscriptions": 1981128,
+      "favorited": 91152,
+      "votesUp": 18727
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1275921440",
+    "steamClientUri": "steam://url/CommunityFilePage/1275921440"
+  },
+  {
+    "id": "833227004",
+    "isSimulated": false,
+    "title": "星云变换t001",
+    "description": "星云变换 会动的星云",
+    "author": {
+      "name": "",
+      "steamId": "76561198098288249"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/106231611060417169/799DDE2DBEEB02B695FC56CB5E33E6C78627A3AA/",
+    "type": "Scene",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Abstract",
+      "Wallpaper",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 21791848,
+    "createdAt": "2017-01-03T02:24:35.000Z",
+    "updatedAt": "2017-01-03T02:24:35.000Z",
+    "stats": {
+      "views": 511445,
+      "subscriptions": 1912865,
+      "favorited": 113928,
+      "votesUp": 41843
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=833227004",
+    "steamClientUri": "steam://url/CommunityFilePage/833227004"
+  },
+  {
     "id": "1661372823",
     "isSimulated": false,
     "title": "도기코기 DoggieCorgi",
@@ -417,6 +707,75 @@
     "steamClientUri": "steam://url/CommunityFilePage/917043694"
   },
   {
+    "id": "2902406982",
+    "isSimulated": false,
+    "title": "麻匪 月半与鬼哭 所有元素自定义",
+    "description": "动态制作：Hope麻匪\n原图画师：KOHAKU",
+    "author": {
+      "name": "",
+      "steamId": "76561198109148999"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1974296545155923381/1637C5D156716DAD3BC13D0D59FB272A1832BFB1/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper",
+      "Audio responsive",
+      "Customizable",
+      "HDR",
+      "Media Integration",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 129799837,
+    "createdAt": "2022-12-16T09:48:26.000Z",
+    "updatedAt": "2026-05-31T12:18:56.000Z",
+    "stats": {
+      "views": 145532,
+      "subscriptions": 1650307,
+      "favorited": 76381,
+      "votesUp": 17673
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2902406982",
+    "steamClientUri": "steam://url/CommunityFilePage/2902406982"
+  },
+  {
+    "id": "837761056",
+    "isSimulated": false,
+    "title": "Ori DE Silent",
+    "description": "Ori and the Blind Forest Definitive Edition title screen\r\n\r\nOri\r\nhttp://steamcommunity.com/sharedfiles/filedetails/?id=837892414\r\nOri Silent\r\nhttp://steamcommunity.com/sharedfiles/filedetails/?id=837856059\r\nOri DE\r\nhttp://steamcommunity.com/sharedfiles/filedetails/?id=837766287",
+    "author": {
+      "name": "",
+      "steamId": "76561198166453682"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/169282316723875847/F9C0ABCA7BC7171C69CBF611A06924633AD04DB1/",
+    "type": "Video",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Wallpaper",
+      "Game",
+      "Fantasy",
+      "Landscape",
+      "Approved",
+      "Other resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 78896397,
+    "createdAt": "2017-01-08T11:23:18.000Z",
+    "updatedAt": "2017-01-08T11:23:18.000Z",
+    "stats": {
+      "views": 234152,
+      "subscriptions": 1599766,
+      "favorited": 103609,
+      "votesUp": 30433
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=837761056",
+    "steamClientUri": "steam://url/CommunityFilePage/837761056"
+  },
+  {
     "id": "3250755486",
     "isSimulated": false,
     "title": "cat eating a chips through the windows 7 wallpaper",
@@ -446,361 +805,5 @@
     },
     "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3250755486",
     "steamClientUri": "steam://url/CommunityFilePage/3250755486"
-  },
-  {
-    "id": "3118949804",
-    "isSimulated": false,
-    "title": "Anime Girl With Purple Eyes",
-    "description": "♥ Little update : Blinking eyes & Rename Properties\r\n\r\nOriginal Wallapaper with editable effect & sound reactive\r\n\r\ndrop a comment for modification thx ^^",
-    "author": {
-      "name": "SteamUser (76561198276326590)",
-      "steamId": "76561198276326590"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2286207513866139079/07CD0C4A756A9779C0354C2A9C5C83D0B9D2F785/",
-    "type": "Scene",
-    "resolution": "2560x1440",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Anime",
-      "Audio responsive",
-      "Customizable"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 9858273,
-    "createdAt": "2023-12-21T02:41:33.000Z",
-    "updatedAt": "2024-01-29T17:05:53.000Z",
-    "stats": {
-      "views": 40679,
-      "subscriptions": 1632343,
-      "favorited": 86782,
-      "votesUp": 7467
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3118949804",
-    "steamClientUri": "steam://url/CommunityFilePage/3118949804"
-  },
-  {
-    "id": "821372791",
-    "isSimulated": false,
-    "title": "Reimu 灵梦（1080P 60FPS）重置版",
-    "description": "http://steamcommunity.com/sharedfiles/filedetails/?id=819916227&searchtext=%E7%81%B5%E6%A2%A6+根据这个重新做了一个高清版\r\n由于画质太渣，所以重新做了一个 1080P 60FPS\r\npixiv id=34844544\r\n如有任何问题请随时联系我\r\n另一个壁纸请戳→  http://steamcommunity.com/sharedfiles/filedetails/?id=1118136917&searchtext=untitled",
-    "author": {
-      "name": "SteamUser (76561198104266086)",
-      "steamId": "76561198104266086"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/199679790009245640/DEF8F1F007BBFF381B05625BFD0FBBD1F6A38058/",
-    "type": "Video",
-    "resolution": "Não informada",
-    "aspectRatio": "Other",
-    "tags": [
-      "Wallpaper",
-      "Anime",
-      "Approved",
-      "Other resolution"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 319769677,
-    "createdAt": "2016-12-19T11:37:53.000Z",
-    "updatedAt": "2017-01-13T17:49:09.000Z",
-    "stats": {
-      "views": 670281,
-      "subscriptions": 1365129,
-      "favorited": 163228,
-      "votesUp": 69542
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=821372791",
-    "steamClientUri": "steam://url/CommunityFilePage/821372791"
-  },
-  {
-    "id": "2292710588",
-    "isSimulated": false,
-    "title": "Klee - Trip",
-    "description": "Klee // Genshin impact\r\n\r\nMP4 format 1920 * 1080 FHD\r\n\r\nThis video/image is not allowed to be used other than the wallpaper engine",
-    "author": {
-      "name": "SteamUser (76561197993898154)",
-      "steamId": "76561197993898154"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/1645465409578035834/BB6A8A91780FA52773AD14DAA7D44C879A2BD0EB/",
-    "type": "Video",
-    "resolution": "1920x1080",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Pixel art",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 53189570,
-    "createdAt": "2020-11-20T09:02:54.000Z",
-    "updatedAt": "2020-11-21T02:04:08.000Z",
-    "stats": {
-      "views": 103171,
-      "subscriptions": 1391940,
-      "favorited": 141258,
-      "votesUp": 24186
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2292710588",
-    "steamClientUri": "steam://url/CommunityFilePage/2292710588"
-  },
-  {
-    "id": "1828698678",
-    "isSimulated": false,
-    "title": "Periodic Table of Elements *** 40 LANGUAGES ***",
-    "description": "[img]https://i.imgur.com/BktfQLs.png[/img]\r\nThis table of elements is multi language and you can also change the background color! (controls are as seen on the screenshot)\r\nSelect atomic information such as ELECTRONEGATIVITY, IONIZATION ENERGY, DISCOVERY YEAR and many more atomic properties ... [b]Click any element's name and the Wiki page for that element pops up.[/b]\r\nThis is the periodic table of elements for chemistry lovers. It has bright neon colors that clearly divides different category of elements. It also has CGI affects that shows atomic weights, number of electrons per orbits, etc. Enjoy!\r\nFor more information watch this short YouTube clip https://youtu.be/fg6Yg63oCfM\r\n                                                           [img]https://i.imgur.com/3u98LK6.gif[/img]\r\n                                               Tabla Periódica de los Elementos\r\n                                               Tableau Périodique des Éléments\r\n                                               Периодическая таблица элементов\r\n                                               Das Periodensystem der Elemente\r\n                                                                 元素周期表\r\n\r\n                                                         [img]https://i.imgur.com/aaFNJIj.gif[/img]\r\n[h1]If you enjoy my content and choose to support me, Thank You![/h1]\r\n                                         [url=https://ko-fi.com/agwallpapers][img]https://i.imgur.com/xB2P70h.png[/img][/url]\r\n[img]https://i.imgur.com/BktfQLs.png[/img]",
-    "author": {
-      "name": "SteamUser (76561198907758627)",
-      "steamId": "76561198907758627"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/1664605849276466391/9EA1E478C9E979C4584CC88AE14229EAAB454C09/",
-    "type": "Web",
-    "resolution": "Não informada",
-    "aspectRatio": "Other",
-    "tags": [
-      "Technology",
-      "Wallpaper",
-      "Customizable",
-      "Dynamic resolution",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 1131339,
-    "createdAt": "2019-08-08T14:34:57.000Z",
-    "updatedAt": "2026-08-19T00:17:40.000Z",
-    "stats": {
-      "views": 85284,
-      "subscriptions": 1411396,
-      "favorited": 114143,
-      "votesUp": 30923
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1828698678",
-    "steamClientUri": "steam://url/CommunityFilePage/1828698678"
-  },
-  {
-    "id": "3233141951",
-    "isSimulated": false,
-    "title": "熠烛 御剑驭龙-红鸾樱落 高度自定义Red Warbler-Sakura falls （Highly customizable）",
-    "description": "我的主页：https://space.bilibili.com/355133767\n制作：熠烛\n原画：是扶苏吖",
-    "author": {
-      "name": "SteamUser (76561199275007305)",
-      "steamId": "76561199275007305"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2490003713534839217/4C9B7D62BB3AD27AA6250CD58C5609F98CC85D64/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Anime",
-      "Wallpaper",
-      "Audio responsive",
-      "Customizable",
-      "Puppet Warp",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 61824657,
-    "createdAt": "2024-04-27T04:47:27.000Z",
-    "updatedAt": "2026-06-30T13:28:24.000Z",
-    "stats": {
-      "views": 33802,
-      "subscriptions": 1420219,
-      "favorited": 93096,
-      "votesUp": 12087
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3233141951",
-    "steamClientUri": "steam://url/CommunityFilePage/3233141951"
-  },
-  {
-    "id": "2858284176",
-    "isSimulated": false,
-    "title": "Wavy grass",
-    "description": "The title screen from a indev-game called Lushfoil Photography Sim.<\r\nIf u want to support the project lushfoil is making u can wishlist it here <:D\r\n\r\nhttps://store.steampowered.com/app/1749860/Lushfoil_Photography_Sim/\r\n\r\nIf u want to join the discord (Demo and news | also where the wallpaper was taken from)\r\n\r\nhttps://discord.com/invite/Kv2NEynADy",
-    "author": {
-      "name": "SteamUser (76561199082761089)",
-      "steamId": "76561199082761089"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/1809905557306719804/3C59EA7659FC720A0BF52C9ED3290C0C0BF1660D/",
-    "type": "Video",
-    "resolution": "1920x1080",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Landscape",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 32453326,
-    "createdAt": "2022-09-03T21:04:21.000Z",
-    "updatedAt": "2022-09-03T21:04:21.000Z",
-    "stats": {
-      "views": 49125,
-      "subscriptions": 1414629,
-      "favorited": 84249,
-      "votesUp": 13237
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2858284176",
-    "steamClientUri": "steam://url/CommunityFilePage/2858284176"
-  },
-  {
-    "id": "3521337568",
-    "isSimulated": false,
-    "title": "Cyberpunk: Edgerunner-Lucy[4K]",
-    "description": "------------------------中文---------------------------\n画师:[url=https://www.pixiv.net/artworks/125586712]Tamaji[/url]\nBGM:I Really Want to Stay at Your House (Cyberpunk Edgerunners Lofi)\nOhhhh!边缘行者要出第二季了,好开心！！所以这两天我做出了这一张壁纸.\n关于为什么使用伴奏当bgm:真正的边缘行者，连BGM都是自己脑内混音的\n伴奏一响，歌词自动加载，眼泪强制渲染.XD\n如果觉得壁纸做的不错请给作者一个好评,十分感谢！！(*´∀人)\n倘若您对壁纸有什么建议请评论区留言。 (*´∀｀)ﾉゞ\n------------------------English---------------------------\nArtist:[url=https://www.pixiv.net/artworks/125586712]Tamaji[/url]\nBGM:I Really Want to Stay at Your House (Cyberpunk Edgerunners Lofi)\nOhhhh! Cyberpunk: Edgerunners is getting a Season 2—so hyped!! That’s why I made this wallpaper these past few days.\nWhy use an instrumental track as BGM?\nBecause :True edgerunners even mix their own BGM in their minds—\nThe moment the backing track hits, the lyrics auto-load,tears render on command.XD\nIf you think the wallpaper is good, please give the author a good review, thank you very much!!(*´∀人)\nIf you have any suggestions for wallpaper, please leave a comment in the comments section.\n(*´∀｀)ﾉゞ",
-    "author": {
-      "name": "SteamUser (76561199645851972)",
-      "steamId": "76561199645851972"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/14801358915189680560/0F089C2CA6449734B6EE690FFB008D9A4920C71E/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Anime",
-      "Audio responsive",
-      "Approved",
-      "Customizable",
-      "Puppet Warp"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 33742006,
-    "createdAt": "2025-07-09T19:57:49.000Z",
-    "updatedAt": "2025-07-14T12:48:11.000Z",
-    "stats": {
-      "views": 71179,
-      "subscriptions": 1410378,
-      "favorited": 72533,
-      "votesUp": 14254
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3521337568",
-    "steamClientUri": "steam://url/CommunityFilePage/3521337568"
-  },
-  {
-    "id": "1214148605",
-    "isSimulated": false,
-    "title": "Animated Forest Snow 4k",
-    "description": "A beautiful forest while snowing in spectacular crisp 4k.",
-    "author": {
-      "name": "SteamUser (76561198013134989)",
-      "steamId": "76561198013134989"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/883132562670651380/EEE3D8F00EAF38FC2E9A64866E566AB541B57965/",
-    "type": "Video",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Nature"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 72978690,
-    "createdAt": "2017-11-27T22:01:06.000Z",
-    "updatedAt": "2017-11-27T22:01:06.000Z",
-    "stats": {
-      "views": 87343,
-      "subscriptions": 1387686,
-      "favorited": 83311,
-      "votesUp": 15115
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1214148605",
-    "steamClientUri": "steam://url/CommunityFilePage/1214148605"
-  },
-  {
-    "id": "3028090166",
-    "isSimulated": false,
-    "title": "WLOP [Tian Nan2]",
-    "description": "画师WLOP\nemmm,这片头做的好吉尔尬",
-    "author": {
-      "name": "SteamUser (76561198189897202)",
-      "steamId": "76561198189897202"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2032866712858882473/85B0C303663DCDD1883627C80C82DF8DE74C6393/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Landscape",
-      "Approved",
-      "Customizable",
-      "Puppet Warp"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 35492215,
-    "createdAt": "2023-08-30T11:40:23.000Z",
-    "updatedAt": "2023-08-30T11:40:23.000Z",
-    "stats": {
-      "views": 37785,
-      "subscriptions": 1394085,
-      "favorited": 73196,
-      "votesUp": 7097
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3028090166",
-    "steamClientUri": "steam://url/CommunityFilePage/3028090166"
-  },
-  {
-    "id": "2938612768",
-    "isSimulated": false,
-    "title": "麻匪 音频识别 Media Player",
-    "description": "动态壁纸作者\n哔哩哔哩：Hope麻匪",
-    "author": {
-      "name": "SteamUser (76561198109148999)",
-      "steamId": "76561198109148999"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2002450297574874445/7D0EF9A8512C413D18A361A90FAEF5D3D931479C/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Music",
-      "Wallpaper",
-      "Audio responsive",
-      "Video Texture",
-      "Customizable",
-      "Media Integration",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 87681988,
-    "createdAt": "2023-02-25T10:13:47.000Z",
-    "updatedAt": "2026-05-31T13:41:57.000Z",
-    "stats": {
-      "views": 196446,
-      "subscriptions": 1307688,
-      "favorited": 80331,
-      "votesUp": 18850
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2938612768",
-    "steamClientUri": "steam://url/CommunityFilePage/2938612768"
-  },
-  {
-    "id": "1959836574",
-    "isSimulated": false,
-    "title": "In The Early Morning Forest",
-    "description": "",
-    "author": {
-      "name": "SteamUser (76561198105355179)",
-      "steamId": "76561198105355179"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/787500561497295121/EDADB67DB208E45997EFBE046FADCD8E90D39719/",
-    "type": "Scene",
-    "resolution": "2560x1440",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Landscape",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 4244248,
-    "createdAt": "2020-01-04T19:55:43.000Z",
-    "updatedAt": "2020-01-04T19:55:43.000Z",
-    "stats": {
-      "views": 32879,
-      "subscriptions": 1326631,
-      "favorited": 71727,
-      "votesUp": 8115
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1959836574",
-    "steamClientUri": "steam://url/CommunityFilePage/1959836574"
   }
 ]

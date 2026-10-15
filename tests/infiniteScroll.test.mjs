@@ -24,7 +24,7 @@ test('provider real: lote inicial e segundo são progressivos, preservados e sem
   const catalog = new InfiniteCatalog(provider);
   await catalog.loadNext();
   const first = catalog.getSnapshot().items;
-  assert.equal(first.length, 25); assert.equal(catalog.getSnapshot().total, 979);
+  assert.equal(first.length, 25); assert.equal(catalog.getSnapshot().total, 5000);
   assert.deepEqual(requests, ['/data/catalog/manifest.json', '/data/catalog/pages/000001.json']);
   await catalog.loadNext();
   assert.equal(catalog.getSnapshot().items.length, 50);
@@ -53,13 +53,13 @@ test('observer de produção: margem antecipada, um request em voo e callbacks d
   assert.doesNotThrow(() => observeNextBatch(sentinel, catalog.loadNext, undefined)());
 });
 
-test('fim real: 40 lotes, último com 4, nenhum request após hasMore=false', async () => {
+test('fim real: 200 lotes, último com 25, nenhum request após hasMore=false', async () => {
   const { provider, requests } = localProvider(); const catalog = new InfiniteCatalog(provider);
-  for (let i=1;i<=40;i++) { await catalog.loadNext(); assert.equal(catalog.getSnapshot().items.length, Math.min(i*25,979)); }
-  const state=catalog.getSnapshot(); assert.equal(state.items.length,979); assert.equal(state.hasMore,false);
-  assert.equal(new Set(state.items.map(w=>w.id)).size,979);
+  for (let i=1;i<=200;i++) { await catalog.loadNext(); assert.equal(catalog.getSnapshot().items.length, Math.min(i*25,5000)); }
+  const state=catalog.getSnapshot(); assert.equal(state.items.length,5000); assert.equal(state.hasMore,false);
+  assert.equal(new Set(state.items.map(w=>w.id)).size,5000);
   const count=requests.length; await catalog.loadNext(); await catalog.retry(); assert.equal(requests.length,count);
-  assert.equal(requests.filter(path=>path.includes('/pages/')).length,40);
+  assert.equal(requests.filter(path=>path.includes('/pages/')).length,200);
 });
 
 test('reset de busca/filtros/tags/resolução/ordenação limpa a lista e reinicia em page=1', async () => {
@@ -107,7 +107,7 @@ test('índice real: consulta global materializa somente shards necessários aos 
   const manifest=JSON.parse(readFileSync('public/data/catalog/manifest.json','utf8'));
   const required=new Set(state.items.map(w=>'/data/catalog/'+manifest.shards.find(s=>s.page===manifest.itemToPage[w.id]).file));
   assert.deepEqual(new Set(requests.filter(p=>p.includes('/pages/'))),required);
-  assert.ok(requests.includes('/data/catalog/index.json'));assert.ok(required.size<40);
+  assert.ok(requests.includes('/data/catalog/index.json'));assert.ok(required.size<200);
   const count=requests.length;await provider.getWallpapers({page:1,pageSize:25,sortBy:'title_asc'});assert.equal(requests.length,count);
 });
 
