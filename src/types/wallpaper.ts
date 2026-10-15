@@ -52,7 +52,7 @@ export interface WallpaperItem {
   stats: WallpaperStats;
   /** Link web para a página do item no Steam Community Workshop */
   steamUrl: string;
-  /** Deep link de protocolo para abrir o item diretamente no aplicativo cliente Steam no Linux */
+  /** URI legada do cliente Steam, preservada nos dados; não utilizada como ação na interface */
   steamClientUri: string;
   /** Flag que indica se o item provém de mock de desenvolvimento */
   isSimulated?: boolean;

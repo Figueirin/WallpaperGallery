@@ -15,7 +15,7 @@ export function Footer() {
 
         <div className="flex items-center gap-4 shrink-0 text-zinc-400">
           <span className="inline-flex items-center gap-1">
-            Feito para Linux & KDE com <Heart className="w-3 h-3 text-rose-500 fill-rose-500" aria-hidden="true" />
+            Feito para explorar wallpapers com <Heart className="w-3 h-3 text-rose-500 fill-rose-500" aria-hidden="true" />
           </span>
           <span>•</span>
           <a

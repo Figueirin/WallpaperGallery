@@ -1,3 +1,5 @@
+import { usePageMetadata } from '../utils/usePageMetadata';
+import { AuthorName } from './AuthorName';
 import { steamLinks } from '../utils/safeUrls';
 import { useEffect, useState } from 'react';
 import { WallpaperItem } from '../types/wallpaper';
@@ -10,12 +12,10 @@ import { WallpaperMedia } from './WallpaperMedia';
 import {
   ArrowLeft,
   ExternalLink,
-  MonitorPlay,
   Layers,
   Film,
   Globe,
   Tag,
-  User,
   Calendar,
   Eye,
   Heart,
@@ -41,6 +41,7 @@ export function WallpaperDetailView({
   const [wallpaper, setWallpaper] = useState<WallpaperItem | null>(null);
   const [recommendations, setRecommendations] = useState<WallpaperItem[]>([]);
   const [loading, setLoading] = useState(true);
+  usePageMetadata(wallpaper ? `${wallpaper.title} | Workshop Gallery` : undefined, wallpaper ? (wallpaper.description.trim().replace(/\s+/g, ' ').slice(0, 180) || `Veja ${wallpaper.title} na Steam Workshop para Wallpaper Engine.`) : undefined);
 
   useEffect(() => {
     let isMounted = true;
@@ -172,17 +173,7 @@ export function WallpaperDetailView({
 
         {/* Links Externos para Steam */}
         <div className="flex items-center gap-2.5">
-          {steamLinks(wallpaper.id, wallpaper.isSimulated).client && (
-            <a
-              href={steamLinks(wallpaper.id, wallpaper.isSimulated).client}
-              title="Abrir no aplicativo cliente Steam para Linux"
-              aria-label={`Abrir ${wallpaper.title} no aplicativo Steam`}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 hover:border-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
-            >
-              <MonitorPlay className="w-4 h-4 text-emerald-400" aria-hidden="true" />
-              <span className="hidden sm:inline">Cliente Steam</span>
-            </a>
-          )}
+
 
           {steamLinks(wallpaper.id, wallpaper.isSimulated).web && (
             <a
@@ -233,11 +224,7 @@ export function WallpaperDetailView({
             </h1>
 
             <div className="mt-2.5 flex items-center gap-3 text-sm text-zinc-400">
-              <span className="inline-flex items-center gap-1.5">
-                <User className="w-4 h-4 text-indigo-400" aria-hidden="true" />
-                <span className="font-medium text-zinc-200">{wallpaper.author.name}</span>
-              </span>
-              <span>•</span>
+              <AuthorName author={wallpaper.author} className="font-medium text-zinc-200" />
               <span className="inline-flex items-center gap-1.5 text-xs text-zinc-400">
                 <Calendar className="w-3.5 h-3.5 text-zinc-500" aria-hidden="true" />
                 {formatDate(wallpaper.createdAt)}
@@ -396,7 +383,7 @@ export function WallpaperDetailView({
               </div>
             </div>
             <p className="text-xs text-zinc-300 leading-relaxed">
-              Abra a página oficial na Comunidade Steam para se inscrever ou abrir diretamente no cliente Linux.
+              Veja os detalhes e as opções de inscrição na página oficial da Steam Workshop. A compatibilidade depende do Wallpaper Engine e do sistema utilizado.
             </p>
             <div className="flex flex-col gap-2 pt-1">
               {steamLinks(wallpaper.id, wallpaper.isSimulated).web && (
@@ -410,15 +397,7 @@ export function WallpaperDetailView({
                   <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
                 </a>
               )}
-              {steamLinks(wallpaper.id, wallpaper.isSimulated).client && (
-                <a
-                  href={steamLinks(wallpaper.id, wallpaper.isSimulated).client}
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-medium bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 hover:border-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
-                >
-                  <MonitorPlay className="w-3.5 h-3.5 text-emerald-400" aria-hidden="true" />
-                  <span>Abrir no Cliente Steam (Linux)</span>
-                </a>
-              )}
+
             </div>
           </div>
         </div>

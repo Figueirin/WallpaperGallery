@@ -68,3 +68,6 @@ desktop.ini
 .moderation/
 
 
+
+# Staging local para enriquecimento de nomes, nunca publicado automaticamente
+.enrichment/

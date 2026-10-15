@@ -1,3 +1,6 @@
+import { wallpaperIdFromLocation, pageFromSearch, galleryUrl } from './utils/navigation';
+import { usePageMetadata } from './utils/usePageMetadata';
+import { SITE_TITLE, SITE_DESCRIPTION } from './utils/pageMetadata';
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { createWallpaperProvider } from './services/providerFactory';
 import {
@@ -34,49 +37,21 @@ const PAGE_SIZE = DEFAULT_PAGE_SIZE;
 
 
 function parseWallpaperIdFromUrl(): string | null {
-  if (typeof window === 'undefined') return null;
-  const pathMatch = window.location.pathname.match(/^\/wallpaper\/([^/]+)\/?$/);
-  if (pathMatch) {
-    try { return decodeURIComponent(pathMatch[1]); } catch { return null; }
-  }
-  const hashMatch = window.location.hash.match(/^#\/wallpaper\/([^/]+)\/?$/);
-  if (hashMatch) {
-    try { return decodeURIComponent(hashMatch[1]); } catch { return null; }
-  }
-  return null;
+  return typeof window === 'undefined' ? null : wallpaperIdFromLocation(window.location.pathname, window.location.hash);
 }
 
 function parsePageFromUrl(): number {
-  if (typeof window === 'undefined') return 1;
-  try {
-    const params = new URLSearchParams(window.location.search);
-    const p = parseInt(params.get('page') || '1', 10);
-    return Number.isFinite(p) && p >= 1 ? p : 1;
-  } catch {
-    return 1;
-  }
+  return typeof window === 'undefined' ? 1 : pageFromSearch(window.location.search);
 }
 
 function syncUrl(page: number, wallpaperId: string | null, replace = false) {
   if (typeof window === 'undefined') return;
   try {
-    const url = new URL(window.location.href);
-    if (wallpaperId) {
-      url.pathname = `/wallpaper/${encodeURIComponent(wallpaperId)}`;
-      url.hash = '';
-    } else {
-      url.pathname = '/';
-      url.hash = '';
-    }
-    if (page > 1) {
-      url.searchParams.set('page', String(page));
-    } else {
-      url.searchParams.delete('page');
-    }
+    const url = galleryUrl(window.location.href, page, wallpaperId);
     if (replace) {
-      window.history.replaceState({ page, wallpaperId }, '', url.toString());
+      window.history.replaceState({ page, wallpaperId }, '', url);
     } else {
-      window.history.pushState({ page, wallpaperId }, '', url.toString());
+      window.history.pushState({ page, wallpaperId }, '', url);
     }
   } catch {
     // ignorar em ambientes restritos
@@ -85,6 +60,7 @@ function syncUrl(page: number, wallpaperId: string | null, replace = false) {
 
 export function App() {
   const [selectedWallpaperId, setSelectedWallpaperId] = useState<string | null>(parseWallpaperIdFromUrl);
+  usePageMetadata(selectedWallpaperId ? undefined : SITE_TITLE, SITE_DESCRIPTION);
   const [wallpapers, setWallpapers] = useState<WallpaperItem[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(parsePageFromUrl);
   const [totalFilteredCount, setTotalFilteredCount] = useState(0);
@@ -303,6 +279,8 @@ export function App() {
           />
         ) : (
           <>
+            <h1 className="sr-only">Wallpapers do Wallpaper Engine e Steam Workshop</h1>
+            <h2 className="sr-only">Catálogo de wallpapers</h2>
             {/* Banner Informativo de Ambiente e Compatibilidade */}
             <section
               aria-label="Informações do catálogo"
@@ -321,7 +299,7 @@ export function App() {
                   <p className="text-zinc-500 text-[11px]">
                     {wallpapers.some((item) => item.isSimulated)
                       ? 'Dados simulados para desenvolvimento local.'
-                      : 'Descoberta visual sem download de arquivos completos (.pkg). Deep linking direto para Steam no Linux.'}
+                      : 'Explore pelo navegador no computador ou celular. A compatibilidade dos wallpapers depende do Wallpaper Engine e do sistema utilizado.'}
                   </p>
                 </div>
               </div>

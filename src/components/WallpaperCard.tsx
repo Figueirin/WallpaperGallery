@@ -1,5 +1,6 @@
 import { steamLinks } from '../utils/safeUrls';
-import { useState, type KeyboardEvent } from 'react';
+import { AuthorName } from './AuthorName';
+import { useState } from 'react';
 import { WallpaperItem } from '../types/wallpaper';
 import { WallpaperMedia } from './WallpaperMedia';
 import {
@@ -8,8 +9,6 @@ import {
   Film,
   Globe,
   Tag,
-  User,
-  MonitorPlay,
   Play,
 } from 'lucide-react';
 
@@ -50,23 +49,13 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
     }
   };
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      handleCardClick();
-    }
-  };
-
   return (
     <article
       onClick={handleCardClick}
-      onKeyDown={handleKeyDown}
       onFocus={handleMouseEnter}
       onBlur={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      tabIndex={0}
-      role="article"
       aria-label={`Visualizar detalhes do wallpaper: ${wallpaper.title}`}
       className="group relative flex flex-col rounded-2xl bg-zinc-900/80 border border-zinc-800/80 hover:border-zinc-700/80 hover:shadow-xl hover:shadow-black/40 hover:-translate-y-0.5 transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
     >
@@ -126,14 +115,20 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
             title={wallpaper.title}
             className="text-sm font-semibold text-zinc-100 group-hover:text-indigo-400 transition-colors truncate leading-snug"
           >
-            {wallpaper.title}
+            <a href={`/wallpaper/${encodeURIComponent(wallpaper.id)}`}
+              onClick={(event) => {
+                event.stopPropagation();
+                if (onSelect && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey && event.button === 0) {
+                  event.preventDefault(); onSelect(wallpaper);
+                }
+              }}
+              className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded">
+              {wallpaper.title}
+            </a>
           </h3>
 
           {/* Autor */}
-          <div className="mt-1 flex items-center gap-1.5 text-xs text-zinc-400">
-            <User className="w-3 h-3 text-zinc-500" aria-hidden="true" />
-            <span className="truncate">{wallpaper.author.name}</span>
-          </div>
+          <AuthorName author={wallpaper.author} className="mt-1 text-xs text-zinc-400" />
 
           {/* Descrição resumida */}
           <p className="mt-2 text-xs text-zinc-400 line-clamp-2 leading-relaxed">
@@ -169,19 +164,6 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
           </span>
 
           <div className="flex items-center gap-2">
-            {/* Deep link para cliente Steam no Linux */}
-            {steamLinks(wallpaper.id, wallpaper.isSimulated).client && (
-              <a
-                href={steamLinks(wallpaper.id, wallpaper.isSimulated).client}
-                onClick={(e) => e.stopPropagation()}
-                title="Abrir diretamente no aplicativo Steam para Linux"
-                aria-label={`Abrir ${wallpaper.title} no aplicativo Steam`}
-                className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
-              >
-                <MonitorPlay className="w-3.5 h-3.5" aria-hidden="true" />
-              </a>
-            )}
-
             {/* Link oficial para a página web no Steam Workshop */}
             {steamLinks(wallpaper.id, wallpaper.isSimulated).web && (
               <a

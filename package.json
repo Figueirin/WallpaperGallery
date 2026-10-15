@@ -11,7 +11,8 @@
     "sync:workshop": "node --experimental-strip-types scripts/sync-workshop.ts",
     "sync:firestore": "node --experimental-strip-types scripts/sync-firestore.ts",
     "moderate:rebuild": "node --experimental-strip-types scripts/rebuild-catalog.ts",
-    "typecheck": "tsc -b && tsc -p tsconfig.scripts.json"
+    "typecheck": "tsc -b && tsc -p tsconfig.scripts.json",
+    "enrich:authors": "node --experimental-strip-types scripts/enrich-authors.ts"
   },
   "dependencies": {
     "firebase": "^13.0.0",

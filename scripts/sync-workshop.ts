@@ -230,7 +230,7 @@ export function normalizeSteamWorkshopItem(raw: SteamPublishedFileRaw): Wallpape
     title: raw.title || `Wallpaper #${raw.publishedfileid}`,
     description: (raw.file_description || '').trim(),
     author: {
-      name: raw.creator ? `SteamUser (${raw.creator})` : 'Steam Creator',
+      name: '', // Nome público resolvido separadamente; nunca inventar nome a partir do SteamID.
       steamId: raw.creator,
     },
     previewUrl:
@@ -289,7 +289,9 @@ export function mergeWallpapers(
       const defined = <T extends object>(value: T) => Object.fromEntries(Object.entries(value).filter(([, v]) => v !== undefined));
       const combined = {
         ...existing, ...defined(incoming),
-        author: { ...existing.author, ...defined(incoming.author) },
+        author: { ...existing.author, ...defined(incoming.author),
+          name: incoming.author.name || (incoming.author.steamId === existing.author.steamId ? existing.author.name : ''),
+        },
         stats: { ...existing.stats, ...defined(incoming.stats) },
       } as WallpaperItem;
       if (JSON.stringify(combined) !== JSON.stringify(existing)) {

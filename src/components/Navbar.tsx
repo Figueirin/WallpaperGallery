@@ -1,5 +1,5 @@
 import { type KeyboardEvent } from 'react';
-import { Search, X, Sparkles, Terminal, Loader2 } from 'lucide-react';
+import { Search, X, Sparkles, Loader2 } from 'lucide-react';
 
 interface NavbarProps {
   searchQuery: string;
@@ -55,10 +55,7 @@ export function Navbar({
               <span className="font-bold text-base tracking-tight text-zinc-100">
                 Workshop Gallery
               </span>
-              <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-zinc-800/80 text-zinc-300 border border-zinc-700/60">
-                <Terminal className="w-2.5 h-2.5 text-emerald-400" aria-hidden="true" />
-                Linux / KDE
-              </span>
+
             </div>
             <p className="hidden md:block text-xs text-zinc-400">
               Catálogo visual para Wallpaper Engine
