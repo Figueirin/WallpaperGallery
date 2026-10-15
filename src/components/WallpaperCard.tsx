@@ -92,10 +92,10 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       aria-label={`Visualizar detalhes do wallpaper: ${wallpaper.title}`}
-      className="group relative flex flex-col rounded-2xl bg-zinc-900/80 border border-zinc-800/80 overflow-hidden hover:border-zinc-700 hover:shadow-2xl hover:shadow-black/60 transition-all duration-300 ease-out hover:scale-[1.03] hover:z-20 motion-reduce:hover:scale-100 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
+      className="group relative flex flex-col rounded-2xl bg-zinc-900/80 border border-zinc-800/80 hover:border-zinc-700 hover:shadow-2xl hover:shadow-black/70 transition-all duration-300 ease-out hover:z-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
     >
-      {/* Área da Imagem de Prévia / Vídeo */}
-      <div className="relative aspect-video w-full overflow-hidden bg-zinc-950 flex items-center justify-center">
+      {/* Área da Imagem de Prévia / Vídeo com ampliação de ~25% em destaque no hover */}
+      <div className="relative aspect-video w-full rounded-t-2xl overflow-hidden bg-zinc-950 flex items-center justify-center transition-all duration-300 ease-out origin-bottom group-hover:scale-[1.25] group-hover:rounded-2xl group-hover:shadow-2xl group-hover:shadow-black/95 group-hover:ring-1 group-hover:ring-white/15 group-hover:z-40 motion-reduce:group-hover:scale-100">
         {!imageError ? (
           <>
             {/* Shimmer/Placeholder enquanto a imagem está carregando */}
