@@ -86,7 +86,7 @@ test('NSFW auditoria N-06: IDs não decimais são rejeitados e blacklist ausente
 });
 
 test('NSFW auditoria: rebuild remove item já publicado de todos os JSONs e shard obsoleto, preserva backup exato', async () => {
-  const items = Array.from({ length: 25 }, (_, i) => fixture(String(100 + i)));
+  const items = Array.from({ length: 26 }, (_, i) => fixture(String(100 + i)));
   const blocked = items.slice(1).map(item => item.id);
   const paths = setup(items, blocked);
   const before = readFileSync(paths.catalogPath, 'utf8');
@@ -102,7 +102,7 @@ test('NSFW auditoria: rebuild remove item já publicado de todos os JSONs e shar
   assert.deepEqual(Object.keys(manifest.itemToPage), ['100']);
   assert.deepEqual(read(join(paths.root, 'catalog/index.json')).map(item => item.id), ['100']);
   assert.deepEqual(read(join(paths.root, 'catalog/pages/000001.json')), JSON.parse(JSON.stringify([items[0]])));
-  assert.equal(read(paths.quarantinePath).summary.blockedByBlacklist, 24);
+  assert.equal(read(paths.quarantinePath).summary.blockedByBlacklist, 25);
 });
 
 test('NSFW auditoria N-05: lock ocupado dos shards aborta rebuild antes de alterar catalog.json', async () => {
@@ -158,16 +158,16 @@ test('NSFW auditoria N-04: sync JSON filtra catálogo consolidado e expurga IDs 
 test('NSFW auditoria N-05: falha ao mover página aciona rollback e restaura manifesto e índice anteriores', () => {
   const paths = setup([]);
   const shardedDir = join(paths.root, 'catalog');
-  const oldItems = Array.from({ length: 25 }, (_, i) => fixture(String(100 + i)));
+  const oldItems = Array.from({ length: 26 }, (_, i) => fixture(String(100 + i)));
   writeCatalogShardsSync(shardedDir, createCatalogShards(oldItems));
   // Conflito de destino controlado no fixture: cria diretório onde deveria estar um arquivo
   const next = createCatalogShards([fixture('100')]);
   unlinkSync(join(shardedDir, 'pages/000001.json'));
   mkdirSync(join(shardedDir, 'pages/000001.json'));
   assert.throws(() => writeCatalogShardsSync(shardedDir, next));
-  // Com o rollback ativado, o manifesto e índice anteriores de 25 itens são restaurados
-  assert.equal(read(join(shardedDir, 'manifest.json')).totalItems, 25);
-  assert.equal(read(join(shardedDir, 'index.json')).length, 25);
+  // Com o rollback ativado, o manifesto e índice anteriores de 26 itens são restaurados
+  assert.equal(read(join(shardedDir, 'manifest.json')).totalItems, 26);
+  assert.equal(read(join(shardedDir, 'index.json')).length, 26);
   assert.equal(read(join(shardedDir, 'pages/000002.json')).length, 1);
   assert.ok(existsSync(join(shardedDir, 'pages/000002.json')));
 });

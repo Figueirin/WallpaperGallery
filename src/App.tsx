@@ -5,6 +5,7 @@ import {
   FilterMetadata,
   WallpaperType,
   SortOption,
+  DEFAULT_PAGE_SIZE,
 } from './types/wallpaper';
 import { Navbar } from './components/Navbar';
 import { FilterBar } from './components/FilterBar';
@@ -29,7 +30,8 @@ try {
   provider = { getWallpapers: unavailable, getWallpaperById: unavailable, getFilterMetadata: unavailable };
 }
 
-const PAGE_SIZE = 24;
+const PAGE_SIZE = DEFAULT_PAGE_SIZE;
+
 
 function parseWallpaperIdFromUrl(): string | null {
   if (typeof window === 'undefined') return null;
@@ -459,7 +461,7 @@ export function App() {
                   onSelectWallpaper={handleSelectWallpaper}
                 />
 
-                {/* Controles de Paginação (8 páginas de 24 itens, última com 10) */}
+                {/* Controles de Paginação (shards de 25 itens) */}
                 <Pagination
                   currentPage={currentPage}
                   totalItems={totalFilteredCount}

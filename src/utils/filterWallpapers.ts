@@ -1,9 +1,11 @@
-import type {
-  WallpaperItem,
-  WallpaperFilterOptions,
-  FilterMetadata,
-  WallpaperType,
-} from '../types/wallpaper';
+import {
+  type WallpaperItem,
+  type WallpaperFilterOptions,
+  type FilterMetadata,
+  type WallpaperType,
+  DEFAULT_PAGE_SIZE,
+} from '../types/wallpaper.ts';
+
 
 /**
  * Mapeamento descritivo para resoluções conhecidas do catálogo,
@@ -154,7 +156,7 @@ export function findWallpaperById(
 export function paginateWallpapers<T>(
   items: readonly T[],
   page: number = 1,
-  pageSize: number = 24
+  pageSize: number = DEFAULT_PAGE_SIZE
 ): {
   items: T[];
   total: number;
@@ -163,7 +165,8 @@ export function paginateWallpapers<T>(
   hasMore: boolean;
 } {
   const safePage = Number.isFinite(page) && page >= 1 ? Math.floor(page) : 1;
-  const safePageSize = Number.isFinite(pageSize) && pageSize >= 1 ? Math.floor(pageSize) : 24;
+  const safePageSize = Number.isFinite(pageSize) && pageSize >= 1 ? Math.floor(pageSize) : DEFAULT_PAGE_SIZE;
+
   const startIndex = (safePage - 1) * safePageSize;
   const paginatedItems = items.slice(startIndex, startIndex + safePageSize);
 

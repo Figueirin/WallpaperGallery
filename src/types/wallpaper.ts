@@ -89,3 +89,6 @@ export interface FilterMetadata {
   types: WallpaperType[];
 }
 
+export const DEFAULT_PAGE_SIZE = 25;
+
+

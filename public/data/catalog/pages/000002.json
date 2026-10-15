@@ -1,348 +1,15 @@
 [
   {
-    "id": "3379996991",
+    "id": "3509243656",
     "isSimulated": false,
-    "title": "Winter Conch Street - SpongeBob SquarePants",
-    "description": "Conch Street with Spongebob's, Patrick's, and Squidward's house from Season 2, Episode 8. A winter wallpaper that cycles throughtout the day.\r\n\r\nIf you wish, you can also enable the night lights wallpaper, where the houses and the tree are lit up. Simply set \"Night Lights Start\" and \"Night Lights End\" to different values (preferably hours that are after \"Sunset\") to enable it. (Lit up houses are supposed to be only transitioning from night to the night lights) \r\n\r\nThe wallpaper features songs from the SpongeBob SquarePants cartoon, with a total of 16 songs. The wallpaper also has the underwater sound effect as ambient sound that the series uses mostly throughout Season 1. Lastly, the wallpaper also has occasional noises of SpongeBob or Squidward walking that play.\r\n\r\nThere are also some visual effects, like snow, that you can enable and disable.\r\n\r\nDisclaimer: (I do not own the original images, music or sound effects. I just made them into a wallpaper. Any of the credit towards the art and audio used in my wallpaper should belong to the SpongeBob SquarePants creators.)\r\n\r\nTags: Sponge Bob, Patrick Star, Squidward Tentacles, Ocean, Bikini Bottom, Christmas, Holiday",
+    "title": "三体实时演算 | Three-Body problem - SYKM",
+    "description": "////////////////////////////// v1.0  2025/06/27 ////////////////////////////// \r\n伟大的造物者为他的作品做出了如下说明，请务必仔细聆听祂的圣谕（笑） \r\n1.三体运动的初速度为随机值，初始位置为固定值；\r\n2.数值模拟方法采用了四阶龙格库塔法；\r\n\r\n////////////////////////////// v2.0  2025/07/05 ////////////////////////////// \r\n大更新\r\na.如有任何bug请优先尝试：重置-取消订阅-重启wallpaper及steam-重新订阅；\r\nb.帧率请根据自己的硬件情况尽量拉高；\r\n\r\n更新内容：\r\n1.采用4阶辛算法代替了原本的RK4，模拟精度更高，系统的能量和动量误差更小；\r\n2.采用Aarseth的分段线性软化方法，以避免引力奇点；\r\n3.重写了代码结构，轨迹支持鼠标跟随旋转；\r\n4.新增文明排行榜，需在设置中手动打开；\r\n5.支持界面语言 中文/English 切换；\r\n6.大部分组件支持缩放和平移；\r\n7.新增当天体超过设置的距离极限时，屏幕中央显示“重启/restart”单击后重置天体位置和初速度\r\n\r\n//////////////////////////////  v3.0  2025/08/09 ////////////////////////////// \r\nTo fully utilize this wallpaper, please carefully read the following:\r\n1.The wallpaper simulates the orbital motion of three stars and one planet in real-time; it is not a static video. Version 3.0 includes major updates over 2.0: performance optimizations, visual enhancements, and feature improvements. If you previously subscribed and find these changes undesirable, please revert to the older version.\r\n2.The wallpaper UI supports both Chinese and English. Switch languages via \"Language 语言\" under \"Quick Sets\".\r\n3.If you encounter a BUG, please try the following steps in order of severity: Reset Wallpaper -> Resubscribe -> Delete local files and restart Wallpaper Engine.\r\n4.Most basic functions are found in Quick Sets. More detailed settings are available in the subsequent categories – feel free to explore!\r\n5.For optimal mouse interaction, disable other wallpaper software. Desktop organization and enhancement tools may cause conflicts.\r\n6.The wallpaper is 3D. Click, hold, and drag the mouse to rotate the view.\r\n7.Click the clock to show/hide the menu. You can also set the default visibility of the menu, civilization log, civilization leaderboard, clock, and other components in \"Quick Sets\".\r\n8.Simulation uses a 4th-order Symplectic Integrator (Yoshida, 1990). Gravitational softening is applied at close range. The system strives to conserve energy and momentum.\r\n9.If one celestial body exceeds the \"Escape Dist\" (Restart Escape Distance) from the system's center of mass, you can manually reset all positions and velocities by clicking the \"Restart\" text in the center of the screen. Alternatively, choose automatic reset in \"Quick Sets\".\r\n10.\"Civ Seed\" gameplay is offered: When you enable \"Custom\" under \"Civ Seed\":\r\n    a.You can set the initial mass, spatial position, and velocity vector for each celestial body.\r\n    b.In theory, with identical initial conditions, orbital paths will be similar within a certain timeframe.\r\n    c.This enables sharing seed parameters. Share interesting seeds with others, use others' seeds, or compete!\r\n11.If you are unsure about specific parameters (e.g., those governing orbital mechanics), modify them with caution. If you make changes that render the system unrecognizable, reset the wallpaper to the provided \"Factory Settings\".\r\n12.Besides the default background, solid colors and custom background images are supported. Ensure your custom image is suitable for spherical UV mapping (like a skybox) to avoid seams and distortion.\r\n13.There are 192 customizable user properties. This wallpaper is a massive project, and my individual ability is limited. Errors and oversights are inevitable – please point them out and discuss! However, due to the overwhelming number of comments and messages, I cannot reply to every single one. Apologies if some are missed!\r\n\r\n如果你想玩转此壁纸，请务必仔细阅读下面的文字：\r\n1.壁纸是实时解算模拟三个恒星和一个行星的天体运动的，不是固定视频；3.0版在2.0版本上做了重大更新：包括性能优化，画面升级，功能完善等方面的工作；如果你之前订阅了并对这些变化感到不适应，请回退旧版本使用；\r\n2.壁纸UI界面支持中文和英文，在“快捷设置/Quick Sets”中的\"Language 语言”处切换；\r\n3.出现BUG请根据严重情况依次尝试: 重置壁纸-->重新订阅-->删除本地文件后重启壁纸引擎；\r\n4.大部分简易功能都集中在快捷设置Quick Sets中，更具体详尽的设置则在后面的分类里，请尽情尝试；\r\n5.鼠标交互应关闭其他壁纸软件，桌面整理和美化软件可能会有冲突；\r\n6.壁纸是三维的，按住鼠标并拖动可以旋转视角；\r\n7.单击时钟可以显示和隐藏菜单，也可以在“快捷设置/Quick Sets”中选择菜单、文明日志、文明排行榜、时钟等组件的默认显示状态；\r\n8.采用4阶辛积分器(Yoshida1990)进行模拟解算，并在近距离处做了引力软化处理，系统尽可能满足能量动量守恒；\r\n9.当其中一个天体距质心距离大于“D重启逃逸距离/Escape Dist”时，可以按屏幕中心的“重启文明/Restart”文字对天体位置和速度进行手动重置，当然你也可以在“快捷设置/Quick Sets”选择自动重置；\r\n10.提供了“文明种子”玩法，当你在“文明种子/Civ Seed”中勾选自定义时：你可以自己设置每一个天体的初始质量、空间位置、以及速度矢量，理论上初始条件确定时，在一定时间范围内，天体运行会近似一致，这个功能提供了分享种子参数的玩法；当然你也可以把你认为有趣的种子参数分享给其他人，或者照抄别人的种子，并进行比赛；\r\n11.如果你不清楚诸如天体运行的某些参数，请谨慎修改他们，如果修改的面目全非则可以重置壁纸回到我提供的“出厂设置”；\r\n12.背景除了默认外，还支持纯色和自定义背景图案，不过请确保你的自定义图案能贴合球面展开uv(类似于天空盒)，否则可能出现接缝和扭曲；\r\n13.共有192+条可自定义的用户属性，该壁纸工程量庞大，我个人能力也有限，难免会出现错误和纰漏，请指正并讨论。不过由于评论聊天信息太多无法做到每一条消息都回复，可能有遗漏还请见谅！\r\n\r\n2025.08.10 /v3.1/v3.2\r\n修复了部分bug；支持了光标跟随；新增了引力牢笼\r\n\r\n2025.08.13 /v3.3\r\n新增了单位换算说明，微缩系统的量纲换算和基于现实物理的时间尺度，方便有需要的人更“真实”的仿真；优化了文明日志；\r\n\r\n2025.08.25 /v3.8.0/v3.8.1\r\n重写了类地行星表面平均温度计算公式，使之更符合现实物理规律，支持调整恒星光度；重写了时间倍速功能，尽量不同设备上保持物理一致性(但很难)；新增了登录和重新加载画面可关闭选项; 新增了物理作弊检查；\r\n\r\n2025.08.31/v3.8.2\r\n允许关闭物理作弊检查信息；修改了部分bug;",
     "author": {
-      "name": "SteamUser (76561198398053081)",
-      "steamId": "76561198398053081"
+      "name": "SteamUser (76561199107908627)",
+      "steamId": "76561199107908627"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/20925620227093778/66A377212EF2970D0125161B24B88C86380613AA/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/14437333802904616125/E661D2016D2A20BE15E9B5A4792CA9894279A84E/",
     "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Cartoon",
-      "Wallpaper",
-      "Customizable",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 88370572,
-    "createdAt": "2024-12-07T16:09:39.000Z",
-    "updatedAt": "2025-12-24T11:30:46.000Z",
-    "stats": {
-      "views": 17822,
-      "subscriptions": 971048,
-      "favorited": 38012,
-      "votesUp": 5672
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3379996991",
-    "steamClientUri": "steam://url/CommunityFilePage/3379996991"
-  },
-  {
-    "id": "3147346398",
-    "isSimulated": false,
-    "title": "⛏🧱Minecraft Lo-Fi Fireplace [4k HDR] WE adaptation by Becco38",
-    "description": "[url=https://ko-fi.com/Becco38]✨𝓢𝓾𝓹𝓹𝓸𝓻𝓽 𝓶𝓮✨[/url]\n\nBGM:\n[url=https://www.youtube.com/watch?v=FqnAV6tkwzA&ab_channel=Minecraft]Fireplace[/url]\n\n[url=https://www.youtube.com/watch?v=mukiMaOSLEs&ab_channel=InfernalEntertain]C418 - Wet Hands - Minecraft Volume Alpha[/url]\n\n[url=https://www.reddit.com/r/Minecraft/comments/jna5fn/i_made_this_lofi_looking_scene_for_minecraft_songs/]Original VIdeo by u/DiMitryMladenovic[/url]\n\n[url=https://www.reddit.com/r/Rainmeter/comments/jnloqf/my_minecraft_rainmeter_setup/]Original Rainmeter setup[/url]",
-    "author": {
-      "name": "SteamUser (76561198272591500)",
-      "steamId": "76561198272591500"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2283955714010166280/D214637ECB903D7CDD20A0473501DE3D2EDB2B36/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Game",
-      "Audio responsive",
-      "Approved",
-      "Customizable",
-      "HDR",
-      "Video Texture",
-      "Media Integration"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 167989160,
-    "createdAt": "2024-01-26T02:40:51.000Z",
-    "updatedAt": "2024-01-28T21:50:29.000Z",
-    "stats": {
-      "views": 39960,
-      "subscriptions": 929214,
-      "favorited": 64831,
-      "votesUp": 9835
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3147346398",
-    "steamClientUri": "steam://url/CommunityFilePage/3147346398"
-  },
-  {
-    "id": "3459506773",
-    "isSimulated": false,
-    "title": "Dark Queen [4K]",
-    "description": "white hair - queen - crown - dark - void - clean - minimal - black",
-    "author": {
-      "name": "SteamUser (76561199259402430)",
-      "steamId": "76561199259402430"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/15692039870819097328/5EB558F41DBA53EFFD9A493463795738A06F77B0/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Approved",
-      "Anime"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 7084506,
-    "createdAt": "2025-04-06T21:23:21.000Z",
-    "updatedAt": "2025-08-29T17:49:02.000Z",
-    "stats": {
-      "views": 29668,
-      "subscriptions": 925323,
-      "favorited": 50294,
-      "votesUp": 5566
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3459506773",
-    "steamClientUri": "steam://url/CommunityFilePage/3459506773"
-  },
-  {
-    "id": "3577990983",
-    "isSimulated": false,
-    "title": "Chainsaw Man-Reze 蕾塞[4K]",
-    "description": "------------------------中文---------------------------\n画师:dododo 背景音乐：Flowers\n【蕾塞】|dododo #pixiv https://www.pixiv.net/artworks/103183091\ntips:倘若你觉得壁纸亮度过低可在显示颜色选项中调节亮度.\n如果觉得壁纸做的不错请给作者一个好评,十分感谢！！(*´∀人)\n倘若您对壁纸有什么建议请评论区留言。 (*´∀｀)ﾉゞ\n------------------------English---------------------------\nArtist:dododo     Background music:Flowers\n【蕾塞】|dododo #pixiv https://www.pixiv.net/artworks/103183091\nTip: If you think the wallpaper brightness is too low, you can adjust the brightness in the display color option.\nIf you think the wallpaper is good, please give the author a good review, thank you very much!!(*´∀人)\nIf you have any suggestions for wallpaper, please leave a comment in the comments section.\n(*´∀｀)ﾉゞ",
-    "author": {
-      "name": "SteamUser (76561199645851972)",
-      "steamId": "76561199645851972"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/14328826738253829865/232F2E80C6A05DC416055D9A361C5A08982C5E2E/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Anime",
-      "Wallpaper",
-      "Audio responsive",
-      "Customizable",
-      "Puppet Warp",
-      "Media Integration",
-      "User Shortcut",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 49866546,
-    "createdAt": "2025-10-01T02:06:08.000Z",
-    "updatedAt": "2026-01-08T11:03:24.000Z",
-    "stats": {
-      "views": 32565,
-      "subscriptions": 904523,
-      "favorited": 43296,
-      "votesUp": 7837
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3577990983",
-    "steamClientUri": "steam://url/CommunityFilePage/3577990983"
-  },
-  {
-    "id": "3479521040",
-    "isSimulated": false,
-    "title": "\"日向の幽霊\"/\"HyugaのGhost\" byCogecha",
-    "description": "------------------------中文---------------------------\n画师:焦茶 背景音乐：君の膵臓をたべたい\n日向の幽霊 | 焦茶 #pixiv https://www.pixiv.net/artworks/68936009\n倘若你觉得运行起来卡顿请关闭音频识别组件，与些许粒子.\n关于壁纸位置:如果您想调整壁纸的左右位置可以在对齐方式中选择自由经行调整.\n如果觉得壁纸做的不错请给作者一个好评,十分感谢！！(*´∀人)\n倘若您对壁纸有什么建议请评论区留言。 (*´∀｀)ﾉゞ\n------------------------English---------------------------\nArtist:焦茶 Background music: 君の膵臓をたべたい\n日向の幽霊 | 焦茶 #pixiv https://www.pixiv.net/artworks/68936009\nIf you find it lagging when running, please turn off the audio recognition component and a few particles.\nSelecting Free alignment enables adjusting the wallpaper's horizontal position.\nIf you think the wallpaper is good, please give the author a good review, thank you very much!!(*´∀人)\nIf you have any suggestions for wallpaper, please leave a comment in the comments section.\n(*´∀｀)ﾉゞ",
-    "author": {
-      "name": "SteamUser (76561199645851972)",
-      "steamId": "76561199645851972"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/15492042093557113303/CA97AFA3A8C76930D6F8986F7D49C411907EB21F/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Anime",
-      "Audio responsive",
-      "Approved",
-      "Customizable",
-      "Puppet Warp",
-      "Media Integration"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 27157176,
-    "createdAt": "2025-05-11T02:42:55.000Z",
-    "updatedAt": "2025-05-11T02:42:55.000Z",
-    "stats": {
-      "views": 44913,
-      "subscriptions": 837944,
-      "favorited": 47595,
-      "votesUp": 9871
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3479521040",
-    "steamClientUri": "steam://url/CommunityFilePage/3479521040"
-  },
-  {
-    "id": "3257043844",
-    "isSimulated": false,
-    "title": "Ender 2B NieR : Automata WUHD (4K)",
-    "description": "2B NieR : Automata - Ultrawide - 5120x2160 - 3440x1440\nOriginal picture from Gasia112 (Deviantart)\nImage quality is a priority, high-end setup recommended\nKeywords : YoRHa No. 2 Type B, Game, Anime, AI Art, Android, War, Character, 2160p, 4K, HD",
-    "author": {
-      "name": "SteamUser (76561199403543602)",
-      "steamId": "76561199403543602"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2475370109680510265/D94C69BA9B3CBF600C51A559FC716E874649B601/",
-    "type": "Scene",
-    "resolution": "3440x1440",
-    "aspectRatio": "21:9",
-    "tags": [
-      "Wallpaper",
-      "Anime",
-      "Approved",
-      "Customizable"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 21317712,
-    "createdAt": "2024-05-29T18:20:33.000Z",
-    "updatedAt": "2025-05-08T16:51:08.000Z",
-    "stats": {
-      "views": 23075,
-      "subscriptions": 816629,
-      "favorited": 51098,
-      "votesUp": 5630
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3257043844",
-    "steamClientUri": "steam://url/CommunityFilePage/3257043844"
-  },
-  {
-    "id": "3390306162",
-    "isSimulated": false,
-    "title": "Cozy Winter by Abi Toads",
-    "description": "nothing better than being snowed in and being as snug as a frug~",
-    "author": {
-      "name": "SteamUser (76561198314933366)",
-      "steamId": "76561198314933366"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/44571121428903704/0A646540176843DE4C82B42EE86F9018C7487292/",
-    "type": "Video",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Cartoon",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 167068701,
-    "createdAt": "2024-12-23T16:59:10.000Z",
-    "updatedAt": "2024-12-23T16:59:10.000Z",
-    "stats": {
-      "views": 38590,
-      "subscriptions": 790125,
-      "favorited": 53337,
-      "votesUp": 7396
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3390306162",
-    "steamClientUri": "steam://url/CommunityFilePage/3390306162"
-  },
-  {
-    "id": "2517518192",
-    "isSimulated": false,
-    "title": "Five Nights at Freddy's 1 Camera View (Interactive) (No longer maintained)",
-    "description": "**Please read this first!** https://steamcommunity.com/workshop/filedetails/discussion/2517518192/757304900494380406/\r\n\r\n\r\nWarning: Minor flashing (from changing cameras)\r\nNote: Doesn't support mobile!!\r\nLively version here: https://ko-fi.com/s/cac57714d5\r\nOpera GX version here: https://store.gx.me/mods/74noji/five-nights-at-freddy-s-1/\r\n\r\nFNAF 1 Camera Mechanic, recreated completely from the ground up so people can have an interactive FNAF 1 Camera on their desktop background!\r\n\r\nFeatures:\r\n-Interactive camera selection (just like in FNAF!)\r\n-Background Audio (Can be changed via settings)\r\n-Save last location checked upon wallpaper engine restart\r\n-Animatronics that move and make noises!\r\n-Random chance for animatronics (depending on their state and location) to sing/play music.\r\n-Dynamic Time and night\r\n-Hallucinations!\r\n-A small easter egg\r\n-Dynamic Power Percentage! (Based upon your laptops power, or remains at 100% otherwise)\r\n-Camera Automatic Shuffle (Disabled by default, allows the wallpaper to shuffle between different cameras)\r\n-No jumpscares!!!!!!! (Seriously, there's none. No. I am not adding them. Stop suggesting it.)\r\n-Settings to disable light flicker, adjust camera static effect and camera flashes\r\n\r\nCredits go to:\r\nScott Cawthon, for making this wonderful game series!",
-    "author": {
-      "name": "SteamUser (76561198039958191)",
-      "steamId": "76561198039958191"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/1752444648185186881/357B753FB9A4ABAD5161C9A22CCF1C19FB80E5CC/",
-    "type": "Web",
-    "resolution": "Não informada",
-    "aspectRatio": "Other",
-    "tags": [
-      "Wallpaper",
-      "Game",
-      "Approved",
-      "Customizable",
-      "Dynamic resolution"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 81004366,
-    "createdAt": "2021-06-15T11:09:49.000Z",
-    "updatedAt": "2022-02-24T08:30:37.000Z",
-    "stats": {
-      "views": 72839,
-      "subscriptions": 765440,
-      "favorited": 56048,
-      "votesUp": 13531
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2517518192",
-    "steamClientUri": "steam://url/CommunityFilePage/2517518192"
-  },
-  {
-    "id": "3448290956",
-    "isSimulated": false,
-    "title": "【Interactions 多种互动】GBC SUBARU 安和昴486——夜莺Night【哭泣少女乐队】",
-    "description": "动态制作：-夜莺Night（bilibili/抖音）\n喜欢的话还请多多支持一下哦\n感谢@Wiste_Finch对项目的支持\n\nDynamic production: - 夜莺Night (bilibili/Tiktok)\nIf you like it, please support me more\nThank you @ Wiste_finch for your support of the project\n\n首先非常感谢您喜欢我的壁纸。不过制作壁纸不易，故在此声明：本人壁纸严禁未经允许的商用和转载至其他平台行为。如果您是壁纸推荐博主，或者想转载壁纸，使用壁纸进行宣传，请务必在醒目处注明作者或艾特我：夜莺Night。同时，如您想通过网盘等渠道将我的壁纸分享给他人，请务必注意命名格式：命名加好作者前缀名,如将mpkg命名格式统一为“作者——壁纸名。例如：夜莺Night——XXX。有条件可以单独开一作者分区，这是我的底线。也希望看到的粉丝朋友可以帮忙提醒监督——\n\nFirst of all, thank you very much for liking my wallpaper. However, making wallpaper is not easy, so I hereby declare that my wallpaper is strictly prohibited from being used for commercial purposes or reproduced on other platforms without permission. If you are a wallpaper recommendation blogger or want to repost wallpapers for promotion, please make sure to prominently indicate the author or tag me: 夜莺Night. At the same time, if you want to share my wallpaper with others through online storage or other channels, please pay attention to the naming format: add the author prefix name to the name, such as unifying the mpkg naming format as \"author wallpaper name\". For example, 夜莺Night - XXX. If possible, I can create a separate author section. This is my bottom line. I also hope to see fans and friends who can help remind and supervise——",
-    "author": {
-      "name": "SteamUser (76561199211352973)",
-      "steamId": "76561199211352973"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/43452398438593612/1A053865D61465D83E84B8E749DDA48047794956/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Anime",
-      "Audio responsive",
-      "Approved",
-      "Customizable",
-      "Puppet Warp"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 16241120,
-    "createdAt": "2025-03-20T12:59:31.000Z",
-    "updatedAt": "2025-06-11T17:16:03.000Z",
-    "stats": {
-      "views": 81581,
-      "subscriptions": 755680,
-      "favorited": 56700,
-      "votesUp": 12951
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3448290956",
-    "steamClientUri": "steam://url/CommunityFilePage/3448290956"
-  },
-  {
-    "id": "3025975631",
-    "isSimulated": false,
-    "title": "【昼夜变化】窗旁の伊蕾娜 ——夜莺Night【魔女之旅】",
-    "description": "原画师：あずーる azure\r\n动态制作：-夜莺Night（全网同名）\r\n喜欢还请多多支持一下哦——\r\n转载请注明出处！！！\r\n3.5：优化了用户栏，增加了个人主页链接\r\n2024.10.5：增加了开场提示框，可以进入设置界面永久关闭\r\n\r\n首先非常感谢您喜欢我的壁纸。不过制作壁纸不易，故在此声明：本人壁纸严禁未经允许的商用和转载至其他平台行为。如果您是壁纸推荐博主，或者想转载壁纸，使用壁纸进行宣传，请务必在醒目处注明作者或艾特我：夜莺Night。同时，如您想通过网盘等渠道将我的壁纸分享给他人，请务必注意命名格式：命名加好作者前缀名,如将mpkg命名格式统一为“作者——壁纸名。例如：夜莺Night——XXX。有条件可以单独开一作者分区，这是我的底线。也希望看到的粉丝朋友可以帮忙提醒监督——\r\n\r\nFirst of all, thank you very much for liking my wallpaper. However, making wallpaper is not easy, so I hereby declare that my wallpaper is strictly prohibited from being used for commercial purposes or reproduced on other platforms without permission. If you are a wallpaper recommendation blogger or want to repost wallpapers for promotion, please make sure to prominently indicate the author or tag me: 夜莺Night. At the same time, if you want to share my wallpaper with others through online storage or other channels, please pay attention to the naming format: add the author prefix name to the name, such as unifying the mpkg naming format as \"author wallpaper name\". For example, 夜莺Night - XXX. If possible, I can create a separate author section. This is my bottom line. I also hope to see fans and friends who can help remind and supervise——",
-    "author": {
-      "name": "SteamUser (76561199211352973)",
-      "steamId": "76561199211352973"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2053132367043416398/AC83A2A792F2B5A043B8C9BAA9D098416EC96B2C/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Anime",
-      "Audio responsive",
-      "Customizable",
-      "Video Texture"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 107572435,
-    "createdAt": "2023-08-26T12:51:27.000Z",
-    "updatedAt": "2025-06-11T17:09:17.000Z",
-    "stats": {
-      "views": 82390,
-      "subscriptions": 706875,
-      "favorited": 73956,
-      "votesUp": 13095
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3025975631",
-    "steamClientUri": "steam://url/CommunityFilePage/3025975631"
-  },
-  {
-    "id": "3747222633",
-    "isSimulated": false,
-    "title": "音域回响",
-    "description": "Afdian Page: https://www.ifdian.net/a/CmzYa?utm_source=copylink&utm_medium=link\r\nYour support keeps me updating this wallpaper!\r\nFeatures\r\nAudio Response — 160×160 grid bars pulse to music with real-time FFT frequency analysis\r\nRipple Effect — Ground ripples spread and bars bounce when low frequencies hit\r\nMeteor Effect — Shooting stars fall on high frequencies, spawning particle explosions on impact\r\nIdle Waves — Gentle breathing motion for bars when no audio is playing to keep the scene alive\r\n10 Color Themes — Indigo Violet, Deep Sea Blue, Ice Blue, Emerald Green, Warm Gold, Amber Orange, Blood Red, Coral Pink, Neon Magenta, Minimal Black & White\r\nAlbum Art — Supports Wallpaper Engine Media Integration; displays album cover, track title and artist with smooth transition animations\r\nPlayer Controller — Floating frosted-glass panel with three size presets\r\nTunable Parameters — Render resolution, audio sensitivity, frequency range, camera view, rotation speed, ripple & meteor trigger sensitivity and intensity\r\nChangelog\r\nv15 — Optimized frequency distribution (primary response: 0–3.5kHz); refined render resolution range (80–320); anti-jitter for idle waves; fixed wallpaper config reload bugs; expanded spawn range for ripples and meteors; adjusted pulse trigger counter range (5–13)\r\nv15 — Major performance improvements\r\nv14 — Added render resolution setting; fixed response decay issue; idle-click meteor spawn\r\nv13 — Album art transition animations; project size reduction; build optimizations\r\nv12 — Media Integration support, built-in player UI\r\nv11 — Idle wave system\r\nv10 — Particle system & spring animations\r\nv9 — Meteor effect + automatic beat detection\r\nv8 — Ground ripple effect\r\nv7 — 8-band FFT + tone metrics\r\nv6 — 10 built-in color themes\r\nv5 — Camera controls & shader optimizations\r\nv4 — Wallpaper Engine audio integration\r\nv3 — 160×160 instanced grid\r\nv2 — Three.js 3D scene foundation\r\nv1 — Initial Release\r\nTech Stack\r\nReact 19 · Three.js · React Three Fiber · Framer Motion · Tailwind CSS · GLSL Shaders",
-    "author": {
-      "name": "SteamUser (76561199155182026)",
-      "steamId": "76561199155182026"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/11940715857698998390/C697E6323E19934BCE8D58AF6213D46DE2373375/",
-    "type": "Web",
     "resolution": "Não informada",
     "aspectRatio": "Other",
     "tags": [
@@ -351,169 +18,37 @@
       "Audio responsive",
       "Customizable",
       "Dynamic resolution",
-      "Approved"
+      "HDR",
+      "3D"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 2204086,
-    "createdAt": "2026-06-18T15:32:03.000Z",
-    "updatedAt": "2026-08-01T04:13:55.000Z",
+    "fileSizeBytes": 159345938,
+    "createdAt": "2025-06-26T17:17:59.000Z",
+    "updatedAt": "2026-04-15T13:54:50.000Z",
     "stats": {
-      "views": 30054,
-      "subscriptions": 758381,
-      "favorited": 26549,
-      "votesUp": 5315
+      "views": 144027,
+      "subscriptions": 1326049,
+      "favorited": 59721,
+      "votesUp": 17068
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3747222633",
-    "steamClientUri": "steam://url/CommunityFilePage/3747222633"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3509243656",
+    "steamClientUri": "steam://url/CommunityFilePage/3509243656"
   },
   {
-    "id": "3219522309",
+    "id": "2388299037",
     "isSimulated": false,
-    "title": "Frog Picnic by Abi Toads",
-    "description": "buddy said he knew a spot~",
+    "title": "Retro Room",
+    "description": "[h1] ---------------------------------[/h1]\r\n[b]🎨 Artwork by [url=https://www.reddit.com/r/wallpapers/comments/au7947/90s_kid_3840x2160/] Keptin[/url][/b]\r\n[b]🎵 Music [url=https://www.youtube.com/watch?v=zATXtSjPwZM] Source[/url][/b]\r\n[h1] ---------------------------------[/h1]\r\n[h1]Tags[/h1]\r\n[h1] ---------------------------------[/h1]\r\n- Bedroom\r\n- Game Over\r\n- Arcade\r\n- Games \r\n- Neon\r\n- Music\r\n- Aesthetic \r\n- Retro \r\n- Mario \r\n- Donkey Kong\r\n- Street Fighter\r\n- Space Invaders \r\n- PAC-MAN \r\n- Relaxing\r\n- Retro Room\r\n- 90's\r\n- Spotify \r\n[h1] ---------------------------------[/h1]",
     "author": {
-      "name": "SteamUser (76561198314933366)",
-      "steamId": "76561198314933366"
+      "name": "SteamUser (76561198256757249)",
+      "steamId": "76561198256757249"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2476491741613591327/0879D0B99F68471F54B268DFF3C1555DD2DDC10C/",
-    "type": "Video",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Cartoon",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 489542652,
-    "createdAt": "2024-04-11T19:53:28.000Z",
-    "updatedAt": "2024-04-11T19:53:28.000Z",
-    "stats": {
-      "views": 24563,
-      "subscriptions": 715338,
-      "favorited": 52749,
-      "votesUp": 6957
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3219522309",
-    "steamClientUri": "steam://url/CommunityFilePage/3219522309"
-  },
-  {
-    "id": "3200802205",
-    "isSimulated": false,
-    "title": "月光下的德累斯顿/View of Dresden by Moonlight",
-    "description": "月光下的德累斯顿----约翰•克里斯蒂安•克劳森•达尔\r\nView of Dresden by Moonlight----Johan Christian Claussen Dahl\r\n\r\nBGM:贝多芬c小调第八号钢琴奏鸣曲《悲怆》Op.13第二乐章\r\nBGM:Ludwig van Beethoven - Adagio Cantabile from Sonata Op.13 (Pathetique)\r\n\r\n停更，换新电脑，工程文件忘记备份了╮(╯_╰)╭\r\nStop updating, replace with a new computer, forgot to backup project files.╮(╯_╰)╭",
-    "author": {
-      "name": "SteamUser (76561198081063023)",
-      "steamId": "76561198081063023"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/36687403502730554/3A4055206A332AD95DABEF77D447CB249BBADC44/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/1688276024726648546/96B33C2790DB9D1CB8B8C70BA402ACD11720743C/",
     "type": "Scene",
     "resolution": "3840x2160",
     "aspectRatio": "16:9",
     "tags": [
-      "Wallpaper",
-      "Landscape"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 24806233,
-    "createdAt": "2024-03-25T19:24:09.000Z",
-    "updatedAt": "2025-01-05T15:29:46.000Z",
-    "stats": {
-      "views": 19235,
-      "subscriptions": 727452,
-      "favorited": 34212,
-      "votesUp": 5426
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3200802205",
-    "steamClientUri": "steam://url/CommunityFilePage/3200802205"
-  },
-  {
-    "id": "3448877775",
-    "isSimulated": false,
-    "title": "【Time Variation 时间变化】Alone 孤独の少女——夜莺Night【原画：Rella]",
-    "description": "原画师：Rella\n动态制作：-夜莺Night（bilibili  /  douyin）\n\n有bug请在评论区反馈\n如果喜欢还请多多支持一下哦\n手机、平板壁纸获取方式：https://pan.quark.cn/s/559c382d2a1e#/list/share\n\n功能简要展示：时间变化设置、壁纸组件设置\n\nOriginal artist: Rella\nDynamic production: - 夜莺Night(bilibili/douyin)\n\nIf there are bugs, please provide feedback in the comment section\nIf you like it, please support me more\nFunction brief display:Time change setting、Wallpaper component settings",
-    "author": {
-      "name": "SteamUser (76561199211352973)",
-      "steamId": "76561199211352973"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/43453127460852063/490135BE63293A6CC44E7521D9B68BD15A354445/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Anime",
-      "Audio responsive",
-      "Approved",
-      "Customizable",
-      "Puppet Warp",
-      "Video Texture",
-      "Media Integration"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 139330911,
-    "createdAt": "2025-03-21T11:36:13.000Z",
-    "updatedAt": "2025-06-11T17:34:34.000Z",
-    "stats": {
-      "views": 41987,
-      "subscriptions": 678588,
-      "favorited": 48362,
-      "votesUp": 9344
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3448877775",
-    "steamClientUri": "steam://url/CommunityFilePage/3448877775"
-  },
-  {
-    "id": "2955378002",
-    "isSimulated": false,
-    "title": "Real time Persona 5 Tokyo Transition screen + Weather [Customizable] [4k] by Becco38",
-    "description": "[url=https://ko-fi.com/Becco38]✨𝓢𝓾𝓹𝓹𝓸𝓻𝓽 𝓶𝓮✨[/url]\r\n\r\nQ) How do I customize this?\r\nA) Open wallpaper engine, on the right side panel you will see the wallpaper that you are currently using. \r\nOn the same portion of the window, scroll all the way down to find the settings.\r\n\r\nQ) Why is the weather not in sync with my location?\r\nA) I know it'd be cool to see real weather sync/forecast but, as for now, 'scene' types of wallpaper (written in wallpaper engine’s own script language called ‘scenescript’) can't handle any online calls from weather APIs.\r\nSo, for the time being, it’s something you can adjust manually whenever you want for aesthetic purposes only.\r\n\r\nQ) Why does the ‘flip’ option flip the whole image like in a mirror? (The HUD is flipped too)\r\nA) That option was not designed by me, but by wallpaper engine developers. You can also notice that it’s in every single wallpaper in this platform.\r\nThe wallpaper is not built or designed to be flipped.\r\n\r\nQ) My monitor is xxxx resolution by xxxx, how can I stretch the whole thing to fit in my display?\r\nA) The wallpaper is 16:9, try to adapt it in the default user properties made by developers to fit your needs.\r\n\r\nQ) Can you add other Persona games music?\r\nA) No, this wallpaper is quite beefy speaking of weight/space. Any further songs that are not p5 related won’t be added.\r\n\r\nQ) What’s the time chart?\r\nA) This one:\r\nDawn: 5am to 7 am\r\nDay: 7am to 3pm\r\nAfternoon: 3pm to 6pm\r\nSunset: 6pm to 8pm\r\nEvening/Night: 8pm to 5 am\r\n\r\n\r\nThis wallpaper features:\r\n\r\n-Almost every P5/Royal song\r\n\r\n-Audio Slider widget to adjust the volume\r\n\r\n-Aficionado fansite comments (some of them are my Ko-Fi supporters)\r\n\r\n-Persona 5 confidant music widget:\r\nThe confidants cycle automatically rolls by default, but you can manually select a static character you like.\r\n\r\n-Heat wave and hot night for the sunny weather condition and pollen warning for the cloudy condition.\r\n(Just make sure you check the calendar options if you want to enable them)\r\n\r\n-Real time sync with the city\r\n\r\n-Working Calendar Sync with inverted color scheme options like in Royal \r\n(Huge thanks to [url=https://steamcommunity.com/profiles/76561198116198827]Bvrrvcudv[/url] for the calendar scripting)\r\n\r\n-Customizable clock - size, position, color\r\n\r\n-Customizable Weather conditions: Sunny, Rainy, Cloudy and Snowy\r\n\r\n-Customizable Audio Responsive Bars and Circle ripples - on/off, color change\r\n\r\n-Audio Responsive City Lights (8pm to 5 am only) - on/off\r\n\r\n-Customizable Xmas Lights for windows\r\n\r\n\r\n\r\n\r\nThank you all very much for the support and love shared through all this time. \r\nI must say that It really is heartwarming to read comments even several months after the release of this project.\r\nI’m glad to make people happy with what I do, and it is a wonderful feeling that fills my days; even though it’s just a wallpaper.❤️",
-    "author": {
-      "name": "SteamUser (76561198272591500)",
-      "steamId": "76561198272591500"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2035104740154823467/318B01A93689A93AE141353CAB624D3F4489B934/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Game",
-      "Audio responsive",
-      "Approved",
-      "Customizable",
-      "Puppet Warp",
-      "Video Texture",
-      "Media Integration"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 383102867,
-    "createdAt": "2023-03-31T15:05:01.000Z",
-    "updatedAt": "2025-06-01T13:53:17.000Z",
-    "stats": {
-      "views": 53695,
-      "subscriptions": 666277,
-      "favorited": 53073,
-      "votesUp": 10162
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2955378002",
-    "steamClientUri": "steam://url/CommunityFilePage/2955378002"
-  },
-  {
-    "id": "3219908811",
-    "isSimulated": false,
-    "title": "【Customize自定义】初音未来 胧月——夜莺Night",
-    "description": "动态制作：-夜莺Night（bilibili）如果喜欢还请多多支持一下哦\n原画师: 奇诺777\n\n动效全部由wallpaper完成，动效不如视频版本精细，负载也更高，但自定义选项更多。自定义功能包括但不限于：自定义背景、自定义人物显示，自定义人物动效，部分组件显示自定义，位置自定义，背景效果部分自定义，音频响应自定义，鼠标尾迹自定义。\n\n如感到使用不畅，可以进入右上角设置中更改纹理分辨率为高性能，适当降低帧率，同时适当关闭部分选项。需要注意：鼠标点击功能需要关闭桌面整理功能：如腾讯桌面清理大师等等才可以使用。\n4.13号，加上了音乐\n\n首先非常感谢您喜欢我的壁纸。不过制作壁纸不易，故在此声明：本人壁纸严禁未经允许的商用和转载至其他平台行为。如果您是壁纸推荐博主，或者想转载壁纸，使用壁纸进行宣传，请务必在醒目处注明作者或艾特我：夜莺Night。同时，如您想通过网盘等渠道将我的壁纸分享给他人，请务必注意命名格式：命名加好作者前缀名,如将mpkg命名格式统一为“作者——壁纸名。例如：夜莺Night——XXX。有条件可以单独开一作者分区，这是我的底线。也希望看到的粉丝朋友可以帮忙提醒监督——\n\nFirst of all, thank you very much for liking my wallpaper. However, making wallpaper is not easy, so I hereby declare that my wallpaper is strictly prohibited from being used for commercial purposes or reproduced on other platforms without permission. If you are a wallpaper recommendation blogger or want to repost wallpapers for promotion, please make sure to prominently indicate the author or tag me: 夜莺Night. At the same time, if you want to share my wallpaper with others through online storage or other channels, please pay attention to the naming format: add the author prefix name to the name, such as unifying the mpkg naming format as \"author wallpaper name\". For example, 夜莺Night - XXX. If possible, I can create a separate author section. This is my bottom line. I also hope to see fans and friends who can help remind and supervise——",
-    "author": {
-      "name": "SteamUser (76561199211352973)",
-      "steamId": "76561199211352973"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2475365841709555488/23EB96B5E717BC6FCF340BEA8243105BA9ACBAFD/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Anime",
+      "Retro",
       "Wallpaper",
       "Audio responsive",
       "Customizable",
@@ -521,59 +56,350 @@
       "Approved"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 30759879,
-    "createdAt": "2024-04-12T08:32:44.000Z",
-    "updatedAt": "2025-06-11T17:13:24.000Z",
+    "fileSizeBytes": 105983224,
+    "createdAt": "2021-02-08T05:36:41.000Z",
+    "updatedAt": "2026-04-09T06:01:24.000Z",
     "stats": {
-      "views": 41722,
-      "subscriptions": 662884,
-      "favorited": 53976,
-      "votesUp": 8230
+      "views": 51765,
+      "subscriptions": 1294939,
+      "favorited": 87218,
+      "votesUp": 12357
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3219908811",
-    "steamClientUri": "steam://url/CommunityFilePage/3219908811"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2388299037",
+    "steamClientUri": "steam://url/CommunityFilePage/2388299037"
   },
   {
-    "id": "2913091682",
+    "id": "3113287126",
     "isSimulated": false,
-    "title": "Pokémon Emerald - waterfall.",
-    "description": "Hi, here is a new wallpaper of Pokémon. =)\r\nThere is a 4k and mobile version on my ko-fi.\r\nCheck all my wallpapers on my ko-fi:\r\nhttps://ko-fi.com/itzah/shop\r\n\r\nIf you get the 4k vesion from my Ko-fi you will also have permission to use it on your social media as YT intros/lo-fi videos, Twitch intros etc...\r\n\r\nhttps://twitter.com/1TZAH\r\nhttps://www.instagram.com/1tzah/\r\n\r\nThanks!",
+    "title": "Dome 4k {Artwork by WLOP}",
+    "description": "GIF recording/Screenshot of wallpaper as preview.\n\n[u] [h1] [url=https://steamcommunity.com/id/drioyard/myworkshopfiles/?appid=431960] My Workshop[/url]  [/h1] [/u]\n[u] [h1] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2124383188] My approved wallpapers collection [/url]  [/h1] [/u]\nArtist : https://www.artstation.com/wlop\nArtwork Source : https://www.artstation.com/artwork/n0q2Wr\nMusic : JUST THE WAY YOU ARE - Emotional instrumental Music by Mustafa Avşaroğlu\nMusic link : https://www.youtube.com/watch?v=s5PFgAPhFgI\n\nLabels : Music, Fantasy World, Drioyard, WLOP, Dome, Planets, Girl, Dress, Beautiful, Relaxing, Violin, City Lights, Lady, Rooftop, Reflection, 4k, Woman, Day, Date, Clock, Time, Media Integration, Audio Visualizer, Night, Evening, Shine, Space\n\nDisclaimer:\nI am not the owner of the artworks used in my live wallpapers, I only animate them. All credits belong to the artists, any artists I could not find to credit and you are aware of, please comment on the wallpapers themselves.",
     "author": {
-      "name": "SteamUser (76561198181491103)",
-      "steamId": "76561198181491103"
+      "name": "SteamUser (76561198993232710)",
+      "steamId": "76561198993232710"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/5078403134330333613/77514C6E5B8FF3C59537C4E021C5DEAA59166315/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/2280574347879250435/E28CA5F2ABF3359B39436AE3839F575206FC60FC/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Audio responsive",
+      "Approved",
+      "Girls",
+      "Customizable",
+      "Puppet Warp",
+      "Media Integration"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 30935743,
+    "createdAt": "2023-12-13T20:27:21.000Z",
+    "updatedAt": "2023-12-14T18:30:59.000Z",
+    "stats": {
+      "views": 51289,
+      "subscriptions": 1286467,
+      "favorited": 86291,
+      "votesUp": 11625
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3113287126",
+    "steamClientUri": "steam://url/CommunityFilePage/3113287126"
+  },
+  {
+    "id": "2884323042",
+    "isSimulated": false,
+    "title": "Monkey Ridin Through Los Santos",
+    "description": "MONKE",
+    "author": {
+      "name": "SteamUser (76561199091891968)",
+      "steamId": "76561199091891968"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1886472472717014675/F76404880AB8C77C63F0CD671DDB03BE7E6CC6A6/",
     "type": "Video",
     "resolution": "1920x1080",
     "aspectRatio": "16:9",
     "tags": [
       "Wallpaper",
-      "Pixel art",
+      "Approved",
+      "Memes"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 26692322,
+    "createdAt": "2022-11-04T18:16:25.000Z",
+    "updatedAt": "2022-11-04T18:16:25.000Z",
+    "stats": {
+      "views": 60422,
+      "subscriptions": 1288040,
+      "favorited": 72162,
+      "votesUp": 14934
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2884323042",
+    "steamClientUri": "steam://url/CommunityFilePage/2884323042"
+  },
+  {
+    "id": "2800248288",
+    "isSimulated": false,
+    "title": "冰公主-by Wlop 4k无水印 16:9 -music 订阅都按了 还不快点赞",
+    "description": "可自定义雪花效果，鼠标视差\r\n背景音乐 stay with me，flower dance\r\n觉得这个不咋地的看重制版",
+    "author": {
+      "name": "SteamUser (76561199226747001)",
+      "steamId": "76561199226747001"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1820027239497634908/9FC8ABA4559B916409765E4A74F51242F7E79FA1/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Girls",
+      "Customizable"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 14473180,
+    "createdAt": "2022-04-27T02:33:28.000Z",
+    "updatedAt": "2022-04-27T02:33:28.000Z",
+    "stats": {
+      "views": 92116,
+      "subscriptions": 1236375,
+      "favorited": 91764,
+      "votesUp": 28913
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2800248288",
+    "steamClientUri": "steam://url/CommunityFilePage/2800248288"
+  },
+  {
+    "id": "1915396780",
+    "isSimulated": false,
+    "title": "Above New York City v2 [4K]",
+    "description": "Above NYC v2\r\nResolution: 3840x2160\r\n\r\nChanges\r\n- added a transition between start and end\r\n- crop out the logo in the bottom right\r\n\r\nOther resolutions:\r\n1920x1080 FHD [https://steamcommunity.com/sharedfiles/filedetails/?id=1915402495]\r\n\r\n\r\nOriginal Video: [https://www.youtube.com/watch?v=UN3uF3990Q0&t=]",
+    "author": {
+      "name": "SteamUser (76561198042609114)",
+      "steamId": "76561198042609114"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/761600337171617428/4B1C7AAC91A996FBF8FAFD87A93B91ED7E4F42F5/",
+    "type": "Video",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Landscape"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 838419743,
+    "createdAt": "2019-11-17T23:50:38.000Z",
+    "updatedAt": "2019-11-17T23:50:38.000Z",
+    "stats": {
+      "views": 90339,
+      "subscriptions": 1247571,
+      "favorited": 87995,
+      "votesUp": 14660
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1915396780",
+    "steamClientUri": "steam://url/CommunityFilePage/1915396780"
+  },
+  {
+    "id": "3195212886",
+    "isSimulated": false,
+    "title": "熠烛 芙莉莲×老东西可爱捏 眼动跟随                           Frieren•Eye tracking•Customizable",
+    "description": "Frieren•Eye tracking•Audio visualization•Customizable\nbilibili：熠烛丶",
+    "author": {
+      "name": "SteamUser (76561199275007305)",
+      "steamId": "76561199275007305"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2441586954963699462/9BA5F12773FA6FB5C2B9B7D2B7E00ACDA780271A/",
+    "type": "Scene",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper",
+      "Audio responsive",
+      "Customizable",
       "Approved"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 2843571,
-    "createdAt": "2023-01-05T16:23:45.000Z",
-    "updatedAt": "2023-01-05T16:23:45.000Z",
+    "fileSizeBytes": 87510906,
+    "createdAt": "2024-03-22T01:03:03.000Z",
+    "updatedAt": "2026-06-30T12:55:56.000Z",
     "stats": {
-      "views": 54581,
-      "subscriptions": 660419,
-      "favorited": 51584,
-      "votesUp": 6631
+      "views": 78640,
+      "subscriptions": 1235564,
+      "favorited": 91075,
+      "votesUp": 16360
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2913091682",
-    "steamClientUri": "steam://url/CommunityFilePage/2913091682"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3195212886",
+    "steamClientUri": "steam://url/CommunityFilePage/3195212886"
   },
   {
-    "id": "3426865175",
+    "id": "2406282996",
     "isSimulated": false,
-    "title": "Frieren-Pagoda of flowers 芙莉莲-花之塔[4K]",
-    "description": "------------------------中文---------------------------\n画师:米诺里罗南 背景音乐：Where the Blue-Moon Weed Grows\nif... | 米诺里罗南 #pixiv https://www.pixiv.net/artworks/115673985\n此张壁纸对应动画第二集接近结尾处，音频响应在魔法杖上，倘若你觉得运行起来卡顿请关闭鼠标视察.\n如果觉得壁纸做的不错请给作者一个好评,十分感谢！！(*´∀人)\n倘若您对壁纸有什么建议请评论区留言。 (*´∀｀)ﾉゞ\n------------------------English---------------------------\nArtist:米诺里罗南 \nBackground music: Where the Blue-Moon Weed Grows\nif... | 米诺里罗南 #pixiv https://www.pixiv.net/artworks/115673985\nThis wallpaper corresponds to near the end of the second episode of the animation, the audio response is on the magic wand, if you feel that it is running too slow, please close the mouse inspection.\nIf you think the wallpaper is good, please give the author a good review, thank you very much!!(*´∀人)\nIf you have any suggestions for wallpaper, please leave a comment in the comments section.\n(*´∀｀)ﾉゞ",
+    "title": "Snowy Plains",
+    "description": "[h1] ---------------------------------[/h1]\r\n[h1]Tags[/h1]\r\n[h1] ---------------------------------[/h1]\r\n- Nature\r\n- Snow\r\n- Winter\r\n- Forest\r\n- Blizzard\r\n- Day Night \r\n- Cycle \r\n[h1] ---------------------------------[/h1]",
     "author": {
-      "name": "SteamUser (76561199645851972)",
-      "steamId": "76561199645851972"
+      "name": "SteamUser (76561198256757249)",
+      "steamId": "76561198256757249"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/24309576513833281/BE0A4063F36E841020E58A9AD3706FEAAED93E28/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/1688276024726709803/EE4BC8D85A6D44FDA452E052F242AE853F873D39/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Landscape",
+      "Approved",
+      "Customizable"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 17937830,
+    "createdAt": "2021-02-24T10:33:40.000Z",
+    "updatedAt": "2021-09-09T08:10:59.000Z",
+    "stats": {
+      "views": 46575,
+      "subscriptions": 1245652,
+      "favorited": 71102,
+      "votesUp": 10348
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2406282996",
+    "steamClientUri": "steam://url/CommunityFilePage/2406282996"
+  },
+  {
+    "id": "2970331102",
+    "isSimulated": false,
+    "title": "雨 樱【 Rain Sakura 】- 4K",
+    "description": "youtube@rainforeststudio",
+    "author": {
+      "name": "SteamUser (76561198976335223)",
+      "steamId": "76561198976335223"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2039610698676685265/A4EA5FBF9434F25FEEC0BD1B28E771A20E14DD2C/",
+    "type": "Video",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Landscape",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 102913947,
+    "createdAt": "2023-05-02T08:00:18.000Z",
+    "updatedAt": "2023-05-02T08:00:18.000Z",
+    "stats": {
+      "views": 28206,
+      "subscriptions": 1236754,
+      "favorited": 62532,
+      "votesUp": 7602
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2970331102",
+    "steamClientUri": "steam://url/CommunityFilePage/2970331102"
+  },
+  {
+    "id": "3444535389",
+    "isSimulated": false,
+    "title": "赛博撸猫 | Cat and bee-SYKM",
+    "description": "JavaScript外行，全靠小学二年级数学。\n喜欢点个赞吧~\n创作不易，需要动力啊！要不还是写小说吧T^T\n\n有好点子可以分享讨论\n\n有问题可以此处反馈\n\n大佬们多指点指点！\n\n感谢订阅！\n\n更新日志：\n\n2025/03/21 \n修改宽屏眨眼遮罩不更随bug(感谢b站@**1235！)\n\n2025/03/25\na）增加猫猫眼球、猫猫巩膜、直线、时钟、音频条、背景独立颜色自定义功能；@Thomas \nb）增加蜜蜂随机运动的功能（用户可选择蜜蜂是否跟随鼠标或无视鼠标自由飞行）;@Devillot\nc）增加蜜蜂和轨迹跟随速度自定义功能（不成熟、请慎用）；\nd）增加下蹲防抖功能，下蹲响应延时可自定义；@qingyv1028\ne）增加单击可切换下蹲表情功能；\nf）优化性能和其他bug。\n\n2025/06/07\n修复了未点击时光标下显示小圆圈的bug，增加了是否开启鼠标点击动画的选项（在其他设定里）\n\nP.S.\n1.如遇到在自定义过程中出现bug的情况，请先重置壁纸并反馈我；\n2.希望有大佬可以告知我壁纸引擎中如何绘制轨迹或其他类似的可以实现轨迹绘制的手段；\n3.工作较忙，分身乏术，有些信息无法第一时间回复，感谢支持~\n4.有灵感可以与我交流，我尽量完成（或许时间比较久）。\n\n\nThe following is machine translation:\nJavaScript novice, relying solely on elementary school second-grade math.\nIf you like it, please give a thumbs up~\nCreation is hard—need motivation! Maybe I should just write novels instead T^T\n\nFeel free to share/discuss cool ideas\nIssues can be reported here\n\nSeniors, please enlighten me with your wisdom\n\nThanks for subscribing!\n\nUpdate log：\n\n2025/03/21\nFixed the bug of widescreen blink mask not updating (thanks to B station @**1235!)\n\n2025/03/25\na) Added the function of customizing cat eyeball, cat sclera, straight line, clock, audio bar, and background independent color; @Thomas\nb) Added the function of random movement of bees (users can choose whether the bees follow the mouse or ignore the mouse and fly freely); @Devillot\nc) Added the function of customizing the speed of bees and tracks (immature, please use with caution);\nd)Added squat anti-shake function, and the squat response delay can be customized;@qingyv1028\ne)Click the \"Cat\" to toggle between two crouching expressions (crouching poses)\nf) Optimized performance and other bugs.\n\nP.S.\n1. If you encounter a bug during the customization process, please reset the wallpaper first and give me feedback;\n2. I hope someone can tell me how to draw tracks in the wallpaper engine or other similar means to achieve track drawing;\n3. I am busy with work and can't reply to some messages in the first time. Thank you for your support~\n4. If you have inspiration, you can communicate with me and I will try my best to complete it (maybe it will take a long time).",
+    "author": {
+      "name": "SteamUser (76561199107908627)",
+      "steamId": "76561199107908627"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/14178999852191190/80AEBE777DDB544D52840F1C1A8DF94A5ACFD134/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Abstract",
+      "Wallpaper",
+      "Audio responsive",
+      "Customizable",
+      "Puppet Warp",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 10331100,
+    "createdAt": "2025-03-14T23:44:55.000Z",
+    "updatedAt": "2026-04-15T13:32:15.000Z",
+    "stats": {
+      "views": 24089,
+      "subscriptions": 1234199,
+      "favorited": 47670,
+      "votesUp": 6587
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3444535389",
+    "steamClientUri": "steam://url/CommunityFilePage/3444535389"
+  },
+  {
+    "id": "2468489223",
+    "isSimulated": false,
+    "title": "Painting the Sharks 4K",
+    "description": "Art by [url=https://www.deviantart.com/tamberella/art/Painting-the-Sharks-873941205]TamberElla[/url]\r\nMusic: Wigeon (feat. Bird Boy) by  [url=https://music.djcutman.com/album/free-to-stream]Dj Cutman[/url] \r\nCheck him out!\r\nWaves sound by [url=www.sonniss.com]www.sonniss.com[/url]\r\n\r\nOptions:\r\n\r\nTurn ON/Off Clock\r\nMusic Volume Level\r\nWaves Sound Level\r\n12/24 Clock Format Option\r\nWater Glare Intensity\r\n\r\nPlease enable Ultra Post processing in WE configuration for HDR effects!\r\n\r\nSpecial thanks to Shockz and Rusty from discord for their assets!",
+    "author": {
+      "name": "SteamUser (76561198046403233)",
+      "steamId": "76561198046403233"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1763702603371819041/EDBA95E3FB31487F4FB465AE657EB9F36FACDCBB/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Relaxing",
+      "Approved",
+      "Customizable",
+      "HDR",
+      "Puppet Warp"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 107440885,
+    "createdAt": "2021-04-26T06:48:15.000Z",
+    "updatedAt": "2022-01-24T21:43:57.000Z",
+    "stats": {
+      "views": 41010,
+      "subscriptions": 1202086,
+      "favorited": 68361,
+      "votesUp": 7763
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2468489223",
+    "steamClientUri": "steam://url/CommunityFilePage/2468489223"
+  },
+  {
+    "id": "1498197700",
+    "isSimulated": false,
+    "title": "Faded Memories",
+    "description": "I finally found my place in life. A place where I am as close as possible, yet eternally distant. \r\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀— Cruel Blood Oath\r\n\r\nSong:\r\nNieR Automata OST - The Sound of the End (Quiet & Instrumental)\r\n\r\nImage source: \r\nhttps://www.deviantart.com/kaigetsudo...\r\n\r\nThis Workshop item is my original work. Please do not re-upload, reuse, redistribute, modify, or claim this content as your own without my explicit permission.\r\n\r\nYou are welcome to enjoy and use the item as intended, but please respect the time and effort that went into creating it. If you would like to use or feature my work elsewhere, please ask me for permission first.\r\n\r\nThank you for supporting my work and respecting the creator. ❤️",
+    "author": {
+      "name": "SteamUser (76561198212139356)",
+      "steamId": "76561198212139356"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/958592840698849574/9EEE046BCD3226217AD267FCFC21EE0B9674C2D5/",
+    "type": "Video",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Game",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 69765205,
+    "createdAt": "2018-08-30T17:58:05.000Z",
+    "updatedAt": "2018-08-30T17:58:05.000Z",
+    "stats": {
+      "views": 90047,
+      "subscriptions": 1165715,
+      "favorited": 84494,
+      "votesUp": 17081
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1498197700",
+    "steamClientUri": "steam://url/CommunityFilePage/1498197700"
+  },
+  {
+    "id": "2885492021",
+    "isSimulated": false,
+    "title": "cyberpunk edgerunners",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561199190216113)",
+      "steamId": "76561199190216113"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1911242270677351674/EA6F8B20E3ED125348FC760ADECEA392EC8825B2/",
     "type": "Scene",
     "resolution": "3840x2160",
     "aspectRatio": "16:9",
@@ -586,200 +412,166 @@
       "Puppet Warp"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 25553875,
-    "createdAt": "2025-02-13T23:02:48.000Z",
-    "updatedAt": "2025-02-13T23:02:48.000Z",
+    "fileSizeBytes": 32010029,
+    "createdAt": "2022-11-06T23:49:06.000Z",
+    "updatedAt": "2022-11-15T21:08:39.000Z",
     "stats": {
-      "views": 22199,
-      "subscriptions": 662476,
-      "favorited": 39827,
-      "votesUp": 6376
+      "views": 74927,
+      "subscriptions": 1157848,
+      "favorited": 89169,
+      "votesUp": 14300
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3426865175",
-    "steamClientUri": "steam://url/CommunityFilePage/3426865175"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2885492021",
+    "steamClientUri": "steam://url/CommunityFilePage/2885492021"
   },
   {
-    "id": "3585875739",
+    "id": "2282120494",
     "isSimulated": false,
-    "title": "Miku Monitoring",
-    "description": "",
+    "title": "Winter Cabin by Treefort Studios",
+    "description": "Original artwork:\r\n- ArtStation - https://www.artstation.com/adams3dart\r\n- YouTube -  https://youtu.be/ofE0EZlP0I4\r\n\r\nMusic: Creative Self - A Forgotten Place",
     "author": {
-      "name": "SteamUser (76561198347108707)",
-      "steamId": "76561198347108707"
+      "name": "SteamUser (76561198822470469)",
+      "steamId": "76561198822470469"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/10054126584192538505/16572BE762A48B980DD6B1A3564FDE5A5848C2FC/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/1687122703588889026/776390A559C3015E59FF57448D460E5B5F45270B/",
     "type": "Scene",
-    "resolution": "3840x2160",
+    "resolution": "1920x1080",
     "aspectRatio": "16:9",
     "tags": [
-      "Anime",
       "Wallpaper",
-      "Audio responsive",
-      "Video Texture",
+      "Nature",
+      "Approved",
       "Customizable"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 90016434,
-    "createdAt": "2025-10-12T18:48:13.000Z",
-    "updatedAt": "2025-10-12T20:32:25.000Z",
+    "fileSizeBytes": 6814400,
+    "createdAt": "2020-11-09T15:41:54.000Z",
+    "updatedAt": "2020-11-30T15:45:17.000Z",
     "stats": {
-      "views": 25905,
-      "subscriptions": 665453,
-      "favorited": 36566,
-      "votesUp": 4410
+      "views": 49804,
+      "subscriptions": 1180786,
+      "favorited": 69082,
+      "votesUp": 9723
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3585875739",
-    "steamClientUri": "steam://url/CommunityFilePage/3585875739"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2282120494",
+    "steamClientUri": "steam://url/CommunityFilePage/2282120494"
   },
   {
-    "id": "3278399262",
+    "id": "3463520581",
     "isSimulated": false,
-    "title": "袁隆平-稻下乘凉梦",
-    "description": "伟大无需多言",
+    "title": "Kirito x Asuna / Sword Art Online [4K]",
+    "description": "BGM / The First Town · Yuki Kajiura\n\nArtist / ???\n\n[h2]DISCLAIMER[/h2]\n[b]I do not own any artwork, I only do the animations. If the source is missing, and you know who it is, please write a comment with the artist's name[/b]\n\n[url=https://ko-fi.com/asukikoori][img]https://i.imgur.com/Zk2lXIW.png[/img][/url]",
     "author": {
-      "name": "SteamUser (76561199305660338)",
-      "steamId": "76561199305660338"
+      "name": "SteamUser (76561198137363142)",
+      "steamId": "76561198137363142"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2511401616403793819/693279E71026CEE347D4146258E6B42E49777BC8/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/10640376279862590019/0C476BC2C034456DA3C9A7795A262901E01D1D97/",
     "type": "Scene",
-    "resolution": "Não informada",
-    "aspectRatio": "Other",
-    "tags": [
-      "Guys",
-      "Wallpaper",
-      "Customizable",
-      "Other resolution"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 11722388,
-    "createdAt": "2024-06-30T02:19:44.000Z",
-    "updatedAt": "2026-08-21T14:28:29.000Z",
-    "stats": {
-      "views": 68574,
-      "subscriptions": 610567,
-      "favorited": 56567,
-      "votesUp": 37011
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3278399262",
-    "steamClientUri": "steam://url/CommunityFilePage/3278399262"
-  },
-  {
-    "id": "3317551372",
-    "isSimulated": false,
-    "title": "Dancing Frogs by Abi Toads",
-    "description": "at long last, the frogs had finally made it to the field where they could dance  among the stars :)",
-    "author": {
-      "name": "SteamUser (76561198314933366)",
-      "steamId": "76561198314933366"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2384179827577155275/9336CE64F418DA7A1207D3DE0970F2E8CDE5079A/",
-    "type": "Video",
     "resolution": "3840x2160",
     "aspectRatio": "16:9",
     "tags": [
       "Wallpaper",
-      "Cartoon",
-      "Approved"
+      "Customizable",
+      "Puppet Warp",
+      "Approved",
+      "Anime"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 53508116,
-    "createdAt": "2024-08-26T02:15:59.000Z",
-    "updatedAt": "2024-08-26T02:15:59.000Z",
+    "fileSizeBytes": 18499443,
+    "createdAt": "2025-04-13T20:22:59.000Z",
+    "updatedAt": "2025-09-05T19:44:53.000Z",
     "stats": {
-      "views": 17455,
-      "subscriptions": 654545,
-      "favorited": 43649,
-      "votesUp": 5844
+      "views": 31753,
+      "subscriptions": 1159010,
+      "favorited": 70507,
+      "votesUp": 9882
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3317551372",
-    "steamClientUri": "steam://url/CommunityFilePage/3317551372"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3463520581",
+    "steamClientUri": "steam://url/CommunityFilePage/3463520581"
   },
   {
-    "id": "3477054430",
+    "id": "2477602742",
     "isSimulated": false,
-    "title": "Cat with headphones on the roof",
-    "description": "Pixel wallpaper and a cat that turns its head to follow your cursor, and a moon that moves to the beat of the music.\r\nI hope you like it<3\r\n\r\nAnother variation of wallpaper:\r\nhttps://steamcommunity.com/sharedfiles/filedetails/?id=3592142727\r\n\r\nP.S. I am no longer involved in supporting this work, so there will be no updates.\r\n\r\nBackground source:\r\nhttps://sketchfab.com/3d-models/post-soviet-lowpoly-buildings-130d02982dd84cf99b938f5a668402d0\r\n\r\n[img]https://i.imgur.com/yS8GKfW.png[/img]\r\n\r\nKey words:\r\nCat, roof, night, kitty, headphone, soviet aesthetics, ps1 style.",
+    "title": "Summer Feeling",
+    "description": "[h1]General[/h1]\r\nI hope you enjoy this wallpaper and feel free to drop a comment down below, I would love to hear what you think about it. \r\n\r\n[img]https://i.imgur.com/p7Fv1Z6.gif[/img]\r\n\r\n[h1] ---------------------------------[/h1]\r\n\r\n[h1]Credit[/h1]\r\n[b]🎵[url=https://www.youtube.com/watch?v=8UBONo2UrzA&ab_channel=RioKnowsBest]Mondo Loops - Wandering Another World [/url][/b]\r\n[b]🎨[url=https://www.pixiv.net/en/artworks/69618131]Chigu [/url][/b]\r\n\r\n[h1] ---------------------------------[/h1]\r\n\r\n[h1]More from me[/h1]\r\nCheck out all of  my approved wallpapers [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2221177930] here. [/url]\r\nFollow me for more wallpapers every week  [url=https://steamcommunity.com/profiles/76561198856027023/myworkshopfiles/] here.[/url]\r\n\r\n[h1] ---------------------------------[/h1]\r\n\r\n[h1]Tags[/h1]\r\nanime, relaxing, fantasy, summer, feeling, 夏天的感觉, cute, beautiful, teen, music, train, trains, cloud, sound, happy music, picture, happy, wind, chill, girls, lofi, sky, clouds, camera, photo, memories, hair, animated, hd, 2k, 2560x1440, warning, airplane, airplanes\r\n\r\n[h1] ---------------------------------[/h1]\r\n\r\n[h1]Disclaimer[/h1]\r\nI do not own the art or music in this wallpaper, all the rights go to their original owners. Please contact me if you want this removed.",
     "author": {
-      "name": "SteamUser (76561198318341102)",
-      "steamId": "76561198318341102"
+      "name": "SteamUser (76561198856027023)",
+      "steamId": "76561198856027023"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/17425984124218525647/30CD4D159FD33141FBA21E8DB038B22BD2C44F02/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/1801980500401683339/C42D400EB2B01EF6F943E53F764A87FCD43C043E/",
     "type": "Scene",
-    "resolution": "Não informada",
-    "aspectRatio": "Other",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
     "tags": [
       "Wallpaper",
-      "Animal",
+      "Landscape",
+      "Approved",
+      "Customizable",
+      "Puppet Warp"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 26200911,
+    "createdAt": "2021-05-05T10:08:04.000Z",
+    "updatedAt": "2021-06-27T17:03:26.000Z",
+    "stats": {
+      "views": 39483,
+      "subscriptions": 1147838,
+      "favorited": 75113,
+      "votesUp": 9176
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2477602742",
+    "steamClientUri": "steam://url/CommunityFilePage/2477602742"
+  },
+  {
+    "id": "3151551777",
+    "isSimulated": false,
+    "title": "Persona 3 Reload [4K + Day/Night cycle]",
+    "description": "☀️Now featuring day/night cycle!🌙 Customizable, make sure to check user properties!\r\nOh, and Aigis too as of now I guess. To switch back to one person, change the user property called \"🙋Character\" under the \"🌐Other Settings\" group.\r\n\r\n[h1][b]Please make sure to rate, favorite or award if you like my content![/b][/h1]\r\n[url=https://steamcommunity.com/profiles/76561198098298396/myworkshopfiles/?appid=431960&sort=score&browsefilter=myfiles&view=imagewall][h1][b]A follow is also appreciated.[/b][/h1][/url]\r\n\r\n[img]https://i.imgur.com/E1CtLtt.gif[/img]\r\n\r\nPersona 3 Reload x Sea Paradise Collaboration art. I animated this to celebrate the release of the remake.\r\n\r\n[h3]👨‍🎨 Artist:[/h3] ©ATLUS ©SEGA All rights reserved.\r\n[h3]🎨 Image Source:[/h3] https://twitter.com/realjudoippon/status/1735574586866155893\r\nhttps://twitter.com/Jurawings1/status/1857342655866474778\r\n[h3]🎵 Music:[/h3] \r\nFull Moon Full Life\r\nColor Your Night\r\nChanging Seasons -Reload-\r\nJoy\r\nMemories of You -Reload-\r\nWant To Be Close -Reload-\r\nWhen The Moon's Reaching Out Stars -Reload-\r\nTranquility -Reload-\r\nIwatodai Dorm -Reload-\r\nI Will Protect You -Reload-\r\nMemories of the School\r\nIt's Going Down Now\r\nDisconnected\r\nBrand New Days -The Beginning-\r\nBrand New Days -Reload-\r\nDon't\r\n[h3][b][No plans currently to add tracks from the original Persona 3. Requests will likely be ignored][/b][/h3]\r\n\r\n[h3]🔊 Train Ambience SFX:[/h3] https://www.zapsplat.com/music/interior-train-ambience-very-few-people-distant-chatter-circle-line-sydney-metro-australia/\r\n[h3]🔠 Font:[/h3] Baqacents Semi Bold and DINEngschrift\r\n\r\n[h3]Tags:[/h3] Desktop, Live Wallpaper, animated, 4K, anime, game, JRPG, Atlus, PERSONA, Makoto Yuki, 結城 理, Aigis, アイギス, monorail, train, subway, city, sleeping, media, mp3, clock, date\r\n\r\n[h1]---[/h1]\r\nI do not own the original artwork or the music. Please support the official artist(s).\r\n[u][b]Please do not rehost elsewhere without giving proper credit.[/b][/u]",
+    "author": {
+      "name": "SteamUser (76561198098298396)",
+      "steamId": "76561198098298396"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2356013941947668071/9912CABA15C3DFF2354CF81F86C207E30FF2F283/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime",
       "Audio responsive",
       "Approved",
       "Customizable",
-      "Dynamic resolution",
-      "Media Integration",
-      "3D"
+      "Media Integration"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 7606957,
-    "createdAt": "2025-05-06T17:11:28.000Z",
-    "updatedAt": "2025-05-22T22:12:31.000Z",
+    "fileSizeBytes": 71456792,
+    "createdAt": "2024-02-01T06:58:40.000Z",
+    "updatedAt": "2024-11-28T07:51:40.000Z",
     "stats": {
-      "views": 20188,
-      "subscriptions": 655020,
-      "favorited": 40396,
-      "votesUp": 6390
+      "views": 91055,
+      "subscriptions": 1110814,
+      "favorited": 94353,
+      "votesUp": 18141
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3477054430",
-    "steamClientUri": "steam://url/CommunityFilePage/3477054430"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3151551777",
+    "steamClientUri": "steam://url/CommunityFilePage/3151551777"
   },
   {
-    "id": "3409595232",
+    "id": "3441873795",
     "isSimulated": false,
-    "title": "Miku-长安雪",
-    "description": "------------------------中文---------------------------\n画师:奇诺777 背景音乐：命起涟漪 (凤鸣调)\n长安雪 | 奇诺777 #pixiv https://www.pixiv.net/artworks/117165405\n关于音频条的两个颜色：这个音频条为渐变音频条，颜色0是顶部颜色颜色1是底部颜色。\n如果觉得壁纸做的不错请给作者一个好评,十分感谢！！(*´∀人)\n倘若您对壁纸有什么建议请评论区留言。 (*´∀｀)ﾉゞ\n------------------------English---------------------------\nArtist:奇诺777 Background music: 命起涟漪 (凤鸣调)\n长安雪 | 奇诺777 #pixiv https://www.pixiv.net/artworks/117165405\nAbout the two colors of the audio bar: This audio bar is the gradient audio bar, color 0 is the top color and color 1 is the bottom color.\nIf you think the wallpaper is good, please give the author a good review, thank you very much!!(*´∀人)\nIf you have any suggestions for wallpaper, please leave a comment in the comments section.\n(*´∀｀)ﾉゞ\n2.7-更新手部（本人不是画师，尽自己能力画了）",
+    "title": "Swimming Kirby [4K]",
+    "description": "Customizable, make sure to check user properties!\r\n\r\n[h1][b]Please make sure to rate, favorite or award if you like my content![/b][/h1]\r\n[url=https://steamcommunity.com/profiles/76561198098298396/myworkshopfiles/?appid=431960&sort=score&browsefilter=myfiles&view=imagewall][h1][b]A follow is also appreciated.[/b][/h1][/url]\r\n\r\nThis is a project I started back in June 2023 that I was unable to finish due to issues with the blink animation and water caustics. With the new Wallpaper Engine updates fixing bugs and adding new features I was able to resolve the issues and finish this. Yay devs!\r\n\r\n[h3]👨‍🎨 Artist: [/h3] [url=https://twitter.com/Squid2corn]Squid2corn[/url]\r\n[h3]🎨 Image Source: [/h3] https://www.pixiv.net/en/artworks/108791398\r\n[h3]🎵 Music:[/h3] [url=https://soundcloud.com/user-723409106/big-bean-vine-lo-fi-remix]cloUdy - \"Big Bean Vine (Lo fi Remix)\"[/url] ||| [url=https://www.youtube.com/watch?v=OaQwYu7IvsU](Mirror if you can't open Soundcloud)[/url]\r\nBig-Bean Vine\r\nBlub-Blub Ocean\r\nEverbay Coast\r\n[h3]🔊 SFX: [/h3][url=https://www.zapsplat.com/music/lake-gentle-waves-lapping-onto-rocky-shore-mid-west-usa/]Lake, gentle waves lapping onto rocky shore, Mid West, USA (by Kevin Boucher).[/url]\r\n[h3]🔠 Font: [/h3] [url=https://www.dafont.com/bpreplay.font]BPreplay Bold[/url]\r\n\r\n[h3]Tags: [/h3]Desktop, Live Wallpaper, animated, 4K, Kirby, Nintendo, relaxing, pool, ocean, lofi, swimming, summer, fish\r\n\r\n[h1]---[/h1]\r\nI do not own the original artwork or the music. Please support the official artist(s).\r\n[u][b]Please do not rehost elsewhere without giving proper credit.[/b][/u]",
     "author": {
-      "name": "SteamUser (76561199645851972)",
-      "steamId": "76561199645851972"
+      "name": "SteamUser (76561198098298396)",
+      "steamId": "76561198098298396"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/24307035123963929/80640405B0A5D50EB0C9DE8C2F3F4D55211E2B27/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Anime",
-      "Wallpaper",
-      "Audio responsive",
-      "Customizable",
-      "Puppet Warp",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 27058147,
-    "createdAt": "2025-01-18T07:21:34.000Z",
-    "updatedAt": "2025-02-06T17:22:32.000Z",
-    "stats": {
-      "views": 18096,
-      "subscriptions": 646702,
-      "favorited": 45171,
-      "votesUp": 7698
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3409595232",
-    "steamClientUri": "steam://url/CommunityFilePage/3409595232"
-  },
-  {
-    "id": "3436033033",
-    "isSimulated": false,
-    "title": "Miku-Summer[4K]",
-    "description": "------------------------中文---------------------------\r\n画师:Kori 背景音乐：to the seaside...\r\nミクと夏☀️🌻 | Kori #pixiv https://www.pixiv.net/artworks/122454985\r\n已经开始期待夏天了呢！\r\n倘若你觉得运行起来卡顿请关闭鼠标视察，与些许粒子.\r\n如果觉得壁纸做的不错请给作者一个好评,十分感谢！！(*´∀人)\r\n倘若您对壁纸有什么建议请评论区留言。 (*´∀｀)ﾉゞ\r\n------------------------English---------------------------\r\nArtist:Kori Background music: to the seaside...\r\nミクと夏☀️🌻 | Kori #pixiv https://www.pixiv.net/artworks/122454985\r\nI'm already looking forward to summer!\r\nIf you feel that it is running stutty please turn off the mouse and inspect with a few particles.\r\nIf you think the wallpaper is good, please give the author a good review, thank you very much!!(*´∀人)\r\nIf you have any suggestions for wallpaper, please leave a comment in the comments section.\r\n(*´∀｀)ﾉゞ",
-    "author": {
-      "name": "SteamUser (76561199645851972)",
-      "steamId": "76561199645851972"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/24310749682904530/E30D557654886F6FB313EB2F76F24C75275AED35/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/6297184323793467/A19C8DA3EB76A640475D3767384C5141C0D2FF86/",
     "type": "Scene",
     "resolution": "3840x2160",
     "aspectRatio": "16:9",
     "tags": [
       "Wallpaper",
-      "Anime",
+      "Game",
       "Audio responsive",
       "Approved",
       "Customizable",
@@ -787,16 +579,246 @@
       "Media Integration"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 25179527,
-    "createdAt": "2025-03-01T02:31:31.000Z",
-    "updatedAt": "2025-03-01T05:17:08.000Z",
+    "fileSizeBytes": 26266562,
+    "createdAt": "2025-03-10T05:50:25.000Z",
+    "updatedAt": "2025-05-13T03:57:49.000Z",
     "stats": {
-      "views": 34457,
-      "subscriptions": 648930,
-      "favorited": 40509,
-      "votesUp": 6795
+      "views": 28995,
+      "subscriptions": 1117516,
+      "favorited": 56699,
+      "votesUp": 6907
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3436033033",
-    "steamClientUri": "steam://url/CommunityFilePage/3436033033"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3441873795",
+    "steamClientUri": "steam://url/CommunityFilePage/3441873795"
+  },
+  {
+    "id": "2903412088",
+    "isSimulated": false,
+    "title": "Conch Street - Spongebob Squarepants",
+    "description": "Spongebob's, Patrick's, and Squidwards house. \r\n\r\nMusic playlist found here\r\n\r\nA Night in Bikini Bottom | Relaxing SpongeBob Ambience Music to Sleep & Relax to (ASMR)(SFX): \r\nhttps://www.youtube.com/watch?v=aB2z36lEJ_E&t=1281s\r\n\r\nDisclaimer: (I do not own the original art piece, I just animated it into a wallpaper. Any of the credit towards the art used in my wallpapers should belong to its original artist, whether I may have referenced them or could not find them.)\r\n\r\nTags: Sponge Bob, Patrick Star, Squidward Tentacles, Ocean, Bikini Bottom",
+    "author": {
+      "name": "SteamUser (76561198049265341)",
+      "steamId": "76561198049265341"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/5066018235274694445/95ED19760B65F945D5B6C0A93C7C8557374C28AC/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Cartoon",
+      "Approved",
+      "Customizable",
+      "Video Texture"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 80082297,
+    "createdAt": "2022-12-18T12:16:09.000Z",
+    "updatedAt": "2023-04-26T06:20:05.000Z",
+    "stats": {
+      "views": 33034,
+      "subscriptions": 1094674,
+      "favorited": 57510,
+      "votesUp": 7839
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2903412088",
+    "steamClientUri": "steam://url/CommunityFilePage/2903412088"
+  },
+  {
+    "id": "2905017768",
+    "isSimulated": false,
+    "title": "Bocchi the Rock! ぼっち・ざ・ろっく！(Album)",
+    "description": "[img]https://media.tenor.com/igoHeWItt8oAAAAd/shujinkou-bocchi-the-rock.gif[/img]\r\nThis is a Web Wallpaper Design inspired by Bocchi the Rock! I released this before episode 12 to hype myself for the upcoming episode. I will of course update the songs that will be released in the album that the producers of Bocchi have mentioned. I will also release the GitHub repo and a file that other non-steam users can download. I hope you like the wallpaper that I created!\r\n\r\nList of people who contributed with this project to make it more awesome. <3\r\n> @Joehu contributed a lot of features and improvements.\r\n> @Fruity Trump\r\n> @Angelcr\r\n> And you who subscribed to my work, leave a comment to lmk what should I do more in the future, I always read them <3 Thanks and a have a great year ahead. -Cube 12/2024\r\n\r\nToaru Majutsu no Index (Album) Version: https://steamcommunity.com/sharedfiles/filedetails/?id=3439284812\r\n\r\nYou can see the change notes for a list of updates and improvements!\r\n\r\nUpdate Issues:\r\nWhen the wallpaper suddenly disappears and icons or images seem to be missing, it’s often due to a wallpaper  update, which is usually when this issue occurs.\r\n\r\nTo do:\r\n- Unsubscribe from the wallpaper\r\n- Close Wallpaper Engine\r\n- Close Steam, then open it afterwards\r\n- Resubscribe to the wallpaper\r\n- Then launch the wallpaper engine\r\n\r\nFAQ:\r\n1.) No sound when the music player is on.\r\n~If you hear clicks when using the player but no audio, the volume of the player could be at \"0\" which can be fixed by clicking on the icon that has a \"+\" symbol. If you hear no audio at all then the wallpaper engine itself is muted.\r\n\r\n2.) There are fewer functions from what I've seen from others.\r\n~If you click on the spinning setting icon on the top right corner of your monitor you can use it to pop up a navigation drop list where the functions can be turned on. \r\njavascript:ValidateForm()\r\n3.) Music player must be turned on to play the music. It is impossible to play music without the player turned on, it is to prevent users from having a difficult time muting the song if they accidentally tabbed.\r\n\r\nChinese translation for FAQ. ~Google Translate.\r\n1.) 音乐播放器打开时没有声音。\r\n~如果您在使用播放器时听到咔嗒声但没有音频，则播放器的音量可能为“0”，可以通过单击带有“+”符号的图标来修复。如果您根本听不到任何声音，则壁纸引擎本身已静音。\r\n\r\n2.) 我从别人那里看到的功能较少。\r\n~如果您单击显示器右上角的旋转设置图标，您可以使用它弹出一个导航下拉列表，可以在其中打开这些功能。\r\n\r\n3.) 必须打开音乐播放器才能播放音乐。没有打开播放器是不可能播放音乐的，这是为了防止用户在不小心点击时很难将歌曲静音。\r\n\r\nHow to change and remove visuals?\r\nYou can use the setting icon on the top right to change the visuals and other stuff it will automatically save any changes made.\r\n\r\nAdd your custom music.\r\n\r\n各位，想往里面加歌需要需要以下步骤：\r\n①将歌曲源文件放入下面路径：\\2905017768\\assets\\songs\\歌曲名称.flac（注意：必须是flac格式）\r\n②将歌曲封面放入：\\2905017768\\assets\\icons\\封面须与歌曲同名.jpg\r\n③前往『\\2905017768\\static\\js』路径下，用记事本和汇编软件打开『.js』文件，按住『Ctrl+F』输入『f = JSON.parse』文档自动索引，可以看到对应的『id：1』到『id：19』是已有的歌曲的歌单显示配置。你需要在id19的对象后添加新歌曲的显示配置，按照如下格式：\r\n[code]\r\n{\r\n\"id\": 下一个可用的ID号（从20开始）,\r\n\"name\": \"歌曲名称(须一致)\",\r\n\"backgroundColor\": \"背景颜色代码\",\r\n\"lineColor\": \"线条颜色\",\r\n}\r\n[/code]\r\n④保存，重加载壁纸。\r\n示例：\r\n[code]\r\n{\r\n\"id\": 19,\r\n\"name\": \"Shine as usual\",\r\n\"backgroundColor\": \"#0e0e0e\",\r\n\"lineColor\": \"rgba(255, 255 ,255 ,.9)\",\r\n},\r\n{\r\n\"id\": 20,\r\n\"name\": \"新添加的歌曲\",\r\n\"backgroundColor\": \"#4C2633\",\r\n\"lineColor\": \"rgba(237, 112, 154, 0.9)\",\r\n}\r\n[/code]\r\n\r\nSteam Group Link:\r\nhttps://steamcommunity.com/groups/Wallpaper_life\r\nGitHub Link: \r\nhttps://github.com/OriginalCube/Bocchi-Wallpaper\r\nTwitter Link: If you have questions and stuff.\r\n@originalcubee\r\n\r\nOf course, I don't own any of the artwork or music used in this wallpaper.\r\nLink of the band: [url=https://www.youtube.com/channel/UC6IhDHJbJUoRJGUPnlh5GRQ]Kessoku Band! [/url]\r\n\r\nSpecial Thanks to \"MRKM\"!\r\nOther Works:\r\nhttps://steamcommunity.com/id/OriginalCube/myworkshopfiles/",
+    "author": {
+      "name": "SteamUser (76561198110894401)",
+      "steamId": "76561198110894401"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/5114431931272985649/69B29D8FDF5B0B70B9BD2AB8C800A64E4B29E776/",
+    "type": "Web",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Anime",
+      "Wallpaper",
+      "Audio responsive",
+      "Customizable",
+      "Dynamic resolution",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 651461388,
+    "createdAt": "2022-12-22T06:42:40.000Z",
+    "updatedAt": "2026-06-28T12:57:31.000Z",
+    "stats": {
+      "views": 139954,
+      "subscriptions": 1001314,
+      "favorited": 128142,
+      "votesUp": 30148
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2905017768",
+    "steamClientUri": "steam://url/CommunityFilePage/2905017768"
+  },
+  {
+    "id": "3258032485",
+    "isSimulated": false,
+    "title": "Ayanami Rei-凌波丽『night』",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561199209641743)",
+      "steamId": "76561199209641743"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2500139907641072263/84F8BAD5E0112A7C3FF3DE0AC9060E15B755357F/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 10077059,
+    "createdAt": "2024-05-31T07:49:00.000Z",
+    "updatedAt": "2024-05-31T07:56:18.000Z",
+    "stats": {
+      "views": 31483,
+      "subscriptions": 1073718,
+      "favorited": 71221,
+      "votesUp": 9608
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3258032485",
+    "steamClientUri": "steam://url/CommunityFilePage/3258032485"
+  },
+  {
+    "id": "3470764447",
+    "isSimulated": false,
+    "title": "【Time Variation时间变化】Elaina 伊蕾娜：闲憩微息——夜莺Night【魔女之旅】Day Night Gradient",
+    "description": "动态制作：-夜莺Night（bilibili/抖音）\n原画师：あずーる  azure\n有bug请在评论区反馈\n手机、平板壁纸获取方式：https://pan.quark.cn/s/559c382d2a1e#/list/share\n\n如果喜欢还请多多支持一下哦，设置界面附设赞赏码，你们的支持就是我更新的最大动力。\n\nDynamic production: - 夜莺Night (bilibili/Tiktok)\nOriginal artist: あずーる  Azure\nIf there are bugs, please provide feedback in the comment section\nIf you like it, please support me more\n\n关于导入手机端黑屏问题：请关闭随时间变化功能或关闭后再导入\nRegarding the issue of importing black screens on mobile devices: please disable the function that changes over time or disable it before importing\n\n首先非常感谢您喜欢我的壁纸。不过制作壁纸不易，故在此声明：本人壁纸严禁未经允许的商用和转载至其他平台行为。如果您是壁纸推荐博主，或者想转载壁纸，使用壁纸进行宣传，请务必在醒目处注明作者或艾特我：夜莺Night。同时，如您想通过网盘等渠道将我的壁纸分享给他人，请务必注意命名格式：命名加好作者前缀名,如将mpkg命名格式统一为“作者——壁纸名。例如：夜莺Night——XXX。有条件可以单独开一作者分区，这是我的底线。也希望看到的粉丝朋友可以帮忙提醒监督——\n\nFirst of all, thank you very much for liking my wallpaper. However, making wallpaper is not easy, so I hereby declare that my wallpaper is strictly prohibited from being used for commercial purposes or reproduced on other platforms without permission. If you are a wallpaper recommendation blogger or want to repost wallpapers for promotion, please make sure to prominently indicate the author or tag me: 夜莺Night. At the same time, if you want to share my wallpaper with others through online storage or other channels, please pay attention to the naming format: add the author prefix name to the name, such as unifying the mpkg naming format as \"author wallpaper name\". For example, 夜莺Night - XXX. If possible, I can create a separate author section. This is my bottom line. I also hope to see fans and friends who can help remind and supervise——",
+    "author": {
+      "name": "SteamUser (76561199211352973)",
+      "steamId": "76561199211352973"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/43456413980897660/48A5F1A9AFBFBD43A858AA2420C49944A0DC5243/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Audio responsive",
+      "Approved",
+      "Customizable",
+      "Video Texture",
+      "Media Integration",
+      "Anime"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 337247100,
+    "createdAt": "2025-04-26T11:19:10.000Z",
+    "updatedAt": "2025-06-11T17:04:59.000Z",
+    "stats": {
+      "views": 124053,
+      "subscriptions": 1033460,
+      "favorited": 95007,
+      "votesUp": 23970
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3470764447",
+    "steamClientUri": "steam://url/CommunityFilePage/3470764447"
+  },
+  {
+    "id": "3146507587",
+    "isSimulated": false,
+    "title": "こきん【吉罗】",
+    "description": "原图作者：こきん\n音乐推荐It All Comes Down to This-Aquilo\nGoodbye(feat. Clive Farrington)-FM-84 Clive Farrington\n\n更新可以关闭音频条",
+    "author": {
+      "name": "SteamUser (76561198189897202)",
+      "steamId": "76561198189897202"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2297466512877623441/BF6E49E40BF3C3B2508F954D7BBCCC0737E1FA6C/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime",
+      "Audio responsive",
+      "Approved",
+      "Customizable",
+      "HDR"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 43702284,
+    "createdAt": "2024-01-24T18:51:24.000Z",
+    "updatedAt": "2024-06-06T04:40:07.000Z",
+    "stats": {
+      "views": 32983,
+      "subscriptions": 1064539,
+      "favorited": 58362,
+      "votesUp": 6524
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3146507587",
+    "steamClientUri": "steam://url/CommunityFilePage/3146507587"
+  },
+  {
+    "id": "3287715210",
+    "isSimulated": false,
+    "title": "发光少女 4K动态壁纸",
+    "description": "24.07.17更新内容\nHDR-SDR模式切换+使用说明",
+    "author": {
+      "name": "SteamUser (76561198162525522)",
+      "steamId": "76561198162525522"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2546305872347550879/10E8DD193B32A98D2E81004EC18E11DEA18DF1FC/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime",
+      "Audio responsive",
+      "Customizable",
+      "HDR"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 17691027,
+    "createdAt": "2024-07-12T17:29:07.000Z",
+    "updatedAt": "2024-07-16T19:09:54.000Z",
+    "stats": {
+      "views": 25631,
+      "subscriptions": 1045244,
+      "favorited": 69408,
+      "votesUp": 8334
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3287715210",
+    "steamClientUri": "steam://url/CommunityFilePage/3287715210"
+  },
+  {
+    "id": "2102734753",
+    "isSimulated": false,
+    "title": "雨の日",
+    "description": "B站频道\"大污师DWS\"\r\nhttps://space.bilibili.com/59514408\r\n原画地址：https://www.pixiv.net/artworks/72055179\r\n作者 PIXIV : catzz / 微博：三个脑袋\r\n创意工坊已上线：https://steamcommunity.com/id/denjia2009/myworkshopfiles/\r\n或wallpaperengine内直接搜索“雨の日”\r\n\r\n转载须注明出处及原画信息\r\n\r\n大家好，我是大污师，首先感谢大家这几年的支持和厚爱，我有些话想说一下，也许你们注意到了，近些日子我的壁纸产量放缓了，我的收入并不高，还在使用五年前的电脑进行创作。\r\n制作壁纸几乎占据了我所有的业余时间，有时还需要熬夜，最近我的第二个宝宝降生了，我不知道还能在这里坚持多久。有条件想支持一下的朋友可以考虑捐助一下下。\r\n再次感谢大家的支持\r\n[url=https://steamuserimages-a.akamaihd.net/ugc/1664606352306261863/E37DB5F74D34430C703495BA70FB63C9F39CDF20/]二维码捐赠 [/url]\r\nHello everyone, I am DWS, first of all, thank you for your support and love over the years, I would like to say something, maybe you have noticed that my wallpaper production has declined recently, my income is not high, I still use the computer five years ago to create.\r\nWallpaper making takes up almost all of my spare time, and sometimes I have to stay up late. Recently my second baby was born, and I don't know how much longer I can stay here. Conditionally want to support a friend can consider a donation.\r\nThanks again for your support\r\n[url=https://paypal.me/DWS2018?locale.x=zh_XC] PAYPAL [/url]",
+    "author": {
+      "name": "SteamUser (76561198064225299)",
+      "steamId": "76561198064225299"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1026203753912908551/6D13BBC04254A4AEC57F9864EBE2A2A7B18B8300/",
+    "type": "Video",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 153791241,
+    "createdAt": "2020-05-20T06:31:39.000Z",
+    "updatedAt": "2020-05-22T09:41:44.000Z",
+    "stats": {
+      "views": 126899,
+      "subscriptions": 984257,
+      "favorited": 113168,
+      "votesUp": 22354
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2102734753",
+    "steamClientUri": "steam://url/CommunityFilePage/2102734753"
   }
 ]

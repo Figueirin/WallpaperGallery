@@ -20,17 +20,19 @@ import {
   copyFileSync,
 } from 'node:fs';
 import { resolve, join, dirname } from 'node:path';
-import type {
-  WallpaperItem,
-  FilterMetadata,
-  WallpaperType,
-  WallpaperAgeRating,
-} from '../types/wallpaper';
+import {
+  type WallpaperItem,
+  type FilterMetadata,
+  type WallpaperType,
+  type WallpaperAgeRating,
+  DEFAULT_PAGE_SIZE,
+} from '../types/wallpaper.ts';
 import { isWallpaperItem } from './validateWallpaper.ts';
 import { extractFilterMetadata } from './filterWallpapers.ts';
 
 export const CATALOG_FORMAT_VERSION = '2.0.0';
-export const DEFAULT_SHARD_PAGE_SIZE = 24;
+export const DEFAULT_SHARD_PAGE_SIZE = DEFAULT_PAGE_SIZE;
+
 
 export interface ShardSummary {
   page: number;
@@ -245,6 +247,8 @@ export function writeCatalogShardsSync(
 
   let promotionStarted = false;
   let rollbackSucceeded = false;
+  let operationSucceeded = false;
+
 
   try {
     mkdirSync(tempDir, { recursive: true });
@@ -318,6 +322,7 @@ export function writeCatalogShardsSync(
         }
       }
     }
+    operationSucceeded = true;
   } catch (err) {
     // Rollback para restaurar manifesto, índice e páginas caso a promoção falhe
     if (promotionStarted && existsSync(rollbackDir)) {
@@ -362,7 +367,7 @@ export function writeCatalogShardsSync(
     }
     // R-04: Se o rollback falhou após iniciar a promoção, preserva rollbackDir para recuperação/investigação
     if (existsSync(rollbackDir)) {
-      if (!promotionStarted || rollbackSucceeded) {
+      if (operationSucceeded || !promotionStarted || rollbackSucceeded) {
         try { rmSync(rollbackDir, { recursive: true, force: true }); } catch {}
       }
     }

@@ -17,19 +17,21 @@ import { writeFileSync, readFileSync, existsSync, mkdirSync, renameSync, openSyn
 import { resolve, dirname } from 'node:path';
 import process from 'node:process';
 import { isWallpaperItem } from '../src/utils/validateWallpaper.ts';
-import { createCatalogShards, writeCatalogShardsSync } from '../src/utils/catalogSharder.ts';
+import { createCatalogShards, writeCatalogShardsSync, DEFAULT_SHARD_PAGE_SIZE } from '../src/utils/catalogSharder.ts';
 import { ModerationPipeline } from '../src/services/moderation/moderationPipeline.ts';
 import type {
   WallpaperItem,
   WallpaperType,
   WallpaperAgeRating,
   AspectRatio,
-} from '../src/types/wallpaper';
+} from '../src/types/wallpaper.ts';
 
 export const WALLPAPER_ENGINE_APP_ID = 431960;
 export const DEFAULT_OUTPUT_FILE = 'public/data/catalog.json';
 export const STEAM_QUERY = { popular: 0, recent: 1 } as const;
 export const REAL_SYNC_AUTHORIZATION = 'AUTORIZO A PRIMEIRA SINCRONIZAÇÃO DE 200 WALLPAPERS.';
+export const EXPANSION_SYNC_AUTHORIZATION = 'AUTORIZO A EXPANSÃO DO CATÁLOGO DE WALLPAPERS.';
+
 
 export function loadLocalEnv() {
   try { process.loadEnvFile(); } catch (error) {
@@ -502,9 +504,16 @@ export async function main() {
   console.log('╚════════════════════════════════════════════════════════════╝\n');
 
   if (args.some(arg => !['--mock-export', '--offline', '--authorize-real-sync'].includes(arg) && !['--mode=', '--pages=', '--out='].some(prefix => arg.startsWith(prefix)))) throw new Error('Argumento desconhecido');
-  if (!isMockExport && pages !== 1) throw new Error('Primeira sincronização limitada a no máximo 200 itens (uma página por ordenação)');
+  const maxPages = mode === 'all' ? 15 : 30;
+  if (!isMockExport && pages > maxPages) throw new Error(`Coleta limitada a no máximo ${maxPages} página(s) no modo ${mode} (teto de 3.000 candidatos)`);
   if (!['all', 'popular', 'recent'].includes(mode)) throw new Error('mode inválido');
-  if (!isMockExport && (process.env.WALLPAPER_SYNC_AUTHORIZATION !== REAL_SYNC_AUTHORIZATION || !args.includes('--authorize-real-sync'))) throw new Error('Sincronização real exige autorização explícita');
+  const validAuthorizations = [
+    REAL_SYNC_AUTHORIZATION,
+    EXPANSION_SYNC_AUTHORIZATION,
+    'AUTORIZO A EXPANSÃO DE ATÉ 1000 WALLPAPERS.',
+  ];
+  if (!isMockExport && (!validAuthorizations.includes(process.env.WALLPAPER_SYNC_AUTHORIZATION ?? '') || !args.includes('--authorize-real-sync'))) throw new Error('Sincronização real exige autorização explícita');
+
   if (!isMockExport && !apiKey) throw new Error('STEAM_API_KEY ausente');
   if (isMockExport && outputPath === resolve(DEFAULT_OUTPUT_FILE)) throw new Error('Demonstração não pode sobrescrever catálogo real');
   let fetchedWallpapers: WallpaperItem[] = [];
@@ -642,9 +651,10 @@ export async function main() {
 
   const sharded = createCatalogShards(finalWallpapers, {
     appId: WALLPAPER_ENGINE_APP_ID,
-    pageSize: 24,
+    pageSize: DEFAULT_SHARD_PAGE_SIZE,
     allowSimulated: isMockExport,
   });
+
 
   const shardsLockPath = `${shardedDir}.lock`;
   if (existsSync(shardsLockPath)) {

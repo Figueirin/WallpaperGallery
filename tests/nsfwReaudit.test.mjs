@@ -17,7 +17,7 @@ import { StaticCatalogProvider } from '../src/services/staticCatalogProvider.ts'
 const fixture = (id, extra = {}) => ({ ...normalizeSteamWorkshopItem({ publishedfileid: String(id), title: 'Paisagem', tags: [{ tag: 'Everyone' }] }), ...extra });
 const dataset = (count, offset = 100) => Array.from({ length: count }, (_, i) => fixture(offset + i));
 const parse = path => JSON.parse(fs.readFileSync(path, 'utf8'));
-function setup(items = dataset(25)) {
+function setup(items = dataset(26)) {
   const root = fs.mkdtempSync(join(tmpdir(), 'wg-nsfw-reaudit-'));
   const pub = join(root, 'public/data'); fs.mkdirSync(pub, { recursive: true });
   const catalogPath = join(pub, 'catalog.json'), dir = join(pub, 'catalog');
@@ -113,10 +113,11 @@ for (const name of ['index.json', 'pages/000001.json', 'pages/000002.json']) {
   test(`reaudit rollback: falha transitória promovendo ${name} restaura hashes e provider`, async () => {
     const paths = setup(); const before = snapshot(paths.pub);
     await transientFault('renameSync', (src, dest) => String(src).includes('.catalog_tmp_') && dest === join(paths.dir, name), async () => {
-      assert.throws(() => writeCatalogShardsSync(paths.dir, createCatalogShards(dataset(25, 500))), /REAUDIT/);
+      assert.throws(() => writeCatalogShardsSync(paths.dir, createCatalogShards(dataset(26, 500))), /REAUDIT/);
     });
     assertSnapshot(paths.pub, before);
-    assert.equal((await readUsingProvider(paths)).total, 25);
+    assert.equal((await readUsingProvider(paths)).total, 26);
+
   });
 }
 
@@ -139,7 +140,8 @@ test('reaudit rollback: falha de limpeza de shard obsoleto restaura geração an
 test('reaudit N05: expansão com falha não deve deixar páginas novas após rollback', async () => {
   const paths = setup(dataset(1)); const before = snapshot(paths.pub);
   await transientFault('renameSync', (src, dest) => String(src).includes('.catalog_tmp_') && dest === join(paths.dir, 'pages/000003.json'), async () => {
-    assert.throws(() => writeCatalogShardsSync(paths.dir, createCatalogShards(dataset(50, 500))), /REAUDIT/);
+    assert.throws(() => writeCatalogShardsSync(paths.dir, createCatalogShards(dataset(51, 500))), /REAUDIT/);
+
   });
   assertSnapshot(paths.pub, before);
 });
@@ -154,10 +156,10 @@ test('reaudit N05: falha de backup de página deve abortar antes da promoção e
     await hook('renameSync', (original, src, dest, ...rest) => {
       if (!hit && String(src).includes('.catalog_tmp_') && dest === join(paths.dir, 'pages/000002.json')) { hit = true; throw new Error('REAUDIT promotion'); }
       return original(src, dest, ...rest);
-    }, async () => { assert.throws(() => writeCatalogShardsSync(paths.dir, createCatalogShards(dataset(25, 500))), /REAUDIT/); });
+    }, async () => { assert.throws(() => writeCatalogShardsSync(paths.dir, createCatalogShards(dataset(26, 500))), /REAUDIT/); });
   });
   const result = await readUsingProvider(paths);
-  assert.deepEqual(result.items.map(item => item.id), dataset(25).map(item => item.id), 'Provider deve continuar retornando os IDs da geração anterior');
+  assert.deepEqual(result.items.map(item => item.id), dataset(26).map(item => item.id), 'Provider deve continuar retornando os IDs da geração anterior');
   assertSnapshot(paths.pub, before);
 });
 
@@ -170,7 +172,8 @@ test('reaudit rebuild: falha transitória em página restaura consolidado e shar
   assertSnapshot(paths.pub, before);
   assert.equal(fs.readdirSync(paths.backupDir).length, 1);
   assert.equal(fs.readFileSync(join(paths.backupDir, fs.readdirSync(paths.backupDir)[0]), 'utf8'), before['catalog.json'].content);
-  assert.equal((await readUsingProvider(paths)).total, 25);
+  assert.equal((await readUsingProvider(paths)).total, 26);
+
 });
 
 test('reaudit N05: sync com catálogo vazio deve restaurar vazio se falhar promoção dos shards', async () => {

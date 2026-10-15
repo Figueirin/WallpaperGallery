@@ -15,7 +15,8 @@ import process from 'node:process';
 import type { WallpaperItem } from '../src/types/wallpaper.ts';
 import { ModerationPipeline } from '../src/services/moderation/moderationPipeline.ts';
 import type { ModerationDecision, ModerationSummary } from '../src/services/moderation/types.ts';
-import { createCatalogShards, writeCatalogShardsSync } from '../src/utils/catalogSharder.ts';
+import { createCatalogShards, writeCatalogShardsSync, DEFAULT_SHARD_PAGE_SIZE } from '../src/utils/catalogSharder.ts';
+
 import { isWallpaperItem } from '../src/utils/validateWallpaper.ts';
 
 const WALLPAPER_ENGINE_APP_ID = 431960;
@@ -137,9 +138,10 @@ export async function rebuildCatalog(options: {
   // Pré-gera os shards em memória para assegurar consistência antes da escrita
   const sharded = createCatalogShards(approvedItems, {
     appId: WALLPAPER_ENGINE_APP_ID,
-    pageSize: 24,
+    pageSize: DEFAULT_SHARD_PAGE_SIZE,
     allowSimulated: false,
   });
+
 
   // Verifica antecipadamente se o lock dos shards está ocupado
   const shardsLockPath = `${shardedDir}.lock`;

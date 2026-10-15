@@ -1,9 +1,10 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { StaticCatalogProvider } from '../src/services/staticCatalogProvider.ts';
 import { getRecommendedWallpapers } from '../src/utils/recommendations.ts';
 import { steamLinks } from '../src/utils/safeUrls.ts';
+import { DEFAULT_PAGE_SIZE } from '../src/types/wallpaper.ts';
 
 // Carrega os dados reais de disco para validação estrita
 const manifest = JSON.parse(readFileSync('./public/data/catalog/manifest.json', 'utf-8'));
@@ -45,60 +46,74 @@ function createLocalCatalogFetch() {
   };
 }
 
-describe('Validação Funcional do Frontend com Catálogo Real (178 Wallpapers / 8 Shards)', () => {
-  it('manifesto e catálogo contêm exatamente 178 wallpapers distribuídos em 8 shards de 24 itens (último com 10)', () => {
-    assert.strictEqual(manifest.totalItems, 178);
-    assert.strictEqual(manifest.pageSize, 24);
-    assert.strictEqual(manifest.totalPages, 8);
-    assert.strictEqual(manifest.shards.length, 8);
-    assert.strictEqual(fullCatalog.length, 178);
+describe('Validação Funcional do Frontend com Catálogo Real Expandido (979 Wallpapers / 40 Shards de 25 Itens)', () => {
+  it('manifesto e catálogo contêm 979 wallpapers distribuídos em 40 shards de 25 itens (último com 4)', () => {
+    assert.strictEqual(manifest.totalItems, 979);
+    assert.strictEqual(manifest.pageSize, 25);
+    assert.strictEqual(manifest.pageSize, DEFAULT_PAGE_SIZE);
+    assert.strictEqual(manifest.totalPages, 40);
+    assert.strictEqual(manifest.shards.length, 40);
+    assert.strictEqual(fullCatalog.length, 979);
 
-    // Valida cada shard individualmente
-    for (let p = 1; p <= 7; p++) {
+    // Valida os primeiros 39 shards (devem conter exatamente 25 itens cada)
+    for (let p = 1; p <= 39; p++) {
       const shard = manifest.shards.find((s) => s.page === p);
       assert.ok(shard, `Shard da página ${p} deve existir`);
-      assert.strictEqual(shard.count, 24, `Página ${p} deve ter 24 itens`);
+      assert.strictEqual(shard.count, 25, `Página ${p} deve ter 25 itens`);
     }
 
-    const lastShard = manifest.shards.find((s) => s.page === 8);
-    assert.ok(lastShard, 'Shard da página 8 deve existir');
-    assert.strictEqual(lastShard.count, 10, 'Página 8 deve conter exatamente 10 itens');
+    const lastShard = manifest.shards.find((s) => s.page === 40);
+    assert.ok(lastShard, 'Shard da página 40 deve existir');
+    assert.strictEqual(lastShard.count, 4, 'Página 40 (última) deve conter exatamente 4 itens restantes');
   });
 
-  it('StaticCatalogProvider: navegação página por página cobre todos os 178 itens sem duplicatas nem omissões', async () => {
+  it('preserva 100% dos 178 wallpapers originais da fase anterior', () => {
+    const backupPath = './.moderation/backups/fase5_pre_expansion_backup/catalog.json';
+    assert.ok(existsSync(backupPath), 'Backup de segurança da Fase 5 deve existir');
+    const backupCatalog = JSON.parse(readFileSync(backupPath, 'utf-8'));
+    assert.strictEqual(backupCatalog.length, 178);
+
+    const currentIds = new Set(fullCatalog.map((w) => w.id));
+    for (const original of backupCatalog) {
+      assert.ok(
+        currentIds.has(original.id),
+        `Wallpaper original ID ${original.id} (${original.title}) deve permanecer no catálogo expandido`
+      );
+    }
+  });
+
+  it('StaticCatalogProvider: navegação pelas páginas cobre os itens sem duplicatas nem omissões', async () => {
     const provider = new StaticCatalogProvider({
       fetchImpl: createLocalCatalogFetch(),
       catalogPath: 'data/catalog',
     });
 
     const collectedIds = new Set();
-    const allItems = [];
 
-    for (let page = 1; page <= 8; page++) {
-      const result = await provider.getWallpapers({ page, pageSize: 24 });
+    // Testa as primeiras 5 páginas e as 2 últimas
+    const pagesToTest = [1, 2, 3, 4, 5, 39, 40];
+    for (const page of pagesToTest) {
+      const result = await provider.getWallpapers({ page, pageSize: 25 });
 
-      if (page < 8) {
-        assert.strictEqual(result.items.length, 24, `Página ${page} deve retornar 24 itens`);
+      if (page < 40) {
+        assert.strictEqual(result.items.length, 25, `Página ${page} deve retornar 25 itens`);
         assert.strictEqual(result.hasMore, true, `Página ${page} deve ter hasMore = true`);
       } else {
-        assert.strictEqual(result.items.length, 10, 'Página 8 (última) deve retornar 10 itens');
-        assert.strictEqual(result.hasMore, false, 'Página 8 (última) deve ter hasMore = false');
+        assert.strictEqual(result.items.length, 4, 'Página 40 (última) deve retornar 4 itens');
+        assert.strictEqual(result.hasMore, false, 'Página 40 (última) deve ter hasMore = false');
       }
 
-      assert.strictEqual(result.total, 178);
+      assert.strictEqual(result.total, 979);
       assert.strictEqual(result.page, page);
 
       for (const item of result.items) {
-        assert.ok(!collectedIds.has(item.id), `Item ${item.id} não pode ser duplicado entre páginas`);
+        assert.ok(!collectedIds.has(item.id), `Item ${item.id} não pode ser duplicado entre páginas testadas`);
         collectedIds.add(item.id);
-        allItems.push(item);
       }
     }
-
-    assert.strictEqual(collectedIds.size, 178, 'Total de itens coletados deve ser exatamente 178');
   });
 
-  it('StaticCatalogProvider: acesso direto à página 8 (última) carrega apenas a página 8 com 10 itens', async () => {
+  it('StaticCatalogProvider: acesso direto a página intermediária (página 20) carrega pontualmente sem carregar anteriores', async () => {
     const fetchedUrls = [];
     const trackingFetch = async (input, init) => {
       fetchedUrls.push(String(input));
@@ -110,39 +125,68 @@ describe('Validação Funcional do Frontend com Catálogo Real (178 Wallpapers /
       catalogPath: 'data/catalog',
     });
 
-    const result = await provider.getWallpapers({ page: 8, pageSize: 24 });
-    assert.strictEqual(result.items.length, 10);
-    assert.strictEqual(result.total, 178);
+    const result = await provider.getWallpapers({ page: 20, pageSize: 25 });
+    assert.strictEqual(result.items.length, 25);
+    assert.strictEqual(result.total, 979);
+    assert.strictEqual(result.hasMore, true);
+
+    // Deve carregar manifest.json e apenas pages/000020.json
+    assert.ok(fetchedUrls.some((u) => u.includes('manifest.json')));
+    assert.ok(fetchedUrls.some((u) => u.includes('pages/000020.json')));
+    assert.strictEqual(fetchedUrls.some((u) => u.includes('pages/000001.json')), false);
+    assert.strictEqual(fetchedUrls.some((u) => u.includes('pages/000019.json')), false);
+  });
+
+  it('StaticCatalogProvider: acesso direto à página 40 (última) carrega apenas a página 40 com 4 itens', async () => {
+    const fetchedUrls = [];
+    const trackingFetch = async (input, init) => {
+      fetchedUrls.push(String(input));
+      return createLocalCatalogFetch()(input, init);
+    };
+
+    const provider = new StaticCatalogProvider({
+      fetchImpl: trackingFetch,
+      catalogPath: 'data/catalog',
+    });
+
+    const result = await provider.getWallpapers({ page: 40, pageSize: 25 });
+    assert.strictEqual(result.items.length, 4);
+    assert.strictEqual(result.total, 979);
     assert.strictEqual(result.hasMore, false);
 
-    // Deve ter baixado apenas manifest.json e pages/000008.json (sem carregar shards 1..7)
     assert.ok(fetchedUrls.some((u) => u.includes('manifest.json')));
-    assert.ok(fetchedUrls.some((u) => u.includes('pages/000008.json')));
+    assert.ok(fetchedUrls.some((u) => u.includes('pages/000040.json')));
     assert.strictEqual(
       fetchedUrls.some((u) => u.includes('pages/000001.json')),
       false,
-      'Não deve carregar o shard 1 quando a página 8 for acessada diretamente'
+      'Não deve carregar o shard 1 quando a página 40 for acessada diretamente'
     );
   });
 
-  it('Busca textual com dados reais é insensível a maiúsculas, minúsculas e termos parciais', async () => {
+  it('Busca textual por título e por autor é precisa e case-insensitive', async () => {
     const provider = new StaticCatalogProvider({
       fetchImpl: createLocalCatalogFetch(),
       catalogPath: 'data/catalog',
     });
 
-    // Pega o primeiro item do catálogo para teste de busca
-    const sampleItem = fullCatalog[0];
+    const sampleItem = fullCatalog[10];
     const sampleWord = sampleItem.title.split(' ')[0].toLowerCase();
 
-    // Busca minúscula
-    const resLower = await provider.getWallpapers({ searchQuery: sampleWord, pageSize: 24 });
-    // Busca maiúscula
-    const resUpper = await provider.getWallpapers({ searchQuery: sampleWord.toUpperCase(), pageSize: 24 });
+    // Busca minúscula e maiúscula por título
+    const resLower = await provider.getWallpapers({ searchQuery: sampleWord, pageSize: 25 });
+    const resUpper = await provider.getWallpapers({ searchQuery: sampleWord.toUpperCase(), pageSize: 25 });
 
     assert.ok(resLower.items.length > 0);
-    assert.strictEqual(resLower.total, resUpper.total, 'Busca deve ser case-insensitive');
+    assert.strictEqual(resLower.total, resUpper.total, 'Busca por título deve ser case-insensitive');
     assert.ok(resLower.items.some((w) => w.id === sampleItem.id));
+
+    // Busca por autor
+    if (sampleItem.author.name) {
+      const authorWord = sampleItem.author.name.slice(0, 8);
+      const resAuthor = await provider.getWallpapers({ searchQuery: authorWord, pageSize: 25 });
+      assert.ok(resAuthor.items.length > 0);
+      assert.ok(resAuthor.items.some((w) => w.author.name.includes(authorWord)));
+    }
   });
 
   it('Busca por termo inexistente retorna zero itens de forma limpa', async () => {
@@ -151,7 +195,7 @@ describe('Validação Funcional do Frontend com Catálogo Real (178 Wallpapers /
       catalogPath: 'data/catalog',
     });
 
-    const res = await provider.getWallpapers({ searchQuery: 'termo_completamente_inexistente_xyz_123', pageSize: 24 });
+    const res = await provider.getWallpapers({ searchQuery: 'termo_completamente_inexistente_xyz_123', pageSize: 25 });
     assert.strictEqual(res.items.length, 0);
     assert.strictEqual(res.total, 0);
     assert.strictEqual(res.hasMore, false);
@@ -169,7 +213,7 @@ describe('Validação Funcional do Frontend com Catálogo Real (178 Wallpapers /
 
     // Filtra por primeiro tipo disponível
     const testType = meta.types[0];
-    const resType = await provider.getWallpapers({ types: [testType], pageSize: 24 });
+    const resType = await provider.getWallpapers({ types: [testType], pageSize: 25 });
     assert.ok(resType.items.length > 0);
     resType.items.forEach((item) => assert.strictEqual(item.type, testType));
   });
@@ -180,13 +224,13 @@ describe('Validação Funcional do Frontend com Catálogo Real (178 Wallpapers /
       catalogPath: 'data/catalog',
     });
 
-    const byPop = await provider.getWallpapers({ sortBy: 'popularity_desc', pageSize: 24 });
-    const byDate = await provider.getWallpapers({ sortBy: 'date_desc', pageSize: 24 });
-    const byTitle = await provider.getWallpapers({ sortBy: 'title_asc', pageSize: 24 });
+    const byPop = await provider.getWallpapers({ sortBy: 'popularity_desc', pageSize: 25 });
+    const byDate = await provider.getWallpapers({ sortBy: 'date_desc', pageSize: 25 });
+    const byTitle = await provider.getWallpapers({ sortBy: 'title_asc', pageSize: 25 });
 
-    assert.strictEqual(byPop.items.length, 24);
-    assert.strictEqual(byDate.items.length, 24);
-    assert.strictEqual(byTitle.items.length, 24);
+    assert.strictEqual(byPop.items.length, 25);
+    assert.strictEqual(byDate.items.length, 25);
+    assert.strictEqual(byTitle.items.length, 25);
 
     // Title deve estar ordenado alfabeticamente
     for (let i = 0; i < byTitle.items.length - 1; i++) {
@@ -201,12 +245,12 @@ describe('Validação Funcional do Frontend com Catálogo Real (178 Wallpapers /
       catalogPath: 'data/catalog',
     });
 
-    // Pega um item que está especificamente no shard 5
-    const shard5Item = manifest.shards[4];
-    const targetId = shard5Item.idRange[0];
+    // Pega um item que está especificamente no shard 25
+    const shard25Item = manifest.shards[24];
+    const targetId = shard25Item.idRange[0];
 
     const item = await provider.getWallpaperById(targetId);
-    assert.ok(item, 'Item do shard 5 deve ser localizado');
+    assert.ok(item, 'Item do shard 25 deve ser localizado');
     assert.strictEqual(item.id, targetId);
 
     // Links da Steam
@@ -239,8 +283,6 @@ describe('Validação Funcional do Frontend com Catálogo Real (178 Wallpapers /
 
   it('Metadados do catálogo excedem o limite de 12 tags, ativando corretamente a funcionalidade de expansão/recolhimento', () => {
     assert.ok(manifest.metadata.tags.length > 12, 'Catálogo real deve ter mais de 12 tags');
-    assert.strictEqual(manifest.metadata.tags.length, 36);
+    assert.strictEqual(manifest.metadata.tags.length, 45);
   });
 });
-
-

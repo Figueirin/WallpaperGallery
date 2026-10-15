@@ -15,7 +15,7 @@ import type {
   PaginatedResult,
   FilterMetadata,
   SortOption,
-} from '../types/wallpaper';
+} from '../types/wallpaper.ts';
 import type { IWallpaperDataProvider } from './dataProvider';
 import type {
   CatalogManifest,
@@ -239,6 +239,8 @@ export class StaticCatalogProvider implements IWallpaperDataProvider {
 
     const page = options.page && options.page > 0 ? Math.floor(options.page) : 1;
     const pageSize = options.pageSize && options.pageSize > 0 ? Math.floor(options.pageSize) : 8;
+
+
 
     // Cenário Fallback: Catálogo Monolítico
     if (this.isMonolithic) {
