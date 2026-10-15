@@ -128,8 +128,9 @@ export function WallpaperDetailView({
 
   return (
     <article
+      key={wallpaper.id}
       aria-label={`Detalhes do wallpaper: ${wallpaper.title}`}
-      className="max-w-6xl mx-auto py-4 sm:py-6 space-y-8"
+      className="max-w-6xl mx-auto py-4 sm:py-6 space-y-8 animate-detail-enter"
     >
       {/* Barra Superior de Navegação e Ações */}
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -173,7 +174,7 @@ export function WallpaperDetailView({
       </div>
 
       {/* Área Principal de Mídia (Player de Vídeo ou Imagem Ampliada) */}
-      <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-zinc-950 border border-zinc-800/80 shadow-2xl shadow-black/80 flex items-center justify-center">
+      <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-zinc-950 border border-zinc-800/80 shadow-2xl shadow-black/80 flex items-center justify-center animate-media-reveal">
         {wallpaper.videoPreviewUrl && !videoError ? (
           <video
             src={wallpaper.videoPreviewUrl}
@@ -382,3 +383,4 @@ export function WallpaperDetailView({
     </article>
   );
 }
+
