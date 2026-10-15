@@ -60,7 +60,17 @@ export class StaticCatalogProvider implements IWallpaperDataProvider {
     if (!this.baseUrl.endsWith('/')) {
       this.baseUrl += '/';
     }
-    this.fetchFn = options.fetchImpl ?? (typeof globalThis !== 'undefined' ? globalThis.fetch : fetch);
+    if (options.fetchImpl) {
+      this.fetchFn = (input: RequestInfo | URL, init?: RequestInit) => options.fetchImpl!(input, init);
+    } else {
+      this.fetchFn = (input: RequestInfo | URL, init?: RequestInit) => {
+        const targetContext = typeof window !== 'undefined' ? window : (typeof globalThis !== 'undefined' ? globalThis : undefined);
+        if (targetContext && typeof targetContext.fetch === 'function') {
+          return targetContext.fetch(input, init);
+        }
+        return fetch(input, init);
+      };
+    }
     this.catalogPath = options.catalogPath ?? 'data/catalog';
     if (options.initialManifest) {
       this.manifest = options.initialManifest;
@@ -102,13 +112,22 @@ export class StaticCatalogProvider implements IWallpaperDataProvider {
         const monoRes = await this.fetchFn(monolithicUrl);
         if (!monoRes.ok) {
           throw new Error(
-            `Catálogo estático indisponível: nenhum manifesto encontrado em ${manifestUrl} nem catálogo em ${monolithicUrl}`
+            `Catálogo estático indisponível: nenhum shard encontrado em ${manifestUrl} nem catálogo monolítico em ${monolithicUrl}. A primeira sincronização da Steam ainda não foi executada. Utilize VITE_DATA_PROVIDER=mock para visualizar a demonstração.`
           );
         }
 
         const monoData: unknown = await monoRes.json();
-        if (!Array.isArray(monoData) || monoData.some((item) => !isWallpaperItem(item) || item.isSimulated)) {
-          throw new Error('Catálogo real inválido ou simulado');
+        if (!Array.isArray(monoData) || monoData.length === 0) {
+          throw new Error(
+            'Catálogo estático real não inicializado: o arquivo public/data/catalog.json está vazio. A primeira sincronização da Steam ainda não foi executada. Utilize VITE_DATA_PROVIDER=mock para modo de demonstração.'
+          );
+        }
+
+        const hasSimulated = monoData.some((item) => !isWallpaperItem(item) || item.isSimulated);
+        if (hasSimulated) {
+          throw new Error(
+            'Catálogo estático real não inicializado: o catálogo existente contém apenas dados de demonstração simulados. A primeira sincronização da Steam ainda não foi autorizada. Para visualizar a demonstração, configure VITE_DATA_PROVIDER=mock no seu arquivo .env.'
+          );
         }
 
         this.monolithicItems = monoData;

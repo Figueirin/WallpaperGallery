@@ -7,6 +7,9 @@
 
 ---
 
+> [!IMPORTANT]
+> **Status Atual do Catálogo:** O repositório contém atualmente **0 wallpapers reais sincronizados**. A primeira sincronização da Steam Workshop API ainda **NÃO foi autorizada**. O projeto utiliza exclusivamente os dados de demonstração em `src/data/mockWallpapers.ts` (16 itens) e o catálogo legado simulado em `public/data/catalog.json` (3 itens). As estruturas e tabelas abaixo representam a especificação técnica da arquitetura e suas projeções para quando a sincronização for autorizada.
+
 ## 1. Visão Geral da Arquitetura JSON-First
 
 O projeto **WallpaperGallery** foi concebido como uma galeria responsiva de wallpapers inspirada no Steam Workshop para usuários de Linux (KDE Plasma) e desktop moderno.

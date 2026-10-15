@@ -392,4 +392,115 @@ describe('Arquitetura JSON-First: Particionamento e Provedor Estático (Sharded 
     assert.ok(item);
     assert.equal(item.id, dataset[0].id);
   });
+
+  it('StaticCatalogProvider: previne erro de runtime Window interface no fetch nativo do navegador (Regressão de Binding)', async () => {
+    // Simula o comportamento estrito de navegadores (Chrome, Firefox, Safari)
+    // onde window.fetch exige estritamente que o receiver `this` seja o objeto window.
+    const fakeWindow = {
+      isWindowObject: true,
+      async fetch(url) {
+        if (this !== fakeWindow) {
+          throw new TypeError("'fetch' called on an object that does not implement interface Window.");
+        }
+        const urlStr = String(url);
+        if (urlStr.endsWith('manifest.json')) {
+          return Response.json({
+            version: '2.0.0',
+            generatedAt: new Date().toISOString(),
+            appId: 431960,
+            totalItems: 0,
+            pageSize: 24,
+            totalPages: 0,
+            metadata: { tags: [], resolutions: [], types: [] },
+            shards: [],
+            itemToPage: {},
+          });
+        }
+        return new Response('Not found', { status: 404 });
+      },
+    };
+
+    // 1. Prova da causa raiz: invocar método desvinculado (onde this não é Window) lança TypeError
+    const unboundCaller = { fetchFn: fakeWindow.fetch };
+    await assert.rejects(
+      unboundCaller.fetchFn('http://localhost/manifest.json'),
+      (err) => {
+        assert.ok(err instanceof TypeError);
+        assert.ok(err.message.includes('Window'));
+        return true;
+      }
+    );
+
+    // 2. Prova da correção: StaticCatalogProvider resolve window como contexto no navegador
+    const originalWindow = globalThis.window;
+    try {
+      globalThis.window = fakeWindow;
+
+      // Instanciação sem passar fetchImpl (exatamente como ocorre no navegador via providerFactory)
+      const provider = new StaticCatalogProvider({ baseUrl: 'http://localhost/' });
+
+      // Deve executar perfeitamente sem disparar TypeError de interface Window
+      const metadata = await provider.getFilterMetadata();
+      assert.deepEqual(metadata, { tags: [], resolutions: [], types: [] });
+
+      const wallpapers = await provider.getWallpapers();
+      assert.equal(wallpapers.total, 0);
+    } finally {
+      if (originalWindow === undefined) {
+        delete globalThis.window;
+      } else {
+        globalThis.window = originalWindow;
+      }
+    }
+  });
+
+  it('StaticCatalogProvider: apresenta mensagem clara e descritiva quando catálogo legado contém dados simulados', async () => {
+    // Simula a situação do repositório onde shards ainda não existem e public/data/catalog.json contém dados simulados
+    const fakeFetch = async (url) => {
+      const urlStr = String(url);
+      if (urlStr.endsWith('manifest.json')) return new Response('Not found', { status: 404 });
+      if (urlStr.endsWith('catalog.json')) {
+        return Response.json([
+          {
+            id: '2987102911',
+            title: 'Neon Sakura Cyberpunk City Rain (Demonstração)',
+            description: 'Exemplo simulado legado',
+            author: { name: 'User', steamId: '123' },
+            type: 'Scene',
+            resolution: '3840x2160',
+            aspectRatio: '16:9',
+            tags: ['Cyberpunk', 'Rain'],
+            rating: 'Everyone',
+            createdAt: '2024-08-14T12:00:00.000Z',
+            updatedAt: '2024-09-02T14:30:00.000Z',
+            isSimulated: true,
+          },
+        ]);
+      }
+      return new Response('Not found', { status: 404 });
+    };
+
+    const provider = new StaticCatalogProvider({
+      fetchImpl: fakeFetch,
+      baseUrl: 'http://localhost/',
+    });
+
+    await assert.rejects(
+      provider.getWallpapers(),
+      (err) => {
+        assert.ok(err instanceof Error);
+        // Garante mensagem explícita orientando o usuário para o modo mock
+        assert.ok(
+          err.message.includes('simulados') || err.message.includes('simulado'),
+          'Deve alertar sobre dados simulados'
+        );
+        assert.ok(
+          err.message.includes('VITE_DATA_PROVIDER=mock'),
+          'Deve orientar a usar VITE_DATA_PROVIDER=mock'
+        );
+        return true;
+      }
+    );
+  });
 });
+

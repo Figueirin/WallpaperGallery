@@ -13,7 +13,7 @@
 
 import type { IWallpaperDataProvider } from './dataProvider';
 import { MockWallpaperProvider } from './mockProvider.ts';
-import { StaticCatalogProvider } from './staticCatalogProvider.ts';
+import { StaticCatalogProvider, type StaticCatalogProviderOptions } from './staticCatalogProvider.ts';
 import { isFirebaseConfigured } from '../config/firebaseEnv.ts';
 import type {
   WallpaperItem,
@@ -64,8 +64,12 @@ export class LazyFirestoreWallpaperProvider implements IWallpaperDataProvider {
 
 /**
  * Cria a instância adequada de IWallpaperDataProvider baseada na configuração atual do ambiente.
+ * Suporta injeção opcional de dependências para testes e ambientes personalizados.
  */
-export function createWallpaperProvider(preferredType?: ProviderType): IWallpaperDataProvider {
+export function createWallpaperProvider(
+  preferredType?: ProviderType,
+  dependencies?: Record<string, unknown>
+): IWallpaperDataProvider {
   const envType = (
     typeof import.meta !== 'undefined' && import.meta.env
       ? import.meta.env.VITE_DATA_PROVIDER
@@ -78,17 +82,17 @@ export function createWallpaperProvider(preferredType?: ProviderType): IWallpape
 
   if (targetType === 'firestore') {
     if (isFirebaseConfigured()) {
-      return new LazyFirestoreWallpaperProvider();
+      return new LazyFirestoreWallpaperProvider(dependencies);
     }
     throw new Error('Firestore solicitado sem configuração Firebase válida');
   }
 
   if (targetType === 'catalog') {
-    return new StaticCatalogProvider();
+    return new StaticCatalogProvider(dependencies as StaticCatalogProviderOptions | undefined);
   }
 
   if (targetType === 'mock') {
-    return new MockWallpaperProvider();
+    return new MockWallpaperProvider(undefined, targetType);
   }
 
   throw new Error('DataProvider desconhecido');
