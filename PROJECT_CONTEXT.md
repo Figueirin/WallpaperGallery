@@ -86,7 +86,7 @@
 - [x] **Etapa 5 (Layout Desktop):** Refinamento do layout para monitores desktop e ultrawide: expansão de containers para `max-w-[2400px]`, grid responsivo dinâmico (4 colunas em 1366px, 5 em 1920px Full HD e 6 em 2560px ultrawide), barra de busca ampliada e painel de filtros otimizado em 2 colunas. *(Concluído)*
 - [x] **Etapa 6 (Experiência Interativa e Detalhes):** Ajuste de alinhamento dos filtros, hover com elevação e +25% de escala na prévia, animação de entrada, recomendações inteligentes de wallpapers semelhantes, visualização detalhada `/wallpaper/:id` com player de mídia e métricas. *(Concluído)*
 - [x] **Etapa 7 (Paginação e Carregamento Progressivo):** Paginação via lotes dinâmicos, infinite scroll com IntersectionObserver, botão carregar mais, reset de página em novos filtros, indicador de progresso e 40 testes automatizados passando. *(Concluído)*
-- [ ] **Etapa 8:** Script gerador de catálogo via Steam Web API.
+- [x] **Etapa 8:** Script gerador de catálogo via Steam Web API, diagnóstico de reprodução de mídia e suporte completo a formatos de wallpaper (MP4, WebM, WebGL, YouTube, Scene e GIF). *(Concluído)*
 
 ## 8. Especificações de Layout Responsivo (Desktop & Ultrawide)
 - **Container Fluido:** Largura máxima de 2400px com margens laterais progressivas (`px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12`).
@@ -101,5 +101,38 @@
   - Seletores de Tipo e Resolução dispostos em grade contígua com divisor vertical, mantendo proximidade ergonômica.
   - Seletor de ordenação e ação de limpeza alinhados na barra superior.
   - Barra de busca do `Navbar` ampliada de `max-w-md` para até `xl:max-w-2xl` em telas amplas.
+
+## 9. Diagnóstico de Reprodução e Suporte a Formatos de Mídia
+- **Diagnóstico da Falha Original de Vídeo:**
+  - **Causa Raiz 1 (HTTP 403 Forbidden):** As URLs anteriores dos vídeos mockados (`commondatastorage.googleapis.com/.../ForBiggerBlazes.mp4`) retornavam `AccessDenied` (XML de erro 403), disparando o evento `onError` do elemento `<video>`.
+  - **Causa Raiz 2 (Fallback Imediato):** Ao receber o evento de erro, o componente `WallpaperDetailView` e `WallpaperCard` substituía instantaneamente o player de vídeo pela imagem de capa, impossibilitando qualquer interação.
+  - **Causa Raiz 3 (Autoplay Policy & DOM Property):** No React 19 / Chromium, apenas declarar o atributo `muted` no JSX não garante que a propriedade interna do elemento DOM `video.muted = true` seja refletida antes de invocar `video.play()`, gerando rejeições por `NotAllowedError`.
+  - **Causa Raiz 4 (AbortError em Hover Rápido):** Ao passar o cursor rapidamente sobre o card e retirá-lo, o `pause()` era invocado antes do `playPromise` resolver, disparando exceção `AbortError` não tratada.
+- **Correções Definitivas Aplicadas:**
+  - Inclusão de arquivos de vídeo locais abertos e otimizados em `public/videos/` (`preview-sample.mp4`, `preview-sample-2.mp4` e `preview-sample.webm`), servidos diretamente via HTTP 200/206 com suporte a Range requests.
+  - Criação do componente unificado `WallpaperMedia.tsx` para cards e página de detalhes.
+  - Atribuição explícita da propriedade `videoEl.muted = true` via ref no DOM antes da execução do play.
+  - Tratamento resiliente do ciclo de promessas de reprodução, ignorando `AbortError` benigno e fornecendo fallback automático e botão de tentativa manual em caso de erro de rede.
+  - Badge interativo dinâmico no card ("Vídeo" -> "Reproduzindo" animado em verde esmeralda sob reprodução ativa).
+- **Varredura dos Formatos de Wallpaper Engine (AppID 431960):**
+  - **Scene Wallpapers (`.pkg`):** Cenários 2D/3D interativos proprietários com shaders e partículas. O Steam Workshop disponibiliza apenas imagens de prévia estáticas e trailers. Renderização nativa da engine não é viável em navegador; a galeria exibe prévia em alta definição ou trailer de demonstração associado.
+  - **Video Wallpapers (`.mp4`, `.webm`):** Loops contínuos de vídeo. A galeria oferece reprodução silenciosa sob hover na grade e player HTML5 completo com controles na página de detalhes.
+  - **Web Wallpapers (HTML5 / WebGL):** Páginas interativas completas empacotadas. A galeria permite visualização estática e execução de demonstração interativa isolada em `iframe` com sandbox seguro (`sandbox="allow-scripts allow-same-origin"`).
+  - **GIFs Animados:** Identificados automaticamente pela extensão e renderizados em loop pelo navegador com badge distintivo.
+  - **YouTube Previews:** Suporte nativo para trailers de autores via `youtube-nocookie.com`.
+
+## 10. Sincronização do Steam Workshop (Etapa 8)
+- **Script Gerador (`scripts/sync-workshop.ts`):**
+  - Integração com a Steam Web API através do endpoint `IPublishedFileService/QueryFiles/v1/` com AppID 431960.
+  - Normalização inteligente de tags da Steam (ex: conversão de `"3840 x 2160"` para `"3840x2160"` e cálculo de `aspectRatio: 16:9`, `21:9`, `16:10`, `32:9`).
+  - Classificação de tipo (`Video`, `Web`, `Scene`, `Application`) e classificação etária (`Everyone`, `Questionable`, `Mature`).
+  - Extração de links de preview do YouTube contidos na matriz de `previews` da Steam.
+  - Geração de deep links diretos para o cliente Steam no Linux (`steam://url/CommunityFilePage/...`) e links web da comunidade.
+- **Modos de Execução:**
+  - `npm run sync:workshop`: Consulta a API real da Steam utilizando `STEAM_API_KEY` definida no ambiente.
+  - `npm run sync:workshop -- --mock-export`: Gera catálogo padronizado em modo offline/demonstração sem requerer credenciais.
+- **Suíte de Testes:**
+  - 70 testes automatizados cobrindo busca, filtros, ordenação, paginação, recomendações, detecção de formatos de mídia e normalização de payloads da Steam.
+
 
 
