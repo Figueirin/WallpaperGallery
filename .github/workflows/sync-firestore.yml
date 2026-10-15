@@ -1,0 +1,58 @@
+name: Sincronizacao Steam para Cloud Firestore
+
+# =========================================================================
+# NOTA DE SEGURANÇA E CONTROLE:
+# O agendamento automático por cron está DESATIVADO por padrão.
+# A execução só pode ocorrer manualmente via workflow_dispatch mediante
+# autorização explícita, iniciando por padrão em modo seguro (dry-run).
+# =========================================================================
+
+on:
+  # schedule:
+  #   - cron: '0 6 * * *' # DESATIVADO - Exige autorização explícita antes de ativar
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Modo de execução (dry-run para simulação segura, real para gravar)'
+        required: true
+        default: 'dry-run'
+        type: choice
+        options:
+          - dry-run
+          - real
+      limit:
+        description: 'Limite máximo de wallpapers (iniciar com 200)'
+        required: true
+        default: '200'
+
+permissions:
+  contents: read
+
+jobs:
+  sync-to-firestore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Instalar Dependências
+        run: npm ci || npm install
+
+      - name: Executar Sincronizador Firestore
+        env:
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+          FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+        run: |
+          if [ "${{ github.event.inputs.mode }}" = "real" ]; then
+            echo "⚠️ Executando sincronização REAL autorizada..."
+            npm run sync:firestore -- --real --authorize-real-sync --limit=${{ github.event.inputs.limit }}
+          else
+            echo "🛡️ Executando em modo DRY RUN (Simulação sem gravação)..."
+            npm run sync:firestore -- --limit=${{ github.event.inputs.limit }}
+          fi
