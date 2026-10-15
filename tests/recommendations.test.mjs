@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { getRecommendedWallpapers } from '../src/utils/recommendations.ts';
 
-// Carrega o catálogo real do mock-wallpapers.json
-const rawData = readFileSync('./public/data/mock-wallpapers.json', 'utf-8');
+// Fixture sintética privada: casos estáveis de busca, paginação e recomendações.
+const rawData = readFileSync('./tests/fixtures/wallpapers.json', 'utf-8');
 const catalog = JSON.parse(rawData);
 
 describe('Recomendações de Wallpapers Relacionados (getRecommendedWallpapers)', () => {

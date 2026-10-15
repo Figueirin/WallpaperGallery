@@ -35,7 +35,7 @@
       "steamId": "76561198000000002"
     },
     "previewUrl": "https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1000&q=80",
-    "videoPreviewUrl": "/videos/preview-sample.mp4",
+    "videoPreviewUrl": "https://example.invalid/fixture.mp4",
     "mediaFormat": "video",
     "type": "Video",
     "resolution": "2560x1440",
@@ -118,7 +118,7 @@
       "steamId": "76561198000000005"
     },
     "previewUrl": "https://images.unsplash.com/photo-1528164344705-475426879c0d?auto=format&fit=crop&w=1000&q=80",
-    "videoPreviewUrl": "/videos/preview-sample-2.mp4",
+    "videoPreviewUrl": "https://example.invalid/fixture-2.mp4",
     "mediaFormat": "video",
     "type": "Video",
     "resolution": "3840x2160",
@@ -231,7 +231,7 @@
       "steamId": "76561198000000009"
     },
     "previewUrl": "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=1000&q=80",
-    "videoPreviewUrl": "/videos/preview-sample.webm",
+    "videoPreviewUrl": "https://example.invalid/fixture.webm",
     "mediaFormat": "video",
     "type": "Video",
     "resolution": "3840x2160",
@@ -368,7 +368,7 @@
       "steamId": "76561198000000014"
     },
     "previewUrl": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1000&q=80",
-    "videoPreviewUrl": "/videos/preview-sample-2.mp4",
+    "videoPreviewUrl": "https://example.invalid/fixture-2.mp4",
     "mediaFormat": "video",
     "type": "Video",
     "resolution": "1920x1080",

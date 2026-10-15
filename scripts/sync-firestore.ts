@@ -78,7 +78,7 @@ export function generateSyntheticBatch(count: number): WallpaperItem[] {
         steamId: `7656119800000${String(i).padStart(4, '0')}`,
       },
       previewUrl: `https://images.unsplash.com/photo-${1500000000 + i}?auto=format&fit=crop&w=1000&q=80`,
-      videoPreviewUrl: type === 'Video' ? '/videos/preview-sample.mp4' : undefined,
+      videoPreviewUrl: type === 'Video' ? 'https://example.invalid/offline-fixture.mp4' : undefined,
       type,
       resolution,
       aspectRatio: resolution === '3440x1440' ? '21:9' : '16:9',

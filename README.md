@@ -57,13 +57,7 @@ npm ci
 npm run dev
 ```
 
-Sem configuração de provider, o aplicativo abre no modo de demonstração (`mock`). Para usar os **979 wallpapers reais**, inicie com:
-
-```bash
-VITE_DATA_PROVIDER=catalog npm run dev
-```
-
-Esse comando usa sintaxe Bash/POSIX. Em outros shells, configure `VITE_DATA_PROVIDER=catalog` em um arquivo `.env.local`, ignorado pelo Git, e execute `npm run dev`. O modo `catalog` não precisa de chave Steam ou configuração Firebase.
+O catálogo JSON real é a fonte padrão de dados. Os comandos acima abrem os 979 wallpapers sem precisar configurar variável de ambiente, chave Steam ou Firebase.
 
 ## Contribuir e testar
 
@@ -82,7 +76,7 @@ Os testes são offline e bloqueiam chamadas de rede. O CI executa essas verifica
 Para conferir localmente a versão compilada com o catálogo real:
 
 ```bash
-VITE_DATA_PROVIDER=catalog npm run build
+npm run build
 npm run preview
 ```
 
@@ -90,9 +84,9 @@ O resultado fica em `dist/`. As variáveis `VITE_*` são aplicadas durante a com
 
 ## Deploy
 
-O projeto está preparado para hospedagem estática no Cloudflare Pages. O [guia completo de deploy manual](docs/CLOUDFLARE_PAGES_DEPLOY.md) explica a conexão do repositório, Production/Preview, configuração do build e validação após a publicação.
+A hospedagem atual usa **Cloudflare Workers + Static Assets + Workers Builds**, com build em `dist/` e publicação via `npx wrangler deploy`. O [guia de deploy](docs/CLOUDFLARE_WORKERS_DEPLOY.md) descreve esse fluxo e a validação das rotas.
 
-Defina **`VITE_DATA_PROVIDER=catalog` em Production e Preview** para publicar o catálogo real. Sem essa configuração, o provider padrão é `mock`.
+`VITE_DATA_PROVIDER=catalog` é opcional: o catálogo já é o padrão, inclusive no build sem variável. Firestore permanece legado e exige seleção e configuração explícitas.
 
 ## Dados e moderação
 
@@ -102,7 +96,7 @@ A moderação combina classificação Steam, tags, palavras-chave em títulos/de
 
 ## Documentação técnica
 
-- [Deploy manual no Cloudflare Pages](docs/CLOUDFLARE_PAGES_DEPLOY.md)
+- [Deploy no Cloudflare Workers](docs/CLOUDFLARE_WORKERS_DEPLOY.md)
 - [Arquitetura JSON-First](docs/JSON_ARCHITECTURE_REPORT.md)
 - [Preparação pré-deploy](docs/PREDEPLOY_REPOSITORY_REPORT.md)
 - [Expansão do catálogo](docs/CATALOG_EXPANSION_REPORT.md)

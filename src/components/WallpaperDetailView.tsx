@@ -191,7 +191,7 @@ export function WallpaperDetailView({
         </div>
       </div>
 
-      {wallpaper.isSimulated && <p role="status" className="text-sm text-amber-300">Demonstração — metadados e mídia simulados.</p>}
+      {wallpaper.isSimulated && <p role="status" className="text-sm text-amber-300">Conteúdo simulado — não pertence ao catálogo de produção.</p>}
 
       {/* Área Principal de Mídia (Player de Vídeo, YouTube, Web Demo ou Imagem) */}
       <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-zinc-950 border border-zinc-800/80 shadow-2xl shadow-black/80 flex items-center justify-center animate-media-reveal">

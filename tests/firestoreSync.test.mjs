@@ -7,7 +7,7 @@ import {
 } from '../scripts/sync-firestore.ts';
 import { isFirebaseConfigured } from '../src/config/firebase.ts';
 import { createWallpaperProvider } from '../src/services/providerFactory.ts';
-import { MockWallpaperProvider } from '../src/services/mockProvider.ts';
+import { StaticCatalogProvider } from '../src/services/staticCatalogProvider.ts';
 
 describe('Preparação da Infraestrutura de Sincronização Firestore (Etapa Firebase)', () => {
   describe('geração de lote sintético de validação (generateSyntheticBatch)', () => {
@@ -97,9 +97,15 @@ describe('Preparação da Infraestrutura de Sincronização Firestore (Etapa Fir
       assert.strictEqual(isFirebaseConfigured(), false);
     });
 
-    it('deve retornar MockWallpaperProvider com segurança por padrão', () => {
-      const provider = createWallpaperProvider('mock');
-      assert.ok(provider instanceof MockWallpaperProvider);
+    it('deve retornar StaticCatalogProvider por padrão sem variável', () => {
+      const previous = process.env.VITE_DATA_PROVIDER;
+      try {
+        delete process.env.VITE_DATA_PROVIDER;
+        assert.ok(createWallpaperProvider() instanceof StaticCatalogProvider);
+      } finally {
+        if (previous === undefined) delete process.env.VITE_DATA_PROVIDER;
+        else process.env.VITE_DATA_PROVIDER = previous;
+      }
     });
 
     it('deve rejeitar Firestore sem configuração em vez de mostrar dados simulados', () => {

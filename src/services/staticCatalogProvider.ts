@@ -113,21 +113,21 @@ export class StaticCatalogProvider implements IWallpaperDataProvider {
         const monoRes = await this.fetchFn(monolithicUrl);
         if (!monoRes.ok) {
           throw new Error(
-            `Catálogo estático indisponível: nenhum shard encontrado em ${manifestUrl} nem catálogo monolítico em ${monolithicUrl}. A primeira sincronização da Steam ainda não foi executada. Utilize VITE_DATA_PROVIDER=mock para visualizar a demonstração.`
+            `Catálogo estático indisponível: nenhum shard encontrado em ${manifestUrl} nem catálogo monolítico em ${monolithicUrl}. Verifique os arquivos publicados do catálogo.`
           );
         }
 
         const monoData: unknown = await monoRes.json();
         if (!Array.isArray(monoData) || monoData.length === 0) {
           throw new Error(
-            'Catálogo estático real não inicializado: o arquivo public/data/catalog.json está vazio. A primeira sincronização da Steam ainda não foi executada. Utilize VITE_DATA_PROVIDER=mock para modo de demonstração.'
+            'Catálogo estático real não inicializado: o arquivo public/data/catalog.json está vazio. Verifique os arquivos publicados do catálogo.'
           );
         }
 
         const hasSimulated = monoData.some((item) => !isWallpaperItem(item) || item.isSimulated);
         if (hasSimulated) {
           throw new Error(
-            'Catálogo estático real não inicializado: o catálogo existente contém apenas dados de demonstração simulados. A primeira sincronização da Steam ainda não foi autorizada. Para visualizar a demonstração, configure VITE_DATA_PROVIDER=mock no seu arquivo .env.'
+            'Catálogo estático real não inicializado: o catálogo existente contém dados inválidos ou simulados. Publicação de conteúdo simulado não é permitida.'
           );
         }
 

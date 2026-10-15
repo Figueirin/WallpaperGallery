@@ -68,16 +68,15 @@ describe('Validação Funcional do Frontend com Catálogo Real Expandido (979 Wa
   });
 
   it('preserva 100% dos 178 wallpapers originais da fase anterior', () => {
-    const backupPath = './.moderation/backups/fase5_pre_expansion_backup/catalog.json';
-    assert.ok(existsSync(backupPath), 'Backup de segurança da Fase 5 deve existir');
-    const backupCatalog = JSON.parse(readFileSync(backupPath, 'utf-8'));
-    assert.strictEqual(backupCatalog.length, 178);
+    // Snapshot versionado dos mesmos 178 IDs históricos, sem depender de backup ignorado no CI.
+    const originalIds = JSON.parse(readFileSync('./tests/fixtures/original-catalog-ids.json', 'utf-8'));
+    assert.strictEqual(originalIds.length, 178);
 
     const currentIds = new Set(fullCatalog.map((w) => w.id));
-    for (const original of backupCatalog) {
+    for (const originalId of originalIds) {
       assert.ok(
-        currentIds.has(original.id),
-        `Wallpaper original ID ${original.id} (${original.title}) deve permanecer no catálogo expandido`
+        currentIds.has(originalId),
+        `Wallpaper original ID ${originalId} deve permanecer no catálogo expandido`
       );
     }
   });

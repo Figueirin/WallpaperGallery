@@ -6,8 +6,8 @@ import {
   filterAndSortWallpapers,
 } from '../src/utils/filterWallpapers.ts';
 
-// Carrega o catálogo real do mock-wallpapers.json
-const rawData = readFileSync('./public/data/mock-wallpapers.json', 'utf-8');
+// Fixture sintética privada: casos estáveis de busca, paginação e recomendações.
+const rawData = readFileSync('./tests/fixtures/wallpapers.json', 'utf-8');
 const catalog = JSON.parse(rawData);
 
 describe('Paginação e Carregamento Progressivo (paginateWallpapers)', () => {

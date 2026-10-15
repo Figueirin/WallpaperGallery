@@ -1,7 +1,7 @@
 /**
  * WallpaperGallery — Fábrica de Provedores de Dados (Provider Factory)
  *
- * Permite alternar entre Mock local, Catálogo JSON Shardado e Cloud Firestore
+ * Permite alternar entre Catálogo JSON Shardado (padrão) e Cloud Firestore
  * sem necessidade de alterar nenhum componente da interface visual.
  *
  * Otimização de Performance e Bundle:
@@ -12,7 +12,6 @@
  */
 
 import type { IWallpaperDataProvider } from './dataProvider';
-import { MockWallpaperProvider } from './mockProvider.ts';
 import { StaticCatalogProvider, type StaticCatalogProviderOptions } from './staticCatalogProvider.ts';
 import { isFirebaseConfigured } from '../config/firebaseEnv.ts';
 import type {
@@ -22,7 +21,7 @@ import type {
   FilterMetadata,
 } from '../types/wallpaper';
 
-export type ProviderType = 'mock' | 'catalog' | 'firestore';
+export type ProviderType = 'catalog' | 'firestore';
 
 /**
  * Proxy preguiçoso para o FirestoreWallpaperProvider.
@@ -78,7 +77,7 @@ export function createWallpaperProvider(
       : undefined
   ) as ProviderType | undefined;
 
-  const targetType = preferredType || envType || 'mock';
+  const targetType = preferredType || envType || 'catalog';
 
   if (targetType === 'firestore') {
     if (isFirebaseConfigured()) {
@@ -89,10 +88,6 @@ export function createWallpaperProvider(
 
   if (targetType === 'catalog') {
     return new StaticCatalogProvider(dependencies as StaticCatalogProviderOptions | undefined);
-  }
-
-  if (targetType === 'mock') {
-    return new MockWallpaperProvider(undefined, targetType);
   }
 
   throw new Error('DataProvider desconhecido');

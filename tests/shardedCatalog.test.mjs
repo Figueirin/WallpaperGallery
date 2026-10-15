@@ -523,14 +523,14 @@ describe('Arquitetura JSON-First: Particionamento e Provedor Estático (Sharded 
       provider.getWallpapers(),
       (err) => {
         assert.ok(err instanceof Error);
-        // Garante mensagem explícita orientando o usuário para o modo mock
+        // Rejeita dados simulados sem oferecer fonte alternativa.
         assert.ok(
           err.message.includes('simulados') || err.message.includes('simulado'),
           'Deve alertar sobre dados simulados'
         );
         assert.ok(
-          err.message.includes('VITE_DATA_PROVIDER=mock'),
-          'Deve orientar a usar VITE_DATA_PROVIDER=mock'
+          !err.message.includes('VITE_DATA_PROVIDER=mock'),
+          'Não deve sugerir provider removido'
         );
         return true;
       }

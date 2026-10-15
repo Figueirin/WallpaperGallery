@@ -263,12 +263,6 @@ export function App() {
 
       {/* Conteúdo Principal */}
       <main className="flex-1 max-w-[2400px] w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-6 sm:py-8">
-        {wallpapers.some((item) => item.isSimulated) && (
-          <p role="status" className="mb-4 text-sm text-amber-300">
-            Catálogo de demonstração — dados e mídias simulados.
-          </p>
-        )}
-
         {selectedWallpaperId ? (
           <WallpaperDetailView
             key={selectedWallpaperId}
@@ -292,14 +286,10 @@ export function App() {
                 </div>
                 <div>
                   <p className="font-medium text-zinc-300">
-                    {wallpapers.some((item) => item.isSimulated)
-                      ? 'Catálogo em Modo de Demonstração (Steam Workshop • AppID 431960)'
-                      : 'Catálogo Steam Workshop (AppID 431960)'}
+                    Catálogo Steam Workshop (AppID 431960)
                   </p>
                   <p className="text-zinc-500 text-[11px]">
-                    {wallpapers.some((item) => item.isSimulated)
-                      ? 'Dados simulados para desenvolvimento local.'
-                      : 'Explore pelo navegador no computador ou celular. A compatibilidade dos wallpapers depende do Wallpaper Engine e do sistema utilizado.'}
+                    Explore pelo navegador no computador ou celular. A compatibilidade dos wallpapers depende do Wallpaper Engine e do sistema utilizado.
                   </p>
                 </div>
               </div>

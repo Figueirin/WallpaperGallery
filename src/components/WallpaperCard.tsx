@@ -109,7 +109,7 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
       {/* Conteúdo e Metadados do Card */}
       <div className="p-4 flex-1 flex flex-col justify-between">
         <div>
-          {wallpaper.isSimulated && <span className="text-xs text-amber-300">Demonstração</span>}
+          {wallpaper.isSimulated && <span className="text-xs text-amber-300">Conteúdo simulado</span>}
           {/* Título com truncamento limpo */}
           <h3
             title={wallpaper.title}

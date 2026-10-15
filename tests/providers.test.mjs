@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { initializeApp, deleteApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { FirestoreWallpaperProvider } from '../src/services/firestoreProvider.ts';
-import { MockWallpaperProvider } from '../src/services/mockProvider.ts';
+import { StaticCatalogProvider } from '../src/services/staticCatalogProvider.ts';
 import { normalizeSteamWorkshopItem } from '../scripts/sync-workshop.ts';
 
 test('Firestore combina chamadas concorrentes e não oculta erros nem documentos sem subscriptions', async () => {
@@ -39,15 +39,12 @@ test('Firestore combina chamadas concorrentes e não oculta erros nem documentos
 test('catálogo real não usa fallback sintético em erro ou conteúdo simulado', async () => {
   const previous = globalThis.fetch;
   try {
-    const provider = new MockWallpaperProvider(undefined, 'catalog');
+    const provider = new StaticCatalogProvider();
     globalThis.fetch = async () => new Response('missing', { status: 404 });
-    await assert.rejects(provider.getWallpapers(), /404/);
-    globalThis.fetch = async () => Response.json([{ ...normalizeSteamWorkshopItem({ publishedfileid: '1', title: 'Fixture' }), isSimulated: true }]);
+    await assert.rejects(provider.getWallpapers(), /indisponível/);
+    globalThis.fetch = async input => String(input).endsWith('manifest.json') ? new Response('missing', { status: 404 }) : Response.json([{ ...normalizeSteamWorkshopItem({ publishedfileid: '1', title: 'Fixture' }), isSimulated: true }]);
     await assert.rejects(provider.getWallpapers(), /simulado/);
-    globalThis.fetch = async () => Response.json([normalizeSteamWorkshopItem({ publishedfileid: '1', title: 'Fixture' })]);
+    globalThis.fetch = async input => String(input).endsWith('manifest.json') ? new Response('missing', { status: 404 }) : Response.json([normalizeSteamWorkshopItem({ publishedfileid: '1', title: 'Fixture' })]);
     assert.equal((await provider.getWallpapers()).total, 1);
-    globalThis.fetch = () => { throw new Error('não deve acessar rede'); };
-    const mock = await new MockWallpaperProvider().getWallpapers();
-    assert.ok(mock.items.every(item => item.isSimulated));
   } finally { globalThis.fetch = previous; }
 });

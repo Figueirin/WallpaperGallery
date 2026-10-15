@@ -1,5 +1,7 @@
 # Preparação pré-deploy — WallpaperGallery
 
+> Registro histórico anterior ao deploy. A hospedagem atual usa Workers + Static Assets + Workers Builds, e o catálogo passou a ser o provider padrão. Consulte o [guia atual](CLOUDFLARE_WORKERS_DEPLOY.md) e a [migração](CATALOG_DEFAULT_MIGRATION_REPORT.md).
+
 Data: **15/10/2026**, America/Sao_Paulo. Base inspecionada: **`248cb54`**, branch **`main`**. Parecer: **PRONTO COM RESSALVAS**.
 
 O repositório está preparado para conexão ao Cloudflare Pages, com documentação atualizada e CI de validação. Não houve deploy nem alteração remota. Antes de publicar, o proprietário precisa configurar o provider `catalog` e Node 24 nos ambientes Production e Preview. A configuração do host e a abertura direta das rotas precisarão ser confirmadas no primeiro deploy.

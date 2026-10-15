@@ -28,5 +28,3 @@ jobs:
       - run: npm test
       - run: npm run typecheck
       - run: npm run build
-        env:
-          VITE_DATA_PROVIDER: catalog
