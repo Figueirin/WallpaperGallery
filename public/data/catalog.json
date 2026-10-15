@@ -1,0 +1,94 @@
+[
+  {
+    "id": "2987102911",
+    "title": "Neon Sakura Cyberpunk City Rain (Interactive)",
+    "description": "Cenário cyberpunk em Neo-Tokyo com chuva reativa e reflexos de neon em tempo real.",
+    "author": {
+      "name": "SteamUser (76561198000000001)",
+      "steamId": "76561198000000001"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1000&q=80",
+    "youtubePreviewUrl": "https://www.youtube.com/watch?v=jfKfPfyJRdk",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Cyberpunk",
+      "Rain",
+      "City"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 45200000,
+    "createdAt": "2024-08-14T12:00:00.000Z",
+    "updatedAt": "2024-09-02T14:30:00.000Z",
+    "stats": {
+      "views": 45200,
+      "subscriptions": 18300,
+      "favorited": 4200,
+      "votesUp": 3900
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2987102911",
+    "steamClientUri": "steam://url/CommunityFilePage/2987102911"
+  },
+  {
+    "id": "2987102912",
+    "title": "Cozy Lofi Mountain Cabin Sunset 4K",
+    "description": "Cabana aconchegante nas montanhas com iluminação de entardecer e neve sutil.",
+    "author": {
+      "name": "SteamUser (76561198000000002)",
+      "steamId": "76561198000000002"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1000&q=80",
+    "type": "Video",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Nature",
+      "Cozy",
+      "Sunset"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 112000000,
+    "createdAt": "2024-07-20T19:02:00.000Z",
+    "updatedAt": "2024-07-20T19:02:00.000Z",
+    "stats": {
+      "views": 89400,
+      "subscriptions": 34100,
+      "favorited": 8900,
+      "votesUp": 7800
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2987102912",
+    "steamClientUri": "steam://url/CommunityFilePage/2987102912"
+  },
+  {
+    "id": "2987102913",
+    "title": "Audio Visualizer Spectrum 3D (WebGL)",
+    "description": "Visualizador de áudio interativo baseado em WebGL com ondas reativas aos sons do sistema.",
+    "author": {
+      "name": "SteamUser (76561198000000006)",
+      "steamId": "76561198000000006"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1000&q=80",
+    "youtubePreviewUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "type": "Web",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Abstract",
+      "Audio Visualizer",
+      "Interactive"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 14200000,
+    "createdAt": "2024-09-10T21:00:00.000Z",
+    "updatedAt": "2024-09-12T19:30:00.000Z",
+    "stats": {
+      "views": 54300,
+      "subscriptions": 21500,
+      "favorited": 6200,
+      "votesUp": 5400
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2987102913",
+    "steamClientUri": "steam://url/CommunityFilePage/2987102913"
+  }
+]
