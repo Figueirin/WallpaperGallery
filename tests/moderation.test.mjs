@@ -8,57 +8,14 @@ import {
   ALLOWED_AMBIGUOUS_TERMS,
 } from '../src/services/moderation/metadataModerator.ts';
 import {
-  VisualModerator,
-  evaluateSkinToneHeuristic,
-  detectImageMagicBytes,
-} from '../src/services/moderation/visualModerator.ts';
+  validateManualBlacklist,
+  loadManualBlacklist,
+} from '../src/services/moderation/blacklist.ts';
 import { ModerationPipeline } from '../src/services/moderation/moderationPipeline.ts';
 import { rebuildCatalog } from '../scripts/rebuild-catalog.ts';
 
-// Helper para criar buffer de imagem PNG válido
-function createMinimalPng(options = {}) {
-  const { skinPixels = 0, totalPixels = 100 } = options;
-  // Assinatura PNG de 8 bytes
-  const signature = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
-
-  // IHDR chunk: 10x10 pixels, RGBA (colorType 6)
-  const width = 10;
-  const height = 10;
-  const ihdrData = Buffer.alloc(13);
-  ihdrData.writeUInt32BE(width, 0);
-  ihdrData.writeUInt32BE(height, 4);
-  ihdrData.writeUInt8(8, 8); // bit depth
-  ihdrData.writeUInt8(6, 9); // color type 6: RGBA
-  ihdrData.writeUInt8(0, 10);
-  ihdrData.writeUInt8(0, 11);
-  ihdrData.writeUInt8(0, 12);
-
-  const ihdr = Buffer.concat([
-    Buffer.from([0x00, 0x00, 0x00, 0x0d]),
-    Buffer.from('IHDR', 'ascii'),
-    ihdrData,
-    Buffer.from([0x00, 0x00, 0x00, 0x00]), // CRC dummy
-  ]);
-
-  // IDAT chunk vazio ou com dados mínimos
-  const idat = Buffer.concat([
-    Buffer.from([0x00, 0x00, 0x00, 0x00]),
-    Buffer.from('IDAT', 'ascii'),
-    Buffer.from([0x00, 0x00, 0x00, 0x00]),
-  ]);
-
-  // IEND chunk
-  const iend = Buffer.concat([
-    Buffer.from([0x00, 0x00, 0x00, 0x00]),
-    Buffer.from('IEND', 'ascii'),
-    Buffer.from([0xae, 0x42, 0x60, 0x82]),
-  ]);
-
-  return Buffer.concat([signature, ihdr, idat, iend]);
-}
-
-describe('Moderação de Conteúdo e NSFW (Content Moderation)', () => {
-  describe('Moderação de Metadados: Indicadores Adultos da Steam', () => {
+describe('Moderação de Conteúdo Simplificada (Simplified Content Moderation)', () => {
+  describe('1. Classificação Etária da Steam (Mature e Questionable)', () => {
     it('deve bloquear imediatamente wallpaper com rating Mature da Steam', () => {
       const item = {
         id: '1001',
@@ -97,11 +54,74 @@ describe('Moderação de Conteúdo e NSFW (Content Moderation)', () => {
       };
       const decision = moderateMetadata(item);
       assert.equal(decision.status, 'blocked');
-      assert.ok(decision.metadataMatches.some((m) => m.includes('Mature')));
+      assert.ok(decision.reasons.some((r) => r.category === 'steam_rating'));
     });
   });
 
-  describe('Moderação de Metadados: Palavras-chave NSFW no Título, Descrição e Tags', () => {
+  describe('2. Classificação Etária Ausente ou Desconhecida (Sem Aprovação Silenciosa)', () => {
+    it('deve bloquear se a classificação etária rating for indefinida / ausente', () => {
+      const item = {
+        id: '1101',
+        title: 'Unknown Rating Wallpaper',
+        description: 'Sem rating',
+        tags: ['Nature'],
+      };
+      const decision = moderateMetadata(item);
+      assert.equal(decision.status, 'blocked');
+      assert.ok(decision.reasons.some((r) => r.category === 'steam_rating'));
+      assert.ok(decision.reasons.some((r) => r.message.includes('ausente')));
+    });
+
+    it('deve bloquear se a classificação etária for string vazia ou apenas espaços', () => {
+      const item = {
+        id: '1102',
+        title: 'Empty Rating Wallpaper',
+        description: 'Rating vazio',
+        tags: ['Nature'],
+        rating: '   ',
+      };
+      const decision = moderateMetadata(item);
+      assert.equal(decision.status, 'blocked');
+      assert.ok(decision.reasons.some((r) => r.category === 'steam_rating'));
+    });
+
+    it('deve bloquear se a classificação etária for desconhecida ou não reconhecida', () => {
+      const unknownRatings = ['Unrated', 'Unknown', 'Teen', 'Pending', 'Adult'];
+      for (const rating of unknownRatings) {
+        const decision = moderateMetadata({
+          id: '1103',
+          title: 'Unrecognized Rating',
+          description: 'Teste',
+          tags: ['Art'],
+          rating,
+        });
+        assert.equal(decision.status, 'blocked', `Rating "${rating}" deveria ter sido bloqueado`);
+        assert.ok(decision.reasons.some((r) => r.category === 'steam_rating'));
+      }
+    });
+
+    it('deve bloquear se metadados essenciais estiverem ausentes (ex: ID ou Título vazio)', () => {
+      const noId = moderateMetadata({
+        id: '',
+        title: 'Valid Title',
+        tags: ['Art'],
+        rating: 'Everyone',
+      });
+      assert.equal(noId.status, 'blocked');
+      assert.ok(noId.reasons.some((r) => r.category === 'invalid_metadata'));
+
+      const noTitle = moderateMetadata({
+        id: '1104',
+        title: '   ',
+        tags: ['Art'],
+        rating: 'Everyone',
+      });
+      assert.equal(noTitle.status, 'blocked');
+      assert.ok(noTitle.reasons.some((r) => r.category === 'invalid_metadata'));
+    });
+  });
+
+  describe('3. Moderação Textual: Palavras-chave NSFW (Título, Descrição e Tags)', () => {
     it('deve bloquear termos explicitamente NSFW no título', () => {
       const testCases = [
         'D.Va 18+ NSFW Wallpaper',
@@ -158,8 +178,8 @@ describe('Moderação de Conteúdo e NSFW (Content Moderation)', () => {
     });
   });
 
-  describe('Moderação de Metadados: Termos Permitidos e Falsos Positivos Óbvios', () => {
-    it('não deve bloquear termos genéricos legítimos como anime, girl, romance, art', () => {
+  describe('4. Prevenção de Falsos Positivos Textuais', () => {
+    it('não deve bloquear termos genéricos legítimos como anime, girl, romance, art, cosplay, waifu', () => {
       for (const term of ALLOWED_AMBIGUOUS_TERMS) {
         const decision = moderateMetadata({
           id: '3001',
@@ -210,126 +230,123 @@ describe('Moderação de Conteúdo e NSFW (Content Moderation)', () => {
     });
   });
 
-  describe('Moderação Visual: Classificação de Imagens e Download Seguro', () => {
-    it('deve validar magic bytes de JPEG, PNG e WebP e rejeitar desconhecidos', () => {
-      const pngBuffer = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0, 0, 0, 0]);
-      const jpegBuffer = Buffer.from([0xff, 0xd8, 0xff, 0xe0, 0, 0, 0, 0, 0, 0, 0, 0]);
-      const webpBuffer = Buffer.from('RIFF1234WEBPtest', 'ascii');
-      const textBuffer = Buffer.from('<!DOCTYPE html><html>', 'ascii');
+  describe('5. Blacklist Manual de Wallpapers (config/blocked-wallpapers.json)', () => {
+    it('deve bloquear wallpaper listado na blacklist manual mesmo com rating Everyone e conteúdo limpo', () => {
+      const blacklist = new Set(['99990001', '99990002']);
+      const pipeline = new ModerationPipeline({ manualBlacklist: blacklist });
 
-      assert.equal(detectImageMagicBytes(pngBuffer), 'png');
-      assert.equal(detectImageMagicBytes(jpegBuffer), 'jpeg');
-      assert.equal(detectImageMagicBytes(webpBuffer), 'webp');
-      assert.equal(detectImageMagicBytes(textBuffer), 'unknown');
-    });
-
-    it('deve classificar como blocked quando classificador acusar probabilidade NSFW alta', async () => {
-      const tmpDir = mkdtempSync(join(tmpdir(), 'wg-mod-'));
-      const moderator = new VisualModerator({
-        cacheFilePath: join(tmpDir, 'cache.json'),
-        customClassifier: async () => ({
-          safe: 0.10,
-          nsfw: 0.90,
-          uncertainty: 0.10,
-        }),
+      const decision = pipeline.evaluateItem({
+        id: '99990001',
+        title: 'Clean Nature Landscape',
+        description: 'Belo wallpaper de natureza',
+        tags: ['Nature', 'Relaxing'],
+        rating: 'Everyone',
       });
 
-      const buffer = createMinimalPng();
-      const result = await moderator.classifyBuffer(buffer, 'test-item-nsfw');
-
-      assert.equal(result.status, 'blocked');
-      assert.ok(result.reasons.some((r) => r.category === 'visual_analysis'));
+      assert.equal(decision.status, 'blocked');
+      assert.ok(decision.reasons.some((r) => r.category === 'manual_blacklist'));
+      assert.ok(decision.reasons.some((r) => r.matchedTerm === '99990001'));
     });
 
-    it('deve classificar como review quando classificação for incerta ou limítrofe', async () => {
-      const tmpDir = mkdtempSync(join(tmpdir(), 'wg-mod-'));
-      const moderator = new VisualModerator({
-        cacheFilePath: join(tmpDir, 'cache.json'),
-        customClassifier: async () => ({
-          safe: 0.40,
-          nsfw: 0.45,
-          uncertainty: 0.60,
-        }),
-      });
+    it('deve comparar IDs estritamente como strings', () => {
+      const blacklist = new Set(['00123456']);
+      const pipeline = new ModerationPipeline({ manualBlacklist: blacklist });
 
-      const buffer = createMinimalPng();
-      const result = await moderator.classifyBuffer(buffer, 'test-item-uncertain');
-
-      assert.equal(result.status, 'review');
-      assert.ok(result.reasons.some((r) => r.category === 'visual_analysis'));
-    });
-
-    it('deve adotar Fail-Closed (status review) em caso de falha de download ou host inseguro', async () => {
-      const tmpDir = mkdtempSync(join(tmpdir(), 'wg-mod-'));
-      const moderator = new VisualModerator({
-        cacheFilePath: join(tmpDir, 'cache.json'),
-        fetchImpl: async () => {
-          throw new Error('Network timeout simulado');
-        },
-      });
-
-      // Teste com URL que falha
-      const result = await moderator.classifyImageUrl(
-        'https://images.steamusercontent.com/ugc/123/fail/',
-        'item-timeout'
-      );
-
-      // Nunca pode aprovar item cuja imagem não pôde ser baixada/verificada
-      assert.equal(result.status, 'review');
-      assert.ok(result.reasons.some((r) => r.category === 'download_failure'));
-    });
-
-    it('deve armazenar em cache e reutilizar resultado na segunda consulta', async () => {
-      const tmpDir = mkdtempSync(join(tmpdir(), 'wg-mod-'));
-      let classifierCalls = 0;
-      const moderator = new VisualModerator({
-        cacheFilePath: join(tmpDir, 'cache.json'),
-        customClassifier: async () => {
-          classifierCalls++;
-          return { safe: 0.95, nsfw: 0.05, uncertainty: 0.05 };
-        },
-      });
-
-      const buffer = createMinimalPng();
-      const res1 = await moderator.classifyBuffer(buffer, 'item-cache');
-      assert.equal(res1.source, 'analysis');
-      assert.equal(classifierCalls, 1);
-
-      const res2 = await moderator.classifyBuffer(buffer, 'item-cache');
-      assert.equal(res2.source, 'cache');
-      assert.equal(classifierCalls, 1); // Não chamou classificador novamente
-    });
-  });
-
-  describe('Pipeline Completo e Exclusão do Catálogo Público', () => {
-    it('pipeline unificado deve vetar item tanto por metadados quanto por visual', async () => {
-      const pipeline = new ModerationPipeline({
-        skipVisualAnalysis: true,
-      });
-
-      const badMetadata = {
-        id: '4001',
-        title: 'Explicit NSFW Girl',
+      const decision = pipeline.evaluateItem({
+        id: '00123456',
+        title: 'String Match Test',
         description: 'desc',
         tags: ['Anime'],
         rating: 'Everyone',
-        previewUrl: 'https://example.com/p.jpg',
-        author: { name: 'Author' },
-        resolution: '1920x1080',
-        aspectRatio: '16:9',
-        type: 'Scene',
-        createdAt: '2024-01-01',
-      };
+      });
 
-      const decision = await pipeline.evaluateItem(badMetadata);
       assert.equal(decision.status, 'blocked');
+      assert.ok(decision.reasons.some((r) => r.category === 'manual_blacklist'));
     });
 
-    it('rebuildCatalog deve sanitizar catálogo existente criando backup e quarentena', async () => {
-      const tmpDir = mkdtempSync(join(tmpdir(), 'wg-rebuild-'));
+    it('deve aprovar wallpaper seguro cujo ID não consta na blacklist', () => {
+      const blacklist = new Set(['99990001']);
+      const pipeline = new ModerationPipeline({ manualBlacklist: blacklist });
+
+      const decision = pipeline.evaluateItem({
+        id: '99990099',
+        title: 'Cozy Mountain Sunrise',
+        description: 'Amanhecer aconchegante nas montanhas',
+        tags: ['Nature', 'Sunrise'],
+        rating: 'Everyone',
+      });
+
+      assert.equal(decision.status, 'safe');
+      assert.equal(decision.reasons.length, 0);
+    });
+
+    it('deve validar estrutura correta da blacklist e retornar Set de IDs', () => {
+      const validConfig = {
+        blockedIds: ['100', '200', '300'],
+      };
+      const set = validateManualBlacklist(validConfig);
+      assert.equal(set.size, 3);
+      assert.ok(set.has('100'));
+      assert.ok(set.has('200'));
+      assert.ok(set.has('300'));
+    });
+
+    it('deve rejeitar blacklist com IDs duplicados apresentando erro explícito', () => {
+      const invalidConfig = {
+        blockedIds: ['100', '200', '100', '300'],
+      };
+      assert.throws(
+        () => validateManualBlacklist(invalidConfig),
+        /Blacklist manual contém IDs duplicados: 100/
+      );
+    });
+
+    it('deve rejeitar blacklist com estrutura inválida ou tipos incorretos', () => {
+      assert.throws(() => validateManualBlacklist(null), /deve ser um objeto JSON/);
+      assert.throws(() => validateManualBlacklist([]), /deve ser um objeto JSON/);
+      assert.throws(() => validateManualBlacklist({}), /"blockedIds" ausente ou não é um array/);
+      assert.throws(
+        () => validateManualBlacklist({ blockedIds: [123] }),
+        /esperado string/
+      );
+      assert.throws(
+        () => validateManualBlacklist({ blockedIds: ['   '] }),
+        /não pode ser vazio/
+      );
+    });
+
+    it('deve carregar blacklist do disco ou retornar Set vazio se arquivo não existir', () => {
+      const emptySet = loadManualBlacklist('/non-existent-path/blocked.json');
+      assert.equal(emptySet.size, 0);
+
+      const tmpDir = mkdtempSync(join(tmpdir(), 'wg-bl-'));
+      const testBlacklistPath = join(tmpDir, 'blocked-wallpapers.json');
+      writeFileSync(
+        testBlacklistPath,
+        JSON.stringify({ blockedIds: ['8881', '8882'] }, null, 2),
+        'utf-8'
+      );
+
+      const loaded = loadManualBlacklist(testBlacklistPath);
+      assert.equal(loaded.size, 2);
+      assert.ok(loaded.has('8881'));
+      assert.ok(loaded.has('8882'));
+    });
+  });
+
+  describe('6. Reconstrução Offline do Catálogo (rebuildCatalog) e Consistência dos Shards', () => {
+    it('deve sanitizar catálogo existente expurgando itens bloqueados por rating, blacklist e metadados', async () => {
+      const tmpDir = mkdtempSync(join(tmpdir(), 'wg-rebuild-simple-'));
       const testCatalogPath = join(tmpDir, 'catalog.json');
       const backupDir = join(tmpDir, 'backups');
       const quarantinePath = join(tmpDir, 'quarantine.json');
+      const blacklistPath = join(tmpDir, 'blocked-wallpapers.json');
+
+      writeFileSync(
+        blacklistPath,
+        JSON.stringify({ blockedIds: ['5004'] }, null, 2),
+        'utf-8'
+      );
 
       const sampleCatalog = [
         {
@@ -383,23 +400,48 @@ describe('Moderação de Conteúdo e NSFW (Content Moderation)', () => {
           steamUrl: 'https://steamcommunity.com/sharedfiles/filedetails/?id=5003',
           steamClientUri: 'steam://url/CommunityFilePage/5003',
         },
+        {
+          id: '5004',
+          title: 'Manual Blacklisted Clean Wallpaper',
+          description: 'Item bloqueado na blacklist manual',
+          tags: ['Technology'],
+          rating: 'Everyone',
+          previewUrl: 'https://images.steamusercontent.com/ugc/4/D/',
+          author: { name: 'Artist4' },
+          resolution: '1920x1080',
+          aspectRatio: '16:9',
+          type: 'Scene',
+          createdAt: '2024-01-01',
+          updatedAt: '2024-01-01',
+          stats: { views: 200, subscriptions: 80 },
+          steamUrl: 'https://steamcommunity.com/sharedfiles/filedetails/?id=5004',
+          steamClientUri: 'steam://url/CommunityFilePage/5004',
+        },
       ];
 
       writeFileSync(testCatalogPath, JSON.stringify(sampleCatalog, null, 2), 'utf-8');
 
-      // Executa a reconstrução e sanitização
+      // Executa a reconstrução e sanitização (sem necessidade de flags visuais)
       const result = await rebuildCatalog({
         catalogPath: testCatalogPath,
         backupDir,
         quarantinePath,
-        skipVisualAnalysis: true,
+        blacklistPath,
       });
 
-      assert.equal(result.totalOriginal, 3);
+      assert.equal(result.totalOriginal, 4);
       assert.equal(result.approvedCount, 1);
-      assert.equal(result.quarantinedCount, 2);
+      assert.equal(result.quarantinedCount, 3);
       assert.ok(existsSync(result.backupPath), 'Arquivo de backup deve existir');
       assert.ok(existsSync(quarantinePath), 'Relatório de quarentena deve existir');
+
+      // Verifica que o relatório de quarentena detalhou os motivos
+      const quarantine = JSON.parse(readFileSync(quarantinePath, 'utf-8'));
+      assert.equal(quarantine.summary.totalAnalyzed, 4);
+      assert.equal(quarantine.summary.approvedCount, 1);
+      assert.equal(quarantine.summary.blockedCount, 3);
+      assert.equal(quarantine.summary.blockedByBlacklist, 1);
+      assert.equal(quarantine.summary.blockedBySteamRating, 2);
 
       // Verifica que o catálogo foi atualizado em disco apenas com itens aprovados
       const sanitized = JSON.parse(readFileSync(testCatalogPath, 'utf-8'));

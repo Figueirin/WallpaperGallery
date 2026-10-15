@@ -1,8 +1,8 @@
 /**
- * WallpaperGallery — Sistema de Moderação Centralizado
+ * WallpaperGallery — Sistema de Moderação Centralizado e Simplificado
  */
 
 export * from './types.ts';
+export * from './blacklist.ts';
 export * from './metadataModerator.ts';
-export * from './visualModerator.ts';
 export * from './moderationPipeline.ts';

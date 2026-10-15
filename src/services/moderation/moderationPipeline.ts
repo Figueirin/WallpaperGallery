@@ -1,90 +1,56 @@
 /**
- * WallpaperGallery — Pipeline Unificado de Moderação de Conteúdo
+ * WallpaperGallery — Pipeline Simplificado de Moderação de Conteúdo
  *
- * Combina moderação estrita de metadados (Steam Rating e Termos Restritos)
- * com moderação visual de imagens, garantindo que nenhum item impróprio
- * ou não analisado seja aprovado para publicação pública.
+ * Executa moderação em 2 etapas sem custos de rede ou visão computacional:
+ * 1. Blacklist manual configurada em config/blocked-wallpapers.json
+ * 2. Moderação de metadados (Classificação etária oficial da Steam + Termos restritos)
  */
 
 import type { WallpaperItem } from '../../types/wallpaper.ts';
-import type { ModerationDecision, ModerationStatus } from './types.ts';
+import type { ModerationDecision } from './types.ts';
 import { moderateMetadata } from './metadataModerator.ts';
-import { VisualModerator, type VisualModeratorOptions } from './visualModerator.ts';
+import { loadManualBlacklist } from './blacklist.ts';
 
 export interface ModerationPipelineOptions {
-  visualOptions?: VisualModeratorOptions;
-  skipVisualAnalysis?: boolean; // Para ambientes onde apenas metadados devem ser avaliados
+  blacklistPath?: string;
+  manualBlacklist?: Set<string>;
 }
 
 export class ModerationPipeline {
-  private visualModerator: VisualModerator;
-  private skipVisualAnalysis: boolean;
+  private manualBlacklist: Set<string>;
 
   constructor(options: ModerationPipelineOptions = {}) {
-    this.visualModerator = new VisualModerator(options.visualOptions);
-    this.skipVisualAnalysis = Boolean(options.skipVisualAnalysis);
+    if (options.manualBlacklist) {
+      this.manualBlacklist = options.manualBlacklist;
+    } else {
+      this.manualBlacklist = loadManualBlacklist(options.blacklistPath);
+    }
   }
 
   /**
-   * Avalia um wallpaper individual através de todas as camadas de proteção.
+   * Avalia um wallpaper individual através da blacklist manual e dos metadados.
    */
-  public async evaluateItem(item: WallpaperItem): Promise<ModerationDecision> {
-    // 1. Camada de Metadados (rápida, sem consumo de rede)
-    const metaDecision = moderateMetadata(item);
+  public evaluateItem(item: WallpaperItem | Partial<WallpaperItem>): ModerationDecision {
+    const itemId = String(item?.id ?? '').trim();
 
-    // Se os metadados já reprovarem o item (ex: Steam Mature ou tag NSFW),
-    // o bloqueio é imediato sem necessidade de baixar a imagem.
-    if (metaDecision.status === 'blocked') {
-      return metaDecision;
-    }
-
-    // Se a análise visual for dispensada por opção
-    if (this.skipVisualAnalysis) {
-      return metaDecision;
-    }
-
-    // 2. Camada Visual
-    if (!item.previewUrl) {
+    // 1. Verificação da Blacklist Manual
+    if (itemId && this.manualBlacklist.has(itemId)) {
       return {
-        id: item.id,
-        status: 'review',
+        id: itemId,
+        status: 'blocked',
         reasons: [
           {
-            category: 'format_validation',
-            triggerField: 'preview_image',
-            message: 'Wallpaper sem URL de preview válida para inspeção visual.',
+            category: 'manual_blacklist',
+            triggerField: 'system',
+            matchedTerm: itemId,
+            message: `Wallpaper #${itemId} está bloqueado manualmente via blacklist (config/blocked-wallpapers.json).`,
           },
         ],
         timestamp: new Date().toISOString(),
       };
     }
 
-    const visualResult = await this.visualModerator.classifyImageUrl(item.previewUrl, item.id);
-
-    // Combina decisões
-    const combinedReasons = [...metaDecision.reasons, ...visualResult.reasons];
-    let finalStatus: ModerationStatus = metaDecision.status;
-
-    if (visualResult.status === 'blocked') {
-      finalStatus = 'blocked';
-    } else if (visualResult.status === 'review') {
-      finalStatus = 'review';
-    }
-
-    return {
-      id: item.id,
-      status: finalStatus,
-      reasons: combinedReasons,
-      timestamp: new Date().toISOString(),
-      metadataMatches: metaDecision.metadataMatches,
-      visualScore: visualResult.score,
-    };
-  }
-
-  /**
-   * Salva o cache visual em disco
-   */
-  public saveVisualCache(): void {
-    this.visualModerator.saveCache();
+    // 2. Moderação de Metadados (Classificação Steam + Tags + Título + Descrição)
+    return moderateMetadata(item as WallpaperItem);
   }
 }

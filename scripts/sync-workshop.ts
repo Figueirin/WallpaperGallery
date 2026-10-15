@@ -572,7 +572,6 @@ export async function main() {
         quarantined.push({ item, reasons: decision.reasons.map((r) => r.message) });
       }
     }
-    pipeline.saveVisualCache();
 
     if (quarantined.length > 0) {
       console.log(`⚠️ ${quarantined.length} wallpaper(s) retidos por moderação/quarentena e excluídos do catálogo.`);

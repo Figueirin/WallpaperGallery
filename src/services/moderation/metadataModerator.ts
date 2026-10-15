@@ -3,6 +3,8 @@
  *
  * Avalia classificações da Steam, tags temáticas, título e descrição de wallpapers
  * para identificar conteúdos adultos ou restritos antes da publicação.
+ *
+ * Não realiza aprovação silenciosa de itens com classificação ou metadados essenciais ausentes.
  */
 
 import type { WallpaperItem } from '../../types/wallpaper.ts';
@@ -67,32 +69,68 @@ function isXxxPlaceholder(text: string): boolean {
  * Avalia os metadados de um wallpaper e emite uma decisão estruturada.
  */
 export function moderateMetadata(
-  item: Pick<WallpaperItem, 'id' | 'title' | 'description' | 'tags' | 'rating'>
+  item: Pick<WallpaperItem, 'id' | 'title' | 'description' | 'tags' | 'rating'> | Partial<WallpaperItem>
 ): ModerationDecision {
   const reasons: ModerationReason[] = [];
   const matches: string[] = [];
+  const id = String(item?.id ?? '').trim();
 
-  // 1. Verificação de Classificação da Steam (Mature ou Questionable)
-  const normalizedRating = item.rating?.toLowerCase() || '';
-  if (normalizedRating === 'mature') {
+  // 1. Verificação de Metadados Essenciais
+  if (!id) {
     reasons.push({
-      category: 'steam_rating',
-      triggerField: 'steam_rating',
-      matchedTerm: 'Mature',
-      message: 'Item classificado oficialmente pela Steam como Mature (Adulto / 18+).',
-    });
-  } else if (normalizedRating === 'questionable') {
-    reasons.push({
-      category: 'steam_rating',
-      triggerField: 'steam_rating',
-      matchedTerm: 'Questionable',
-      message: 'Item classificado oficialmente pela Steam como Questionable (Conteúdo questionável / NSFW potencial).',
+      category: 'invalid_metadata',
+      triggerField: 'system',
+      message: 'ID do wallpaper ausente ou inválido.',
     });
   }
 
-  // 2. Verificação de Tags do Wallpaper
-  const rawTags = Array.isArray(item.tags) ? item.tags : [];
+  const rawTitle = typeof item?.title === 'string' ? item.title.trim() : '';
+  if (!rawTitle) {
+    reasons.push({
+      category: 'invalid_metadata',
+      triggerField: 'title',
+      message: 'Título do wallpaper ausente ou inválido.',
+    });
+  }
+
+  // 2. Verificação de Classificação da Steam (Não aceita aprovação silenciosa de ausentes/desconhecidos)
+  const rawRating = typeof item?.rating === 'string' ? item.rating.trim() : '';
+  if (!rawRating) {
+    reasons.push({
+      category: 'steam_rating',
+      triggerField: 'steam_rating',
+      message: 'Classificação etária da Steam ausente; aprovação silenciosa não permitida.',
+    });
+  } else {
+    const normalizedRating = rawRating.toLowerCase();
+    if (normalizedRating === 'mature') {
+      reasons.push({
+        category: 'steam_rating',
+        triggerField: 'steam_rating',
+        matchedTerm: 'Mature',
+        message: 'Item classificado oficialmente pela Steam como Mature (Adulto / 18+).',
+      });
+    } else if (normalizedRating === 'questionable') {
+      reasons.push({
+        category: 'steam_rating',
+        triggerField: 'steam_rating',
+        matchedTerm: 'Questionable',
+        message: 'Item classificado oficialmente pela Steam como Questionable (Conteúdo questionável / NSFW potencial).',
+      });
+    } else if (normalizedRating !== 'everyone') {
+      reasons.push({
+        category: 'steam_rating',
+        triggerField: 'steam_rating',
+        matchedTerm: rawRating,
+        message: `Classificação etária da Steam desconhecida ou inválida: "${rawRating}"; aprovação silenciosa não permitida.`,
+      });
+    }
+  }
+
+  // 3. Verificação de Tags do Wallpaper
+  const rawTags = Array.isArray(item?.tags) ? item.tags : [];
   for (const tag of rawTags) {
+    if (typeof tag !== 'string') continue;
     const normalizedTag = normalizeText(tag);
     if (normalizedTag === 'mature' || normalizedTag === 'questionable') {
       reasons.push({
@@ -113,8 +151,8 @@ export function moderateMetadata(
     }
   }
 
-  // 3. Verificação no Título
-  const normalizedTitle = normalizeText(item.title || '');
+  // 4. Verificação no Título
+  const normalizedTitle = normalizeText(rawTitle);
   const titleMatch = normalizedTitle.match(RESTRICTED_TERMS_REGEX);
   if (titleMatch) {
     reasons.push({
@@ -125,7 +163,7 @@ export function moderateMetadata(
     });
     matches.push(`title:${titleMatch[0]}`);
   }
-  const titleAsianMatch = (item.title || '').match(EAST_ASIAN_RESTRICTED_REGEX);
+  const titleAsianMatch = rawTitle.match(EAST_ASIAN_RESTRICTED_REGEX);
   if (titleAsianMatch) {
     reasons.push({
       category: 'metadata_keyword',
@@ -136,8 +174,8 @@ export function moderateMetadata(
     matches.push(`title:${titleAsianMatch[0]}`);
   }
 
-  // Tratamento de "xxx" no título
-  if (/\bxxx\b/i.test(normalizedTitle) && !isXxxPlaceholder(item.title || '')) {
+  // Tratamento de "xxx" no título apenas se não for placeholder estrutural
+  if (/\bxxx\b/i.test(normalizedTitle) && !isXxxPlaceholder(rawTitle)) {
     reasons.push({
       category: 'metadata_keyword',
       triggerField: 'title',
@@ -147,8 +185,8 @@ export function moderateMetadata(
     matches.push('title:xxx');
   }
 
-  // 4. Verificação na Descrição
-  const rawDesc = item.description || '';
+  // 5. Verificação na Descrição
+  const rawDesc = typeof item?.description === 'string' ? item.description : '';
   const normalizedDesc = normalizeText(rawDesc);
   const descMatch = normalizedDesc.match(RESTRICTED_TERMS_REGEX);
   if (descMatch) {
@@ -185,7 +223,7 @@ export function moderateMetadata(
   const isBlocked = reasons.length > 0;
 
   return {
-    id: String(item.id),
+    id: id || 'desconhecido',
     status: isBlocked ? 'blocked' : 'safe',
     reasons,
     timestamp: new Date().toISOString(),

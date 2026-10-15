@@ -1,22 +1,19 @@
 /**
- * WallpaperGallery — Tipos do Sistema de Moderação de Conteúdo
+ * WallpaperGallery — Tipos do Sistema Simplificado de Moderação de Conteúdo
  */
 
-export type ModerationStatus = 'safe' | 'review' | 'blocked';
+export type ModerationStatus = 'safe' | 'blocked';
 
 export type ModerationCategory =
+  | 'manual_blacklist'
   | 'steam_rating'
   | 'metadata_keyword'
-  | 'visual_analysis'
-  | 'download_failure'
-  | 'format_validation'
-  | 'manual_flag';
+  | 'invalid_metadata';
 
 export interface ModerationReason {
   category: ModerationCategory;
-  triggerField: 'steam_rating' | 'title' | 'description' | 'tags' | 'preview_image' | 'system';
+  triggerField: 'steam_rating' | 'title' | 'description' | 'tags' | 'system';
   matchedTerm?: string;
-  confidence?: number;
   message: string;
 }
 
@@ -26,21 +23,15 @@ export interface ModerationDecision {
   reasons: ModerationReason[];
   timestamp: string;
   metadataMatches?: string[];
-  visualScore?: {
-    safe: number;
-    nsfw: number;
-    uncertainty?: number;
-  };
 }
 
 export interface ModerationSummary {
   totalAnalyzed: number;
   approvedCount: number;
   blockedCount: number;
-  reviewCount: number;
+  blockedByBlacklist: number;
   blockedBySteamRating: number;
   blockedByMetadata: number;
-  blockedByVisual: number;
-  reviewByVisual: number;
+  blockedByInvalidMetadata?: number;
   timestamp: string;
 }
