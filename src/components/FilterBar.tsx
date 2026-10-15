@@ -1,3 +1,4 @@
+import { useLanguage } from '../i18n/LanguageContext';
 import { useState } from 'react';
 import {
   SlidersHorizontal,
@@ -41,6 +42,7 @@ export function FilterBar({
   onResetFilters,
   hasActiveFilters,
 }: FilterBarProps) {
+  const { t } = useLanguage();
   const typeIcons: Record<WallpaperType, React.ReactNode> = {
     Scene: <Layers className="w-3.5 h-3.5" aria-hidden="true" />,
     Video: <Film className="w-3.5 h-3.5" aria-hidden="true" />,
@@ -57,17 +59,17 @@ export function FilterBar({
 
   return (
     <section
-      aria-label="Filtros e ordenação do catálogo"
+      aria-label={t('filtersLabel')}
       className="mb-8 p-4 md:p-5 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 space-y-4 text-xs"
     >
       {/* Linha Superior: Cabeçalho dos filtros e Ordenação */}
       <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-zinc-800/60">
         <div className="flex items-center gap-2">
           <SlidersHorizontal className="w-4 h-4 text-indigo-400" aria-hidden="true" />
-          <h2 className="font-semibold text-sm text-zinc-200">Filtros do Catálogo</h2>
+          <h2 className="font-semibold text-sm text-zinc-200">{t('filters')}</h2>
           {hasActiveFilters && (
             <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-              Filtros ativos
+              {t('activeFilters')}
             </span>
           )}
         </div>
@@ -79,10 +81,10 @@ export function FilterBar({
               type="button"
               onClick={onResetFilters}
               className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 border border-transparent hover:border-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
-              title="Restaurar todos os filtros para o padrão"
+              title={t('restoreFilters')}
             >
               <RotateCcw className="w-3 h-3" aria-hidden="true" />
-              <span>Limpar filtros</span>
+              <span>{t('clearFilters')}</span>
             </button>
           )}
 
@@ -90,7 +92,7 @@ export function FilterBar({
           <div className="flex items-center gap-1.5">
             <label htmlFor="sort-select" className="text-zinc-400 flex items-center gap-1">
               <ArrowUpDown className="w-3 h-3 text-zinc-500" aria-hidden="true" />
-              <span className="hidden sm:inline">Ordenar:</span>
+              <span className="hidden sm:inline">{t('sort')}</span>
             </label>
             <select
               id="sort-select"
@@ -98,10 +100,10 @@ export function FilterBar({
               onChange={(e) => onSortChange(e.target.value as SortOption)}
               className="px-2.5 py-1.5 rounded-xl bg-zinc-950 border border-zinc-800 text-zinc-200 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-colors cursor-pointer"
             >
-              <option value="popularity_desc">Mais populares</option>
-              <option value="date_desc">Mais recentes</option>
-              <option value="date_asc">Mais antigos</option>
-              <option value="title_asc">Título (A-Z)</option>
+              <option value="popularity_desc">{t('popular')}</option>
+              <option value="date_desc">{t('newest')}</option>
+              <option value="date_asc">{t('oldest')}</option>
+              <option value="title_asc">{t('titleAZ')}</option>
             </select>
           </div>
         </div>
@@ -111,8 +113,8 @@ export function FilterBar({
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
         {/* Seletor de Tipo de Wallpaper */}
         <div className="flex items-center gap-2">
-          <span className="text-zinc-400 font-medium shrink-0">Tipo:</span>
-          <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filtrar por tipo de wallpaper">
+          <span className="text-zinc-400 font-medium shrink-0">{t('type')}</span>
+          <div className="flex flex-wrap gap-1.5" role="group" aria-label={t('filterType')}>
             <button
               type="button"
               onClick={() => onSelectType('ALL')}
@@ -122,7 +124,7 @@ export function FilterBar({
                   : 'bg-zinc-950/80 text-zinc-400 border-zinc-800 hover:text-zinc-200 hover:border-zinc-700'
               }`}
             >
-              Todos
+              {t('all')}
             </button>
             {metadata.types.map((type) => (
               <button
@@ -136,7 +138,7 @@ export function FilterBar({
                 }`}
               >
                 {typeIcons[type]}
-                <span>{type}</span>
+                <span>{t(`type${type}`)}</span>
               </button>
             ))}
           </div>
@@ -150,8 +152,8 @@ export function FilterBar({
         {/* Filtro por Resolução aproximado */}
         {metadata.resolutions.length > 0 && (
           <div className="flex items-center gap-2">
-            <span className="text-zinc-400 font-medium shrink-0">Resolução:</span>
-            <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filtrar por resolução">
+            <span className="text-zinc-400 font-medium shrink-0">{t('resolutionColon')}</span>
+            <div className="flex flex-wrap gap-1.5" role="group" aria-label={t('filterResolution')}>
               {metadata.resolutions.map((res) => {
                 const isSelected = selectedResolutions.includes(res);
                 return (
@@ -165,7 +167,7 @@ export function FilterBar({
                         ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40 font-semibold shadow-xs'
                         : 'bg-zinc-950/80 text-zinc-400 border-zinc-800 hover:text-zinc-200 hover:border-zinc-700'
                     }`}
-                    title={`Resolução nominal: ${res}`}
+                    title={t('nominalResolution', { resolution: res })}
                   >
                     {getResolutionLabel(res)}
                   </button>
@@ -179,8 +181,8 @@ export function FilterBar({
       {/* Linha 2: Filtro por Tags com visualização colapsável inteligente */}
       {metadata.tags.length > 0 && (
         <div className="flex flex-col sm:flex-row sm:items-start gap-2 pt-3 border-t border-zinc-800/40">
-          <span className="text-zinc-400 font-medium shrink-0 sm:pt-1">Tags (OU):</span>
-          <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="Filtrar por tags temáticas">
+          <span className="text-zinc-400 font-medium shrink-0 sm:pt-1">{t('tagsOr')}</span>
+          <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label={t('filterTags')}>
             {visibleTags.map((tag) => {
               const isSelected = selectedTags.includes(tag);
               return (
@@ -209,7 +211,7 @@ export function FilterBar({
                 className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-dashed border-zinc-700 bg-zinc-900/60 hover:bg-zinc-800 text-zinc-300 hover:text-white text-xs font-medium transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                 aria-expanded={isExpandedTags}
               >
-                <span>{isExpandedTags ? 'Recolher tags' : `+${hiddenCount} tags`}</span>
+                <span>{isExpandedTags ? t('collapseTags') : t('moreTags', { count: hiddenCount })}</span>
                 {isExpandedTags ? (
                   <ChevronUp className="w-3 h-3 text-zinc-400" aria-hidden="true" />
                 ) : (

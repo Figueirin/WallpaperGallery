@@ -1,3 +1,4 @@
+import { useLanguage } from '../i18n/LanguageContext';
 import { usePageMetadata } from '../utils/usePageMetadata';
 import { AuthorName } from './AuthorName';
 import { steamLinks } from '../utils/safeUrls';
@@ -6,7 +7,7 @@ import { WallpaperItem } from '../types/wallpaper';
 import { IWallpaperDataProvider } from '../services/dataProvider';
 import { getResolutionLabel } from '../utils/filterWallpapers';
 import { getRecommendedWallpapers } from '../utils/recommendations';
-import { WallpaperCard } from './WallpaperCard';
+import { WallpaperRecommendations } from './WallpaperRecommendations';
 import { EmptyState } from './EmptyState';
 import { WallpaperMedia } from './WallpaperMedia';
 import {
@@ -38,16 +39,19 @@ export function WallpaperDetailView({
   onBack,
   onSelectWallpaper,
 }: WallpaperDetailViewProps) {
+  const { t, language } = useLanguage();
   const [wallpaper, setWallpaper] = useState<WallpaperItem | null>(null);
   const [recommendations, setRecommendations] = useState<WallpaperItem[]>([]);
   const [loading, setLoading] = useState(true);
-  usePageMetadata(wallpaper ? `${wallpaper.title} | Workshop Gallery` : undefined, wallpaper ? (wallpaper.description.trim().replace(/\s+/g, ' ').slice(0, 180) || `Veja ${wallpaper.title} na Steam Workshop para Wallpaper Engine.`) : undefined);
+  const [loadError, setLoadError] = useState(false);
+  usePageMetadata(wallpaper ? `${wallpaper.title} | WallpaperGallery` : t('siteTitle'), wallpaper ? (wallpaper.description.trim().replace(/\s+/g, ' ').slice(0, 180) || t('detailSeo', { title: wallpaper.title })) : t('siteDescription'));
 
   useEffect(() => {
     let isMounted = true;
 
     async function loadItem() {
       setLoading(true);
+      setLoadError(false);
       setWallpaper(null);
       setRecommendations([]);
       try {
@@ -66,6 +70,7 @@ export function WallpaperDetailView({
         }
       } catch (err) {
         console.error('Falha ao carregar detalhes do wallpaper:', err);
+        if (isMounted) setLoadError(true);
       } finally {
         if (isMounted) {
           setLoading(false);
@@ -94,8 +99,8 @@ export function WallpaperDetailView({
   // Formatação de data em português
   const formatDate = (isoDate: string) => {
     try {
-      if (!isoDate || !Number.isFinite(Date.parse(isoDate))) return 'Não informada';
-      return new Date(isoDate).toLocaleDateString('pt-BR', {
+      if (!isoDate || !Number.isFinite(Date.parse(isoDate))) return t('notProvided');
+      return new Date(isoDate).toLocaleDateString(language, {
         day: '2-digit',
         month: 'long',
         year: 'numeric',
@@ -127,7 +132,7 @@ export function WallpaperDetailView({
   if (loading) {
     return (
       <section
-        aria-label="Carregando detalhes do wallpaper"
+        aria-label={t('loadingDetails')}
         className="max-w-6xl mx-auto py-8 animate-pulse space-y-6"
       >
         <div className="h-8 w-40 bg-zinc-800/60 rounded-xl" />
@@ -140,13 +145,13 @@ export function WallpaperDetailView({
 
   if (!wallpaper) {
     return (
-      <section aria-label="Wallpaper não encontrado" className="py-12">
+      <section aria-label={t('notFound')} className="py-12">
         <EmptyState
           type="error"
-          title="Wallpaper não encontrado"
-          description={`Não foi possível localizar o item com identificador "${wallpaperId}" no catálogo.`}
+          title={t(loadError ? 'loadFailed' : 'notFound')}
+          description={loadError ? t('loadErrorDescription') : t('itemNotFound', { id: wallpaperId })}
           onReset={onBack}
-          resetLabel="Voltar para a galeria"
+          resetLabel={t('backGallery')}
         />
       </section>
     );
@@ -155,7 +160,7 @@ export function WallpaperDetailView({
   return (
     <article
       key={wallpaper.id}
-      aria-label={`Detalhes do wallpaper: ${wallpaper.title}`}
+      aria-label={t('detailsTitle', { title: wallpaper.title })}
       className="max-w-6xl mx-auto py-4 sm:py-6 space-y-8 animate-detail-enter"
     >
       {/* Barra Superior de Navegação e Ações */}
@@ -164,10 +169,10 @@ export function WallpaperDetailView({
           type="button"
           onClick={onBack}
           className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-zinc-100 border border-zinc-800 hover:border-zinc-700 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
-          title="Voltar para a Galeria (Esc)"
+          title={t('backGalleryEsc')}
         >
           <ArrowLeft className="w-4 h-4" aria-hidden="true" />
-          <span>Voltar para a Galeria</span>
+          <span>{t('backGalleryButton')}</span>
           <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[10px] bg-zinc-800 border border-zinc-700 text-zinc-400 font-mono ml-1">Esc</kbd>
         </button>
 
@@ -180,8 +185,8 @@ export function WallpaperDetailView({
               href={steamLinks(wallpaper.id, wallpaper.isSimulated).web}
               target="_blank"
               rel="noopener noreferrer"
-              title="Visualizar página no Steam Workshop"
-              aria-label={`Abrir ${wallpaper.title} no Steam Workshop`}
+              title={t('steamPage')}
+              aria-label={t('openSteamTitle', { title: wallpaper.title })}
               className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
             >
               <span>Steam Workshop</span>
@@ -191,7 +196,7 @@ export function WallpaperDetailView({
         </div>
       </div>
 
-      {wallpaper.isSimulated && <p role="status" className="text-sm text-amber-300">Conteúdo simulado — não pertence ao catálogo de produção.</p>}
+      {wallpaper.isSimulated && <p role="status" className="text-sm text-amber-300">{t('simulatedDetail')}</p>}
 
       {/* Área Principal de Mídia (Player de Vídeo, YouTube, Web Demo ou Imagem) */}
       <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-zinc-950 border border-zinc-800/80 shadow-2xl shadow-black/80 flex items-center justify-center animate-media-reveal">
@@ -205,7 +210,7 @@ export function WallpaperDetailView({
         <div className="absolute top-4 left-4 flex items-center gap-2 pointer-events-none">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-zinc-950/85 backdrop-blur-md border border-white/10 text-xs font-medium text-zinc-200">
             {renderTypeIcon(wallpaper.type)}
-            <span>{wallpaper.type}</span>
+            <span>{t(`type${wallpaper.type}`)}</span>
           </span>
 
           <span className="px-3 py-1 rounded-xl bg-zinc-950/85 backdrop-blur-md border border-white/10 text-xs font-mono text-zinc-200">
@@ -235,7 +240,7 @@ export function WallpaperDetailView({
           {/* Descrição Detalhada */}
           <div className="space-y-2">
             <h2 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-              Descrição
+              {t('description')}
             </h2>
             <p className="text-sm text-zinc-300 leading-relaxed whitespace-pre-line bg-zinc-900/40 p-4 rounded-2xl border border-zinc-800/60">
               {wallpaper.description}
@@ -246,9 +251,9 @@ export function WallpaperDetailView({
           {wallpaper.tags && wallpaper.tags.length > 0 && (
             <div className="space-y-2">
               <h2 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-                Tags Temáticas
+                {t('themeTags')}
               </h2>
-              <div className="flex flex-wrap gap-2" aria-label="Tags do wallpaper">
+              <div className="flex flex-wrap gap-2" aria-label={t('wallpaperTags')}>
                 {wallpaper.tags.map((tag) => (
                   <span
                     key={`detail-tag-${tag}`}
@@ -269,30 +274,30 @@ export function WallpaperDetailView({
           <div className="p-5 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 space-y-4 text-xs">
             <h2 className="font-semibold text-sm text-zinc-200 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-indigo-400" aria-hidden="true" />
-              <span>Especificações Técnicas</span>
+              <span>{t('specs')}</span>
             </h2>
 
             <dl className="space-y-3">
               <div className="flex justify-between py-1 border-b border-zinc-800/50">
-                <dt className="text-zinc-400">Resolução</dt>
+                <dt className="text-zinc-400">{t('resolution')}</dt>
                 <dd className="font-mono text-zinc-200">
                   {getResolutionLabel(wallpaper.resolution)}
                 </dd>
               </div>
 
               <div className="flex justify-between py-1 border-b border-zinc-800/50">
-                <dt className="text-zinc-400">Proporção</dt>
+                <dt className="text-zinc-400">{t('aspectRatio')}</dt>
                 <dd className="font-mono text-zinc-200">{wallpaper.aspectRatio}</dd>
               </div>
 
               <div className="flex justify-between py-1 border-b border-zinc-800/50">
-                <dt className="text-zinc-400">Tipo de Mídia</dt>
-                <dd className="text-zinc-200">{wallpaper.type}</dd>
+                <dt className="text-zinc-400">{t('mediaType')}</dt>
+                <dd className="text-zinc-200">{t(`type${wallpaper.type}`)}</dd>
               </div>
 
               {wallpaper.fileSizeBytes && (
                 <div className="flex justify-between py-1 border-b border-zinc-800/50">
-                  <dt className="text-zinc-400">Tamanho Estimado</dt>
+                  <dt className="text-zinc-400">{t('estimatedSize')}</dt>
                   <dd className="font-mono text-zinc-200">
                     {formatFileSize(wallpaper.fileSizeBytes)}
                   </dd>
@@ -300,14 +305,14 @@ export function WallpaperDetailView({
               )}
 
               <div className="flex justify-between py-1 border-b border-zinc-800/50">
-                <dt className="text-zinc-400">Classificação</dt>
+                <dt className="text-zinc-400">{t('rating')}</dt>
                 <dd className="text-zinc-200">{wallpaper.rating}</dd>
               </div>
 
               <div className="flex justify-between py-1">
                 <dt className="text-zinc-400 flex items-center gap-1">
                   <Clock className="w-3 h-3 text-zinc-500" aria-hidden="true" />
-                  <span>Atualização</span>
+                  <span>{t('updated')}</span>
                 </dt>
                 <dd className="text-zinc-300">{formatDate(wallpaper.updatedAt)}</dd>
               </div>
@@ -317,17 +322,17 @@ export function WallpaperDetailView({
           {/* Métricas de Popularidade */}
           {wallpaper.stats && (
             <div className="p-5 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 space-y-4 text-xs">
-              <h2 className="font-semibold text-sm text-zinc-200">Métricas do Workshop</h2>
+              <h2 className="font-semibold text-sm text-zinc-200">{t('workshopStats')}</h2>
 
               <div className="grid grid-cols-2 gap-3">
                 {wallpaper.stats.views !== undefined && (
                   <div className="p-3 rounded-xl bg-zinc-950/80 border border-zinc-800/60">
                     <div className="flex items-center gap-1.5 text-zinc-400 mb-1">
                       <Eye className="w-3.5 h-3.5 text-indigo-400" aria-hidden="true" />
-                      <span>Visualizações</span>
+                      <span>{t('views')}</span>
                     </div>
                     <span className="text-sm font-semibold text-zinc-100 font-mono">
-                      {wallpaper.stats.views.toLocaleString('pt-BR')}
+                      {wallpaper.stats.views.toLocaleString(language)}
                     </span>
                   </div>
                 )}
@@ -336,10 +341,10 @@ export function WallpaperDetailView({
                   <div className="p-3 rounded-xl bg-zinc-950/80 border border-zinc-800/60">
                     <div className="flex items-center gap-1.5 text-zinc-400 mb-1">
                       <Download className="w-3.5 h-3.5 text-emerald-400" aria-hidden="true" />
-                      <span>Inscrições</span>
+                      <span>{t('subscriptions')}</span>
                     </div>
                     <span className="text-sm font-semibold text-zinc-100 font-mono">
-                      {wallpaper.stats.subscriptions.toLocaleString('pt-BR')}
+                      {wallpaper.stats.subscriptions.toLocaleString(language)}
                     </span>
                   </div>
                 )}
@@ -348,10 +353,10 @@ export function WallpaperDetailView({
                   <div className="p-3 rounded-xl bg-zinc-950/80 border border-zinc-800/60">
                     <div className="flex items-center gap-1.5 text-zinc-400 mb-1">
                       <Heart className="w-3.5 h-3.5 text-rose-400" aria-hidden="true" />
-                      <span>Favoritos</span>
+                      <span>{t('favorites')}</span>
                     </div>
                     <span className="text-sm font-semibold text-zinc-100 font-mono">
-                      {wallpaper.stats.favorited.toLocaleString('pt-BR')}
+                      {wallpaper.stats.favorited.toLocaleString(language)}
                     </span>
                   </div>
                 )}
@@ -360,10 +365,10 @@ export function WallpaperDetailView({
                   <div className="p-3 rounded-xl bg-zinc-950/80 border border-zinc-800/80">
                     <div className="flex items-center gap-1.5 text-zinc-400 mb-1">
                       <ThumbsUp className="w-3.5 h-3.5 text-sky-400" aria-hidden="true" />
-                      <span>Votos Positivos</span>
+                      <span>{t('upvotes')}</span>
                     </div>
                     <span className="text-sm font-semibold text-zinc-100 font-mono">
-                      {wallpaper.stats.votesUp.toLocaleString('pt-BR')}
+                      {wallpaper.stats.votesUp.toLocaleString(language)}
                     </span>
                   </div>
                 )}
@@ -378,12 +383,12 @@ export function WallpaperDetailView({
                 <Sparkles className="w-4 h-4" aria-hidden="true" />
               </div>
               <div>
-                <h3 className="font-semibold text-sm text-zinc-100">Disponível no Steam</h3>
+                <h3 className="font-semibold text-sm text-zinc-100">{t('availableSteam')}</h3>
                 <p className="text-[11px] text-zinc-400">Wallpaper Engine • AppID 431960</p>
               </div>
             </div>
             <p className="text-xs text-zinc-300 leading-relaxed">
-              Veja os detalhes e as opções de inscrição na página oficial da Steam Workshop. A compatibilidade depende do Wallpaper Engine e do sistema utilizado.
+              {t('steamDescription')}
             </p>
             <div className="flex flex-col gap-2 pt-1">
               {steamLinks(wallpaper.id, wallpaper.isSimulated).web && (
@@ -393,7 +398,7 @@ export function WallpaperDetailView({
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
                 >
-                  <span>Abrir no Steam Workshop</span>
+                  <span>{t('openSteam')}</span>
                   <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
                 </a>
               )}
@@ -404,37 +409,7 @@ export function WallpaperDetailView({
       </div>
 
       {/* Seção de Wallpapers Recomendados */}
-      {recommendations.length > 0 && (
-        <section
-          aria-label="Wallpapers recomendados"
-          className="pt-8 border-t border-zinc-800/80 space-y-5"
-        >
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <div>
-              <h2 className="text-lg sm:text-xl font-bold tracking-tight text-zinc-100 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-indigo-400" aria-hidden="true" />
-                <span>Você também pode gostar</span>
-              </h2>
-              <p className="text-xs text-zinc-400 mt-1">
-                Wallpapers com tags, temas ou características semelhantes
-              </p>
-            </div>
-            <span className="text-xs text-zinc-500 font-mono px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800">
-              {recommendations.length} recomendações
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
-            {recommendations.map((rec) => (
-              <WallpaperCard
-                key={rec.id}
-                wallpaper={rec}
-                onSelect={onSelectWallpaper}
-              />
-            ))}
-          </div>
-        </section>
-      )}
+      <WallpaperRecommendations wallpapers={recommendations} onSelectWallpaper={onSelectWallpaper} />
     </article>
   );
 }

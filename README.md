@@ -6,15 +6,16 @@
 
 O WallpaperGallery reúne wallpapers públicos da Workshop em uma interface visual para explorar temas e encontrar opções para o desktop. Você pode pesquisar, combinar filtros, comparar resultados e visitar o item original na Steam.
 
-O catálogo atual conta com **979 wallpapers reais**, com paginação e páginas individuais de detalhes. O site utiliza metadados e previews públicos; os pacotes dos wallpapers continuam na Workshop.
+O catálogo atual conta com **979 wallpapers reais**, com rolagem progressiva e páginas individuais de detalhes. O site utiliza metadados e previews públicos; os pacotes dos wallpapers continuam na Workshop.
 
 ## Funcionalidades
 
 - **Exploração:** catálogo real, busca por título, tags e autor conforme os metadados disponíveis.
 - **Filtros e ordenação:** encontre wallpapers por tipo, resolução e tema.
-- **Navegação:** paginação, página individual por wallpaper e links para a Workshop.
+- **Navegação:** rolagem progressiva, página individual por wallpaper e links para a Workshop.
 - **Descoberta:** recomendações de wallpapers com características semelhantes nos detalhes.
 - **Interface responsiva:** navegação em telas de desktop e dispositivos móveis.
+- **Idiomas:** inglês e português do Brasil, com seletor EN/PT e preferência salva no navegador.
 - **Moderação por metadados:** classificações Steam, palavras-chave, tags e blacklist manual.
 - **Catálogo estático:** navegação sem backend ou banco de dados obrigatório.
 

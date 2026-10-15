@@ -1,8 +1,10 @@
+import { useLanguage } from '../i18n/LanguageContext';
 export function LoadingSkeleton({ count = 12 }: { count?: number }) {
+  const { t } = useLanguage();
   return (
     <div
       role="status"
-      aria-label="Carregando galeria de wallpapers"
+      aria-label={t('loadingGallery')}
       className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 min-[2100px]:grid-cols-6 gap-5 lg:gap-6"
     >
       {Array.from({ length: count }).map((_, idx) => (
@@ -31,7 +33,7 @@ export function LoadingSkeleton({ count = 12 }: { count?: number }) {
           </div>
         </div>
       ))}
-      <span className="sr-only">Carregando itens...</span>
+      <span className="sr-only">{t('loadingItems')}</span>
     </div>
   );
 }

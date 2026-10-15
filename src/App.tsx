@@ -1,15 +1,11 @@
-import { wallpaperIdFromLocation, pageFromSearch, galleryUrl } from './utils/navigation';
+import { useLanguage } from './i18n/LanguageContext';
+import { wallpaperIdFromLocation } from './utils/navigation';
+import { catalogQueryFromSearch, catalogUrl, defaultCatalogQuery, type CatalogQuery } from './utils/catalogQuery';
+import { InfiniteCatalog } from './utils/infiniteCatalog';
 import { usePageMetadata } from './utils/usePageMetadata';
-import { SITE_TITLE, SITE_DESCRIPTION } from './utils/pageMetadata';
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useCallback, useRef, useSyncExternalStore } from 'react';
 import { createWallpaperProvider } from './services/providerFactory';
-import {
-  WallpaperItem,
-  FilterMetadata,
-  WallpaperType,
-  SortOption,
-  DEFAULT_PAGE_SIZE,
-} from './types/wallpaper';
+import { type WallpaperItem, type FilterMetadata, type WallpaperType, type SortOption, DEFAULT_PAGE_SIZE } from './types/wallpaper';
 import { Navbar } from './components/Navbar';
 import { FilterBar } from './components/FilterBar';
 import { GalleryGrid } from './components/GalleryGrid';
@@ -17,230 +13,102 @@ import { WallpaperDetailView } from './components/WallpaperDetailView';
 import { LoadingSkeleton } from './components/LoadingSkeleton';
 import { EmptyState } from './components/EmptyState';
 import { Footer } from './components/Footer';
-import { Pagination } from './components/Pagination';
-import {
-  Info,
-  X,
-  ArrowUp,
-} from 'lucide-react';
+import { InfiniteScrollFooter } from './components/InfiniteScrollFooter';
+import { Info, X, ArrowUp } from 'lucide-react';
 import { getResolutionLabel } from './utils/filterWallpapers';
 
 let provider: ReturnType<typeof createWallpaperProvider>;
-try {
-  provider = createWallpaperProvider();
-} catch (error) {
+try { provider = createWallpaperProvider(); } catch (error) {
   const unavailable = async (): Promise<never> => { throw error; };
   provider = { getWallpapers: unavailable, getWallpaperById: unavailable, getFilterMetadata: unavailable };
 }
-
 const PAGE_SIZE = DEFAULT_PAGE_SIZE;
+const readQuery = () => typeof window === 'undefined' ? defaultCatalogQuery() : catalogQueryFromSearch(window.location.search);
+const readId = () => typeof window === 'undefined' ? null : wallpaperIdFromLocation(window.location.pathname, window.location.hash);
 
-
-function parseWallpaperIdFromUrl(): string | null {
-  return typeof window === 'undefined' ? null : wallpaperIdFromLocation(window.location.pathname, window.location.hash);
-}
-
-function parsePageFromUrl(): number {
-  return typeof window === 'undefined' ? 1 : pageFromSearch(window.location.search);
-}
-
-function syncUrl(page: number, wallpaperId: string | null, replace = false) {
-  if (typeof window === 'undefined') return;
-  try {
-    const url = galleryUrl(window.location.href, page, wallpaperId);
-    if (replace) {
-      window.history.replaceState({ page, wallpaperId }, '', url);
-    } else {
-      window.history.pushState({ page, wallpaperId }, '', url);
-    }
-  } catch {
-    // ignorar em ambientes restritos
-  }
+function syncUrl(query: CatalogQuery, wallpaperId: string | null, scroll: number, replace = false) {
+  const url = catalogUrl(window.location.href, query, wallpaperId);
+  const state = { ...window.history.state, galleryScroll: scroll };
+  if (replace) window.history.replaceState(state, '', url);
+  else window.history.pushState(state, '', url);
 }
 
 export function App() {
-  const [selectedWallpaperId, setSelectedWallpaperId] = useState<string | null>(parseWallpaperIdFromUrl);
-  usePageMetadata(selectedWallpaperId ? undefined : SITE_TITLE, SITE_DESCRIPTION);
-  const [wallpapers, setWallpapers] = useState<WallpaperItem[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(parsePageFromUrl);
-  const [totalFilteredCount, setTotalFilteredCount] = useState(0);
-
+  const { t } = useLanguage();
+  const [catalog] = useState(() => new InfiniteCatalog(provider, readQuery()));
+  const state = useSyncExternalStore(catalog.subscribe, catalog.getSnapshot, catalog.getSnapshot);
+  const { query, items: wallpapers, total: totalFilteredCount } = state;
+  const { searchQuery, type: selectedType, resolutions: selectedResolutions, tags: selectedTags, sortBy } = query;
+  const totalCatalogCount = state.catalogTotal ?? totalFilteredCount;
+  const initialLoading = state.page === 0 && !state.error;
+  const isLoading = state.loading || initialLoading;
+  const hasError = state.error && wallpapers.length === 0;
+  const [selectedWallpaperId, setSelectedWallpaperId] = useState<string | null>(readId);
   const [metadata, setMetadata] = useState<FilterMetadata | null>(null);
-  const [totalCatalogCount, setTotalCatalogCount] = useState(0);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedType, setSelectedType] = useState<WallpaperType | 'ALL'>('ALL');
-  const [selectedResolutions, setSelectedResolutions] = useState<string[]>([]);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [sortBy, setSortBy] = useState<SortOption>('popularity_desc');
+  const galleryScroll = useRef(0);
+  usePageMetadata(selectedWallpaperId ? undefined : t('siteTitle'), t('siteDescription'));
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  const requestVersion = useRef(0);
-
-  // Sincroniza histórico de navegação SPA (popstate e hashchange)
   useEffect(() => {
     const handleLocationChange = () => {
-      const id = parseWallpaperIdFromUrl();
-      setSelectedWallpaperId(id);
-      const urlPage = parsePageFromUrl();
-      setCurrentPage((prev) => (prev !== urlPage ? urlPage : prev));
+      const changed = catalog.reset(readQuery());
+      galleryScroll.current = changed ? 0 : (window.history.state?.galleryScroll ?? galleryScroll.current);
+      setSelectedWallpaperId(readId());
     };
-
-    window.addEventListener('hashchange', handleLocationChange);
+    const previous = window.history.scrollRestoration;
+    window.history.scrollRestoration = 'manual';
+    syncUrl(catalog.getSnapshot().query, readId(), 0, true); // Strip legacy page= without loading preceding batches.
     window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
     return () => {
+      window.history.scrollRestoration = previous;
       window.removeEventListener('popstate', handleLocationChange);
       window.removeEventListener('hashchange', handleLocationChange);
     };
+  }, [catalog]);
+
+  useEffect(() => {
+    let active = true;
+    provider.getFilterMetadata().then(meta => { if (active) setMetadata(meta); }).catch(() => {});
+    return () => { active = false; };
   }, []);
 
-  // Carrega metadados iniciais do catálogo sem requisição redundante de wallpapers
   useEffect(() => {
-    async function initMetadata() {
-      try {
-        const meta = await provider.getFilterMetadata();
-        setMetadata(meta);
-      } catch (err) {
-        console.error('Falha ao obter metadados do catálogo:', err);
-      }
-    }
-    initMetadata();
-  }, []);
+    if (selectedWallpaperId || catalog.getSnapshot().page > 0) return;
+    const timer = setTimeout(() => { void catalog.loadNext(); }, 120);
+    return () => clearTimeout(timer);
+  }, [catalog, query, selectedWallpaperId]);
 
-  // Busca e filtra wallpapers respeitando todos os critérios combinados
-  const fetchWallpapers = useCallback(async (pageToFetch: number = currentPage) => {
-    const version = ++requestVersion.current;
-    try {
-      setIsLoading(true);
-      setHasError(false);
-      setErrorMessage(null);
-
-      const result = await provider.getWallpapers({
-        searchQuery: searchQuery,
-        types: selectedType !== 'ALL' ? [selectedType] : undefined,
-        resolutions: selectedResolutions.length > 0 ? selectedResolutions : undefined,
-        tags: selectedTags.length > 0 ? selectedTags : undefined,
-        sortBy: sortBy,
-        page: pageToFetch,
-        pageSize: PAGE_SIZE,
-      });
-
-      if (version !== requestVersion.current) return;
-      setWallpapers(result.items);
-      setTotalFilteredCount(result.total);
-      setCurrentPage(result.page);
-
-      const isDefaultView =
-        !searchQuery.trim() &&
-        selectedType === 'ALL' &&
-        selectedResolutions.length === 0 &&
-        selectedTags.length === 0 &&
-        sortBy === 'popularity_desc';
-
-      if (isDefaultView) {
-        setTotalCatalogCount(result.total);
-      }
-    } catch (err) {
-      if (version !== requestVersion.current) return;
-      console.error('Falha ao aplicar filtros e carregar wallpapers:', err);
-      setHasError(true);
-      setErrorMessage(
-        err instanceof Error
-          ? err.message
-          : 'Ocorreu um erro inesperado ao filtrar o catálogo.'
-      );
-    } finally {
-      if (version === requestVersion.current) setIsLoading(false);
-    }
-  }, [searchQuery, selectedType, selectedResolutions, selectedTags, sortBy, currentPage]);
-
-  // Executa busca com debounce para digitação e sincronização de filtros
   useEffect(() => {
-    requestVersion.current++;
-    const timeoutId = setTimeout(() => {
-      fetchWallpapers(currentPage);
-    }, 120);
+    const frame = window.requestAnimationFrame(() => window.scrollTo({ top: selectedWallpaperId ? 0 : galleryScroll.current, behavior: 'auto' }));
+    return () => window.cancelAnimationFrame(frame);
+  }, [selectedWallpaperId, query]);
 
-    return () => {
-      clearTimeout(timeoutId);
-      requestVersion.current++;
-    };
-  }, [fetchWallpapers, currentPage]);
-
-  const handlePageChange = (newPage: number) => {
-    if (newPage === currentPage) return;
-    setCurrentPage(newPage);
-    syncUrl(newPage, selectedWallpaperId);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleToggleResolution = (res: string) => {
-    setSelectedResolutions((prev) =>
-      prev.includes(res) ? prev.filter((r) => r !== res) : [...prev, res]
-    );
-    setCurrentPage(1);
-    syncUrl(1, selectedWallpaperId, true);
-  };
-
-  const handleToggleTag = (tag: string) => {
-    setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    );
-    setCurrentPage(1);
-    syncUrl(1, selectedWallpaperId, true);
-  };
-
-  const handleSelectType = (type: WallpaperType | 'ALL') => {
-    setSelectedType(type);
-    setCurrentPage(1);
-    syncUrl(1, selectedWallpaperId, true);
-  };
-
-  const handleSortChange = (newSort: SortOption) => {
-    setSortBy(newSort);
-    setCurrentPage(1);
-    syncUrl(1, selectedWallpaperId, true);
-  };
-
-  const handleResetFilters = () => {
-    setSelectedType('ALL');
-    setSelectedResolutions([]);
-    setSelectedTags([]);
-    setCurrentPage(1);
-    syncUrl(1, selectedWallpaperId, true);
-  };
-
-  const handleResetAll = () => {
-    setSearchQuery('');
-    handleResetFilters();
-    setSortBy('popularity_desc');
-    setCurrentPage(1);
-    syncUrl(1, selectedWallpaperId, true);
-  };
-
-  const handleSelectWallpaper = (item: WallpaperItem) => {
-    setSelectedWallpaperId(item.id);
-    syncUrl(currentPage, item.id);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleBackToGallery = () => {
+  const changeQuery = (next: CatalogQuery, replace = false) => {
+    galleryScroll.current = 0;
+    catalog.reset(next); // Invalidates old requests synchronously, before the next render/debounce.
+    syncUrl(next, null, 0, replace && !selectedWallpaperId);
     setSelectedWallpaperId(null);
-    syncUrl(currentPage, null);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'auto' });
   };
+  const handleToggleResolution = (res: string) => changeQuery({ ...query, resolutions: selectedResolutions.includes(res) ? selectedResolutions.filter(value => value !== res) : [...selectedResolutions, res] });
+  const handleToggleTag = (tag: string) => changeQuery({ ...query, tags: selectedTags.includes(tag) ? selectedTags.filter(value => value !== tag) : [...selectedTags, tag] });
+  const handleSelectType = (type: WallpaperType | 'ALL') => changeQuery({ ...query, type });
+  const handleSortChange = (sortBy: SortOption) => changeQuery({ ...query, sortBy });
+  const handleResetFilters = () => changeQuery({ ...query, type: 'ALL', resolutions: [], tags: [] });
+  const handleResetAll = () => changeQuery(defaultCatalogQuery());
+  const handleSearchChange = (searchQuery: string) => changeQuery({ ...query, searchQuery }, true);
 
-  const handleSearchChange = (query: string) => {
-    setSearchQuery(query);
-    setCurrentPage(1);
-    if (selectedWallpaperId) {
-      setSelectedWallpaperId(null);
-      syncUrl(1, null);
-    } else {
-      syncUrl(1, null, true);
+  const handleSelectWallpaper = useCallback((item: WallpaperItem) => {
+    if (!selectedWallpaperId) {
+      galleryScroll.current = window.scrollY;
+      syncUrl(catalog.getSnapshot().query, null, galleryScroll.current, true);
     }
+    syncUrl(catalog.getSnapshot().query, item.id, galleryScroll.current);
+    setSelectedWallpaperId(item.id);
+  }, [catalog, selectedWallpaperId]);
+  const handleBackToGallery = () => {
+    syncUrl(query, null, galleryScroll.current);
+    setSelectedWallpaperId(null);
   };
 
   const hasActiveFilters =
@@ -273,11 +141,11 @@ export function App() {
           />
         ) : (
           <>
-            <h1 className="sr-only">Wallpapers do Wallpaper Engine e Steam Workshop</h1>
-            <h2 className="sr-only">Catálogo de wallpapers</h2>
+            <h1 className="sr-only">{t('siteHeading')}</h1>
+            <h2 className="sr-only">{t('catalogHeading')}</h2>
             {/* Banner Informativo de Ambiente e Compatibilidade */}
             <section
-              aria-label="Informações do catálogo"
+              aria-label={t('catalogInfo')}
               className="mb-6 p-4 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-zinc-400"
             >
               <div className="flex items-center gap-2.5">
@@ -286,10 +154,10 @@ export function App() {
                 </div>
                 <div>
                   <p className="font-medium text-zinc-300">
-                    Catálogo Steam Workshop (AppID 431960)
+                    {t('catalogSteam')}
                   </p>
                   <p className="text-zinc-500 text-[11px]">
-                    Explore pelo navegador no computador ou celular. A compatibilidade dos wallpapers depende do Wallpaper Engine e do sistema utilizado.
+                    {t('compatibility')}
                   </p>
                 </div>
               </div>
@@ -297,9 +165,11 @@ export function App() {
               <div className="flex items-center gap-2 shrink-0 text-[11px]">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-800/80 border border-zinc-700/60 text-zinc-300">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  {totalFilteredCount < totalCatalogCount
-                    ? `${wallpapers.length} de ${totalFilteredCount} filtrados (${totalCatalogCount} total)`
-                    : `${totalCatalogCount} wallpapers no catálogo`}
+                  {state.catalogTotal === null
+                    ? t('loadedCount', { count: wallpapers.length, total: totalFilteredCount })
+                    : totalFilteredCount < totalCatalogCount
+                    ? t('filteredCount', { shown: wallpapers.length, filtered: totalFilteredCount, total: totalCatalogCount })
+                    : t('catalogCount', { count: totalCatalogCount })}
                 </span>
               </div>
             </section>
@@ -326,10 +196,10 @@ export function App() {
               <div className="flex flex-wrap items-center gap-2">
                 <span className="text-sm font-semibold text-zinc-200">
                   {totalFilteredCount}{' '}
-                  {totalFilteredCount === 1 ? 'wallpaper encontrado' : 'wallpapers encontrados'}
+                  {totalFilteredCount === 1 ? t('foundOne') : t('foundMany')}
                   {totalFilteredCount > wallpapers.length && (
                     <span className="text-xs font-normal text-zinc-400 ml-1.5">
-                      (Página {currentPage} • {wallpapers.length} exibidos)
+                      {t('loadedCount', { count: wallpapers.length, total: totalFilteredCount })}
                     </span>
                   )}
                 </span>
@@ -337,11 +207,11 @@ export function App() {
                 {/* Chips de Filtros Ativos para remoção rápida */}
                 {selectedType !== 'ALL' && (
                   <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-zinc-800 text-zinc-300 border border-zinc-700">
-                    Tipo: {selectedType}
+                    {t('type')} {t(`type${selectedType}`)}
                     <button
                       type="button"
                       onClick={() => handleSelectType('ALL')}
-                      aria-label="Remover filtro de tipo"
+                      aria-label={t('removeType')}
                       className="hover:text-zinc-100"
                     >
                       <X className="w-3 h-3" />
@@ -358,7 +228,7 @@ export function App() {
                     <button
                       type="button"
                       onClick={() => handleToggleResolution(res)}
-                      aria-label={`Remover filtro de resolução ${res}`}
+                      aria-label={t('removeResolution', { resolution: res })}
                       className="hover:text-zinc-100"
                     >
                       <X className="w-3 h-3" />
@@ -371,11 +241,11 @@ export function App() {
                     key={`active-tag-${tag}`}
                     className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-zinc-800 text-zinc-300 border border-zinc-700"
                   >
-                    Tag: {tag}
+                    {t('tagPrefix')} {tag}
                     <button
                       type="button"
                       onClick={() => handleToggleTag(tag)}
-                      aria-label={`Remover filtro da tag ${tag}`}
+                      aria-label={t('removeTag', { tag })}
                       className="hover:text-zinc-100"
                     >
                       <X className="w-3 h-3" />
@@ -385,11 +255,11 @@ export function App() {
 
                 {searchQuery.trim() !== '' && (
                   <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
-                    Busca: "{searchQuery}"
+                    {t('searchChip', { query: searchQuery })}
                     <button
                       type="button"
                       onClick={() => handleSearchChange('')}
-                      aria-label="Limpar termo de busca"
+                      aria-label={t('clearSearchTerm')}
                       className="hover:text-white"
                     >
                       <X className="w-3 h-3" />
@@ -404,7 +274,7 @@ export function App() {
                   onClick={handleResetAll}
                   className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors font-medium cursor-pointer"
                 >
-                  Limpar busca e filtros
+                  {t('clearAll')}
                 </button>
               )}
             </div>
@@ -415,13 +285,13 @@ export function App() {
             ) : hasError ? (
               <EmptyState
                 type="error"
-                title="Erro ao carregar o catálogo"
-                description={errorMessage || undefined}
-                onReset={() => fetchWallpapers(currentPage)}
-                resetLabel="Tentar novamente"
+                title={t('catalogError')}
+                description={t('loadErrorDescription')}
+                onReset={catalog.retry}
+                resetLabel={t('retry')}
               />
             ) : (
-              <div className={`transition-opacity duration-200 ${isLoading ? 'opacity-60 pointer-events-none' : 'opacity-100'}`}>
+              <div>
                 <GalleryGrid
                   wallpapers={wallpapers}
                   onResetSearch={handleResetAll}
@@ -429,14 +299,17 @@ export function App() {
                   onSelectWallpaper={handleSelectWallpaper}
                 />
 
-                {/* Controles de Paginação (shards de 25 itens) */}
-                <Pagination
-                  currentPage={currentPage}
-                  totalItems={totalFilteredCount}
-                  pageSize={PAGE_SIZE}
-                  onPageChange={handlePageChange}
-                  isLoading={isLoading}
-                />
+                {wallpapers.length > 0 && (
+                  <InfiniteScrollFooter
+                    loading={state.loading}
+                    hasMore={state.hasMore}
+                    error={state.error}
+                    loaded={wallpapers.length}
+                    total={totalFilteredCount}
+                    onLoadMore={catalog.retry}
+                    onAutoLoad={catalog.loadNext}
+                  />
+                )}
 
                 {/* Botão de retorno ao topo */}
                 {wallpapers.length > 0 && (
@@ -447,7 +320,7 @@ export function App() {
                       className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors inline-flex items-center gap-1 cursor-pointer font-medium"
                     >
                       <ArrowUp className="w-3.5 h-3.5" aria-hidden="true" />
-                      <span>Voltar ao topo</span>
+                      <span>{t('backTop')}</span>
                     </button>
                   </div>
                 )}

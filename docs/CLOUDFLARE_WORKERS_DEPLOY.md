@@ -76,7 +76,11 @@ A configuração de Static Assets precisa manter o equivalente a este fragmento:
 
 O fallback SPA permite abrir `/wallpaper/:id` diretamente e recarregar com F5. O frontend continua interpretando a rota, sem novo framework de routing. Fonte: [SPA em Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/).
 
-Este fragmento documenta a configuração de assets, não é uma configuração completa para um Worker novo: preserve o nome, a data de compatibilidade e demais opções do projeto existente. No checkout inspecionado não havia arquivo Wrangler versionado; o proprietário informou o tratamento SPA atual. Não foi criada configuração com nome inventado nem alterado o painel. O Wrangler também dispõe de configuração automática para projetos sem esse arquivo; confirme nos logs a configuração efetivamente usada antes de mudar a publicação. Fonte: [configuração automática](https://developers.cloudflare.com/workers/ci-cd/builds/configuration/#automatic-configuration-for-new-projects).
+A configuração completa está em [wrangler.jsonc](../wrangler.jsonc), com os valores confirmados pelo proprietário no deploy existente: nome `wallpapergallery`, `compatibility_date` `2026-10-12` e observabilidade habilitada. O fallback SPA permanece explícito.
+
+O log anterior confirmou duas compilações: Workers Builds executava `npm run build` e, depois, `wrangler deploy` entrava em autoconfiguração de Vite e repetia o build. O arquivo explícito evita essa autoconfiguração. Não há `build.command` no Wrangler: mantenha **Build command `npm run build`** e **Deploy command `npx wrangler deploy`** no Cloudflare. Assim, o primeiro gera `dist/` e o segundo publica os assets já gerados. Fonte: [como evitar autoconfiguração](https://developers.cloudflare.com/workers/framework-guides/automatic-configuration/#skipping-automatic-configuration).
+
+O caminho `$schema` atende às ferramentas de edição quando Wrangler estiver instalado; esta mudança não adiciona dependências. Sem esse pacote instalado localmente, o editor pode não encontrar o schema, o que não altera a configuração de publicação. Não foram alterados settings remotos. No próximo deployment, confira que existe uma única execução de `npm run build` e que o acesso direto/F5 em detalhes continua funcionando.
 
 ## Branches e próximas publicações
 

@@ -1,5 +1,7 @@
-export const SITE_TITLE = 'Workshop Gallery | Wallpapers do Wallpaper Engine';
-export const SITE_DESCRIPTION = 'Explore wallpapers animados e live wallpapers do Wallpaper Engine na Steam Workshop. Pesquise temas, filtre resoluções e descubra wallpapers para desktop.';
+import { translate } from '../i18n/translations.ts';
+
+export const SITE_TITLE = translate('en', 'siteTitle');
+export const SITE_DESCRIPTION = translate('en', 'siteDescription');
 
 /** Apenas metadados textuais; nenhum domínio/canonical é inferido do ambiente local. */
 export function updatePageMetadata(title: string, description: string): () => void {

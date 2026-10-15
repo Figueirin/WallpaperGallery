@@ -1,5 +1,5 @@
 /**
- * Workshop Gallery - Definições de Tipos para Wallpapers do Wallpaper Engine
+ * WallpaperGallery - Definições de Tipos para Wallpapers do Wallpaper Engine
  * Baseado no modelo de dados do Steam Workshop (AppID 431960).
  */
 

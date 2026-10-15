@@ -1,6 +1,7 @@
+import { useLanguage } from '../i18n/LanguageContext';
 import { steamLinks } from '../utils/safeUrls';
 import { AuthorName } from './AuthorName';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { WallpaperItem } from '../types/wallpaper';
 import { WallpaperMedia } from './WallpaperMedia';
 import {
@@ -17,7 +18,8 @@ interface WallpaperCardProps {
   onSelect?: (wallpaper: WallpaperItem) => void;
 }
 
-export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
+export const WallpaperCard = memo(function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
+  const { t } = useLanguage();
   const [isHovered, setIsHovered] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
@@ -56,8 +58,8 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
       onBlur={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      aria-label={`Visualizar detalhes do wallpaper: ${wallpaper.title}`}
-      className="group relative flex flex-col rounded-2xl bg-zinc-900/80 border border-zinc-800/80 hover:border-zinc-700/80 hover:shadow-xl hover:shadow-black/40 hover:-translate-y-0.5 transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
+      aria-label={t('viewDetails', { title: wallpaper.title })}
+      className="group relative flex flex-col rounded-2xl bg-zinc-900/80 border border-zinc-800/80 hover:border-zinc-700/80 hover:shadow-xl hover:shadow-black/40 hover:-translate-y-0.5 transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-within:ring-2 focus-within:ring-indigo-500 cursor-pointer"
     >
       {/* Área da Imagem de Prévia / Vídeo com zoom sutil e contido no hover */}
       <div className="relative aspect-video w-full rounded-t-2xl overflow-hidden bg-zinc-950 flex items-center justify-center">
@@ -72,7 +74,7 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
         <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-zinc-950/80 backdrop-blur-md border border-white/10 text-[11px] font-medium text-zinc-200">
             {renderTypeIcon()}
-            <span>{wallpaper.type}</span>
+            <span>{t(`type${wallpaper.type}`)}</span>
           </span>
 
           {wallpaper.videoPreviewUrl && (
@@ -84,8 +86,8 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
               }`}
               title={
                 isVideoPlaying
-                  ? 'Vídeo em reprodução'
-                  : 'Este wallpaper possui prévia em vídeo'
+                  ? t('videoPlaying')
+                  : t('hasVideo')
               }
             >
               <Play
@@ -94,7 +96,7 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
                 }`}
                 aria-hidden="true"
               />
-              <span>{isVideoPlaying ? 'Reproduzindo' : 'Vídeo'}</span>
+              <span>{isVideoPlaying ? t('playing') : t('typeVideo')}</span>
             </span>
           )}
         </div>
@@ -109,11 +111,11 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
       {/* Conteúdo e Metadados do Card */}
       <div className="p-4 flex-1 flex flex-col justify-between">
         <div>
-          {wallpaper.isSimulated && <span className="text-xs text-amber-300">Conteúdo simulado</span>}
+          {wallpaper.isSimulated && <span className="text-xs text-amber-300">{t('simulated')}</span>}
           {/* Título com truncamento limpo */}
           <h3
             title={wallpaper.title}
-            className="text-sm font-semibold text-zinc-100 group-hover:text-indigo-400 transition-colors truncate leading-snug"
+            className="text-sm font-semibold text-zinc-100 group-hover:text-indigo-400 transition-colors leading-snug truncate"
           >
             <a href={`/wallpaper/${encodeURIComponent(wallpaper.id)}`}
               onClick={(event) => {
@@ -137,7 +139,7 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
 
           {/* Lista de tags visuais */}
           {wallpaper.tags && wallpaper.tags.length > 0 && (
-            <div className="mt-3 flex flex-wrap gap-1.5" aria-label="Tags do wallpaper">
+            <div className="mt-3 flex flex-wrap gap-1.5" aria-label={t('wallpaperTags')}>
               {wallpaper.tags.slice(0, 3).map((tag) => (
                 <span
                   key={`${wallpaper.id}-tag-${tag}`}
@@ -171,8 +173,8 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
                 onClick={(e) => e.stopPropagation()}
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Visualizar página no Steam Workshop"
-                aria-label={`Abrir ${wallpaper.title} no Steam Workshop`}
+                title={t('steamPage')}
+                aria-label={t('openSteamTitle', { title: wallpaper.title })}
                 className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium text-indigo-400 hover:text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
               >
                 <span>Steam</span>
@@ -184,5 +186,4 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
       </div>
     </article>
   );
-}
-
+});
