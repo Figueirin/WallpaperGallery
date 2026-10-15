@@ -5,7 +5,7 @@
 
 export type WallpaperType = 'Scene' | 'Video' | 'Web' | 'Application';
 
-export type WallpaperAgeRating = 'Everyone' | 'Questionable' | 'Mature';
+export type WallpaperAgeRating = 'Everyone' | 'Questionable' | 'Mature' | 'Unrated';
 
 export type AspectRatio = '16:9' | '21:9' | '16:10' | '32:9' | 'Other';
 

@@ -9,7 +9,7 @@ export function isWallpaperItem(value: unknown): value is WallpaperItem {
     && Boolean(item.author && typeof item.author.name === 'string')
     && Array.isArray(item.tags) && item.tags.every(tag => typeof tag === 'string')
     && ['Scene', 'Video', 'Web', 'Application'].includes(item.type)
-    && ['Everyone', 'Questionable', 'Mature'].includes(item.rating)
+    && ['Everyone', 'Questionable', 'Mature', 'Unrated'].includes(item.rating)
     && ['16:9', '21:9', '16:10', '32:9', 'Other'].includes(item.aspectRatio)
     && Boolean(item.stats && typeof item.stats === 'object')
     && Object.values(item.stats).every(value => value === undefined || (typeof value === 'number' && Number.isFinite(value) && value >= 0));

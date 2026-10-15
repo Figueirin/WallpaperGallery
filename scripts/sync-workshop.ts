@@ -169,10 +169,11 @@ export function normalizeResolution(tags: string[]): {
  * Normaliza classificação indicativa
  */
 export function normalizeRating(tags: string[]): WallpaperAgeRating {
-  const lower = tags.map((t) => t.toLowerCase());
-  if (lower.includes('mature')) return 'Mature';
-  if (lower.includes('questionable')) return 'Questionable';
-  return 'Everyone';
+  const cleaned = tags.map((t) => (typeof t === 'string' ? t.trim().toLowerCase() : ''));
+  if (cleaned.includes('mature')) return 'Mature';
+  if (cleaned.includes('questionable')) return 'Questionable';
+  if (cleaned.includes('everyone')) return 'Everyone';
+  return 'Unrated';
 }
 
 /**
@@ -180,7 +181,7 @@ export function normalizeRating(tags: string[]): WallpaperAgeRating {
  */
 export function extractThematicTags(tags: string[]): string[] {
   const structuralRegex =
-    /^(scene|video|web|application|everyone|questionable|mature|\d{3,4}\s*x\s*\d{3,4}|dual.*|triple.*|ultrawide.*)$/i;
+    /^(scene|video|web|application|everyone|questionable|mature|unrated|\d{3,4}\s*x\s*\d{3,4}|dual.*|triple.*|ultrawide.*)$/i;
 
   return tags
     .map((t) => t.trim())
@@ -557,34 +558,6 @@ export async function main() {
     }
   }
 
-  // Filtragem e Moderação de Conteúdo Obrigatória (NSFW / Mature)
-  if (!isMockExport) {
-    console.log(`🛡️ Aplicando moderação de conteúdo sobre ${fetchedWallpapers.length} wallpapers coletados...`);
-    const pipeline = new ModerationPipeline();
-    const approved: WallpaperItem[] = [];
-    const quarantined: Array<{ item: WallpaperItem; reasons: string[] }> = [];
-
-    for (const item of fetchedWallpapers) {
-      const decision = await pipeline.evaluateItem(item);
-      if (decision.status === 'safe') {
-        approved.push(item);
-      } else {
-        quarantined.push({ item, reasons: decision.reasons.map((r) => r.message) });
-      }
-    }
-
-    if (quarantined.length > 0) {
-      console.log(`⚠️ ${quarantined.length} wallpaper(s) retidos por moderação/quarentena e excluídos do catálogo.`);
-      try {
-        const qPath = resolve('.moderation/quarantine.json');
-        mkdirSync(dirname(qPath), { recursive: true });
-        writeFileSync(qPath, JSON.stringify(quarantined, null, 2), 'utf-8');
-      } catch {}
-    }
-    fetchedWallpapers = approved;
-    console.log(`✅ ${fetchedWallpapers.length} wallpaper(s) aprovados para o catálogo público.\n`);
-  }
-
   // 1. Ler catálogo existente se já existir para realizar merge incremental
   let existingCatalog: WallpaperItem[] = [];
   let originalDiskCatalog: WallpaperItem[] = [];
@@ -619,42 +592,99 @@ export async function main() {
     fetchedWallpapers
   );
 
-  // 3. Salvar catálogo consolidado
+  // 3. Moderação COMPLETA do catálogo consolidado (Merged Collection)
+  // Garante que tanto novos wallpapers quanto itens pré-existentes (ex: IDs antigos
+  // adicionados à blacklist ou com metadados reprovados) sejam filtrados antes de qualquer escrita.
+  let finalWallpapers = merged;
+  if (!isMockExport) {
+    console.log(`🛡️ Aplicando moderação de conteúdo sobre o catálogo consolidado (${merged.length} wallpapers)...`);
+    const pipeline = new ModerationPipeline();
+    const approved: WallpaperItem[] = [];
+    const quarantined: Array<{ item: WallpaperItem; reasons: string[] }> = [];
+
+    for (const item of merged) {
+      const decision = pipeline.evaluateItem(item);
+      if (decision.status === 'safe') {
+        approved.push(item);
+      } else {
+        quarantined.push({ item, reasons: decision.reasons.map((r) => r.message) });
+      }
+    }
+
+    if (quarantined.length > 0) {
+      console.log(`⚠️ ${quarantined.length} wallpaper(s) retidos por moderação/quarentena e excluídos do catálogo.`);
+      try {
+        const qPath = resolve('.moderation/quarantine.json');
+        mkdirSync(dirname(qPath), { recursive: true });
+        writeFileSync(qPath, JSON.stringify(quarantined, null, 2), 'utf-8');
+      } catch {}
+    }
+    finalWallpapers = approved;
+    console.log(`✅ ${finalWallpapers.length} wallpaper(s) aprovados para o catálogo público.\n`);
+  }
+
+  // 4. Pré-validação rigorosa de todos os itens antes de modificar arquivos públicos
+  for (const item of finalWallpapers) {
+    if (!isWallpaperItem(item)) {
+      throw new Error(`Item inválido para inclusão no catálogo: ${(item as { id?: string })?.id ?? 'desconhecido'}`);
+    }
+    if (!isMockExport && item.isSimulated) {
+      throw new Error(`Item simulado rejeitado no catálogo de produção: ${item.id}`);
+    }
+  }
+
+  const shardedDir = outputPath.endsWith('.json')
+    ? outputPath.slice(0, -5)
+    : resolve(dirname(outputPath), 'catalog');
+
+  const sharded = createCatalogShards(finalWallpapers, {
+    appId: WALLPAPER_ENGINE_APP_ID,
+    pageSize: 24,
+    allowSimulated: isMockExport,
+  });
+
+  const shardsLockPath = `${shardedDir}.lock`;
+  if (existsSync(shardsLockPath)) {
+    const err = new Error(`EEXIST: Lock ocupado em: ${shardsLockPath}`);
+    (err as NodeJS.ErrnoException).code = 'EEXIST';
+    throw err;
+  }
+
+  // 5. Salvar catálogo consolidado e shards com proteção de rollback
   mkdirSync(dirname(outputPath), { recursive: true });
   const lockPath = `${outputPath}.lock`;
   const lock = openSync(lockPath, 'wx');
   const tempPath = `${outputPath}.${process.pid}.tmp`;
   try {
     // Detecta mudanças desde a leitura para evitar sobrescrever outro coletor.
-    if (existsSync(outputPath) && JSON.stringify(JSON.parse(readFileSync(outputPath, 'utf-8'))) !== JSON.stringify(originalDiskCatalog)) throw new Error('Catálogo alterado por outro processo');
-    writeFileSync(tempPath, JSON.stringify(merged, null, 2), { encoding: 'utf-8', flag: 'wx' });
+    if (existsSync(outputPath) && JSON.stringify(JSON.parse(readFileSync(outputPath, 'utf-8'))) !== JSON.stringify(originalDiskCatalog)) {
+      throw new Error('Catálogo alterado por outro processo');
+    }
+    writeFileSync(tempPath, JSON.stringify(finalWallpapers, null, 2), { encoding: 'utf-8', flag: 'wx' });
     renameSync(tempPath, outputPath);
+
+    writeCatalogShardsSync(shardedDir, sharded, {
+      isMock: isMockExport,
+    });
+  } catch (err) {
+    if (existsSync(outputPath) && originalDiskCatalog.length > 0) {
+      try {
+        writeFileSync(outputPath, JSON.stringify(originalDiskCatalog, null, 2), 'utf-8');
+      } catch {}
+    }
+    throw err;
   } finally {
-    closeSync(lock); unlinkSync(lockPath);
+    closeSync(lock);
+    unlinkSync(lockPath);
     if (existsSync(tempPath)) unlinkSync(tempPath);
   }
-
-  // 4. Gerar e salvar catálogo particionado em shards (manifest.json, index.json, pages/*.json)
-  const shardedDir = outputPath.endsWith('.json')
-    ? outputPath.slice(0, -5)
-    : resolve(dirname(outputPath), 'catalog');
-
-  const sharded = createCatalogShards(merged, {
-    appId: WALLPAPER_ENGINE_APP_ID,
-    pageSize: 24,
-    allowSimulated: isMockExport,
-  });
-
-  writeCatalogShardsSync(shardedDir, sharded, {
-    isMock: isMockExport,
-  });
 
   console.log('\n📊 Relatório de Sincronização Incremental:');
   console.log(`   • Total anterior no catálogo:     ${existingCatalog.length}`);
   console.log(`   • Novos wallpapers inseridos:     +${added}`);
   console.log(`   • Wallpapers com stats atualizados: ${updated}`);
   console.log(`   • Wallpapers sem alterações:       ${unchanged}`);
-  console.log(`   • Total consolidado no catálogo:   ${merged.length}`);
+  console.log(`   • Total consolidado no catálogo:   ${finalWallpapers.length}`);
   console.log(`\n✅ Sucesso! Catálogo salvo em: ${outputPath}`);
   console.log(`✅ Sucesso! Shards salvos em: ${shardedDir}\n`);
 }

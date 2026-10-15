@@ -58,46 +58,48 @@ describe('Moderação de Conteúdo Simplificada (Simplified Content Moderation)'
     });
   });
 
-  describe('2. Classificação Etária Ausente ou Desconhecida (Sem Aprovação Silenciosa)', () => {
-    it('deve bloquear se a classificação etária rating for indefinida / ausente', () => {
+  describe('2. Classificação Etária Ausente ou Desconhecida (Permitida se passar pelos outros filtros)', () => {
+    it('deve permitir wallpaper se a classificação etária rating for indefinida / ausente, desde que passe nos outros filtros', () => {
       const item = {
         id: '1101',
         title: 'Unknown Rating Wallpaper',
-        description: 'Sem rating',
+        description: 'Sem rating mas com conteudo limpo',
         tags: ['Nature'],
       };
       const decision = moderateMetadata(item);
-      assert.equal(decision.status, 'blocked');
-      assert.ok(decision.reasons.some((r) => r.category === 'steam_rating'));
-      assert.ok(decision.reasons.some((r) => r.message.includes('ausente')));
+      assert.equal(decision.status, 'safe');
+      assert.equal(decision.reasons.length, 0);
     });
 
-    it('deve bloquear se a classificação etária for string vazia ou apenas espaços', () => {
-      const item = {
+    it('deve permitir se a classificação etária for string vazia ou Unrated, desde que passe nos outros filtros', () => {
+      const emptyRating = moderateMetadata({
         id: '1102',
         title: 'Empty Rating Wallpaper',
-        description: 'Rating vazio',
+        description: 'Rating vazio e conteudo limpo',
         tags: ['Nature'],
         rating: '   ',
-      };
-      const decision = moderateMetadata(item);
-      assert.equal(decision.status, 'blocked');
-      assert.ok(decision.reasons.some((r) => r.category === 'steam_rating'));
+      });
+      assert.equal(emptyRating.status, 'safe');
+
+      const unrated = moderateMetadata({
+        id: '1103',
+        title: 'Unrated Wallpaper',
+        description: 'Rating unrated e conteudo limpo',
+        tags: ['Art'],
+        rating: 'Unrated',
+      });
+      assert.equal(unrated.status, 'safe');
     });
 
-    it('deve bloquear se a classificação etária for desconhecida ou não reconhecida', () => {
-      const unknownRatings = ['Unrated', 'Unknown', 'Teen', 'Pending', 'Adult'];
-      for (const rating of unknownRatings) {
-        const decision = moderateMetadata({
-          id: '1103',
-          title: 'Unrecognized Rating',
-          description: 'Teste',
-          tags: ['Art'],
-          rating,
-        });
-        assert.equal(decision.status, 'blocked', `Rating "${rating}" deveria ter sido bloqueado`);
-        assert.ok(decision.reasons.some((r) => r.category === 'steam_rating'));
-      }
+    it('deve bloquear wallpaper com rating ausente se contiver termos proibidos', () => {
+      const decision = moderateMetadata({
+        id: '1104',
+        title: 'Hentai Wallpaper Without Rating',
+        description: 'Sem rating porem com conteudo adulto',
+        tags: ['Anime'],
+      });
+      assert.equal(decision.status, 'blocked');
+      assert.ok(decision.reasons.some((r) => r.category === 'metadata_keyword'));
     });
 
     it('deve bloquear se metadados essenciais estiverem ausentes (ex: ID ou Título vazio)', () => {
@@ -315,8 +317,9 @@ describe('Moderação de Conteúdo Simplificada (Simplified Content Moderation)'
       );
     });
 
-    it('deve carregar blacklist do disco ou retornar Set vazio se arquivo não existir', () => {
-      const emptySet = loadManualBlacklist('/non-existent-path/blocked.json');
+    it('deve lançar erro se arquivo de blacklist não existir por padrão ou retornar Set vazio se required: false', () => {
+      assert.throws(() => loadManualBlacklist('/non-existent-path/blocked.json'), /não encontrado/);
+      const emptySet = loadManualBlacklist('/non-existent-path/blocked.json', { required: false });
       assert.equal(emptySet.size, 0);
 
       const tmpDir = mkdtempSync(join(tmpdir(), 'wg-bl-'));

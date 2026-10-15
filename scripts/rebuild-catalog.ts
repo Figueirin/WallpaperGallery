@@ -16,6 +16,7 @@ import type { WallpaperItem } from '../src/types/wallpaper.ts';
 import { ModerationPipeline } from '../src/services/moderation/moderationPipeline.ts';
 import type { ModerationDecision, ModerationSummary } from '../src/services/moderation/types.ts';
 import { createCatalogShards, writeCatalogShardsSync } from '../src/utils/catalogSharder.ts';
+import { isWallpaperItem } from '../src/utils/validateWallpaper.ts';
 
 const WALLPAPER_ENGINE_APP_ID = 431960;
 
@@ -119,33 +120,60 @@ export async function rebuildCatalog(options: {
   writeFileSync(quarantinePath, JSON.stringify(quarantinePayload, null, 2), 'utf-8');
   console.log(`📋 Relatório de quarentena gerado em:\n   ${quarantinePath}\n`);
 
-  // 4. Gravação Atômica do Catálogo Sanitizado
-  const lockPath = `${catalogPath}.lock`;
-  const lock = openSync(lockPath, 'wx');
-  const tempPath = `${catalogPath}.${process.pid}.tmp`;
-  try {
-    writeFileSync(tempPath, JSON.stringify(approvedItems, null, 2), { encoding: 'utf-8', flag: 'wx' });
-    renameSync(tempPath, catalogPath);
-  } finally {
-    closeSync(lock);
-    if (existsSync(lockPath)) unlinkSync(lockPath);
-    if (existsSync(tempPath)) unlinkSync(tempPath);
+  // 4. Pré-validação rigorosa de todos os itens antes de qualquer modificação em arquivos públicos
+  for (const item of approvedItems) {
+    if (!isWallpaperItem(item)) {
+      throw new Error(`Item inválido para inclusão no catálogo: ${(item as { id?: string })?.id ?? 'desconhecido'}`);
+    }
+    if (item.isSimulated) {
+      throw new Error(`Item simulado rejeitado no catálogo de produção: ${item.id}`);
+    }
   }
 
-  // 5. Regeneração dos Shards e Manifesto Públicos (Apenas com itens Aprovados)
   const shardedDir = catalogPath.endsWith('.json')
     ? catalogPath.slice(0, -5)
     : resolve(dirname(catalogPath), 'catalog');
 
+  // Pré-gera os shards em memória para assegurar consistência antes da escrita
   const sharded = createCatalogShards(approvedItems, {
     appId: WALLPAPER_ENGINE_APP_ID,
     pageSize: 24,
     allowSimulated: false,
   });
 
-  writeCatalogShardsSync(shardedDir, sharded, {
-    isMock: false,
-  });
+  // Verifica antecipadamente se o lock dos shards está ocupado
+  const shardsLockPath = `${shardedDir}.lock`;
+  if (existsSync(shardsLockPath)) {
+    const err = new Error(`EEXIST: Lock ocupado em: ${shardsLockPath}`);
+    (err as NodeJS.ErrnoException).code = 'EEXIST';
+    throw err;
+  }
+
+  // 5. Gravação Atômica do Catálogo Sanitizado e Shards com Rollback
+  const lockPath = `${catalogPath}.lock`;
+  const lock = openSync(lockPath, 'wx');
+  const tempPath = `${catalogPath}.${process.pid}.tmp`;
+  try {
+    writeFileSync(tempPath, JSON.stringify(approvedItems, null, 2), { encoding: 'utf-8', flag: 'wx' });
+    renameSync(tempPath, catalogPath);
+
+    // Regeneração dos Shards e Manifesto Públicos
+    writeCatalogShardsSync(shardedDir, sharded, {
+      isMock: false,
+    });
+  } catch (err) {
+    // Rollback para restaurar o catálogo anterior se a escrita dos shards falhar
+    if (existsSync(backupPath)) {
+      try {
+        copyFileSync(backupPath, catalogPath);
+      } catch {}
+    }
+    throw err;
+  } finally {
+    closeSync(lock);
+    if (existsSync(lockPath)) unlinkSync(lockPath);
+    if (existsSync(tempPath)) unlinkSync(tempPath);
+  }
 
   console.log('📊 Relatório de Sanitização:');
   console.log(`   • Total original no catálogo:         ${items.length}`);

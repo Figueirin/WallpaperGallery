@@ -17,6 +17,7 @@ import {
   unlinkSync,
   rmSync,
   readdirSync,
+  copyFileSync,
 } from 'node:fs';
 import { resolve, join, dirname } from 'node:path';
 import type {
@@ -233,25 +234,27 @@ export function writeCatalogShardsSync(
   const lock = openSync(lockFile, 'wx');
 
   const tempDir = join(dirname(absDir), `.catalog_tmp_${process.pid}_${Date.now()}`);
-  mkdirSync(tempDir, { recursive: true });
-  mkdirSync(join(tempDir, 'pages'), { recursive: true });
+  const rollbackDir = join(dirname(absDir), `.catalog_rollback_${process.pid}_${Date.now()}`);
 
   try {
-    // 1. Grava o manifest.json
+    mkdirSync(tempDir, { recursive: true });
+    mkdirSync(join(tempDir, 'pages'), { recursive: true });
+
+    // 1. Grava o manifest.json em staging
     writeFileSync(
       join(tempDir, 'manifest.json'),
       JSON.stringify(shardedData.manifest, null, 2),
       'utf-8'
     );
 
-    // 2. Grava o index.json compacto
+    // 2. Grava o index.json compacto em staging
     writeFileSync(
       join(tempDir, 'index.json'),
       JSON.stringify(shardedData.index),
       'utf-8'
     );
 
-    // 3. Grava cada página individual
+    // 3. Grava cada página individual em staging
     for (const shard of shardedData.shards) {
       const shardPath = join(tempDir, shard.file);
       mkdirSync(dirname(shardPath), { recursive: true });
@@ -262,10 +265,28 @@ export function writeCatalogShardsSync(
       );
     }
 
-    // 4. Move os arquivos para o diretório de destino final
+    // 4. Cria cópia de rollback do estado anterior de absDir caso exista
+    mkdirSync(rollbackDir, { recursive: true });
+    mkdirSync(join(rollbackDir, 'pages'), { recursive: true });
+    if (existsSync(join(absDir, 'manifest.json'))) {
+      copyFileSync(join(absDir, 'manifest.json'), join(rollbackDir, 'manifest.json'));
+    }
+    if (existsSync(join(absDir, 'index.json'))) {
+      copyFileSync(join(absDir, 'index.json'), join(rollbackDir, 'index.json'));
+    }
+    const currentPagesDir = join(absDir, 'pages');
+    if (existsSync(currentPagesDir)) {
+      for (const file of readdirSync(currentPagesDir)) {
+        const filePath = join(currentPagesDir, file);
+        try {
+          copyFileSync(filePath, join(rollbackDir, 'pages', file));
+        } catch {}
+      }
+    }
+
     mkdirSync(join(absDir, 'pages'), { recursive: true });
 
-    // Substitui manifest e index atomicamente
+    // 5. Substitui manifest e index atomicamente
     renameSync(join(tempDir, 'manifest.json'), join(absDir, 'manifest.json'));
     renameSync(join(tempDir, 'index.json'), join(absDir, 'index.json'));
 
@@ -281,21 +302,42 @@ export function writeCatalogShardsSync(
     }
 
     // Prune stale shard files in absDir/pages
-    const pagesDir = join(absDir, 'pages');
-    if (existsSync(pagesDir)) {
-      const existingPageFiles = readdirSync(pagesDir);
+    if (existsSync(currentPagesDir)) {
+      const existingPageFiles = readdirSync(currentPagesDir);
       for (const file of existingPageFiles) {
         const relativeShard = `pages/${file}`;
         if (!activeFiles.has(relativeShard)) {
-          try { unlinkSync(join(pagesDir, file)); } catch {}
+          unlinkSync(join(currentPagesDir, file));
         }
       }
     }
+  } catch (err) {
+    // Rollback para restaurar manifesto, índice e páginas caso a promoção falhe
+    if (existsSync(rollbackDir)) {
+      try {
+        if (existsSync(join(rollbackDir, 'manifest.json'))) {
+          copyFileSync(join(rollbackDir, 'manifest.json'), join(absDir, 'manifest.json'));
+        }
+        if (existsSync(join(rollbackDir, 'index.json'))) {
+          copyFileSync(join(rollbackDir, 'index.json'), join(absDir, 'index.json'));
+        }
+        const rbPages = join(rollbackDir, 'pages');
+        if (existsSync(rbPages)) {
+          for (const file of readdirSync(rbPages)) {
+            copyFileSync(join(rbPages, file), join(absDir, 'pages', file));
+          }
+        }
+      } catch {}
+    }
+    throw err;
   } finally {
     closeSync(lock);
     if (existsSync(lockFile)) unlinkSync(lockFile);
     if (existsSync(tempDir)) {
       try { rmSync(tempDir, { recursive: true, force: true }); } catch {}
+    }
+    if (existsSync(rollbackDir)) {
+      try { rmSync(rollbackDir, { recursive: true, force: true }); } catch {}
     }
   }
 }

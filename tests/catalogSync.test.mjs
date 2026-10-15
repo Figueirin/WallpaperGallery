@@ -71,10 +71,13 @@ describe('Sincronização e Normalização do Steam Workshop (Catalog Sync)', ()
       assert.strictEqual(normalizeRating(['Questionable']), 'Questionable');
     });
 
-    it('deve padronizar para Everyone por padrão seguro', () => {
+    it('deve identificar Everyone explicitamente e Unrated quando não informado', () => {
       assert.strictEqual(normalizeRating(['Everyone']), 'Everyone');
-      assert.strictEqual(normalizeRating(['Nature']), 'Everyone');
-      assert.strictEqual(normalizeRating([]), 'Everyone');
+      assert.strictEqual(normalizeRating(['Nature']), 'Unrated');
+      assert.strictEqual(normalizeRating([]), 'Unrated');
+      assert.strictEqual(normalizeRating(['Unrated']), 'Unrated');
+      assert.strictEqual(normalizeRating([' Mature ']), 'Mature');
+      assert.strictEqual(normalizeRating(['Everyone', 'Mature']), 'Mature');
     });
   });
 

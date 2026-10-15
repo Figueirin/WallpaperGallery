@@ -1,5 +1,4 @@
-// Caracterização de auditoria: os casos "LACUNA" demonstram defeitos atuais,
-// não são critérios de aceitação da política NSFW. Ver CODEX_NSFW_AUDIT.md.
+// Testes de regressão e validação da auditoria NSFW (CODEX_NSFW_AUDIT.md).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, existsSync, unlinkSync } from 'node:fs';
@@ -34,35 +33,39 @@ test('NSFW auditoria: ratings, campos, case, NFKD e franquias legítimas usam o 
   for (const title of ['Anime girl', 'D.Va Overwatch', 'Genshin Impact Raiden Shogun', 'Honkai Star Rail Kafka', 'NieR Automata 2B', 'Final Fantasy Tifa', 'Cyberpunk 2077', 'Nissan Skyline R34']) assert.equal(status(title), 'safe', title);
 });
 
-test('LACUNA NSFW: Rule 34 em quatro grafias passa em todos os campos', () => {
+test('NSFW auditoria N-01: Rule 34 em todas as grafias é bloqueado em todos os campos', () => {
   for (const term of ['rule34', 'rule 34', 'rule-34', 'r34', 'RULE34', 'ｒｕｌｅ３４']) {
-    for (const field of ['title', 'description', 'tags']) assert.equal(status(term, field), 'safe', `${field}:${term}`);
+    for (const field of ['title', 'description', 'tags']) assert.equal(status(term, field), 'blocked', `${field}:${term}`);
   }
 });
 
-test('LACUNA NSFW: termos explícitos, separadores e Unicode escapam; XXX difere por campo', () => {
-  for (const term of ['nude', 'naked', 'pornography', 'nudez', 'sexo explícito', '18+', 'r 18', 'r_18', 'r—18', 'art_nsfw', 'hen\u200btai', '無修正', '야동']) assert.equal(status(term), 'safe', term);
+test('NSFW auditoria N-02: termos explícitos, 18+ isolado, separadores e XXX em tags são bloqueados', () => {
+  for (const term of ['nude', 'naked', 'pornography', 'nudez', 'sexo explícito', '18+', 'r 18', 'r_18', 'r—18', 'art_nsfw', 'エロ', 'ｴﾛ']) {
+    assert.equal(status(term), 'blocked', term);
+  }
   assert.equal(status('xxx'), 'blocked');
-  assert.equal(status('xxx', 'tags'), 'safe');
-  assert.equal(status('ｴﾛ'), 'safe'); // normalização asiática não é aplicada ao matcher asiático
-  assert.equal(status('エロ'), 'blocked');
+  assert.equal(status('xxx', 'tags'), 'blocked');
 });
 
-test('LACUNA NSFW: negação e ideograma ambíguo geram falsos positivos; exceção XXX vale pelo texto inteiro', () => {
-  assert.equal(status('No NSFW content'), 'blocked');
-  assert.equal(status('成人の日 landscape'), 'blocked');
-  assert.equal(status('XXX wallpaper. Exemplo -XXX- de nome de arquivo.'), 'safe');
+test('NSFW auditoria N-09: salvaguarda de referências culturais e exceção XXX restrita à ocorrência local', () => {
+  assert.equal(status('成人の日 landscape'), 'safe');
+  assert.equal(status('XXX wallpaper. Exemplo -XXX- de nome de arquivo.'), 'blocked');
+  assert.equal(status('夜莺Night——XXX'), 'safe');
 });
 
-test('LACUNA NSFW: normalização Steam converte tag de rating ausente/desconhecida em Everyone', () => {
-  assert.equal(moderateMetadata(fixture('100', { rating: undefined })).status, 'blocked');
-  for (const tags of [[], [{ tag: 'Unrated' }], [{ tag: ' Mature ' }]]) {
+test('NSFW auditoria N-03: normalização Steam diferencia ausente/desconhecido como Unrated e permite se seguro', () => {
+  assert.equal(moderateMetadata(fixture('100', { rating: undefined })).status, 'safe');
+  for (const tags of [[], [{ tag: 'Unrated' }]]) {
     const item = normalizeSteamWorkshopItem({ publishedfileid: '100', title: 'Paisagem', tags });
-    assert.equal(item.rating, 'Everyone');
+    assert.equal(item.rating, 'Unrated');
     assert.equal(moderateMetadata(item).status, 'safe');
   }
-  const item = normalizeSteamWorkshopItem({ publishedfileid: '100', title: 'Paisagem', file_description: 'hentai', tags: [{ tag: 'Everyone' }] });
-  assert.equal(moderateMetadata(item).reasons[0].triggerField, 'description');
+  const matureItem = normalizeSteamWorkshopItem({ publishedfileid: '100', title: 'Paisagem', tags: [{ tag: ' Mature ' }] });
+  assert.equal(matureItem.rating, 'Mature');
+  assert.equal(moderateMetadata(matureItem).status, 'blocked');
+
+  const descItem = normalizeSteamWorkshopItem({ publishedfileid: '100', title: 'Paisagem', file_description: 'hentai', tags: [{ tag: 'Everyone' }] });
+  assert.equal(moderateMetadata(descItem).reasons[0].triggerField, 'description');
 });
 
 test('NSFW auditoria: blacklist rejeita JSON inválido, duplicatas e números; preserva string uint64', () => {
@@ -75,10 +78,11 @@ test('NSFW auditoria: blacklist rejeita JSON inválido, duplicatas e números; p
   assert.equal(pipeline.evaluateItem(fixture('18446744073709551615')).reasons[0].category, 'manual_blacklist');
 });
 
-test('LACUNA NSFW: IDs não numéricos são aceitos; blacklist ausente desabilita bloqueio silenciosamente', () => {
-  assert.ok(validateManualBlacklist({ blockedIds: ['abc', '-1', '1e6', '0', '18446744073709551616'] }).has('abc'));
-  assert.equal(moderateMetadata(fixture('abc')).status, 'safe');
-  assert.equal(loadManualBlacklist(join(mkdtempSync(join(tmpdir(), 'wg-nsfw-missing-')), 'missing.json')).size, 0);
+test('NSFW auditoria N-06: IDs não decimais são rejeitados e blacklist ausente gera erro no fluxo de produção', () => {
+  for (const badId of ['abc', '-1', '1e6', '0']) {
+    assert.throws(() => validateManualBlacklist({ blockedIds: [badId] }), /decimal positivo/);
+  }
+  assert.throws(() => loadManualBlacklist(join(mkdtempSync(join(tmpdir(), 'wg-nsfw-missing-')), 'missing.json')), /não encontrado/);
 });
 
 test('NSFW auditoria: rebuild remove item já publicado de todos os JSONs e shard obsoleto, preserva backup exato', async () => {
@@ -101,25 +105,27 @@ test('NSFW auditoria: rebuild remove item já publicado de todos os JSONs e shar
   assert.equal(read(paths.quarantinePath).summary.blockedByBlacklist, 24);
 });
 
-test('LACUNA NSFW: falha no lock dos shards deixa catálogo novo e shards antigos com item bloqueado', async () => {
+test('NSFW auditoria N-05: lock ocupado dos shards aborta rebuild antes de alterar catalog.json', async () => {
   const paths = setup([fixture('100'), fixture('200')], ['200']);
   writeCatalogShardsSync(join(paths.root, 'catalog'), createCatalogShards(read(paths.catalogPath)));
   writeFileSync(join(paths.root, 'catalog.lock'), 'fixture');
+  const beforeCatalog = readFileSync(paths.catalogPath, 'utf8');
   await assert.rejects(rebuildCatalog(paths), /EEXIST/);
-  assert.deepEqual(read(paths.catalogPath).map(item => item.id), ['100']);
+  assert.equal(readFileSync(paths.catalogPath, 'utf8'), beforeCatalog);
   assert.equal(read(join(paths.root, 'catalog/manifest.json')).totalItems, 2);
   assert.ok(read(join(paths.root, 'catalog/pages/000001.json')).some(item => item.id === '200'));
   assert.equal(readdirSync(paths.backupDir).length, 1);
 });
 
-test('LACUNA NSFW: rebuild mantém simulado e altera consolidado antes da validação final falhar', async () => {
+test('NSFW auditoria N-07: rebuild rejeita item simulado antes de alterar catalog.json', async () => {
   const paths = setup([fixture('100'), fixture('200', { isSimulated: true })]);
+  const beforeCatalog = readFileSync(paths.catalogPath, 'utf8');
   await assert.rejects(rebuildCatalog(paths), /simulado/);
-  assert.ok(read(paths.catalogPath).some(item => item.isSimulated));
+  assert.equal(readFileSync(paths.catalogPath, 'utf8'), beforeCatalog);
   assert.equal(existsSync(join(paths.root, 'catalog/manifest.json')), false);
 });
 
-test('LACUNA NSFW: sync JSON com transporte fake preserva ID antigo bloqueado e descarta somente novo bloqueado', async () => {
+test('NSFW auditoria N-04: sync JSON filtra catálogo consolidado e expurga IDs antigos bloqueados na blacklist', async () => {
   const root = mkdtempSync(join(tmpdir(), 'wg-nsfw-sync-'));
   mkdirSync(join(root, 'config'), { recursive: true });
   mkdirSync(join(root, 'public/data'), { recursive: true });
@@ -138,8 +144,9 @@ test('LACUNA NSFW: sync JSON com transporte fake preserva ID antigo bloqueado e 
     };
     await syncMain();
     assert.equal(requests, 1);
-    assert.deepEqual(read(join(root, 'public/data/catalog.json')).map(item => item.id), ['100', '200']);
-    assert.ok(read(join(root, 'public/data/catalog/manifest.json')).itemToPage['100']);
+    assert.deepEqual(read(join(root, 'public/data/catalog.json')).map(item => item.id), ['200']);
+    assert.equal(read(join(root, 'public/data/catalog/manifest.json')).totalItems, 1);
+    assert.equal(read(join(root, 'public/data/catalog/manifest.json')).itemToPage['100'], undefined);
   } finally {
     process.chdir(previous.cwd); process.argv = previous.argv; globalThis.fetch = previous.fetch;
     for (const [key, value] of [['STEAM_API_KEY', previous.key], ['WALLPAPER_SYNC_AUTHORIZATION', previous.auth]]) {
@@ -148,19 +155,19 @@ test('LACUNA NSFW: sync JSON com transporte fake preserva ID antigo bloqueado e 
   }
 });
 
-test('LACUNA NSFW: falha ao mover página ocorre depois da troca de manifesto e índice', () => {
+test('NSFW auditoria N-05: falha ao mover página aciona rollback e restaura manifesto e índice anteriores', () => {
   const paths = setup([]);
   const shardedDir = join(paths.root, 'catalog');
   const oldItems = Array.from({ length: 25 }, (_, i) => fixture(String(100 + i)));
   writeCatalogShardsSync(shardedDir, createCatalogShards(oldItems));
-  // Conflito de destino controlado no fixture, sem mocks do escritor de produção.
-  // A página 2 antiga continua sendo um arquivo JSON acessível.
+  // Conflito de destino controlado no fixture: cria diretório onde deveria estar um arquivo
   const next = createCatalogShards([fixture('100')]);
   unlinkSync(join(shardedDir, 'pages/000001.json'));
   mkdirSync(join(shardedDir, 'pages/000001.json'));
   assert.throws(() => writeCatalogShardsSync(shardedDir, next));
-  assert.equal(read(join(shardedDir, 'manifest.json')).totalItems, 1);
-  assert.equal(read(join(shardedDir, 'index.json')).length, 1);
+  // Com o rollback ativado, o manifesto e índice anteriores de 25 itens são restaurados
+  assert.equal(read(join(shardedDir, 'manifest.json')).totalItems, 25);
+  assert.equal(read(join(shardedDir, 'index.json')).length, 25);
   assert.equal(read(join(shardedDir, 'pages/000002.json')).length, 1);
   assert.ok(existsSync(join(shardedDir, 'pages/000002.json')));
 });

@@ -5,7 +5,7 @@
  * arquivo de configuração versionável `config/blocked-wallpapers.json`.
  *
  * Como adicionar ou remover um wallpaper:
- * 1. Para bloquear um wallpaper: adicione o seu PublishedFileID (como string)
+ * 1. Para bloquear um wallpaper: adicione o seu PublishedFileID (como string decimal positiva)
  *    no array "blockedIds" em `config/blocked-wallpapers.json`.
  * 2. Para desbloquear um wallpaper: remova o PublishedFileID correspondente
  *    do array "blockedIds".
@@ -24,6 +24,7 @@ export interface BlacklistConfigFile {
 /**
  * Valida a estrutura da configuração da blacklist manual.
  * Retorna um Set de IDs se o formato estiver correto e sem duplicatas.
+ * Exige identificadores decimais positivos válidos (/^[1-9]\d*$/) como string.
  * Lança um erro explícito caso encontre duplicatas ou formato inválido.
  */
 export function validateManualBlacklist(rawConfig: unknown): Set<string> {
@@ -48,6 +49,11 @@ export function validateManualBlacklist(rawConfig: unknown): Set<string> {
     if (!trimmed) {
       throw new Error(`ID na blacklist no índice ${i} não pode ser vazio.`);
     }
+    if (!/^[1-9]\d*$/.test(trimmed)) {
+      throw new Error(
+        `ID inválido na blacklist no índice ${i}: "${entry}". Esperado identificador decimal positivo.`
+      );
+    }
     if (seen.has(trimmed)) {
       duplicates.add(trimmed);
     }
@@ -63,11 +69,20 @@ export function validateManualBlacklist(rawConfig: unknown): Set<string> {
 
 /**
  * Carrega a blacklist manual a partir do arquivo JSON no disco.
- * Se o arquivo não existir, retorna um Set vazio de forma segura.
+ * Por padrão (required: true), lança erro se o arquivo não existir, impedindo
+ * que ausência de configuração desabilite a moderação silenciosamente.
  */
-export function loadManualBlacklist(filePath = DEFAULT_BLACKLIST_PATH): Set<string> {
+export function loadManualBlacklist(
+  filePath = DEFAULT_BLACKLIST_PATH,
+  options: { required?: boolean } = {}
+): Set<string> {
   const absPath = resolve(filePath);
+  const { required = true } = options;
+
   if (!existsSync(absPath)) {
+    if (required) {
+      throw new Error(`Arquivo de blacklist manual não encontrado em: "${absPath}".`);
+    }
     return new Set<string>();
   }
 
@@ -83,4 +98,3 @@ export function loadManualBlacklist(filePath = DEFAULT_BLACKLIST_PATH): Set<stri
 
   return validateManualBlacklist(parsed);
 }
-

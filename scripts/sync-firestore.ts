@@ -1,7 +1,10 @@
 /**
- * WallpaperGallery — Script de Sincronização com Cloud Firestore
+ * WallpaperGallery — Script de Sincronização com Cloud Firestore (LEGADO / ISOLADO)
  *
- * Módulo seguro para ingestão de wallpapers da Steam Workshop no Cloud Firestore.
+ * AVISO ARQUITETURAL (N-08):
+ * A arquitetura primária de produção do WallpaperGallery é JSON-First (catalog.json e shards).
+ * Este script é um caminho legado e NÃO integra o pipeline centralizado de moderação NSFW.
+ * NÃO deve ser utilizado para publicar conteúdo de produção sem moderação prévia.
  *
  * SEGURANÇA E PROTEÇÃO DE COTAS (Plano Spark - 20.000 gravações/dia):
  * - Modo Simulação (DRY RUN) por padrão: nenhuma gravação real é executada sem autorização.
