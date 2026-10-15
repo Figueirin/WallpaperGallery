@@ -44,7 +44,7 @@ export function WallpaperDetailView({
   const [recommendations, setRecommendations] = useState<WallpaperItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
-  usePageMetadata(wallpaper ? `${wallpaper.title} | WallpaperGallery` : t('siteTitle'), wallpaper ? (wallpaper.description.trim().replace(/\s+/g, ' ').slice(0, 180) || t('detailSeo', { title: wallpaper.title })) : t('siteDescription'));
+  usePageMetadata(wallpaper ? `${wallpaper.title} | WallpaperGallery` : t('siteTitle'), wallpaper ? (wallpaper.description.trim().replace(/\s+/g, ' ').slice(0, 180) || t('detailSeo', { title: wallpaper.title })) : t('siteDescription'), { wallpaperId, image: wallpaper?.previewUrl });
 
   useEffect(() => {
     let isMounted = true;

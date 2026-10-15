@@ -126,11 +126,11 @@ test('recomendações reais: cards idênticos ao grid principal, links nativos e
   assert.equal(render('en', ui.WallpaperRecommendations, { wallpapers: [] }), '');
 });
 
-test('branding e SEO: produto único, fallback inglês, Steam Workshop preservado e sem domínio inventado', () => {
+test('branding e SEO: produto único, fallback inglês, Steam Workshop preservado e origem pública autorizada', () => {
   const paths = ['index.html', 'src/App.tsx', ...readdirSync('src/components').map(name => `src/components/${name}`), 'src/utils/pageMetadata.ts', 'src/i18n/translations.ts'];
   for (const path of paths) assert.ok(!readFileSync(path, 'utf8').includes('Workshop Gallery'), path);
   const html = readFileSync('index.html', 'utf8');
-  for (const marker of ['lang="en"', 'content="WallpaperGallery"', '"name":"WallpaperGallery"', 'Steam Workshop', '"inLanguage":"en"', 'content="en_US"']) assert.ok(html.includes(marker), marker);
+  for (const marker of ['lang="en"', 'content="WallpaperGallery"', '"name":"WallpaperGallery"', 'Steam Workshop', '"inLanguage":["en","pt-BR"]', 'content="en_US"']) assert.ok(html.includes(marker), marker);
   assert.ok(!html.includes('rel="canonical"'));
 });
 

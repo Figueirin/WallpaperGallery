@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run seo:generate && tsc -b && vite build",
     "preview": "vite preview",
     "test": "node --import ./tests/helpers/offline.mjs --test --test-isolation=none --experimental-strip-types tests/*.test.mjs",
     "sync:workshop": "node --experimental-strip-types scripts/sync-workshop.ts",
@@ -13,7 +13,8 @@
     "moderate:rebuild": "node --experimental-strip-types scripts/rebuild-catalog.ts",
     "typecheck": "tsc -b && tsc -p tsconfig.scripts.json",
     "enrich:authors": "node --experimental-strip-types scripts/enrich-authors.ts",
-    "sync:expand": "node --experimental-strip-types scripts/expand-catalog.ts"
+    "sync:expand": "node --experimental-strip-types scripts/expand-catalog.ts",
+    "seo:generate": "node --experimental-strip-types scripts/generate-sitemap.ts"
   },
   "dependencies": {
     "firebase": "^13.0.0",
