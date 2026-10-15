@@ -1,4 +1,4 @@
-import { WallpaperItem } from '../types/wallpaper';
+import type { WallpaperItem } from '../types/wallpaper';
 
 export interface RecommendationScore {
   item: WallpaperItem;
