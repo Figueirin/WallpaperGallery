@@ -106,3 +106,4 @@ Execução de toda a suíte de testes do projeto, incluindo os testes de auditor
    - Nenhuma conexão ou escrita ao Firestore foi disparada.
    - Nenhum comando `git push` foi realizado.
    - O catálogo real (`public/data/catalog.json`) permanece intacto com seus 178 wallpapers legítimos originais.
+

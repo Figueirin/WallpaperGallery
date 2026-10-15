@@ -44,6 +44,7 @@ export class StaticCatalogProvider implements IWallpaperDataProvider {
   private manifest: CatalogManifest | null = null;
   private compactIndex: CompactCatalogIndexEntry[] | null = null;
   private itemCache = new Map<string, WallpaperItem>();
+  private shardCache = new Map<number, WallpaperItem[]>();
   private loadedShards = new Set<number>();
 
   // Modo monolítico de fallback (se manifest.json não existir, mas catalog.json existir)
@@ -204,13 +205,16 @@ export class StaticCatalogProvider implements IWallpaperDataProvider {
           throw new Error(`Shard ${shardFile} corrompido: esperado array`);
         }
 
+        const items: WallpaperItem[] = [];
         for (const raw of data) {
           if (!isWallpaperItem(raw) || raw.isSimulated) {
             throw new Error(`Shard ${shardFile} contém item inválido ou simulado`);
           }
           this.itemCache.set(raw.id, raw);
+          items.push(raw);
         }
 
+        this.shardCache.set(pageNumber, items);
         this.loadedShards.add(pageNumber);
       })().finally(() => {
         this.pendingShardLoads.delete(pageNumber);
@@ -281,15 +285,19 @@ export class StaticCatalogProvider implements IWallpaperDataProvider {
         await Promise.all(shardsToLoad);
       }
 
-      // Constrói a lista dos itens da página
-      const allLoaded = Array.from(this.itemCache.values()).sort((a, b) => {
-        const popA = (a.stats.subscriptions ?? 0) + (a.stats.favorited ?? 0) + (a.stats.votesUp ?? 0);
-        const popB = (b.stats.subscriptions ?? 0) + (b.stats.favorited ?? 0) + (b.stats.votesUp ?? 0);
-        if (popB !== popA) return popB - popA;
-        return a.id.localeCompare(b.id);
-      });
+      // Constrói a lista dos itens da página a partir dos shards carregados
+      const loadedShardItems: WallpaperItem[] = [];
+      for (let s = startShard; s <= endShard; s++) {
+        const shardItems = this.shardCache.get(s);
+        if (shardItems) {
+          loadedShardItems.push(...shardItems);
+        }
+      }
 
-      const pageItems = allLoaded.slice(startIndex, endIndex);
+      const baseIndex = (startShard - 1) * shardPageSize;
+      const relativeStart = startIndex - baseIndex;
+      const relativeEnd = endIndex - baseIndex;
+      const pageItems = loadedShardItems.slice(relativeStart, relativeEnd);
 
       return {
         items: pageItems,

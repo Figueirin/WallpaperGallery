@@ -206,6 +206,40 @@ describe('Arquitetura JSON-First: Particionamento e Provedor Estático (Sharded 
     assert.ok(fetchedUrls[2].endsWith('pages/000002.json'));
   });
 
+  it('StaticCatalogProvider: acesso direto a páginas arbitrárias sem carregar páginas anteriores', async () => {
+    const dataset = createDataset(30);
+    const sharded = createCatalogShards(dataset, { pageSize: 10 });
+    const fetchedUrls = [];
+    const fakeFetch = async (url) => {
+      const urlStr = String(url);
+      fetchedUrls.push(urlStr);
+      if (urlStr.endsWith('manifest.json')) return Response.json(sharded.manifest);
+      const pageMatch = urlStr.match(/pages\/(\d+)\.json$/);
+      if (pageMatch) {
+        const pageNum = parseInt(pageMatch[1], 10);
+        const shard = sharded.shards.find(s => s.page === pageNum);
+        if (shard) return Response.json(shard.items);
+      }
+      return new Response('Not found', { status: 404 });
+    };
+
+    const provider = new StaticCatalogProvider({
+      fetchImpl: fakeFetch,
+      catalogPath: 'catalog',
+    });
+
+    // Acessa diretamente a página 3 (itens 21 a 30) sem passar pela página 1 ou 2
+    const page3Result = await provider.getWallpapers({ page: 3, pageSize: 10 });
+    assert.equal(page3Result.items.length, 10);
+    assert.equal(page3Result.page, 3);
+    assert.equal(page3Result.total, 30);
+    assert.equal(page3Result.hasMore, false);
+    assert.deepEqual(fetchedUrls.map(u => u.split('/').slice(-2).join('/')), [
+      'catalog/manifest.json',
+      'pages/000003.json',
+    ]);
+  });
+
   it('StaticCatalogProvider: getWallpaperById busca shard específico diretamente', async () => {
     const dataset = createDataset(30);
     const sharded = createCatalogShards(dataset, { pageSize: 10 });
