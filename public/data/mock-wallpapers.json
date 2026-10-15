@@ -216,6 +216,224 @@
     "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3008",
     "steamClientUri": "steam://url/CommunityFilePage/3008",
     "isSimulated": true
+  },
+  {
+    "id": "mock-3009",
+    "title": "Cyberpunk Night Drive Rain & Lo-fi",
+    "description": "Passeio noturno em primeira pessoa através de uma metrópole futurista com gotas de chuva no para-brisa e rádio lo-fi sutil.",
+    "author": {
+      "name": "NeonRider",
+      "steamId": "76561198000000009"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=1000&q=80",
+    "videoPreviewUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    "type": "Video",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": ["Cyberpunk", "Rain", "Relaxing", "City"],
+    "rating": "Everyone",
+    "fileSizeBytes": 134000000,
+    "createdAt": "2025-09-15T20:30:00Z",
+    "updatedAt": "2025-09-18T11:00:00Z",
+    "stats": {
+      "views": 68400,
+      "subscriptions": 27900,
+      "favorited": 7100,
+      "votesUp": 6500
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3009",
+    "steamClientUri": "steam://url/CommunityFilePage/3009",
+    "isSimulated": true
+  },
+  {
+    "id": "mock-3010",
+    "title": "Solar Eclipse Orbit & Cosmic Dust",
+    "description": "Cenário espacial cósmico com eclipse solar total, coroa solar animada e poeira espacial reativa a cliques do mouse.",
+    "author": {
+      "name": "CosmicShader",
+      "steamId": "76561198000000003"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=1200&q=80",
+    "type": "Scene",
+    "resolution": "3440x1440",
+    "aspectRatio": "21:9",
+    "tags": ["Space", "Sci-Fi", "Dark"],
+    "rating": "Everyone",
+    "fileSizeBytes": 54200000,
+    "createdAt": "2025-08-22T17:10:00Z",
+    "updatedAt": "2025-08-25T14:40:00Z",
+    "stats": {
+      "views": 49100,
+      "subscriptions": 19800,
+      "favorited": 4800,
+      "votesUp": 4200
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3010",
+    "steamClientUri": "steam://url/CommunityFilePage/3010",
+    "isSimulated": true
+  },
+  {
+    "id": "mock-3011",
+    "title": "Pixel Art Cozy Bedroom Rainy Window",
+    "description": "Quarto aconchegante em estética pixel art com chuva batendo na janela, luz suave de abajur e gato dormindo na cama.",
+    "author": {
+      "name": "PixelNostalgia",
+      "steamId": "76561198000000011"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80",
+    "type": "Scene",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": ["Cozy", "Retro", "Relaxing", "Rain"],
+    "rating": "Everyone",
+    "fileSizeBytes": 22400000,
+    "createdAt": "2025-09-08T19:00:00Z",
+    "updatedAt": "2025-09-10T12:00:00Z",
+    "stats": {
+      "views": 82300,
+      "subscriptions": 36700,
+      "favorited": 9800,
+      "votesUp": 9100
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3011",
+    "steamClientUri": "steam://url/CommunityFilePage/3011",
+    "isSimulated": true
+  },
+  {
+    "id": "mock-3012",
+    "title": "Interactive Neon Fluid Simulator",
+    "description": "Simulação de dinâmica de fluidos coloridos em tempo real via WebGL que reage aos movimentos do cursor e toques na tela.",
+    "author": {
+      "name": "CodePulse",
+      "steamId": "76561198000000006"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1000&q=80",
+    "type": "Web",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": ["Abstract", "Interactive"],
+    "rating": "Everyone",
+    "fileSizeBytes": 18900000,
+    "createdAt": "2025-07-14T10:15:00Z",
+    "updatedAt": "2025-07-16T18:00:00Z",
+    "stats": {
+      "views": 44500,
+      "subscriptions": 16200,
+      "favorited": 4100,
+      "votesUp": 3800
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3012",
+    "steamClientUri": "steam://url/CommunityFilePage/3012",
+    "isSimulated": true
+  },
+  {
+    "id": "mock-3013",
+    "title": "Autumn Forest Pathway with Sunlight Rays",
+    "description": "Trilha em floresta outonal dourada com raios de sol volumétricos filtrados pelas copas das árvores e folhas caindo suavemente.",
+    "author": {
+      "name": "NatureVisions",
+      "steamId": "76561198000000013"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": ["Nature", "Relaxing"],
+    "rating": "Everyone",
+    "fileSizeBytes": 76800000,
+    "createdAt": "2025-06-28T08:50:00Z",
+    "updatedAt": "2025-07-02T16:20:00Z",
+    "stats": {
+      "views": 59300,
+      "subscriptions": 23400,
+      "favorited": 6000,
+      "votesUp": 5500
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3013",
+    "steamClientUri": "steam://url/CommunityFilePage/3013",
+    "isSimulated": true
+  },
+  {
+    "id": "mock-3014",
+    "title": "Deep Ocean Bioluminescent Jellyfish",
+    "description": "Profundezas abissais com águas-vivas bioluminescentes flutuando em câmera lenta com partículas marinhas reativas à luz.",
+    "author": {
+      "name": "AbyssFX",
+      "steamId": "76561198000000014"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1000&q=80",
+    "videoPreviewUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    "type": "Video",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": ["Nature", "Dark", "Relaxing"],
+    "rating": "Everyone",
+    "fileSizeBytes": 94100000,
+    "createdAt": "2025-05-30T15:20:00Z",
+    "updatedAt": "2025-06-01T11:45:00Z",
+    "stats": {
+      "views": 73200,
+      "subscriptions": 29800,
+      "favorited": 7800,
+      "votesUp": 7100
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3014",
+    "steamClientUri": "steam://url/CommunityFilePage/3014",
+    "isSimulated": true
+  },
+  {
+    "id": "mock-3015",
+    "title": "Nordic Fjords Northern Lights (Aurora)",
+    "description": "Fiordes noruegueses espelhados sob uma aurora boreal cintilante em tons de verde e violeta com montanhas nevadas ao fundo.",
+    "author": {
+      "name": "NordicDesign",
+      "steamId": "76561198000000004"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=1200&q=80",
+    "type": "Scene",
+    "resolution": "3440x1440",
+    "aspectRatio": "21:9",
+    "tags": ["Nature", "Space", "Relaxing", "Dark"],
+    "rating": "Everyone",
+    "fileSizeBytes": 88400000,
+    "createdAt": "2025-09-04T22:15:00Z",
+    "updatedAt": "2025-09-07T13:30:00Z",
+    "stats": {
+      "views": 96400,
+      "subscriptions": 41200,
+      "favorited": 11300,
+      "votesUp": 10400
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3015",
+    "steamClientUri": "steam://url/CommunityFilePage/3015",
+    "isSimulated": true
+  },
+  {
+    "id": "mock-3016",
+    "title": "Anime Cyber City Floating Train",
+    "description": "Metrópole de ficção científica anime com trem magnético flutuante, hologramas verticais e iluminação de néon ao entardecer.",
+    "author": {
+      "name": "SakuraArtist",
+      "steamId": "76561198000000005"
+    },
+    "previewUrl": "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1000&q=80",
+    "type": "Scene",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": ["Anime", "Cyberpunk", "Sci-Fi", "City"],
+    "rating": "Everyone",
+    "fileSizeBytes": 63200000,
+    "createdAt": "2025-08-30T12:00:00Z",
+    "updatedAt": "2025-09-03T17:15:00Z",
+    "stats": {
+      "views": 88100,
+      "subscriptions": 37500,
+      "favorited": 9500,
+      "votesUp": 8900
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3016",
+    "steamClientUri": "steam://url/CommunityFilePage/3016",
+    "isSimulated": true
   }
 ]
 
