@@ -1,3 +1,4 @@
+import { steamLinks } from '../utils/safeUrls';
 import { useEffect, useState } from 'react';
 import { WallpaperItem } from '../types/wallpaper';
 import { IWallpaperDataProvider } from '../services/dataProvider';
@@ -46,6 +47,8 @@ export function WallpaperDetailView({
 
     async function loadItem() {
       setLoading(true);
+      setWallpaper(null);
+      setRecommendations([]);
       try {
         const item = await provider.getWallpaperById(wallpaperId);
         if (isMounted) {
@@ -79,6 +82,7 @@ export function WallpaperDetailView({
   // Formatação de data em português
   const formatDate = (isoDate: string) => {
     try {
+      if (!isoDate || !Number.isFinite(Date.parse(isoDate))) return 'Não informada';
       return new Date(isoDate).toLocaleDateString('pt-BR', {
         day: '2-digit',
         month: 'long',
@@ -155,9 +159,9 @@ export function WallpaperDetailView({
 
         {/* Links Externos para Steam */}
         <div className="flex items-center gap-2.5">
-          {wallpaper.steamClientUri && (
+          {steamLinks(wallpaper.id, wallpaper.isSimulated).client && (
             <a
-              href={wallpaper.steamClientUri}
+              href={steamLinks(wallpaper.id, wallpaper.isSimulated).client}
               title="Abrir no aplicativo cliente Steam para Linux"
               aria-label={`Abrir ${wallpaper.title} no aplicativo Steam`}
               className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 hover:border-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
@@ -167,9 +171,9 @@ export function WallpaperDetailView({
             </a>
           )}
 
-          {wallpaper.steamUrl && (
+          {steamLinks(wallpaper.id, wallpaper.isSimulated).web && (
             <a
-              href={wallpaper.steamUrl}
+              href={steamLinks(wallpaper.id, wallpaper.isSimulated).web}
               target="_blank"
               rel="noopener noreferrer"
               title="Visualizar página no Steam Workshop"
@@ -183,9 +187,12 @@ export function WallpaperDetailView({
         </div>
       </div>
 
+      {wallpaper.isSimulated && <p role="status" className="text-sm text-amber-300">Demonstração — metadados e mídia simulados.</p>}
+
       {/* Área Principal de Mídia (Player de Vídeo, YouTube, Web Demo ou Imagem) */}
       <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-zinc-950 border border-zinc-800/80 shadow-2xl shadow-black/80 flex items-center justify-center animate-media-reveal">
         <WallpaperMedia
+          key={wallpaper.id}
           wallpaper={wallpaper}
           mode="detail"
         />

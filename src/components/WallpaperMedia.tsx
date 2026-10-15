@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { WallpaperItem } from '../types/wallpaper';
+import { safeMediaUrl, safeWebDemoUrl } from '../utils/safeUrls';
 import { extractYouTubeVideoId } from '../utils/mediaFormats';
 import {
   ImageOff,
@@ -18,12 +19,17 @@ interface WallpaperMediaProps {
 }
 
 export function WallpaperMedia({
-  wallpaper,
+  wallpaper: rawWallpaper,
   mode,
   isHovered = false,
   className = '',
   onVideoPlayChange,
 }: WallpaperMediaProps) {
+  const wallpaper = { ...rawWallpaper,
+    previewUrl: safeMediaUrl(rawWallpaper.previewUrl),
+    videoPreviewUrl: safeMediaUrl(rawWallpaper.videoPreviewUrl),
+    webDemoUrl: safeWebDemoUrl(rawWallpaper.webDemoUrl),
+  };
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -44,6 +50,7 @@ export function WallpaperMedia({
     const videoEl = videoRef.current;
     if (!videoEl) return;
 
+    let active = true;
     if (isHovered) {
       const prefersReducedMotion =
         typeof window !== 'undefined' &&
@@ -64,6 +71,7 @@ export function WallpaperMedia({
         if (promise !== undefined) {
           promise
             .then(() => {
+              if (!active) return;
               setIsVideoPlaying(true);
               onVideoPlayChange?.(true);
             })
@@ -97,14 +105,11 @@ export function WallpaperMedia({
         videoEl.pause();
       }
     }
+    return () => { active = false; videoEl.pause(); };
   }, [isHovered, mode, wallpaper.videoPreviewUrl, videoError, onVideoPlayChange]);
 
   const handleRetryVideo = () => {
     setVideoError(false);
-    if (videoRef.current) {
-      videoRef.current.load();
-      videoRef.current.play().catch(() => {});
-    }
   };
 
   /* =========================================================================
@@ -235,7 +240,8 @@ export function WallpaperMedia({
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=0&rel=0`}
           title={`Demonstração no YouTube: ${wallpaper.title}`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allow="encrypted-media; picture-in-picture"
+          referrerPolicy="no-referrer"
           allowFullScreen
           className="w-full h-full border-0"
         />
@@ -268,7 +274,8 @@ export function WallpaperMedia({
         <iframe
           src={wallpaper.webDemoUrl}
           title={`Demonstração Web interativa: ${wallpaper.title}`}
-          sandbox="allow-scripts allow-same-origin"
+          sandbox="allow-scripts"
+          referrerPolicy="no-referrer"
           className="w-full h-full border-0"
         />
       </div>

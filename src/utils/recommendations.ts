@@ -34,7 +34,7 @@ export function getRecommendedWallpapers(
   );
 
   // Exclui estritamente o próprio item aberto
-  const candidates = catalog.filter((item) => item.id !== currentItem.id);
+  const candidates = Array.from(new Map(catalog.filter((item) => item.id !== currentItem.id).map(item => [item.id, item])).values());
 
   const scored = candidates.map((item) => {
     let score = 0;

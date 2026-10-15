@@ -162,8 +162,8 @@ export function paginateWallpapers<T>(
   pageSize: number;
   hasMore: boolean;
 } {
-  const safePage = page && page > 0 ? Math.floor(page) : 1;
-  const safePageSize = pageSize && pageSize > 0 ? Math.floor(pageSize) : 24;
+  const safePage = Number.isFinite(page) && page >= 1 ? Math.floor(page) : 1;
+  const safePageSize = Number.isFinite(pageSize) && pageSize >= 1 ? Math.floor(pageSize) : 24;
   const startIndex = (safePage - 1) * safePageSize;
   const paginatedItems = items.slice(startIndex, startIndex + safePageSize);
 

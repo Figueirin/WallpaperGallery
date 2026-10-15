@@ -102,9 +102,8 @@ describe('Preparação da Infraestrutura de Sincronização Firestore (Etapa Fir
       assert.ok(provider instanceof MockWallpaperProvider);
     });
 
-    it('deve aplicar fallback gracioso para MockWallpaperProvider se Firestore for solicitado sem credenciais', () => {
-      const provider = createWallpaperProvider('firestore');
-      assert.ok(provider instanceof MockWallpaperProvider);
+    it('deve rejeitar Firestore sem configuração em vez de mostrar dados simulados', () => {
+      assert.throws(() => createWallpaperProvider('firestore'), /configuração/);
     });
   });
 });

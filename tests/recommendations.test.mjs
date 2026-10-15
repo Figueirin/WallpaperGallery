@@ -89,3 +89,10 @@ describe('Recomendações de Wallpapers Relacionados (getRecommendedWallpapers)'
     assert.deepStrictEqual(getRecommendedWallpapers([catalog[0]], catalog[0]), []);
   });
 });
+
+it('deduplica IDs realmente repetidos na entrada', () => {
+  const base = { id: '1', title: 'Base', tags: ['Nature'], type: 'Scene', resolution: '1920x1080', aspectRatio: '16:9', stats: {} };
+  const other = { ...base, id: '2' };
+  const result = getRecommendedWallpapers([base, other, { ...other }], base);
+  assert.deepEqual(result.map(item => item.id), ['2']);
+});

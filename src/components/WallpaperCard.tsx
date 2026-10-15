@@ -1,3 +1,4 @@
+import { steamLinks } from '../utils/safeUrls';
 import { useState } from 'react';
 import { WallpaperItem } from '../types/wallpaper';
 import { WallpaperMedia } from './WallpaperMedia';
@@ -49,19 +50,11 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
-    if ((e.key === 'Enter' || e.key === ' ') && onSelect) {
-      e.preventDefault();
-      onSelect(wallpaper);
-    }
-  };
-
   return (
     <article
-      tabIndex={0}
-      role="button"
       onClick={handleCardClick}
-      onKeyDown={handleKeyDown}
+      onFocus={handleMouseEnter}
+      onBlur={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       aria-label={`Visualizar detalhes do wallpaper: ${wallpaper.title}`}
@@ -117,12 +110,15 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
       {/* Conteúdo e Metadados do Card */}
       <div className="p-4 flex-1 flex flex-col justify-between">
         <div>
+          {wallpaper.isSimulated && <span className="text-xs text-amber-300">Demonstração</span>}
           {/* Título */}
           <h3
             title={wallpaper.title}
             className="text-sm font-semibold text-zinc-100 group-hover:text-indigo-400 transition-colors line-clamp-1"
           >
-            {wallpaper.title}
+            <button type="button" className="text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded" onClick={(event) => { event.stopPropagation(); handleCardClick(); }}>
+              {wallpaper.title}
+            </button>
           </h3>
 
           {/* Autor */}
@@ -166,9 +162,9 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
 
           <div className="flex items-center gap-2">
             {/* Deep link para cliente Steam no Linux */}
-            {wallpaper.steamClientUri && (
+            {steamLinks(wallpaper.id, wallpaper.isSimulated).client && (
               <a
-                href={wallpaper.steamClientUri}
+                href={steamLinks(wallpaper.id, wallpaper.isSimulated).client}
                 onClick={(e) => e.stopPropagation()}
                 title="Abrir diretamente no aplicativo Steam para Linux"
                 aria-label={`Abrir ${wallpaper.title} no aplicativo Steam`}
@@ -179,9 +175,9 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
             )}
 
             {/* Link oficial para a página web no Steam Workshop */}
-            {wallpaper.steamUrl && (
+            {steamLinks(wallpaper.id, wallpaper.isSimulated).web && (
               <a
-                href={wallpaper.steamUrl}
+                href={steamLinks(wallpaper.id, wallpaper.isSimulated).web}
                 onClick={(e) => e.stopPropagation()}
                 target="_blank"
                 rel="noopener noreferrer"

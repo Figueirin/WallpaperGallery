@@ -28,7 +28,8 @@
       "votesUp": 3900
     },
     "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2987102911",
-    "steamClientUri": "steam://url/CommunityFilePage/2987102911"
+    "steamClientUri": "steam://url/CommunityFilePage/2987102911",
+    "isSimulated": true
   },
   {
     "id": "2987102912",
@@ -58,7 +59,8 @@
       "votesUp": 7800
     },
     "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2987102912",
-    "steamClientUri": "steam://url/CommunityFilePage/2987102912"
+    "steamClientUri": "steam://url/CommunityFilePage/2987102912",
+    "isSimulated": true
   },
   {
     "id": "2987102913",
@@ -89,6 +91,7 @@
       "votesUp": 5400
     },
     "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2987102913",
-    "steamClientUri": "steam://url/CommunityFilePage/2987102913"
+    "steamClientUri": "steam://url/CommunityFilePage/2987102913",
+    "isSimulated": true
   }
 ]

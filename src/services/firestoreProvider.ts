@@ -13,7 +13,6 @@ import {
   getDocs,
   query,
   limit as firestoreLimit,
-  orderBy,
   type DocumentData,
 } from 'firebase/firestore';
 import type {
@@ -23,6 +22,7 @@ import type {
   FilterMetadata,
 } from '../types/wallpaper';
 import type { IWallpaperDataProvider } from './dataProvider';
+import { isWallpaperItem } from '../utils/validateWallpaper.ts';
 import { getFirestoreDb } from '../config/firebase.ts';
 import {
   filterAndSortWallpapers,
@@ -31,50 +31,25 @@ import {
 } from '../utils/filterWallpapers.ts';
 
 export class FirestoreWallpaperProvider implements IWallpaperDataProvider {
+  private dependencies: { getDb: typeof getFirestoreDb; getDocs: typeof getDocs; getDoc: typeof getDoc };
+
+  constructor(dependencies: Partial<{ getDb: typeof getFirestoreDb; getDocs: typeof getDocs; getDoc: typeof getDoc }> = {}) {
+    this.dependencies = { getDb: getFirestoreDb, getDocs, getDoc, ...dependencies };
+  }
+
   private itemCache = new Map<string, WallpaperItem>();
   private metadataCache: FilterMetadata | null = null;
   private allLoadedItems: WallpaperItem[] = [];
   private isInitialFetchDone = false;
+  private initialFetch: Promise<void> | null = null;
 
   /**
    * Converte documento do Firestore para o modelo de dados tipado WallpaperItem
    */
   private docToWallpaper(data: DocumentData, docId: string): WallpaperItem {
-    return {
-      id: docId,
-      title: data.title || `Wallpaper #${docId}`,
-      description: data.description || '',
-      author: {
-        name: data.author?.name || 'Steam Creator',
-        steamId: data.author?.steamId,
-        avatarUrl: data.author?.avatarUrl,
-      },
-      previewUrl: data.previewUrl || '',
-      videoPreviewUrl: data.videoPreviewUrl,
-      youtubePreviewUrl: data.youtubePreviewUrl,
-      webDemoUrl: data.webDemoUrl,
-      mediaFormat: data.mediaFormat,
-      type: data.type || 'Scene',
-      resolution: data.resolution || '1920x1080',
-      aspectRatio: data.aspectRatio || '16:9',
-      tags: Array.isArray(data.tags) ? data.tags : [],
-      rating: data.rating || 'Everyone',
-      fileSizeBytes: data.fileSizeBytes,
-      createdAt: data.createdAt || new Date().toISOString(),
-      updatedAt: data.updatedAt || new Date().toISOString(),
-      stats: {
-        views: data.stats?.views,
-        subscriptions: data.stats?.subscriptions,
-        favorited: data.stats?.favorited,
-        votesUp: data.stats?.votesUp,
-      },
-      steamUrl:
-        data.steamUrl ||
-        `https://steamcommunity.com/sharedfiles/filedetails/?id=${docId}`,
-      steamClientUri:
-        data.steamClientUri || `steam://url/CommunityFilePage/${docId}`,
-      isSimulated: Boolean(data.isSimulated),
-    };
+    const item = { ...data, id: docId };
+    if (!isWallpaperItem(item) || item.isSimulated) throw new Error(`Documento de wallpaper inválido: ${docId}`);
+    return item;
   }
 
   /**
@@ -84,40 +59,34 @@ export class FirestoreWallpaperProvider implements IWallpaperDataProvider {
   async getWallpapers(
     options: WallpaperFilterOptions = {}
   ): Promise<PaginatedResult<WallpaperItem>> {
-    const db = getFirestoreDb();
-    if (!db) {
-      console.warn('Firestore não configurado. Retornando resultado vazio.');
-      return {
-        items: [],
-        total: 0,
-        page: options.page || 1,
-        pageSize: options.pageSize || 8,
-        hasMore: false,
-      };
-    }
+    const db = this.dependencies.getDb();
+    if (!db) throw new Error('Firestore não configurado');
 
     try {
       // Para o teste inicial de até 200 itens, carregar em bloco e filtrar em memória
       // consome apenas 1 leitura por documento e viabiliza filtros instantâneos sem gastar novas leituras
       if (!this.isInitialFetchDone) {
-        const wallpapersRef = collection(db, 'wallpapers');
-        const q = query(
-          wallpapersRef,
-          orderBy('stats.subscriptions', 'desc'),
-          firestoreLimit(300)
-        );
+        if (!this.initialFetch) this.initialFetch = (async () => {
+          const wallpapersRef = collection(db, 'wallpapers');
+          const q = query(
+            wallpapersRef,
+            firestoreLimit(301)
+          );
 
-        const snapshot = await getDocs(q);
-        const loaded: WallpaperItem[] = [];
+          const snapshot = await this.dependencies.getDocs(q);
+          if (snapshot.size > 300) throw new Error('Catálogo excede 300 itens; paginação remota necessária');
+          const loaded: WallpaperItem[] = [];
 
-        snapshot.forEach((d) => {
-          const item = this.docToWallpaper(d.data(), d.id);
-          this.itemCache.set(item.id, item);
-          loaded.push(item);
-        });
+          snapshot.forEach((d) => {
+            const item = this.docToWallpaper(d.data(), d.id);
+            loaded.push(item);
+          });
 
-        this.allLoadedItems = loaded;
-        this.isInitialFetchDone = true;
+          loaded.forEach(item => this.itemCache.set(item.id, item));
+          this.allLoadedItems = loaded;
+          this.isInitialFetchDone = true;
+        })().catch(error => { this.initialFetch = null; throw error; });
+        await this.initialFetch;
       }
 
       // Aplica os filtros combinados e ordenação puros na coleção em cache
@@ -125,9 +94,7 @@ export class FirestoreWallpaperProvider implements IWallpaperDataProvider {
       return paginateWallpapers(filtered, options.page, options.pageSize);
     } catch (err) {
       console.error('Erro ao consultar Firestore:', err);
-      // Se houver falha de rede, retorna o que estiver no cache local
-      const filtered = filterAndSortWallpapers(this.allLoadedItems, options);
-      return paginateWallpapers(filtered, options.page, options.pageSize);
+      throw err;
     }
   }
 
@@ -135,19 +102,19 @@ export class FirestoreWallpaperProvider implements IWallpaperDataProvider {
    * Obtém um wallpaper individual por ID (priorizando o cache em memória)
    */
   async getWallpaperById(id: string): Promise<WallpaperItem | null> {
-    if (!id || typeof id !== 'string') return null;
+    if (!id || typeof id !== 'string' || !/^\d+$/.test(id)) return null;
 
     // 1. Tenta cache em memória primeiro (0 leituras consumidas no Firestore!)
     if (this.itemCache.has(id)) {
       return this.itemCache.get(id)!;
     }
 
-    const db = getFirestoreDb();
+    const db = this.dependencies.getDb();
     if (!db) return null;
 
     try {
       const docRef = doc(db, 'wallpapers', id);
-      const snap = await getDoc(docRef);
+      const snap = await this.dependencies.getDoc(docRef);
 
       if (snap.exists()) {
         const item = this.docToWallpaper(snap.data(), snap.id);
@@ -157,7 +124,7 @@ export class FirestoreWallpaperProvider implements IWallpaperDataProvider {
       return null;
     } catch (err) {
       console.error(`Erro ao buscar wallpaper ${id} no Firestore:`, err);
-      return null;
+      throw err;
     }
   }
 

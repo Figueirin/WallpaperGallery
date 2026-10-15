@@ -4,6 +4,7 @@ import type {
   PaginatedResult,
   FilterMetadata,
 } from '../types/wallpaper';
+import { isWallpaperItem } from '../utils/validateWallpaper.ts';
 import type { IWallpaperDataProvider } from './dataProvider';
 import fallbackMockData from '../../public/data/mock-wallpapers.json' with { type: 'json' };
 import {
@@ -16,8 +17,12 @@ import {
 export class MockWallpaperProvider implements IWallpaperDataProvider {
   private items: WallpaperItem[] = [];
   private isLoaded = false;
+  private loading: Promise<WallpaperItem[]> | null = null;
 
-  constructor(initialData?: WallpaperItem[]) {
+  private source: 'mock' | 'catalog';
+
+  constructor(initialData?: WallpaperItem[], source: 'mock' | 'catalog' = 'mock') {
+    this.source = source;
     if (initialData) {
       this.items = initialData;
       this.isLoaded = true;
@@ -29,36 +34,22 @@ export class MockWallpaperProvider implements IWallpaperDataProvider {
       return this.items;
     }
 
-    // 1. Tenta carregar o catálogo real sincronizado da Steam (catalog.json) se existir
-    try {
-      const catalogRes = await fetch('/data/catalog.json');
-      if (catalogRes.ok) {
-        const catalog = (await catalogRes.json()) as WallpaperItem[];
-        if (Array.isArray(catalog) && catalog.length > 0) {
-          this.items = catalog;
-          this.isLoaded = true;
-          return this.items;
+    if (!this.loading) {
+      this.loading = (async () => {
+        if (this.source === 'mock') {
+          this.items = (fallbackMockData as unknown as WallpaperItem[]).map(item => ({ ...item, isSimulated: true }));
+        } else {
+          const response = await fetch(`${import.meta.env?.BASE_URL ?? '/'}data/catalog.json`);
+          if (!response.ok) throw new Error(`Catálogo indisponível: HTTP ${response.status}`);
+          const data: unknown = await response.json();
+          if (!Array.isArray(data) || data.some(item => !isWallpaperItem(item) || item.isSimulated)) throw new Error('Catálogo real inválido ou simulado');
+          this.items = data;
         }
-      }
-    } catch {
-      // Ignora falha de rede/arquivo e prossegue para o catálogo mock
+        this.isLoaded = true;
+        return this.items;
+      })().catch(error => { this.loading = null; throw error; });
     }
-
-    // 2. Fallback para os dados simulados locais
-    try {
-      const response = await fetch('/data/mock-wallpapers.json');
-      if (!response.ok) {
-        throw new Error(`Erro ao carregar dados simulados: HTTP ${response.status}`);
-      }
-      this.items = (await response.json()) as WallpaperItem[];
-      this.isLoaded = true;
-      return this.items;
-    } catch (err) {
-      console.warn('Usando catálogo simulado de fallback após falha no fetch:', err);
-      this.items = fallbackMockData as unknown as WallpaperItem[];
-      this.isLoaded = true;
-      return this.items;
-    }
+    return this.loading;
   }
 
   async getWallpapers(options: WallpaperFilterOptions = {}): Promise<PaginatedResult<WallpaperItem>> {

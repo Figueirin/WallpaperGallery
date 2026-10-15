@@ -23,15 +23,20 @@ import {
 } from 'lucide-react';
 import { getResolutionLabel } from './utils/filterWallpapers';
 
-const provider = createWallpaperProvider();
+let provider: ReturnType<typeof createWallpaperProvider>;
+try { provider = createWallpaperProvider(); }
+catch (error) {
+  const unavailable = async (): Promise<never> => { throw error; };
+  provider = { getWallpapers: unavailable, getWallpaperById: unavailable, getFilterMetadata: unavailable };
+}
 const PAGE_SIZE = 8;
 
 function parseWallpaperIdFromUrl(): string | null {
   if (typeof window === 'undefined') return null;
   const pathMatch = window.location.pathname.match(/^\/wallpaper\/([^/]+)\/?$/);
-  if (pathMatch) return decodeURIComponent(pathMatch[1]);
+  if (pathMatch) { try { return decodeURIComponent(pathMatch[1]); } catch { return null; } }
   const hashMatch = window.location.hash.match(/^#\/wallpaper\/([^/]+)\/?$/);
-  if (hashMatch) return decodeURIComponent(hashMatch[1]);
+  if (hashMatch) { try { return decodeURIComponent(hashMatch[1]); } catch { return null; } }
   return null;
 }
 
@@ -56,6 +61,8 @@ export function App() {
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  const requestVersion = useRef(0);
+  const loadMorePending = useRef(false);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
 
   // Sincroniza histórico de navegação SPA (popstate)
@@ -65,8 +72,9 @@ export function App() {
       setSelectedWallpaperId(id);
     };
 
+    window.addEventListener('hashchange', handleLocationChange);
     window.addEventListener('popstate', handleLocationChange);
-    return () => window.removeEventListener('popstate', handleLocationChange);
+    return () => { window.removeEventListener('popstate', handleLocationChange); window.removeEventListener('hashchange', handleLocationChange); };
   }, []);
 
   // Carrega metadados iniciais do catálogo (tags, resoluções e tipos reais)
@@ -86,6 +94,7 @@ export function App() {
 
   // Busca e filtra wallpapers respeitando todos os critérios combinados (Página 1)
   const fetchWallpapers = useCallback(async () => {
+    const version = ++requestVersion.current;
     try {
       setIsLoading(true);
       setHasError(false);
@@ -102,11 +111,13 @@ export function App() {
         pageSize: PAGE_SIZE,
       });
 
+      if (version !== requestVersion.current) return;
       setWallpapers(result.items);
       setTotalFilteredCount(result.total);
       setCurrentPage(1);
       setHasMore(result.hasMore);
     } catch (err) {
+      if (version !== requestVersion.current) return;
       console.error('Falha ao aplicar filtros e carregar wallpapers:', err);
       setHasError(true);
       setErrorMessage(
@@ -115,13 +126,15 @@ export function App() {
           : 'Ocorreu um erro inesperado ao filtrar o catálogo.'
       );
     } finally {
-      setIsLoading(false);
+      if (version === requestVersion.current) setIsLoading(false);
     }
   }, [searchQuery, selectedType, selectedResolutions, selectedTags, sortBy]);
 
   // Carrega próxima página de wallpapers de forma progressiva
   const handleLoadMore = useCallback(async () => {
-    if (isLoadingMore || !hasMore || isLoading) return;
+    if (loadMorePending.current || isLoadingMore || !hasMore || isLoading) return;
+    loadMorePending.current = true;
+    const version = requestVersion.current;
 
     try {
       setIsLoadingMore(true);
@@ -138,10 +151,12 @@ export function App() {
         pageSize: PAGE_SIZE,
       });
 
-      setWallpapers((prev) => [...prev, ...result.items]);
+      if (version !== requestVersion.current) return;
+      setWallpapers((prev) => [...new Map([...prev, ...result.items].map(item => [item.id, item])).values()]);
       setCurrentPage(nextPage);
       setHasMore(result.hasMore);
     } catch (err) {
+      if (version !== requestVersion.current) return;
       console.error('Falha ao carregar mais wallpapers:', err);
       setLoadMoreError(
         err instanceof Error
@@ -149,6 +164,7 @@ export function App() {
           : 'Falha ao carregar a próxima página de wallpapers.'
       );
     } finally {
+      loadMorePending.current = false;
       setIsLoadingMore(false);
     }
   }, [
@@ -190,11 +206,13 @@ export function App() {
 
   // Executa busca com debounce para digitação
   useEffect(() => {
+    requestVersion.current++;
+    setIsLoading(true);
     const timeoutId = setTimeout(() => {
       fetchWallpapers();
     }, 120);
 
-    return () => clearTimeout(timeoutId);
+    return () => { clearTimeout(timeoutId); requestVersion.current++; };
   }, [fetchWallpapers]);
 
   const handleToggleResolution = (res: string) => {
@@ -264,8 +282,10 @@ export function App() {
 
       {/* Conteúdo Principal */}
       <main className="flex-1 max-w-[2400px] w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-6 sm:py-8">
+        {wallpapers.some(item => item.isSimulated) && <p role="status" className="mb-4 text-sm text-amber-300">Catálogo de demonstração — dados e mídias simulados.</p>}
         {selectedWallpaperId ? (
           <WallpaperDetailView
+            key={selectedWallpaperId}
             wallpaperId={selectedWallpaperId}
             provider={provider}
             onBack={handleBackToGallery}
