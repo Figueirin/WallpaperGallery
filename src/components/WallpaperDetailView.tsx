@@ -5,6 +5,7 @@ import { getResolutionLabel } from '../utils/filterWallpapers';
 import { getRecommendedWallpapers } from '../utils/recommendations';
 import { WallpaperCard } from './WallpaperCard';
 import { EmptyState } from './EmptyState';
+import { WallpaperMedia } from './WallpaperMedia';
 import {
   ArrowLeft,
   ExternalLink,
@@ -19,7 +20,6 @@ import {
   Heart,
   ThumbsUp,
   Download,
-  ImageOff,
   Clock,
   Sparkles,
 } from 'lucide-react';
@@ -40,16 +40,12 @@ export function WallpaperDetailView({
   const [wallpaper, setWallpaper] = useState<WallpaperItem | null>(null);
   const [recommendations, setRecommendations] = useState<WallpaperItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [imageError, setImageError] = useState(false);
-  const [videoError, setVideoError] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
 
     async function loadItem() {
       setLoading(true);
-      setImageError(false);
-      setVideoError(false);
       try {
         const item = await provider.getWallpaperById(wallpaperId);
         if (isMounted) {
@@ -187,37 +183,12 @@ export function WallpaperDetailView({
         </div>
       </div>
 
-      {/* Área Principal de Mídia (Player de Vídeo ou Imagem Ampliada) */}
+      {/* Área Principal de Mídia (Player de Vídeo, YouTube, Web Demo ou Imagem) */}
       <div className="relative aspect-video w-full rounded-3xl overflow-hidden bg-zinc-950 border border-zinc-800/80 shadow-2xl shadow-black/80 flex items-center justify-center animate-media-reveal">
-        {wallpaper.videoPreviewUrl && !videoError ? (
-          <video
-            src={wallpaper.videoPreviewUrl}
-            controls
-            playsInline
-            preload="metadata"
-            poster={wallpaper.previewUrl}
-            onError={() => setVideoError(true)}
-            className="w-full h-full object-contain bg-black"
-          >
-            Seu navegador não suporta reprodução de vídeo HTML5.
-          </video>
-        ) : !imageError ? (
-          <img
-            src={wallpaper.previewUrl}
-            alt={`Visualização ampliada do wallpaper ${wallpaper.title}`}
-            onError={() => setImageError(true)}
-            className="w-full h-full object-contain bg-zinc-950"
-          />
-        ) : (
-          <div
-            className="flex flex-col items-center justify-center p-8 text-center text-zinc-500"
-            role="img"
-            aria-label="Mídia indisponível"
-          >
-            <ImageOff className="w-12 h-12 mb-3 text-zinc-600" aria-hidden="true" />
-            <p className="text-sm font-medium">Prévia em alta resolução indisponível</p>
-          </div>
-        )}
+        <WallpaperMedia
+          wallpaper={wallpaper}
+          mode="detail"
+        />
 
         {/* Badges Superiores Flutuantes */}
         <div className="absolute top-4 left-4 flex items-center gap-2 pointer-events-none">

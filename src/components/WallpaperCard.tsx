@@ -1,5 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { WallpaperItem } from '../types/wallpaper';
+import { WallpaperMedia } from './WallpaperMedia';
 import {
   ExternalLink,
   Layers,
@@ -7,7 +8,6 @@ import {
   Globe,
   Tag,
   User,
-  ImageOff,
   MonitorPlay,
   Play,
 } from 'lucide-react';
@@ -18,13 +18,8 @@ interface WallpaperCardProps {
 }
 
 export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
-  const [imageError, setImageError] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [videoError, setVideoError] = useState(false);
-
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Ícone representativo do tipo de wallpaper do Wallpaper Engine
   const renderTypeIcon = () => {
@@ -41,33 +36,11 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
 
   const handleMouseEnter = () => {
     setIsHovered(true);
-
-    // Se o wallpaper tem vídeo e usuário não solicitou redução de movimento
-    if (wallpaper.videoPreviewUrl && !videoError) {
-      const prefersReducedMotion =
-        typeof window !== 'undefined' &&
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      if (!prefersReducedMotion && videoRef.current) {
-        videoRef.current.currentTime = 0;
-        const playPromise = videoRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => setIsVideoPlaying(true))
-            .catch(() => setIsVideoPlaying(false));
-        }
-      }
-    }
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
     setIsVideoPlaying(false);
-
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
   };
 
   const handleCardClick = () => {
@@ -96,54 +69,12 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
     >
       {/* Área da Imagem de Prévia / Vídeo com ampliação de ~25% em destaque no hover */}
       <div className="relative aspect-video w-full rounded-t-2xl overflow-hidden bg-zinc-950 flex items-center justify-center transition-all duration-300 ease-out origin-bottom group-hover:scale-[1.25] group-hover:rounded-2xl group-hover:shadow-2xl group-hover:shadow-black/95 group-hover:ring-1 group-hover:ring-white/15 group-hover:z-40 motion-reduce:group-hover:scale-100">
-        {!imageError ? (
-          <>
-            {/* Shimmer/Placeholder enquanto a imagem está carregando */}
-            {!imageLoaded && (
-              <div
-                className="absolute inset-0 bg-zinc-800/50 animate-pulse"
-                aria-hidden="true"
-              />
-            )}
-            <img
-              src={wallpaper.previewUrl}
-              alt={`Pré-visualização do wallpaper ${wallpaper.title}`}
-              loading="lazy"
-              onLoad={() => setImageLoaded(true)}
-              onError={() => setImageError(true)}
-              className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${
-                imageLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-
-            {/* Vídeo preview reproduzido sob hover se disponível */}
-            {wallpaper.videoPreviewUrl && !videoError && (
-              <video
-                ref={videoRef}
-                src={wallpaper.videoPreviewUrl}
-                muted
-                loop
-                playsInline
-                preload="none"
-                onError={() => setVideoError(true)}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${
-                  isHovered && isVideoPlaying ? 'opacity-100' : 'opacity-0'
-                }`}
-                aria-hidden="true"
-              />
-            )}
-          </>
-        ) : (
-          /* Fallback visual caso a imagem falhe ao carregar */
-          <div
-            className="flex flex-col items-center justify-center p-4 text-center text-zinc-500 w-full h-full bg-zinc-950"
-            role="img"
-            aria-label="Imagem de prévia indisponível"
-          >
-            <ImageOff className="w-8 h-8 mb-2 text-zinc-600" aria-hidden="true" />
-            <span className="text-xs font-medium">Prévia indisponível</span>
-          </div>
-        )}
+        <WallpaperMedia
+          wallpaper={wallpaper}
+          mode="card"
+          isHovered={isHovered}
+          onVideoPlayChange={setIsVideoPlaying}
+        />
 
         {/* Badges superiores na imagem: Tipo, Vídeo e Resolução */}
         <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
@@ -154,11 +85,24 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
 
           {wallpaper.videoPreviewUrl && (
             <span
-              className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-indigo-950/80 backdrop-blur-md border border-indigo-500/30 text-[10px] font-medium text-indigo-300"
-              title="Este wallpaper possui prévia em vídeo"
+              className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md backdrop-blur-md border text-[10px] font-medium transition-colors ${
+                isVideoPlaying
+                  ? 'bg-emerald-950/80 border-emerald-500/40 text-emerald-300'
+                  : 'bg-indigo-950/80 border-indigo-500/30 text-indigo-300'
+              }`}
+              title={
+                isVideoPlaying
+                  ? 'Vídeo em reprodução'
+                  : 'Este wallpaper possui prévia em vídeo'
+              }
             >
-              <Play className="w-2.5 h-2.5 fill-current" aria-hidden="true" />
-              <span>Vídeo</span>
+              <Play
+                className={`w-2.5 h-2.5 fill-current ${
+                  isVideoPlaying ? 'animate-pulse' : ''
+                }`}
+                aria-hidden="true"
+              />
+              <span>{isVideoPlaying ? 'Reproduzindo' : 'Vídeo'}</span>
             </span>
           )}
         </div>
