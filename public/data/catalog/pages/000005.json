@@ -1,5 +1,103 @@
 [
   {
+    "id": "793602574",
+    "isSimulated": false,
+    "title": "Solar System",
+    "description": "Web wallpaper with solar system background\r\nIf you appreciate this wallpaper, consider donating!\r\nPaypal: https://paypal.me/donught\r\nBTC: 1bSa1kgwvdeYGZbDJTm7o56nQdrzYp7Uc\r\nETH: 0x4c7602e201dffd03de84fad32c0a088b5c95038d",
+    "author": {
+      "name": "",
+      "steamId": "76561198049889988"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1751306126565115127/DAAFFC195D76A57CF61ABC12400F31F024005BAE/",
+    "type": "Web",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Abstract",
+      "Wallpaper",
+      "Approved",
+      "Customizable",
+      "Dynamic resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 583619,
+    "createdAt": "2016-11-05T00:03:47.000Z",
+    "updatedAt": "2021-04-11T02:08:51.000Z",
+    "stats": {
+      "views": 144549,
+      "subscriptions": 961674,
+      "favorited": 50559,
+      "votesUp": 14420
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=793602574",
+    "steamClientUri": "steam://url/CommunityFilePage/793602574"
+  },
+  {
+    "id": "2745810856",
+    "isSimulated": false,
+    "title": "Jinx with gemstone [Arcane]",
+    "description": "Night time wallpaper of Powder. \r\n\r\nThere is a checkbox to toggle each of these effects:\r\n- Glowing tattoo (custom colors) that responds to mouse pointer (permanent option too).\r\n- Audio visualizer (Toggle audio recording at the top)\r\n- Idle animation\r\n- Gemstone glow\r\n- Rain\r\n- Fog\r\n- Ember\r\n- Clock\r\n\r\nYou will find the following setting useful, to make sure rain sounds don't interfere with other audio sounds.\r\nWallpaper engine settings > Performance > Other application playing audio > mute\r\n\r\nMake sure to enable audio record in wallpaper settings for audio visualizer.\r\nIf you have 16:9 monitor, set position to 75 in wallpaper settings.\r\nFor minimal gpu usage - set fps to 30 and turn off antialiasing.\r\n\r\nCredit to @MizuriAU on twitter for glowing tattoo textures- https://twitter.com/MizuriAU/status/1457684157354725387\r\n\r\nPlease leave suggestions and feedback in comments.\r\nThank you for subscribing!",
+    "author": {
+      "name": "SteamUser (76561199062647740)",
+      "steamId": "76561199062647740"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1806509564625764433/4C59AB62E0A83B4A0F9F60D9DB1941473AB924BD/",
+    "type": "Scene",
+    "resolution": "3440x1440",
+    "aspectRatio": "21:9",
+    "tags": [
+      "Television",
+      "Wallpaper",
+      "Audio responsive",
+      "Customizable",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 12937955,
+    "createdAt": "2022-02-07T04:29:54.000Z",
+    "updatedAt": "2026-09-23T02:40:28.000Z",
+    "stats": {
+      "views": 25917,
+      "subscriptions": 950844,
+      "favorited": 60250,
+      "votesUp": 7001
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2745810856",
+    "steamClientUri": "steam://url/CommunityFilePage/2745810856"
+  },
+  {
+    "id": "3379996991",
+    "isSimulated": false,
+    "title": "Winter Conch Street - SpongeBob SquarePants",
+    "description": "Conch Street with Spongebob's, Patrick's, and Squidward's house from Season 2, Episode 8. A winter wallpaper that cycles throughtout the day.\r\n\r\nIf you wish, you can also enable the night lights wallpaper, where the houses and the tree are lit up. Simply set \"Night Lights Start\" and \"Night Lights End\" to different values (preferably hours that are after \"Sunset\") to enable it. (Lit up houses are supposed to be only transitioning from night to the night lights) \r\n\r\nThe wallpaper features songs from the SpongeBob SquarePants cartoon, with a total of 16 songs. The wallpaper also has the underwater sound effect as ambient sound that the series uses mostly throughout Season 1. Lastly, the wallpaper also has occasional noises of SpongeBob or Squidward walking that play.\r\n\r\nThere are also some visual effects, like snow, that you can enable and disable.\r\n\r\nDisclaimer: (I do not own the original images, music or sound effects. I just made them into a wallpaper. Any of the credit towards the art and audio used in my wallpaper should belong to the SpongeBob SquarePants creators.)\r\n\r\nTags: Sponge Bob, Patrick Star, Squidward Tentacles, Ocean, Bikini Bottom, Christmas, Holiday",
+    "author": {
+      "name": "SteamUser (76561198398053081)",
+      "steamId": "76561198398053081"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/20925620227093778/66A377212EF2970D0125161B24B88C86380613AA/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Cartoon",
+      "Wallpaper",
+      "Customizable",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 88370572,
+    "createdAt": "2024-12-07T16:09:39.000Z",
+    "updatedAt": "2025-12-24T11:30:46.000Z",
+    "stats": {
+      "views": 17838,
+      "subscriptions": 971760,
+      "favorited": 38050,
+      "votesUp": 5674
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3379996991",
+    "steamClientUri": "steam://url/CommunityFilePage/3379996991"
+  },
+  {
     "id": "844169987",
     "isSimulated": false,
     "title": "Yukinoshita HD 60FPS",
@@ -702,101 +800,5 @@
     },
     "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3141421197",
     "steamClientUri": "steam://url/CommunityFilePage/3141421197"
-  },
-  {
-    "id": "951259031",
-    "isSimulated": false,
-    "title": "firewatch",
-    "description": "",
-    "author": {
-      "name": "",
-      "steamId": "76561198155570709"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/852718607801651586/F4619FD1B5563A652E486921C6D66E93A72E6040/",
-    "type": "Video",
-    "resolution": "1920x1080",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Game"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 14538891,
-    "createdAt": "2017-06-20T16:44:09.000Z",
-    "updatedAt": "2017-06-20T16:44:09.000Z",
-    "stats": {
-      "views": 113310,
-      "subscriptions": 843788,
-      "favorited": 59513,
-      "votesUp": 16808
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=951259031",
-    "steamClientUri": "steam://url/CommunityFilePage/951259031"
-  },
-  {
-    "id": "824586497",
-    "isSimulated": false,
-    "title": "Reimu with music 灵梦音乐版 1080 60FPS",
-    "description": "原作1080系列没有背景音乐，于是自己加了个bgm，侵删。\r\nhttp://steamcommunity.com/sharedfiles/filedetails/?id=821372791\r\nbgm(background music): CMA - You're Not Alone\r\nhttp://music.163.com/m/song?id=27948638&userid=335902440\r\n\r\nNEW:\r\n你们要的东方bgm和完整版···\r\nAnother bgm(background music)\r\n↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓\r\nhttp://steamcommunity.com/sharedfiles/filedetails/?id=841126046\r\n\r\n\r\n我像个傻子一样把档弄丢了，于是只能这样更新····\r\n修复了结尾的跳帧\r\n↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓\r\nTHIS IS THE NEW THAT REPAIR THE END OF THE BUG( cause i lose my update file :( \r\nhttp://steamcommunity.com/sharedfiles/filedetails/?id=841307337",
-    "author": {
-      "name": "",
-      "steamId": "76561198254403546"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/107356734869683002/1C9A553BB666FFDDBC659AD279FD6AB6A73CF11C/",
-    "type": "Video",
-    "resolution": "Não informada",
-    "aspectRatio": "Other",
-    "tags": [
-      "Wallpaper",
-      "Anime",
-      "Other resolution"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 433007758,
-    "createdAt": "2016-12-24T09:16:20.000Z",
-    "updatedAt": "2016-12-24T09:16:20.000Z",
-    "stats": {
-      "views": 355166,
-      "subscriptions": 763668,
-      "favorited": 101016,
-      "votesUp": 46349
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=824586497",
-    "steamClientUri": "steam://url/CommunityFilePage/824586497"
-  },
-  {
-    "id": "3479521040",
-    "isSimulated": false,
-    "title": "\"日向の幽霊\"/\"HyugaのGhost\" byCogecha",
-    "description": "------------------------中文---------------------------\n画师:焦茶 背景音乐：君の膵臓をたべたい\n日向の幽霊 | 焦茶 #pixiv https://www.pixiv.net/artworks/68936009\n倘若你觉得运行起来卡顿请关闭音频识别组件，与些许粒子.\n关于壁纸位置:如果您想调整壁纸的左右位置可以在对齐方式中选择自由经行调整.\n如果觉得壁纸做的不错请给作者一个好评,十分感谢！！(*´∀人)\n倘若您对壁纸有什么建议请评论区留言。 (*´∀｀)ﾉゞ\n------------------------English---------------------------\nArtist:焦茶 Background music: 君の膵臓をたべたい\n日向の幽霊 | 焦茶 #pixiv https://www.pixiv.net/artworks/68936009\nIf you find it lagging when running, please turn off the audio recognition component and a few particles.\nSelecting Free alignment enables adjusting the wallpaper's horizontal position.\nIf you think the wallpaper is good, please give the author a good review, thank you very much!!(*´∀人)\nIf you have any suggestions for wallpaper, please leave a comment in the comments section.\n(*´∀｀)ﾉゞ",
-    "author": {
-      "name": "SteamUser (76561199645851972)",
-      "steamId": "76561199645851972"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/15492042093557113303/CA97AFA3A8C76930D6F8986F7D49C411907EB21F/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Anime",
-      "Audio responsive",
-      "Approved",
-      "Customizable",
-      "Puppet Warp",
-      "Media Integration"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 27157176,
-    "createdAt": "2025-05-11T02:42:55.000Z",
-    "updatedAt": "2025-05-11T02:42:55.000Z",
-    "stats": {
-      "views": 44928,
-      "subscriptions": 838446,
-      "favorited": 47629,
-      "votesUp": 9873
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3479521040",
-    "steamClientUri": "steam://url/CommunityFilePage/3479521040"
   }
 ]

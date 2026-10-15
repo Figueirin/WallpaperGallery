@@ -1,582 +1,143 @@
 [
   {
-    "id": "2903419373",
+    "id": "2814684786",
     "isSimulated": false,
-    "title": "(Rebecca) - Cyberpunk: Edgerunner",
-    "description": "https://www.youtube.com/channel/UCgoWkhm2f4wZybc3BwIGUXw",
+    "title": "李擎洲：雨中 · 天使  [5K]",
+    "description": "雨中天使  [5K] 更新日志：\nv1.0\nv1.1：2022.6.3，加入音频可视化效果，加强了窗上雨滴效果",
     "author": {
       "name": "",
-      "steamId": "76561198167870273"
+      "steamId": "76561198805091567"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2394313560688388382/DB457E6CCE4D5B1A435074CFE8BD8F79980E6254/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/1866193025832334307/DB413D278F471D50AB9FD92CD81993788717D760/",
     "type": "Scene",
-    "resolution": "1920x1080",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Anime",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 4789247,
-    "createdAt": "2022-12-18T12:32:59.000Z",
-    "updatedAt": "2024-08-30T11:13:03.000Z",
-    "stats": {
-      "views": 7278,
-      "subscriptions": 84849,
-      "favorited": 7426,
-      "votesUp": 1331
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2903419373",
-    "steamClientUri": "steam://url/CommunityFilePage/2903419373"
-  },
-  {
-    "id": "3535567429",
-    "isSimulated": false,
-    "title": "phrolova broken frame - 弗洛洛破碎框架",
-    "description": ">_<\r\n\r\nSource: https://www.pixiv.net/en/artworks/132051256\r\n\r\nAnimated by Tora on Wallpaper Engine",
-    "author": {
-      "name": "",
-      "steamId": "76561198806053911"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/15750878771748783415/2391A1C5EAC992D0228A5B05016CFEA8D42706B8/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Anime"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 20354709,
-    "createdAt": "2025-07-27T04:03:31.000Z",
-    "updatedAt": "2025-07-27T04:03:31.000Z",
-    "stats": {
-      "views": 3424,
-      "subscriptions": 85780,
-      "favorited": 6681,
-      "votesUp": 892
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3535567429",
-    "steamClientUri": "steam://url/CommunityFilePage/3535567429"
-  },
-  {
-    "id": "3041683820",
-    "isSimulated": false,
-    "title": "One Piece",
-    "description": "TVアニメ『ONE PIECE』- OPENING 25 | 4K | 60FPS | OPテーマ：SEKAI NO OWARI「THE PEAK」",
-    "author": {
-      "name": "",
-      "steamId": "76561198374297020"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2085785911920164073/2E0415963E3C46A7403174FEF5C6E6355FF1BBF4/",
-    "type": "Video",
-    "resolution": "1920x1080",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Anime"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 446884089,
-    "createdAt": "2023-09-26T19:13:01.000Z",
-    "updatedAt": "2023-09-26T19:13:01.000Z",
-    "stats": {
-      "views": 3027,
-      "subscriptions": 86062,
-      "favorited": 6217,
-      "votesUp": 997
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3041683820",
-    "steamClientUri": "steam://url/CommunityFilePage/3041683820"
-  },
-  {
-    "id": "3540299646",
-    "isSimulated": false,
-    "title": "Dodge Demon | 🆄🆆🆄",
-    "description": "[url=https://steamcommunity.com/workshop/filedetails/?id=3572052777]\r\n[code][h1]DISCLAIMER\r\nAll images used to create the wallpaper are taken from an open source (Pinterest).\r\nI am not the author of these images!\r\nWhenever possible, if I know the author, I indicate him in the description of the work.[/h1][/code]\r\n[img]https://i.imgur.com/A3CS5B1.gif[/img]",
-    "author": {
-      "name": "",
-      "steamId": "76561198081122310"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/15077779129851777902/1AF79E65D9B09F83836E8C6AB2AAD6C541BF68A5/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Vehicle",
-      "Wallpaper",
-      "Audio responsive",
-      "Video Texture",
-      "Customizable",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 18982546,
-    "createdAt": "2025-08-02T13:02:35.000Z",
-    "updatedAt": "2025-10-23T11:47:24.000Z",
-    "stats": {
-      "views": 6410,
-      "subscriptions": 88041,
-      "favorited": 4321,
-      "votesUp": 766
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3540299646",
-    "steamClientUri": "steam://url/CommunityFilePage/3540299646"
-  },
-  {
-    "id": "3387913668",
-    "isSimulated": false,
-    "title": "成为王的代价",
-    "description": "",
-    "author": {
-      "name": "",
-      "steamId": "76561198324477812"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/15297372823986463/8C0A2577DB0EDA77B9BEBFD73BF49F5EB2BA41FF/",
-    "type": "Video",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Anime"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 274206872,
-    "createdAt": "2024-12-20T15:35:43.000Z",
-    "updatedAt": "2024-12-20T15:35:43.000Z",
-    "stats": {
-      "views": 2478,
-      "subscriptions": 88497,
-      "favorited": 4214,
-      "votesUp": 413
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3387913668",
-    "steamClientUri": "steam://url/CommunityFilePage/3387913668"
-  },
-  {
-    "id": "3286906338",
-    "isSimulated": false,
-    "title": "Pikachu - Champ",
-    "description": "Pikachu, de l'univers Pokemon, au soleil dans un champ. Par noixdecitron",
-    "author": {
-      "name": "",
-      "steamId": "76561197991579696"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2526038317325347340/8C26720DF5CDC982636F783E69FB7C63900C03F7/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Anime"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 12705947,
-    "createdAt": "2024-07-11T14:21:44.000Z",
-    "updatedAt": "2024-07-11T14:21:44.000Z",
-    "stats": {
-      "views": 2696,
-      "subscriptions": 87168,
-      "favorited": 5091,
-      "votesUp": 680
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3286906338",
-    "steamClientUri": "steam://url/CommunityFilePage/3286906338"
-  },
-  {
-    "id": "3201009900",
-    "isSimulated": false,
-    "title": "Guts Berserk Edit by felix 🔥",
-    "description": "Felix Edit of Guts from Berserk\r\n__________________________________________\r\n\r\nBerserk wallpaper 🔥🔥🔥\r\n\r\nAuthor of the edit - @felix.aeproject\r\n\r\nYouTube: https://www.youtube.com/@felix.aeproject\r\n\r\nTikTok: @felix.aeproject\r\n\r\nSONG - Washing Machine Heart (Mitski)\r\n\r\n__________________________________________\r\n\r\nIf you like this wallpaper, please, rate it ! <3",
-    "author": {
-      "name": "",
-      "steamId": "76561198207311753"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2441586999444686349/D7E999541567304611881E661DEF6846A2E8F517/",
-    "type": "Video",
-    "resolution": "1920x1080",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Anime"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 25459833,
-    "createdAt": "2024-03-25T23:43:25.000Z",
-    "updatedAt": "2024-03-25T23:43:25.000Z",
-    "stats": {
-      "views": 3378,
-      "subscriptions": 85730,
-      "favorited": 5948,
-      "votesUp": 1088
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3201009900",
-    "steamClientUri": "steam://url/CommunityFilePage/3201009900"
-  },
-  {
-    "id": "3607872032",
-    "isSimulated": false,
-    "title": "Christmas Cats - Natal de Gatos - ENG, PT-BR, ESP",
-    "description": "Feliz Natal! :)\r\nMerry Christmas! :)\r\nFeliz Navidad! :)\r\n\r\n2025\r\n\r\nCom músicas, papéis de paredes selecionáveis e gifs/imagens de gatos! :)\r\nFeaturing musics, selectable wallpapers, and cat GIFs/images! :)\r\n¡Con música, fondos de pantalla seleccionables y GIF/imágenes de gatos! :)",
-    "author": {
-      "name": "",
-      "steamId": "76561198253373376"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/15443513606581285761/E8DDBF3BC4231304BE2D122B8FA5F5D1C5F8C793/",
-    "type": "Scene",
-    "resolution": "1920x1080",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Animal",
-      "Wallpaper",
-      "Customizable"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 35156404,
-    "createdAt": "2025-11-18T04:48:41.000Z",
-    "updatedAt": "2025-11-18T04:48:41.000Z",
-    "stats": {
-      "views": 3137,
-      "subscriptions": 87828,
-      "favorited": 4227,
-      "votesUp": 707
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3607872032",
-    "steamClientUri": "steam://url/CommunityFilePage/3607872032"
-  },
-  {
-    "id": "3571476687",
-    "isSimulated": false,
-    "title": "尤诺 Iuno | 鸣潮 Wuthering Waves",
-    "description": "尤诺 | 鸣潮 × 永庆坊 Iuno Yongqing Fang Collab\n今夜属于月亮🌙",
-    "author": {
-      "name": "",
-      "steamId": "76561198315894619"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/18397568228294129268/C4D5DCBBF81248DBE6A423FAC46B6D02BF690FE0/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Anime",
-      "Wallpaper",
-      "Audio responsive",
-      "Customizable"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 17793559,
-    "createdAt": "2025-09-20T13:09:14.000Z",
-    "updatedAt": "2026-01-14T13:01:14.000Z",
-    "stats": {
-      "views": 3269,
-      "subscriptions": 85563,
-      "favorited": 6213,
-      "votesUp": 924
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3571476687",
-    "steamClientUri": "steam://url/CommunityFilePage/3571476687"
-  },
-  {
-    "id": "3451913004",
-    "isSimulated": false,
-    "title": "Kantan Music | Phone 4K",
-    "description": "Figure author: Yu楽彩＠Live2Dもする人",
-    "author": {
-      "name": "",
-      "steamId": "76561198109572358"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/53586226632506986/8A4961E901B16914576DCD6992DCFDD9AD331A4D/",
-    "type": "Scene",
-    "resolution": "2160x3840",
+    "resolution": "Não informada",
     "aspectRatio": "Other",
     "tags": [
       "Wallpaper",
-      "Anime",
-      "Approved",
-      "Portrait 2160 x 3840"
+      "Audio responsive",
+      "Other resolution",
+      "Girls"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 10397166,
-    "createdAt": "2025-03-25T16:49:41.000Z",
-    "updatedAt": "2025-03-25T16:49:41.000Z",
+    "fileSizeBytes": 19619593,
+    "createdAt": "2022-05-30T09:38:28.000Z",
+    "updatedAt": "2022-07-24T04:55:38.000Z",
     "stats": {
-      "views": 2470,
-      "subscriptions": 87507,
-      "favorited": 4737,
-      "votesUp": 447
+      "views": 7604,
+      "subscriptions": 130945,
+      "favorited": 7630,
+      "votesUp": 812
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3451913004",
-    "steamClientUri": "steam://url/CommunityFilePage/3451913004"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2814684786",
+    "steamClientUri": "steam://url/CommunityFilePage/2814684786"
   },
   {
-    "id": "3617449489",
+    "id": "3159207540",
     "isSimulated": false,
-    "title": "WLOP 未竟之谋2",
-    "description": "作画WLOP\nBGM   i didn't lie-LANY\nAll I Knew Was You-GD Cookie / SADRECORDS\n更新\n取消3d的音频条，",
+    "title": "things you said",
+    "description": "",
     "author": {
       "name": "",
-      "steamId": "76561198189897202"
+      "steamId": "76561198866560862"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/16694528999150722053/4B5CF9EB5FCF1EA0A14E357DF0C0A805BD35FF1D/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/2375154875275422182/CF3F62F94DE6622226326EB741F5D494371BC0EA/",
     "type": "Scene",
     "resolution": "3840x2160",
     "aspectRatio": "16:9",
     "tags": [
-      "Girls",
       "Wallpaper",
-      "Puppet Warp",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 53772697,
-    "createdAt": "2025-12-04T01:03:50.000Z",
-    "updatedAt": "2026-09-03T18:29:47.000Z",
-    "stats": {
-      "views": 3690,
-      "subscriptions": 87047,
-      "favorited": 4899,
-      "votesUp": 583
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3617449489",
-    "steamClientUri": "steam://url/CommunityFilePage/3617449489"
-  },
-  {
-    "id": "3368299976",
-    "isSimulated": false,
-    "title": "Jinx Paint the Town of Blue - Arcane (League of Legends) [Nixri]",
-    "description": "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[img]https://i.imgur.com/FIgRLHs.gif[/img] \r\n[img]https://i.imgur.com/v09WOVu.png[/img]\r\n\r\n[i]〖[u] ᴛʜɪꜱ ᴡᴀʟʟᴘᴀᴘᴇʀ ᴡᴀꜱ ɴᴏᴛ ᴅʀᴀᴡɴ ʙʏ ᴍᴇ, ᴛʜᴇ ʀᴇᴀʟ ᴀʀᴛɪꜱᴛꜱ ᴡɪʟʟ ᴀʟᴡᴀʏꜱ ʙᴇ ᴅᴏᴡɴ ↓ʜᴇʀᴇ↓. ɪ ᴏɴʟʏ ᴀᴅᴅ ᴀɴɪᴍᴀᴛɪᴏɴ ᴛᴏ ᴛʜᴇꜱᴇ ɪᴍᴀɢᴇꜱ ꜰᴏʀ ꜰᴜɴ. ᴘʟᴇᴀꜱᴇ, ꜱᴜᴘᴘᴏʀᴛ ᴛʜɪꜱ ᴀʙꜱᴏʟᴜᴛᴇʟʏ ꜰᴀɴᴛᴀꜱᴛɪᴄ ᴀʀᴛɪꜱᴛ.\r\nɪꜰ ᴀɴʏ ᴀʀᴛɪꜱᴛ ᴅᴏᴇꜱɴ'ᴛ ᴡᴀɴᴛ ᴛʜɪꜱ ᴡᴀʟʟᴘᴀᴘᴇʀ ʜᴇʀᴇ, ᴘʟᴇᴀꜱᴇ ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ᴀɴᴅ ɪ'ʟʟ ʀᴇᴍᴏᴠᴇ ɪᴛ.[/u]〗[/i]\r\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[img]https://i.imgur.com/zp9gnoZ.png[/img]\r\nArtist: https://www.artstation.com/nixri\r\nSource: https://www.artstation.com/artwork/qJodyD\r\nMusic: https://www.youtube.com/watch?v=JYDwTQC5TlE\r\n\r\n⠀⠀[b]↓↓↓↓↓↓↓⠀⠀★ ʏᴏᴜ ᴄᴀɴ ᴄʜᴇᴄᴋ ᴍʏ ᴄᴏʟʟᴇᴄᴛɪᴏɴ ᴀᴘᴘʀᴏᴠᴇᴅ ᴡᴀʟʟᴘᴀᴘᴇʀꜱ ʜᴇʀᴇ ★⠀⠀↓↓↓↓↓↓↓[/b]⠀⠀\r\n\r\n[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2334115690]\r\n[img]https://i.imgur.com/udq3D78.gif[/img][/url] \r\n\r\n[img]https://i.imgur.com/v09WOVu.png[/img]\r\n\r\n[url=https://steamcommunity.com:/linkfilter/https://www.paypal.me/NiaraCooper]\r\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[img]https://i.imgur.com/8As1ZNA.png[/img][img]https://i.imgur.com/8As1ZNA.png[/img][img]https://i.imgur.com/8As1ZNA.png[/img] [img]https://i.imgur.com/yar6GJ9.png[/img]  [img]https://i.imgur.com/Cuxcequ.png[/img][img]https://i.imgur.com/Cuxcequ.png[/img][img]https://i.imgur.com/Cuxcequ.png[/img]\r\n[img]https://i.imgur.com/BX7pEU5.png[/img][/url]\r\n\r\n[url=https://steamcommunity.com:/linkfilter/https://discord.gg/XkTURFR][img]https://i.imgur.com/9ZBjX8G.png[/img][/url]",
-    "author": {
-      "name": "",
-      "steamId": "76561198168390844"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/60330356930398380/0850230E6341BE28CD52C1A3735F10ECA0052B96/",
-    "type": "Scene",
-    "resolution": "1920x1080",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Game",
       "Audio responsive",
+      "Relaxing",
       "Approved",
-      "Customizable",
       "Puppet Warp"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 15585440,
-    "createdAt": "2024-11-18T22:30:42.000Z",
-    "updatedAt": "2024-11-18T22:30:42.000Z",
+    "fileSizeBytes": 32703404,
+    "createdAt": "2024-02-12T10:01:13.000Z",
+    "updatedAt": "2024-02-12T10:07:30.000Z",
     "stats": {
-      "views": 5294,
-      "subscriptions": 87211,
-      "favorited": 4681,
-      "votesUp": 602
+      "views": 4795,
+      "subscriptions": 129699,
+      "favorited": 8515,
+      "votesUp": 1142
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3368299976",
-    "steamClientUri": "steam://url/CommunityFilePage/3368299976"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3159207540",
+    "steamClientUri": "steam://url/CommunityFilePage/3159207540"
   },
   {
-    "id": "3615309665",
+    "id": "3267902832",
     "isSimulated": false,
-    "title": "旷野里的秋日风-铁柱",
-    "description": "",
-    "author": {
-      "name": "",
-      "steamId": "76561199802192706"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/16381133850211033221/E49C86BF7C969B8B5E47E7117C318DC5C2F5BAA6/",
-    "type": "Scene",
-    "resolution": "2560x1440",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Unspecified",
-      "Wallpaper",
-      "No Animation"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 4820990,
-    "createdAt": "2025-11-30T13:01:00.000Z",
-    "updatedAt": "2025-11-30T13:01:00.000Z",
-    "stats": {
-      "views": 49592,
-      "subscriptions": 85928,
-      "favorited": 5418,
-      "votesUp": 1035
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3615309665",
-    "steamClientUri": "steam://url/CommunityFilePage/3615309665"
-  },
-  {
-    "id": "3304642534",
-    "isSimulated": false,
-    "title": "协奏进行曲—Genshin 甘雨",
-    "description": "",
-    "author": {
-      "name": "",
-      "steamId": "76561199211145147"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2522664248075077966/FEBC5284EAFB0401BCB72F712286894B2EAC4F01/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Audio responsive",
-      "Customizable",
-      "Anime"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 40753906,
-    "createdAt": "2024-08-07T15:13:21.000Z",
-    "updatedAt": "2024-09-08T12:21:48.000Z",
-    "stats": {
-      "views": 3529,
-      "subscriptions": 83127,
-      "favorited": 7838,
-      "votesUp": 1399
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3304642534",
-    "steamClientUri": "steam://url/CommunityFilePage/3304642534"
-  },
-  {
-    "id": "3287150317",
-    "isSimulated": false,
-    "title": "anime-girl-white-ghost-hair-4k",
-    "description": "enjoy :D",
-    "author": {
-      "name": "",
-      "steamId": "76561198183398861"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2532793716765942178/B57BC4DB2D19A2204E951D9E31F8E32782CE75BD/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Anime",
-      "Wallpaper",
-      "Customizable"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 2677437,
-    "createdAt": "2024-07-11T21:07:33.000Z",
-    "updatedAt": "2026-06-03T14:58:42.000Z",
-    "stats": {
-      "views": 4421,
-      "subscriptions": 84330,
-      "favorited": 7327,
-      "votesUp": 660
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3287150317",
-    "steamClientUri": "steam://url/CommunityFilePage/3287150317"
-  },
-  {
-    "id": "3120899076",
-    "isSimulated": false,
-    "title": "[Lightweight] Soothing Minecraft – Serene Snow",
-    "description": "Settle into to this soothing snow scene, the perfect ambient backdrop for this holiday season. As snow drifts softly down from a grey Overworld sky, and the sun climbs slowly above the horizon, a snow fox slumbers.\nSource: https://youtu.be/JBoUwElRFVM",
-    "author": {
-      "name": "",
-      "steamId": "76561198863948686"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2310974141604831537/53981C69BA02E83858B7F40234963BC9199A05AF/",
-    "type": "Video",
-    "resolution": "1920x1080",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Game"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 64445882,
-    "createdAt": "2023-12-23T16:26:51.000Z",
-    "updatedAt": "2023-12-23T16:26:51.000Z",
-    "stats": {
-      "views": 3099,
-      "subscriptions": 86110,
-      "favorited": 5513,
-      "votesUp": 663
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3120899076",
-    "steamClientUri": "steam://url/CommunityFilePage/3120899076"
-  },
-  {
-    "id": "3246995658",
-    "isSimulated": false,
-    "title": "Jujutsu kaisen - Gojo Satoru [4K]",
-    "description": "Jujutsu kaisen - Gojo Satoru [4K] [img]https://i.kym-cdn.com/photos/images/newsfeed/001/303/089/680[/img]\r\n\r\n🏵️ Animated by [url=https://steamcommunity.com/profiles/76561198451543154/]𝙉𝙤𝙧𝙩𝙝𝙒𝙖𝙮[/url]\r\n\r\n👍 Don't hesitate to subscribe to my [url=https://steamcommunity.com/profiles/76561198451543154/myworkshopfiles/]Workshop[/url] for more wallpapers in this style ♥ :)\r\n\r\n🖍️ Art by お : https://www.pixiv.net/en/artworks/97101031\r\n\r\n🔩 Dynamic media info by Gariam and Seekay : https://steamcommunity.com/sharedfiles/filedetails/?id=3219510589&snr=\r\n\r\n𝗞𝗻𝗼𝘄 𝘁𝗵𝗮𝘁 𝗮𝗹𝗹 𝘁𝗵𝗲 𝘄𝗮𝗹𝗹𝗽𝗮𝗽𝗲𝗿𝘀 𝗮𝗿𝗲 𝗳𝗿𝗲𝗲 😱 𝗮𝗻𝗱 𝘁𝗵𝗮𝘁 𝗜 𝗱𝗼𝗻'𝘁 𝗺𝗮𝗸𝗲 𝗮𝗻𝘆 𝗺𝗼𝗻𝗲𝘆 𝗳𝗿𝗼𝗺 𝗶𝘁.😄 \r\n𝗼𝗳 𝗰𝗼𝘂𝗿𝘀𝗲 𝗜 𝘄𝗼𝘂𝗹𝗱 𝗯𝗲 𝗵𝗮𝗽𝗽𝘆 𝗶𝗳 𝘆𝗼𝘂 𝗺𝗮𝗱𝗲 𝗺𝗲 𝗮 𝗱𝗼𝗻𝗮𝘁𝗶𝗼𝗻🥰💜[u][b][url=https://ko-fi.com/northway]ko-fi[/url][/b][/u]\r\n\r\nTags : [4K] Live Wallpaper,Shooting Star,Anime,3840 x 2160,Scene,Customizable,Audio responsive,Date,Day,Clock,Media Integration.\r\n\r\n[h1]Tips:Note that the media integration is movable[/h1]",
-    "author": {
-      "name": "",
-      "steamId": "76561198451543154"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2474242941226693712/8A71DD499C08FE6C8118CB79CE591B2CB9D35E6C/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Anime",
-      "Audio responsive",
-      "Approved",
-      "Customizable",
-      "Puppet Warp",
-      "Media Integration"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 17957089,
-    "createdAt": "2024-05-15T10:34:46.000Z",
-    "updatedAt": "2024-11-22T15:53:54.000Z",
-    "stats": {
-      "views": 3612,
-      "subscriptions": 86765,
-      "favorited": 4944,
-      "votesUp": 565
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3246995658",
-    "steamClientUri": "steam://url/CommunityFilePage/3246995658"
-  },
-  {
-    "id": "3374664234",
-    "isSimulated": false,
-    "title": "Arcane - Viktor 4k",
-    "description": "GIF recording/Screenshot of wallpaper as preview.\n\n[u] [h1] [url=https://steamcommunity.com/id/drioyard/myworkshopfiles/?appid=431960] My Workshop[/url]  [/h1] [/u]\n[u] [h1] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2124383188] My approved wallpapers collection [/url]  [/h1] [/u]\nArtwork Source : Frame from EP9 Season 2\nMusic : Viktor, The Healer | Epic Cinematic OST | Arcane Season 2 Soundtrack Cover #arcane #arcane2\nMusic Link : https://www.youtube.com/watch?v=RInRjVuYHE4\n\nLabels : Drioyard, Day, Date, Clock, Time, Music, Arcane, Arcane Finale, The Machine Herald, Evolution, Hextech, Jayce, God-Like, Final Form, LoL, Leauge of Legeneds, Jinx, Fantasy World, Cartoon, Light, Dimension, Another World, Souls, Staff, Dynasties & Dystopia, Riot Games, Shine\n\nDisclaimer:\nI am not the owner of the artworks used in my live wallpapers, I only animate them. All credits belong to the artists, any artists I could not find to credit and you are aware of, please comment on the wallpapers themselves.",
+    "title": "Blood Kamui - 4k",
+    "description": "GIF recording/Screenshot of wallpaper as preview.\r\n\r\n[u] [h1] [url=https://steamcommunity.com/id/drioyard/myworkshopfiles/?appid=431960] My Workshop[/url]  [/h1] [/u]\r\n[u] [h1] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2124383188] My approved wallpapers collection [/url]  [/h1] [/u]\r\nArtwork by : https://www.instagram.com/flux_ani?igsh=MXY4YzJzanpiZWN4\r\nArtwork Source : https://www.instagram.com/p/C4Ax9snoAi-/?igsh=MTljYXE4ZGplcG1vZw%3D%3D&img_index=1\r\nMusic : Naruto - Madara/Obito theme\r\nMusic Link : https://www.youtube.com/watch?v=oyr5YTd_8i8\r\n\r\nLabels : Drioyard, Naruto: Shippuden, Obito Uchiha, Sharingan, Mangekyō Sharingan, Kamui, Fantasy World, Red, Black, Mask, Akatsuki, Tobi, Night, Audio Responsive Pulse Light, Blood Flow Vortex, Itachi, To Another Dimension, Fantasy World, Anime, 4k, Genjutsu, Sasuke, Ninja, Villain, ナルト 疾風伝, うちはオビト, うちはサスケ, うちはイタチ\r\n\r\nDisclaimer:\r\nI am not the owner of the artworks used in my live wallpapers, I only animate them. All credits belong to the artists, any artists I could not find to credit and you are aware of, please comment on the wallpapers themselves.",
     "author": {
       "name": "",
       "steamId": "76561198993232710"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/62583101350405002/7D93E7710CD21869E05876A4D39AE06947E623B9/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/2450601762297561814/82B48100655182187289FCE9230540DFBD85017E/",
     "type": "Scene",
     "resolution": "3840x2160",
     "aspectRatio": "16:9",
     "tags": [
       "Wallpaper",
-      "Game",
+      "Anime",
+      "Audio responsive",
       "Approved",
       "Customizable",
       "Puppet Warp"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 22482258,
-    "createdAt": "2024-11-30T13:31:11.000Z",
-    "updatedAt": "2024-11-30T16:07:28.000Z",
+    "fileSizeBytes": 35114915,
+    "createdAt": "2024-06-14T22:56:24.000Z",
+    "updatedAt": "2024-06-15T16:42:27.000Z",
     "stats": {
-      "views": 5718,
-      "subscriptions": 86259,
-      "favorited": 5197,
-      "votesUp": 810
+      "views": 8747,
+      "subscriptions": 130126,
+      "favorited": 7933,
+      "votesUp": 1197
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3374664234",
-    "steamClientUri": "steam://url/CommunityFilePage/3374664234"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3267902832",
+    "steamClientUri": "steam://url/CommunityFilePage/3267902832"
   },
   {
-    "id": "3261196538",
+    "id": "2999436828",
     "isSimulated": false,
-    "title": "Sung Jin-Woo | Solo Leveling [4K]",
-    "description": "song: SawanoHiroyuki[nZk] (澤野弘之) - DARK ARIA (L2) (feat. XAI)\ntags: 俺だけレベルアップな件, 水篠 旬, shun mizushino, arise",
+    "title": "Japanese Torii Gate + Date & Clock (4K)",
+    "description": "High quality minimal b&w wallpaper of Japaneses torii gate with Clock and Calender. A torii is a traditional Japanese gate most commonly found at the entrance of or within a Shinto shrine, where it symbolically marks the transition from the mundane to the sacred.",
     "author": {
       "name": "",
-      "steamId": "76561198383102380"
+      "steamId": "76561198220561331"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2464111110645419899/BB5C76655E8E9E7F2A4182BD90101771A3D4E2E0/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/2001335808591066259/CC34768CCF2AA3200292A678BC2924282137C256/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Relaxing"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 1794321,
+    "createdAt": "2023-07-05T11:29:26.000Z",
+    "updatedAt": "2023-07-05T11:29:26.000Z",
+    "stats": {
+      "views": 3292,
+      "subscriptions": 131871,
+      "favorited": 6703,
+      "votesUp": 662
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2999436828",
+    "steamClientUri": "steam://url/CommunityFilePage/2999436828"
+  },
+  {
+    "id": "2186317748",
+    "isSimulated": false,
+    "title": "Demon Slayer : Kokushibo - Upper Rank One 4K {Artwork by EDIPTUS}",
+    "description": "Audio Responsive eyes.\r\nUPDATE: Audio visualizer is now available, turn on through customizations by turning the slider up to the max.\r\nArtwork used as preview.\r\n\r\n[u]  [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2124383188] My approved wallpapers collection [/url]  [/u]\r\n\r\nArtist : https://www.deviantart.com/ediptus\r\nArtwork Source: https://www.deviantart.com/ediptus/art/Kokushibo-Kimetsu-no-Yaiba-171-814744589\r\nMusic: Demon Slayer: Kimetsu no Yaiba OST - Upper Moon\r\nMusic Link: https://www.youtube.com/watch?v=X2sBhEY7iQs\r\n\r\nLabels : Labels : Demon Slayer Kimetsu no Yaiba, Kokushibo, Twelve Kizuki, Upper Rank One, Music, Audio Responsive, Blood Demon Art, Sword Manipulation",
+    "author": {
+      "name": "",
+      "steamId": "76561198993232710"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1483325801511479635/43106EAB88E0227E327B6985D642121A84574B13/",
     "type": "Scene",
     "resolution": "3840x2160",
     "aspectRatio": "16:9",
@@ -585,191 +146,252 @@
       "Anime",
       "Audio responsive",
       "Approved",
-      "Customizable",
-      "Media Integration"
+      "Customizable"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 49705861,
-    "createdAt": "2024-06-04T17:59:17.000Z",
-    "updatedAt": "2025-05-09T19:19:00.000Z",
+    "fileSizeBytes": 6118545,
+    "createdAt": "2020-08-03T13:22:56.000Z",
+    "updatedAt": "2020-09-25T16:42:07.000Z",
     "stats": {
-      "views": 3394,
-      "subscriptions": 87383,
-      "favorited": 4368,
-      "votesUp": 505
+      "views": 9179,
+      "subscriptions": 130126,
+      "favorited": 7855,
+      "votesUp": 1187
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3261196538",
-    "steamClientUri": "steam://url/CommunityFilePage/3261196538"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2186317748",
+    "steamClientUri": "steam://url/CommunityFilePage/2186317748"
   },
   {
-    "id": "3136942183",
+    "id": "1950351365",
     "isSimulated": false,
-    "title": "Pink Pixel",
-    "description": "This is a preset for someone else's wallpaper, I'm just change some things. There is a link to original https://steamcommunity.com/sharedfiles/filedetails/?id=3122339805",
+    "title": "Shrek plays the saxophone",
+    "description": "",
     "author": {
       "name": "",
-      "steamId": "76561198398641723"
+      "steamId": "76561198107827952"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2259184742970455923/093599E8C9ED53115104A4BE92201F92ABC58205/",
-    "type": "Scene",
-    "resolution": "1920x1080",
+    "previewUrl": "https://images.steamusercontent.com/ugc/766107814102428088/D0896A305CBC4852BBA08C527C31FDB998238E45/",
+    "type": "Video",
+    "resolution": "1280x720",
     "aspectRatio": "16:9",
     "tags": [
-      "Audio responsive",
-      "Pixel art",
-      "Preset"
+      "Wallpaper",
+      "Memes"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 9319278,
-    "createdAt": "2024-01-11T14:44:41.000Z",
-    "updatedAt": "2024-01-11T14:44:41.000Z",
+    "fileSizeBytes": 14360332,
+    "createdAt": "2019-12-28T16:29:07.000Z",
+    "updatedAt": "2019-12-28T16:29:07.000Z",
     "stats": {
-      "views": 6326,
-      "subscriptions": 85278,
-      "favorited": 6070,
-      "votesUp": 680
+      "views": 4705,
+      "subscriptions": 130005,
+      "favorited": 7042,
+      "votesUp": 2114
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3136942183",
-    "steamClientUri": "steam://url/CommunityFilePage/3136942183"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1950351365",
+    "steamClientUri": "steam://url/CommunityFilePage/1950351365"
   },
   {
-    "id": "3652040138",
+    "id": "2840253302",
     "isSimulated": false,
-    "title": "Dance in spring春日起舞（喜欢的朋友们，可以关注我哦~）",
-    "description": "忘记一切，无忧无虑的起舞吧...",
+    "title": "李擎洲：星河瀑布[4K]",
+    "description": "",
     "author": {
       "name": "",
-      "steamId": "76561198287235244"
+      "steamId": "76561198805091567"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/16695910136999661077/DA56C54E87B8B8609F3D0B77C0D6E719EF0EBF55/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/1929247408165831738/C57DB0442A6F30A8A2F714F29E6945D2DBE68CB4/",
     "type": "Scene",
     "resolution": "3840x2160",
     "aspectRatio": "16:9",
     "tags": [
-      "Landscape",
       "Wallpaper",
-      "Audio responsive"
+      "Relaxing",
+      "Customizable"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 32167534,
-    "createdAt": "2026-01-23T05:16:06.000Z",
-    "updatedAt": "2026-01-23T05:16:26.000Z",
+    "fileSizeBytes": 14666641,
+    "createdAt": "2022-07-25T14:33:16.000Z",
+    "updatedAt": "2022-07-25T14:33:16.000Z",
     "stats": {
-      "views": 3306,
-      "subscriptions": 87087,
-      "favorited": 4255,
-      "votesUp": 685
+      "views": 4546,
+      "subscriptions": 130268,
+      "favorited": 7877,
+      "votesUp": 959
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3652040138",
-    "steamClientUri": "steam://url/CommunityFilePage/3652040138"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2840253302",
+    "steamClientUri": "steam://url/CommunityFilePage/2840253302"
   },
   {
-    "id": "3463697945",
+    "id": "2307158859",
     "isSimulated": false,
-    "title": "物语花绫Hanaya",
-    "description": "物语花绫Hanaya配套壁纸，同款鼠标垫淘宝物语MONOGATARI69元在售，感谢您的支持。",
+    "title": "Frosted Peak",
+    "description": "[h1] ---------------------------------[/h1]\r\n[h1]Tags[/h1]\r\n[h1] ---------------------------------[/h1]\r\n- Relaxing \r\n- Mountain\r\n- Snow\r\n- Ice\r\n- Winter\r\n- Night Sky\r\n- Stars\r\n- Galaxy \r\n[h1] ---------------------------------[/h1]",
     "author": {
       "name": "",
-      "steamId": "76561198357046910"
+      "steamId": "76561198256757249"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/17559235524254349/AD5A60CA959A5A7134F99DCD26CA00E775357A03/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/1688276024726537100/C11B3014B5B9AE8036B71B1DB13E5806B03F9AA9/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Audio responsive",
+      "Landscape",
+      "Approved",
+      "Customizable"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 13237531,
+    "createdAt": "2020-12-03T08:09:36.000Z",
+    "updatedAt": "2021-09-09T07:16:08.000Z",
+    "stats": {
+      "views": 12700,
+      "subscriptions": 128849,
+      "favorited": 8726,
+      "votesUp": 1513
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2307158859",
+    "steamClientUri": "steam://url/CommunityFilePage/2307158859"
+  },
+  {
+    "id": "3310061130",
+    "isSimulated": false,
+    "title": "黑神话悟空",
+    "description": "源地址：https://weibo.com/u/2146189957",
+    "author": {
+      "name": "",
+      "steamId": "76561198866560862"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2384179286114007213/F7BFCCF3743744EAEBD9C3732FE65102E44B3183/",
     "type": "Video",
     "resolution": "3840x2160",
     "aspectRatio": "16:9",
     "tags": [
-      "Anime",
-      "Wallpaper"
+      "Wallpaper",
+      "Game",
+      "Approved"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 77079962,
-    "createdAt": "2025-04-14T04:23:48.000Z",
-    "updatedAt": "2025-04-14T04:23:48.000Z",
+    "fileSizeBytes": 12967926,
+    "createdAt": "2024-08-16T06:01:11.000Z",
+    "updatedAt": "2024-08-16T06:01:11.000Z",
     "stats": {
-      "views": 2343,
-      "subscriptions": 86772,
-      "favorited": 4622,
-      "votesUp": 455
+      "views": 6361,
+      "subscriptions": 132528,
+      "favorited": 5640,
+      "votesUp": 915
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3463697945",
-    "steamClientUri": "steam://url/CommunityFilePage/3463697945"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3310061130",
+    "steamClientUri": "steam://url/CommunityFilePage/3310061130"
   },
   {
-    "id": "3460626949",
+    "id": "3371795808",
     "isSimulated": false,
-    "title": "HUD",
-    "description": "interactive customizable wallpaper",
+    "title": "时尚流萤【8K】",
+    "description": "改自：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3365964629]时尚流萤[/url]\n修改：图片分辨率 7873×4320，添加自定义选项",
     "author": {
       "name": "",
-      "steamId": "76561198137043407"
+      "steamId": "76561199088244556"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/18685050162080235/9F013867687EBA97A2F37814513B2094AE615657/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/6287472044688482/20B65FB42EB728517D1FB7C1BE2DA9CAC0C53200/",
     "type": "Scene",
-    "resolution": "1920x1080",
+    "resolution": "3840x2160",
     "aspectRatio": "16:9",
     "tags": [
       "Wallpaper",
-      "Sci-Fi",
+      "Anime",
+      "Audio responsive",
+      "Customizable"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 49551685,
+    "createdAt": "2024-11-25T10:33:28.000Z",
+    "updatedAt": "2024-12-08T14:23:20.000Z",
+    "stats": {
+      "views": 5114,
+      "subscriptions": 129344,
+      "favorited": 8710,
+      "votesUp": 955
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3371795808",
+    "steamClientUri": "steam://url/CommunityFilePage/3371795808"
+  },
+  {
+    "id": "3647396093",
+    "isSimulated": false,
+    "title": "Red honor - Carnivor",
+    "description": "",
+    "author": {
+      "name": "",
+      "steamId": "76561199144863731"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/12607754015355061592/01422E0A174412236A7AE6693BD9F6B36AB04B6C/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Medieval",
+      "Wallpaper"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 5856204,
+    "createdAt": "2026-01-16T05:34:38.000Z",
+    "updatedAt": "2026-01-16T05:34:38.000Z",
+    "stats": {
+      "views": 5536,
+      "subscriptions": 133283,
+      "favorited": 5285,
+      "votesUp": 413
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3647396093",
+    "steamClientUri": "steam://url/CommunityFilePage/3647396093"
+  },
+  {
+    "id": "2883312700",
+    "isSimulated": false,
+    "title": "Now Playing",
+    "description": "an adaptive music wallpaper. (works best with Spotify!)\n\nFor the wallpaper to display album info properly you need to enable media integration support under the general tab in  Wallpaper Engine's settings as well as \"show desktop overlay when using media keys\" under display in Spotify's settings.\n\nUpdated 9/13/23:\n-added vortex playback particle effect\n-added colorize taskbar option\n\nUpdated 9/12/23:\n-added new visualizer options\n-added extra blur option to blurred album art playback background\n\nUpdated 9/11/23:\n-updated visualizer options for beter visibility and customizability\n\nUpdated 8/11/23:\n-added a toggle for the intro sequence\n\nUpdated 8/7/23:\n-separated darkening and vignette settings into playback and idle modes\n-fixed playback clock remove background center option\n-added \"Music w/ Clock\" Track Information option\n\nUpdated 8/5/23:\n-cleaned up PS5 options\n-added startup sequence\n\nUpdated 8/4/23:\n-reorganized user properties\n-split background options into 2 separate playback and idle options for more user control\n-added more granular visibility options for the 3D wave\n-added back PS5 background options\n-added section dividers to user properties\n-added idle particle color, size, and count options\n\nUpdated 8/3/23:\n-particle effects now have both audio and idle options\n-added back PS5 bokeh\n\nUpdated 8/2/23:\n-reworked particle effects\n-reworked visualizers\n-removed several background options to reduce bloat\n\nUpdated 8/1/23:\n-added colorize track information and playback clock options\n\nUpdated 7/29/23:\n-fixed clock date vertical alignment bug\n\nUpdated 7/27/23:\n-added bass lens distortion and bass pulse options\n-added oscilloscope visualizer option\n\nUpdated 7/26/23: \n-added blurred album art wave and tint options\n-reworked ambient background\n-added song title and artist font size sliders\n-added LP color opacity option\n-added pane corner visualizer option\n\nUpdated 6/3/23:\n-added blurred album art background option\n\nUpdated 12/29/22:\n-background goes to idle instead of black when no album art is available\n\nUpdated 12/9/22: \n-added separate dark / light mode options for playback and idle clocks\n-reworked PS5 background and particle options\n-reworked visualizers\n\nUpdated 12/8/22:\n-added date to center clock\n-added track information visualizer option\n-reworked vinyl record option\n\nUpdated 12/7/22:\n-optimized wallpaper settings pane\n-fixed no music wallpaper option\n-fixed fade in/out animations and timing\n-added no music background color options\n-reworked clock\n-added vinyl record track information option\n\nUpdated 12/6/22:\n-added auto-hide track info option\n-added fade effect to no music wallpaper option\n-added custom background option\n-added gradient background option\n-added particle size and count options\n\nUpdated 12/2/22:\n-added left and right track information options\n\nUpdated 11/22/22:\n-fixed album art perspective for custom alignments / portrait displays\n-added PS5 style background option\n\nUpdated 11/21/22:\n-added custom ambient background options\n\nUpdated 11/20/22:\n-added clock options\n-fixed audio reactive circle artist color bug\n\nUpdated 11/8/22:\n-added an option for a custom wallpaper to show when no music is playing\n\nUpdated 11/7/22:\n-added dark and light modes\n-added new background and particle options\n-updated appearance when no music is playing\n-added new visualization options",
+    "author": {
+      "name": "",
+      "steamId": "76561198035304699"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2030615786090250000/28BE1CACE85940D6BC3702D9BE213FA568E2AD50/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Music",
       "Audio responsive",
       "Approved",
       "Customizable",
       "Media Integration"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 5601312,
-    "createdAt": "2025-04-08T23:31:31.000Z",
-    "updatedAt": "2025-04-08T23:31:31.000Z",
+    "fileSizeBytes": 25619874,
+    "createdAt": "2022-11-02T06:56:22.000Z",
+    "updatedAt": "2023-09-13T23:54:50.000Z",
     "stats": {
-      "views": 7091,
-      "subscriptions": 87139,
-      "favorited": 3895,
-      "votesUp": 755
+      "views": 15422,
+      "subscriptions": 128728,
+      "favorited": 8475,
+      "votesUp": 1741
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3460626949",
-    "steamClientUri": "steam://url/CommunityFilePage/3460626949"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2883312700",
+    "steamClientUri": "steam://url/CommunityFilePage/2883312700"
   },
   {
-    "id": "3355291946",
+    "id": "824975751",
     "isSimulated": false,
-    "title": "TOKYO SAKURA TRAIN STATION [MEDIA PLAYER]",
-    "description": "",
+    "title": "Angel Beats! NCOP 1080P",
+    "description": "My Soul, Your Beats!",
     "author": {
       "name": "",
-      "steamId": "76561198103215388"
+      "steamId": "76561198095532402"
     },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2464124428054449032/DF7770206E989F9BD5EEAB7510ABDD95FE47C3DC/",
-    "type": "Scene",
-    "resolution": "2560x1440",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Landscape",
-      "Approved",
-      "Customizable",
-      "Media Integration"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 7396253,
-    "createdAt": "2024-10-26T21:48:42.000Z",
-    "updatedAt": "2024-11-03T22:25:02.000Z",
-    "stats": {
-      "views": 2586,
-      "subscriptions": 86664,
-      "favorited": 4667,
-      "votesUp": 417
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3355291946",
-    "steamClientUri": "steam://url/CommunityFilePage/3355291946"
-  },
-  {
-    "id": "3258847093",
-    "isSimulated": false,
-    "title": "流萤睡衣",
-    "description": "无音乐",
-    "author": {
-      "name": "",
-      "steamId": "76561199335612656"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2484377308950342724/90CBF0815334992E3C4F289BC8769A35376E8BBE/",
+    "previewUrl": "https://images.steamusercontent.com/ugc/107357223492448204/BB2408FCA7F514867C199B904E410F45DA6E5830/",
     "type": "Video",
     "resolution": "Não informada",
     "aspectRatio": "Other",
@@ -779,16 +401,395 @@
       "Other resolution"
     ],
     "rating": "Everyone",
-    "fileSizeBytes": 36798794,
-    "createdAt": "2024-06-01T11:44:18.000Z",
-    "updatedAt": "2024-06-01T11:44:18.000Z",
+    "fileSizeBytes": 59692727,
+    "createdAt": "2016-12-24T18:45:55.000Z",
+    "updatedAt": "2016-12-29T11:08:54.000Z",
     "stats": {
-      "views": 4010,
-      "subscriptions": 83203,
-      "favorited": 7650,
-      "votesUp": 819
+      "views": 35088,
+      "subscriptions": 121341,
+      "favorited": 10849,
+      "votesUp": 6708
     },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3258847093",
-    "steamClientUri": "steam://url/CommunityFilePage/3258847093"
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=824975751",
+    "steamClientUri": "steam://url/CommunityFilePage/824975751"
+  },
+  {
+    "id": "3277749218",
+    "isSimulated": false,
+    "title": "Galaxy Home 4K #3",
+    "description": "",
+    "author": {
+      "name": "",
+      "steamId": "76561198017152891"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2530541916742327215/C75C3B6D2328074E4880F37AC86044A751239C1A/",
+    "type": "Video",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Sci-Fi"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 101626749,
+    "createdAt": "2024-06-29T08:28:20.000Z",
+    "updatedAt": "2024-06-29T08:28:20.000Z",
+    "stats": {
+      "views": 3798,
+      "subscriptions": 130873,
+      "favorited": 7029,
+      "votesUp": 925
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3277749218",
+    "steamClientUri": "steam://url/CommunityFilePage/3277749218"
+  },
+  {
+    "id": "1833600096",
+    "isSimulated": false,
+    "title": "Mountain",
+    "description": "Please guys, rate if you like to more people discover and use my wallpapers. Thank's and enjoy.",
+    "author": {
+      "name": "",
+      "steamId": "76561198119191091"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/775102877227468864/DDFB2126DCF3D47A41D11070594ED408556689C0/",
+    "type": "Scene",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Wallpaper",
+      "Landscape",
+      "Other resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 1990304,
+    "createdAt": "2019-08-13T14:27:12.000Z",
+    "updatedAt": "2019-08-17T22:59:18.000Z",
+    "stats": {
+      "views": 3221,
+      "subscriptions": 132252,
+      "favorited": 5573,
+      "votesUp": 986
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1833600096",
+    "steamClientUri": "steam://url/CommunityFilePage/1833600096"
+  },
+  {
+    "id": "3136090213",
+    "isSimulated": false,
+    "title": "龙珠",
+    "description": "",
+    "author": {
+      "name": "",
+      "steamId": "76561198415955867"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2276073146881293863/A085E2C975E9ACBB123518015333181FE77FB231/",
+    "type": "Video",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 137397471,
+    "createdAt": "2024-01-10T07:54:40.000Z",
+    "updatedAt": "2024-01-10T07:54:40.000Z",
+    "stats": {
+      "views": 3056,
+      "subscriptions": 131800,
+      "favorited": 6249,
+      "votesUp": 666
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3136090213",
+    "steamClientUri": "steam://url/CommunityFilePage/3136090213"
+  },
+  {
+    "id": "3536635852",
+    "isSimulated": false,
+    "title": "near star -alexandr",
+    "description": "",
+    "author": {
+      "name": "",
+      "steamId": "76561199227802647"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/15093909593042542774/63E7D896729195E9FA8612FFEC7A40B630F68177/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Abstract",
+      "Wallpaper"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 375232,
+    "createdAt": "2025-07-28T14:25:24.000Z",
+    "updatedAt": "2025-07-28T14:25:24.000Z",
+    "stats": {
+      "views": 5223,
+      "subscriptions": 132420,
+      "favorited": 5775,
+      "votesUp": 451
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3536635852",
+    "steamClientUri": "steam://url/CommunityFilePage/3536635852"
+  },
+  {
+    "id": "3582858114",
+    "isSimulated": false,
+    "title": "【4k】明日方舟 拉特兰之雨 [原图作者：min] arknights the rain of Rutland",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561198961637077)",
+      "steamId": "76561198961637077"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/10371826958924305219/534464648CB3410096287A53D9292BD9A1C3A1F3/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper",
+      "Audio responsive",
+      "Video Texture",
+      "Customizable"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 115202754,
+    "createdAt": "2025-10-08T08:05:58.000Z",
+    "updatedAt": "2025-10-25T11:06:23.000Z",
+    "stats": {
+      "views": 7385,
+      "subscriptions": 127608,
+      "favorited": 9370,
+      "votesUp": 1581
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3582858114",
+    "steamClientUri": "steam://url/CommunityFilePage/3582858114"
+  },
+  {
+    "id": "3439745927",
+    "isSimulated": false,
+    "title": "Miku-黄昏海",
+    "description": "------------------------中文---------------------------\n画师:奇诺777 背景音乐：Gymnopédie No. 1\n米库 | 奇诺777 #pixiv https://www.pixiv.net/artworks/116485517\n由于壁纸是AI绘画本人稍微进行了修改，至于有点壁纸分辨率不算很高你可以理解为氛围感:）\n如果觉得壁纸做的不错请给作者一个好评,十分感谢！！(*´∀人)\n倘若您对壁纸有什么建议请评论区留言。 (*´∀｀)ﾉゞ\n------------------------English---------------------------\nArtist:奇诺777 Background music: Gymnopédie No. 1\n米库 | 奇诺777 #pixiv https://www.pixiv.net/artworks/116485517\nAs the wallpaper is AI painting I slightly modified, as for a little wallpaper resolution is not very high you can understand the atmosphere:)\nIf you think the wallpaper is good, please give the author a good review, thank you very much!!(*´∀人)\nIf you have any suggestions for wallpaper, please leave a comment in the comments section.\n(*´∀｀)ﾉゞ",
+    "author": {
+      "name": "SteamUser (76561199645851972)",
+      "steamId": "76561199645851972"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/24311382532929732/AD6902D20FF1F8F79FE1C6C166279B2631D6DB76/",
+    "type": "Scene",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Audio responsive",
+      "Customizable",
+      "Puppet Warp",
+      "Approved",
+      "Anime"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 28471415,
+    "createdAt": "2025-03-07T03:32:43.000Z",
+    "updatedAt": "2025-04-17T14:32:38.000Z",
+    "stats": {
+      "views": 7407,
+      "subscriptions": 128938,
+      "favorited": 7906,
+      "votesUp": 1496
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3439745927",
+    "steamClientUri": "steam://url/CommunityFilePage/3439745927"
+  },
+  {
+    "id": "2414303857",
+    "isSimulated": false,
+    "title": "Ningguang Animated | Genshin Impact",
+    "description": "Feel free to comment and award the prize to this wallpaper.💜\nSakura enable button",
+    "author": {
+      "name": "",
+      "steamId": "76561198295943100"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1750183521580244801/8BCBB68B0D27D845284464F0D3A8A442CB5D3914/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Game",
+      "Approved",
+      "Customizable"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 18613016,
+    "createdAt": "2021-03-04T10:56:55.000Z",
+    "updatedAt": "2021-03-04T12:28:30.000Z",
+    "stats": {
+      "views": 8491,
+      "subscriptions": 123769,
+      "favorited": 12535,
+      "votesUp": 1958
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2414303857",
+    "steamClientUri": "steam://url/CommunityFilePage/2414303857"
+  },
+  {
+    "id": "3239856018",
+    "isSimulated": false,
+    "title": "是八重神子大人",
+    "description": "",
+    "author": {
+      "name": "",
+      "steamId": "76561199209641743"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2520403568543017409/00B22B2ACD39C3050E1E729D9585C9527DF2BCEF/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 12592635,
+    "createdAt": "2024-05-05T08:50:04.000Z",
+    "updatedAt": "2024-05-05T08:50:04.000Z",
+    "stats": {
+      "views": 5207,
+      "subscriptions": 125328,
+      "favorited": 11586,
+      "votesUp": 1174
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3239856018",
+    "steamClientUri": "steam://url/CommunityFilePage/3239856018"
+  },
+  {
+    "id": "2293308056",
+    "isSimulated": false,
+    "title": "night city",
+    "description": "",
+    "author": {
+      "name": "",
+      "steamId": "76561199005031847"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1660102063048880176/104B57A444EB28E9CCF8304C4001401505B9964C/",
+    "type": "Scene",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Wallpaper",
+      "Relaxing",
+      "Other resolution",
+      "Customizable"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 2656591,
+    "createdAt": "2020-11-20T21:17:15.000Z",
+    "updatedAt": "2020-11-20T21:17:15.000Z",
+    "stats": {
+      "views": 3661,
+      "subscriptions": 130013,
+      "favorited": 6980,
+      "votesUp": 980
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2293308056",
+    "steamClientUri": "steam://url/CommunityFilePage/2293308056"
+  },
+  {
+    "id": "2838294564",
+    "isSimulated": false,
+    "title": "Within Monochrome 4k - M2K HYBRID {MouseMods & BisBisWas}",
+    "description": "This wallpaper is a collaboration for M2K HYBRID with MouseMods & BisBisWas.\nGIF recording/Screenshot of wallpaper as preview.\n\n[u] [h1] [url=https://www.mousemods.us/] MouseMods[/url]  [/h1] [/u]\n[u] [h1] [url=https://steamcommunity.com/id/drioyard/myworkshopfiles/?appid=431960] My Workshop[/url]  [/h1] [/u]\n[u] [h1] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2124383188] My approved wallpapers collection [/url]  [/h1] [/u]\n\nArtist BisBisWas : https://www.deviantart.com/bisbiswas\nMouseMods : https://www.mousemods.us/\n\nLabels : Drioyard, M2K HYBRID, MouseMods, BisBisWas, Fantasy World, Light, Moon, Stars, Meteros, White, Grey, Black, Tree, Nature, Road, Pathway, Night, Evening, Fog, Clouds, Sky, Mountains, Deer, Animal, Relaxing, Scenery, Landscape, Minimalistic, Aesthetic, Minimal, Fireflies, Shooting Star, Magical\n\nDisclaimer:\nI am not the owner of the artworks used in my live wallpapers, I only animate them. All credits belong to the artists, any artists I could not find to credit and you are aware of, please comment on the wallpapers themselves.",
+    "author": {
+      "name": "",
+      "steamId": "76561198993232710"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1938254341997510865/FF2DA429AF92651928D8F388AD3060C248E3C37B/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Fantasy",
+      "Approved",
+      "Puppet Warp"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 14688999,
+    "createdAt": "2022-07-21T13:23:20.000Z",
+    "updatedAt": "2022-07-21T13:23:20.000Z",
+    "stats": {
+      "views": 14161,
+      "subscriptions": 130102,
+      "favorited": 6843,
+      "votesUp": 1025
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2838294564",
+    "steamClientUri": "steam://url/CommunityFilePage/2838294564"
+  },
+  {
+    "id": "2987718139",
+    "isSimulated": false,
+    "title": "Avatar: The Last Airbender [4K + Day/Night Cycle]",
+    "description": "Technically sunset/night cycle. Customizable, make sure to check user properties!\r\n\r\n[h1][b]Please make sure to rate, favorite or award if you like my content![/b][/h1]\r\n[url=https://steamcommunity.com/profiles/76561198098298396/myworkshopfiles/?appid=431960&sort=score&browsefilter=myfiles&view=imagewall][h1][b]A follow is also appreciated.[/b][/h1][/url]\r\n\r\n[img]https://i.imgur.com/E1CtLtt.gif[/img]\r\n\r\nNote: For the day/night cycle the wallpaper will be set to the sunset variation between 7 AM - 6 PM.\r\n\r\n👨‍🎨 Artist: [url=https://raphodraws.tumblr.com/]rapho draws[/url]\r\n🎨 Image Source: https://raphodraws.tumblr.com/post/162504352337/so-i-was-asked-to-create-a-landscape-version-of-my\r\n🎵 Music: [url=https://soundcloud.com/ryogaa/lovely]ryoga - \"lovely\"[/url]\r\n[url=https://www.youtube.com/watch?v=OlG84ZyuDPc]Samuel Kim - \"Avatar's Love (Lofi Version)\r\n\"[/url]\r\n🔠 Font: Herculanum\r\n\r\nTags: Desktop, Live Wallpaper, animated, 4K, cartoon, Avatar, Aang, Appa, flying, day, sunset, night, evening, sun, moon, stars, forest, birds, lofi, chill, relaxing, lo-fi\r\n\r\n[h1]---[/h1]\r\nI do not own the original artwork or the music. Please support the official artist(s).\r\n[u][b]Please do not rehost elsewhere without giving proper credit.[/b][/u]",
+    "author": {
+      "name": "",
+      "steamId": "76561198098298396"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2041866421503601850/D04962B58632822E1D99F9CD01FBCDF0A703DD3A/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Audio responsive",
+      "Relaxing",
+      "Approved",
+      "Customizable",
+      "Media Integration"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 31228810,
+    "createdAt": "2023-06-11T06:33:53.000Z",
+    "updatedAt": "2024-09-08T01:54:48.000Z",
+    "stats": {
+      "views": 5828,
+      "subscriptions": 126885,
+      "favorited": 9763,
+      "votesUp": 1242
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2987718139",
+    "steamClientUri": "steam://url/CommunityFilePage/2987718139"
+  },
+  {
+    "id": "1186010785",
+    "isSimulated": false,
+    "title": "명일방주 (明日方舟 -Arknights-)",
+    "description": "You guys can add 10 songs, but the songs' name should be between 1 and 10.\r\n\r\nAnd the songs' format should be ogg. \r\n\r\nex) 1.ogg, 2.ogg ... 10.ogg\r\n\r\nPath : Steam\\steamapps\\workshop\\content\\431960\\This wallpaper folder\\mysongs \r\n\r\nAssistant : Argo So, Frozens\r\n\r\n(Google Chrome, 1920 x 1080 ONLY)\r\n\r\nfont updated 2020.12.01",
+    "author": {
+      "name": "",
+      "steamId": "76561198121582231"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1669110151896029565/013EAB4F8A21A5F883738EEB7914BF3ABC6C44CA/",
+    "type": "Web",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Wallpaper",
+      "Anime",
+      "Dynamic resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 9893775,
+    "createdAt": "2017-10-30T17:08:25.000Z",
+    "updatedAt": "2020-12-01T13:18:49.000Z",
+    "stats": {
+      "views": 77641,
+      "subscriptions": 121615,
+      "favorited": 10672,
+      "votesUp": 5564
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1186010785",
+    "steamClientUri": "steam://url/CommunityFilePage/1186010785"
   }
 ]

@@ -16,12 +16,12 @@ test('SEO: origem HTTPS sem www, canonical de filtro/home e detalhe independente
   for (const invalid of ['https://localhost', '1?q=x', '../x', '0', '1/2']) assert.equal(canonicalUrl(invalid), SITE_URL + '/');
 });
 
-test('sitemap real: XML UTF-8 determinístico, 5001 URLs únicas e todos os IDs oficiais', () => {
+test('sitemap real: XML UTF-8 determinístico, 15001 URLs únicas e todos os IDs oficiais', () => {
   const xml = readFileSync('public/sitemap.xml', 'utf8');
   assert.equal(xml, generateSitemap(catalog));
   assert.match(xml, /^<\?xml version="1.0" encoding="UTF-8"\?>\n<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">\n(?:  <url><loc>https:\/\/wewallpapers.cc\/(?:wallpaper\/[1-9]\d*)?<\/loc><\/url>\n)+<\/urlset>\n$/);
   const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
-  assert.equal(urls.length, 5001); assert.equal(new Set(urls).size, 5001);
+  assert.equal(urls.length, 15001); assert.equal(new Set(urls).size, 15001);
   assert.deepEqual(new Set(urls), new Set([canonicalUrl(), ...catalog.map(item => canonicalUrl(item.id))]));
   assert.ok(urls.every(url => new URL(url).protocol === 'https:' && !new URL(url).search && !new URL(url).hash));
   assert.doesNotMatch(xml, /localhost|workers\.dev|<lastmod>|<changefreq>|<priority>/);

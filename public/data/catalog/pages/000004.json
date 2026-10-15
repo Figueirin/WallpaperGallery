@@ -1,5 +1,71 @@
 [
   {
+    "id": "3470764447",
+    "isSimulated": false,
+    "title": "【Time Variation时间变化】Elaina 伊蕾娜：闲憩微息——夜莺Night【魔女之旅】Day Night Gradient",
+    "description": "动态制作：-夜莺Night（bilibili/抖音）\n原画师：あずーる  azure\n有bug请在评论区反馈\n手机、平板壁纸获取方式：https://pan.quark.cn/s/559c382d2a1e#/list/share\n\n如果喜欢还请多多支持一下哦，设置界面附设赞赏码，你们的支持就是我更新的最大动力。\n\nDynamic production: - 夜莺Night (bilibili/Tiktok)\nOriginal artist: あずーる  Azure\nIf there are bugs, please provide feedback in the comment section\nIf you like it, please support me more\n\n关于导入手机端黑屏问题：请关闭随时间变化功能或关闭后再导入\nRegarding the issue of importing black screens on mobile devices: please disable the function that changes over time or disable it before importing\n\n首先非常感谢您喜欢我的壁纸。不过制作壁纸不易，故在此声明：本人壁纸严禁未经允许的商用和转载至其他平台行为。如果您是壁纸推荐博主，或者想转载壁纸，使用壁纸进行宣传，请务必在醒目处注明作者或艾特我：夜莺Night。同时，如您想通过网盘等渠道将我的壁纸分享给他人，请务必注意命名格式：命名加好作者前缀名,如将mpkg命名格式统一为“作者——壁纸名。例如：夜莺Night——XXX。有条件可以单独开一作者分区，这是我的底线。也希望看到的粉丝朋友可以帮忙提醒监督——\n\nFirst of all, thank you very much for liking my wallpaper. However, making wallpaper is not easy, so I hereby declare that my wallpaper is strictly prohibited from being used for commercial purposes or reproduced on other platforms without permission. If you are a wallpaper recommendation blogger or want to repost wallpapers for promotion, please make sure to prominently indicate the author or tag me: 夜莺Night. At the same time, if you want to share my wallpaper with others through online storage or other channels, please pay attention to the naming format: add the author prefix name to the name, such as unifying the mpkg naming format as \"author wallpaper name\". For example, 夜莺Night - XXX. If possible, I can create a separate author section. This is my bottom line. I also hope to see fans and friends who can help remind and supervise——",
+    "author": {
+      "name": "SteamUser (76561199211352973)",
+      "steamId": "76561199211352973"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/43456413980897660/48A5F1A9AFBFBD43A858AA2420C49944A0DC5243/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Audio responsive",
+      "Approved",
+      "Customizable",
+      "Video Texture",
+      "Media Integration",
+      "Anime"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 337247100,
+    "createdAt": "2025-04-26T11:19:10.000Z",
+    "updatedAt": "2025-06-11T17:04:59.000Z",
+    "stats": {
+      "views": 124053,
+      "subscriptions": 1033460,
+      "favorited": 95007,
+      "votesUp": 23970
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3470764447",
+    "steamClientUri": "steam://url/CommunityFilePage/3470764447"
+  },
+  {
+    "id": "973101892",
+    "isSimulated": false,
+    "title": "dark blue galaxy",
+    "description": "1.Give you the beauty of the moment\r\n2.http://steamcommunity.com/sharedfiles/filedetails/?id=1076547860  The new galaxy for you \r\n3.http://steamcommunity.com/sharedfiles/filedetails/?id=1134951631  Minor changes\r\n4.https://steamcommunity.com/sharedfiles/filedetails/?id=2375328539 新的壁纸：）",
+    "author": {
+      "name": "",
+      "steamId": "76561198094874186"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/845965127356546730/E96F51670DC9F191AB598C19757C62E7ED49962E/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Sci-Fi",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 15619053,
+    "createdAt": "2017-07-11T08:38:41.000Z",
+    "updatedAt": "2017-07-11T08:38:41.000Z",
+    "stats": {
+      "views": 55123,
+      "subscriptions": 1062818,
+      "favorited": 58048,
+      "votesUp": 11449
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=973101892",
+    "steamClientUri": "steam://url/CommunityFilePage/973101892"
+  },
+  {
     "id": "3146507587",
     "isSimulated": false,
     "title": "こきん【吉罗】",
@@ -223,6 +289,39 @@
     },
     "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1339064732",
     "steamClientUri": "steam://url/CommunityFilePage/1339064732"
+  },
+  {
+    "id": "1509243786",
+    "isSimulated": false,
+    "title": "[CWAV Engine] Custom Wallpaper Audio Visual Engine | Now with Media Integration",
+    "description": "[b]Official presets can only publish Edwfur, if someone puts out presets marked as CWAV, please inform me on Steam or Discord.[/b]\n\n[h1]Update 2.0: Media Integration[/h1]\n\n[h2]What's New[/h2]\n\n- [b]Removed Spotify Sync Module:[/b] Due to unavailability in Russia (where development is based), the Spotify synchronization module has been removed.\n\n- [b]Added Media Integration Module:[/b]\n  - [b]Features:[/b]\n    - [b]Display Current Track Information:[/b] The new media integration module allows users to view information about the currently playing track, including the album cover, title, artist, and duration.\n[img] https://cdn.discordapp.com/attachments/446685594895122442/1178469097030303964/image.png?ex=657641df&is=6563ccdf&hm=0342077fa89042aa7aea9058c844776bb80dafa62cbebe8908504cb208079525& [/img]\n[img] https://media.discordapp.net/attachments/446685594895122442/1178469224587477185/image.png?ex=657641fe&is=6563ccfe&hm=6dc1c04f3993b51a952359008605b452b299195fd1561726f7ba586a6a25f901&=&format=webp&width=667&height=203 [/img]\n[img] https://media.discordapp.net/attachments/446685594895122442/1178469614628376576/image.png?ex=6576425b&is=6563cd5b&hm=f5f9e0db84c657b7195dd77fe5d1513b8195c04c7e52eb7507b7d95f047cf22f&=&format=webp&width=788&height=200 [/img]\n  \n    - [b]Seamless Settings Integration:[/b] The settings for the media integration module mirror those of the Spotify module, providing a familiar and user-friendly experience.\n\n  [h2]How to Use[/h2]\n    1. [b]Navigate to the CWAV settings.[/b]\n    2. [b]Find the \"Media Integration\" section.[/b]\n    3. [b]Enable the module[/b] to start enjoying enhanced track information while using the app.\n\n[b]Enjoy the upgraded media experience with our latest update![/b]\n\nThank you for using [b]CWAV[/b]! If you have any feedback or encounter issues, please let us know at discord. You can always offer your improvements to us and we will certainly listen to you.\n\n[b]Note:[/b] If you wish for CWAV to continue receiving updates, please let us know your feedback.\n\n\n[url=https://steamcommunity.com/workshop/filedetails/discussion/1509243786/2140840224668431912/]FaQ & Guide[/url]\nDeveloped by RedProject Inc.\n[url=redproject.dev?utm_source=cwav&utm_medium=organic][img] https://i.imgur.com/YnTBWZb.png [/img][/url]",
+    "author": {
+      "name": "",
+      "steamId": "76561198084056287"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1669111042318113898/76737BE7BD74FE7182948175E3CFEA865A17D757/",
+    "type": "Web",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Wallpaper",
+      "Audio responsive",
+      "Customizable",
+      "Dynamic resolution",
+      "Anime"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 143782141,
+    "createdAt": "2018-09-11T04:25:58.000Z",
+    "updatedAt": "2023-11-28T17:00:10.000Z",
+    "stats": {
+      "views": 60693,
+      "subscriptions": 1074955,
+      "favorited": 15370,
+      "votesUp": 4638
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1509243786",
+    "steamClientUri": "steam://url/CommunityFilePage/1509243786"
   },
   {
     "id": "3174556087",
@@ -704,103 +803,5 @@
     },
     "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2359043440",
     "steamClientUri": "steam://url/CommunityFilePage/2359043440"
-  },
-  {
-    "id": "793602574",
-    "isSimulated": false,
-    "title": "Solar System",
-    "description": "Web wallpaper with solar system background\r\nIf you appreciate this wallpaper, consider donating!\r\nPaypal: https://paypal.me/donught\r\nBTC: 1bSa1kgwvdeYGZbDJTm7o56nQdrzYp7Uc\r\nETH: 0x4c7602e201dffd03de84fad32c0a088b5c95038d",
-    "author": {
-      "name": "",
-      "steamId": "76561198049889988"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/1751306126565115127/DAAFFC195D76A57CF61ABC12400F31F024005BAE/",
-    "type": "Web",
-    "resolution": "Não informada",
-    "aspectRatio": "Other",
-    "tags": [
-      "Abstract",
-      "Wallpaper",
-      "Approved",
-      "Customizable",
-      "Dynamic resolution"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 583619,
-    "createdAt": "2016-11-05T00:03:47.000Z",
-    "updatedAt": "2021-04-11T02:08:51.000Z",
-    "stats": {
-      "views": 144549,
-      "subscriptions": 961674,
-      "favorited": 50559,
-      "votesUp": 14420
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=793602574",
-    "steamClientUri": "steam://url/CommunityFilePage/793602574"
-  },
-  {
-    "id": "2745810856",
-    "isSimulated": false,
-    "title": "Jinx with gemstone [Arcane]",
-    "description": "Night time wallpaper of Powder. \r\n\r\nThere is a checkbox to toggle each of these effects:\r\n- Glowing tattoo (custom colors) that responds to mouse pointer (permanent option too).\r\n- Audio visualizer (Toggle audio recording at the top)\r\n- Idle animation\r\n- Gemstone glow\r\n- Rain\r\n- Fog\r\n- Ember\r\n- Clock\r\n\r\nYou will find the following setting useful, to make sure rain sounds don't interfere with other audio sounds.\r\nWallpaper engine settings > Performance > Other application playing audio > mute\r\n\r\nMake sure to enable audio record in wallpaper settings for audio visualizer.\r\nIf you have 16:9 monitor, set position to 75 in wallpaper settings.\r\nFor minimal gpu usage - set fps to 30 and turn off antialiasing.\r\n\r\nCredit to @MizuriAU on twitter for glowing tattoo textures- https://twitter.com/MizuriAU/status/1457684157354725387\r\n\r\nPlease leave suggestions and feedback in comments.\r\nThank you for subscribing!",
-    "author": {
-      "name": "SteamUser (76561199062647740)",
-      "steamId": "76561199062647740"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/1806509564625764433/4C59AB62E0A83B4A0F9F60D9DB1941473AB924BD/",
-    "type": "Scene",
-    "resolution": "3440x1440",
-    "aspectRatio": "21:9",
-    "tags": [
-      "Television",
-      "Wallpaper",
-      "Audio responsive",
-      "Customizable",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 12937955,
-    "createdAt": "2022-02-07T04:29:54.000Z",
-    "updatedAt": "2026-09-23T02:40:28.000Z",
-    "stats": {
-      "views": 25917,
-      "subscriptions": 950844,
-      "favorited": 60250,
-      "votesUp": 7001
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2745810856",
-    "steamClientUri": "steam://url/CommunityFilePage/2745810856"
-  },
-  {
-    "id": "3379996991",
-    "isSimulated": false,
-    "title": "Winter Conch Street - SpongeBob SquarePants",
-    "description": "Conch Street with Spongebob's, Patrick's, and Squidward's house from Season 2, Episode 8. A winter wallpaper that cycles throughtout the day.\r\n\r\nIf you wish, you can also enable the night lights wallpaper, where the houses and the tree are lit up. Simply set \"Night Lights Start\" and \"Night Lights End\" to different values (preferably hours that are after \"Sunset\") to enable it. (Lit up houses are supposed to be only transitioning from night to the night lights) \r\n\r\nThe wallpaper features songs from the SpongeBob SquarePants cartoon, with a total of 16 songs. The wallpaper also has the underwater sound effect as ambient sound that the series uses mostly throughout Season 1. Lastly, the wallpaper also has occasional noises of SpongeBob or Squidward walking that play.\r\n\r\nThere are also some visual effects, like snow, that you can enable and disable.\r\n\r\nDisclaimer: (I do not own the original images, music or sound effects. I just made them into a wallpaper. Any of the credit towards the art and audio used in my wallpaper should belong to the SpongeBob SquarePants creators.)\r\n\r\nTags: Sponge Bob, Patrick Star, Squidward Tentacles, Ocean, Bikini Bottom, Christmas, Holiday",
-    "author": {
-      "name": "SteamUser (76561198398053081)",
-      "steamId": "76561198398053081"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/20925620227093778/66A377212EF2970D0125161B24B88C86380613AA/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Cartoon",
-      "Wallpaper",
-      "Customizable",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 88370572,
-    "createdAt": "2024-12-07T16:09:39.000Z",
-    "updatedAt": "2025-12-24T11:30:46.000Z",
-    "stats": {
-      "views": 17838,
-      "subscriptions": 971760,
-      "favorited": 38050,
-      "votesUp": 5674
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3379996991",
-    "steamClientUri": "steam://url/CommunityFilePage/3379996991"
   }
 ]

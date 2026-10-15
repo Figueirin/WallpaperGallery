@@ -20,20 +20,20 @@ const localFetch = async input => {
   return Response.json(JSON.parse(readFileSync(`public${pathname}`, 'utf8')));
 };
 
-test('sem variável: factory real navega nos 5000 itens, busca, filtra, pagina e abre detalhe', async () => {
+test('sem variável: factory real navega nos 15000 itens, busca, filtra, pagina e abre detalhe', async () => {
   await withProviderSetting(undefined, async () => {
     const provider = createWallpaperProvider(undefined, { fetchImpl: localFetch });
     assert.ok(provider instanceof StaticCatalogProvider);
     const first = await provider.getWallpapers({ page: 1, pageSize: 25 });
-    const last = await provider.getWallpapers({ page: 200, pageSize: 25 });
-    assert.equal(first.total, 5000);
+    const last = await provider.getWallpapers({ page: 600, pageSize: 25 });
+    assert.equal(first.total, 15000);
     assert.equal(first.items.length, 25);
     assert.equal(last.items.length, 25);
     assert.equal(last.hasMore, false);
     assert.ok(first.items.every(item => !item.isSimulated));
     const item = first.items[0];
     assert.deepEqual(await provider.getWallpaperById(item.id), item);
-    const search = await provider.getWallpapers({ searchQuery: item.title, pageSize: 5000 });
+    const search = await provider.getWallpapers({ searchQuery: item.title, pageSize: 15000 });
     assert.ok(search.items.some(found => found.id === item.id));
     const filtered = await provider.getWallpapers({ types: [item.type], sortBy: 'title_asc' });
     assert.ok(filtered.items.length > 0);

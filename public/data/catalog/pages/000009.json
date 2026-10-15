@@ -1,5 +1,168 @@
 [
   {
+    "id": "2955378002",
+    "isSimulated": false,
+    "title": "Real time Persona 5 Tokyo Transition screen + Weather [Customizable] [4k] by Becco38",
+    "description": "[url=https://ko-fi.com/Becco38]✨𝓢𝓾𝓹𝓹𝓸𝓻𝓽 𝓶𝓮✨[/url]\r\n\r\nQ) How do I customize this?\r\nA) Open wallpaper engine, on the right side panel you will see the wallpaper that you are currently using. \r\nOn the same portion of the window, scroll all the way down to find the settings.\r\n\r\nQ) Why is the weather not in sync with my location?\r\nA) I know it'd be cool to see real weather sync/forecast but, as for now, 'scene' types of wallpaper (written in wallpaper engine’s own script language called ‘scenescript’) can't handle any online calls from weather APIs.\r\nSo, for the time being, it’s something you can adjust manually whenever you want for aesthetic purposes only.\r\n\r\nQ) Why does the ‘flip’ option flip the whole image like in a mirror? (The HUD is flipped too)\r\nA) That option was not designed by me, but by wallpaper engine developers. You can also notice that it’s in every single wallpaper in this platform.\r\nThe wallpaper is not built or designed to be flipped.\r\n\r\nQ) My monitor is xxxx resolution by xxxx, how can I stretch the whole thing to fit in my display?\r\nA) The wallpaper is 16:9, try to adapt it in the default user properties made by developers to fit your needs.\r\n\r\nQ) Can you add other Persona games music?\r\nA) No, this wallpaper is quite beefy speaking of weight/space. Any further songs that are not p5 related won’t be added.\r\n\r\nQ) What’s the time chart?\r\nA) This one:\r\nDawn: 5am to 7 am\r\nDay: 7am to 3pm\r\nAfternoon: 3pm to 6pm\r\nSunset: 6pm to 8pm\r\nEvening/Night: 8pm to 5 am\r\n\r\n\r\nThis wallpaper features:\r\n\r\n-Almost every P5/Royal song\r\n\r\n-Audio Slider widget to adjust the volume\r\n\r\n-Aficionado fansite comments (some of them are my Ko-Fi supporters)\r\n\r\n-Persona 5 confidant music widget:\r\nThe confidants cycle automatically rolls by default, but you can manually select a static character you like.\r\n\r\n-Heat wave and hot night for the sunny weather condition and pollen warning for the cloudy condition.\r\n(Just make sure you check the calendar options if you want to enable them)\r\n\r\n-Real time sync with the city\r\n\r\n-Working Calendar Sync with inverted color scheme options like in Royal \r\n(Huge thanks to [url=https://steamcommunity.com/profiles/76561198116198827]Bvrrvcudv[/url] for the calendar scripting)\r\n\r\n-Customizable clock - size, position, color\r\n\r\n-Customizable Weather conditions: Sunny, Rainy, Cloudy and Snowy\r\n\r\n-Customizable Audio Responsive Bars and Circle ripples - on/off, color change\r\n\r\n-Audio Responsive City Lights (8pm to 5 am only) - on/off\r\n\r\n-Customizable Xmas Lights for windows\r\n\r\n\r\n\r\n\r\nThank you all very much for the support and love shared through all this time. \r\nI must say that It really is heartwarming to read comments even several months after the release of this project.\r\nI’m glad to make people happy with what I do, and it is a wonderful feeling that fills my days; even though it’s just a wallpaper.❤️",
+    "author": {
+      "name": "SteamUser (76561198272591500)",
+      "steamId": "76561198272591500"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2035104740154823467/318B01A93689A93AE141353CAB624D3F4489B934/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Game",
+      "Audio responsive",
+      "Approved",
+      "Customizable",
+      "Puppet Warp",
+      "Video Texture",
+      "Media Integration"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 383102867,
+    "createdAt": "2023-03-31T15:05:01.000Z",
+    "updatedAt": "2025-06-01T13:53:17.000Z",
+    "stats": {
+      "views": 53703,
+      "subscriptions": 666379,
+      "favorited": 53097,
+      "votesUp": 10166
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2955378002",
+    "steamClientUri": "steam://url/CommunityFilePage/2955378002"
+  },
+  {
+    "id": "1425503532",
+    "isSimulated": false,
+    "title": "Pac-Man",
+    "description": "Pac-Man and ghosts. All three avoid the cursor a bit and eventually return to their original position.\n\nSince I didn't implement infinite particle lifetime yet, they'll probably disappear after exactly 7 days of uninterrupted running.\n\nProject files for anyone who is interested: https://drive.google.com/open?id=1ON3TkYdND7vPEEs99_PaqpGNoig0UcVb\n\nUPDATE 15.07.18: Used new emission limit from latest patch to make the trail smooth and not flicker so much.\n\nUPDATE 06.04.25: Added color changing options for pacman and ghosts.",
+    "author": {
+      "name": "",
+      "steamId": "76561197975619619"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2448348180745964282/E503DF883BDD7BA1386B64C39EDF8D9745408C2E/",
+    "type": "Scene",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Retro",
+      "Approved",
+      "Customizable",
+      "HDR"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 669195,
+    "createdAt": "2018-06-28T20:12:12.000Z",
+    "updatedAt": "2025-04-06T21:09:17.000Z",
+    "stats": {
+      "views": 53831,
+      "subscriptions": 688047,
+      "favorited": 32632,
+      "votesUp": 8512
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1425503532",
+    "steamClientUri": "steam://url/CommunityFilePage/1425503532"
+  },
+  {
+    "id": "2232968607",
+    "isSimulated": false,
+    "title": "天空之镜 4K",
+    "description": "这个人很懒 什么都没写",
+    "author": {
+      "name": "",
+      "steamId": "76561198155096907"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/1635326581453422773/EE32850CEA5916772028B889556F4497DFA6C5F4/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Landscape",
+      "Customizable"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 15007382,
+    "createdAt": "2020-09-19T09:30:16.000Z",
+    "updatedAt": "2025-01-23T18:15:15.000Z",
+    "stats": {
+      "views": 16671,
+      "subscriptions": 691626,
+      "favorited": 33267,
+      "votesUp": 3941
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2232968607",
+    "steamClientUri": "steam://url/CommunityFilePage/2232968607"
+  },
+  {
+    "id": "1607915797",
+    "isSimulated": false,
+    "title": "受験生の夏  -  考生的夏天",
+    "description": "受験生の夏\nPixiv ID: 70059505\nMember: 杉８７\nhttps://www.pixiv.net/member_illust.php?mode=medium&illust_id=70059505",
+    "author": {
+      "name": "",
+      "steamId": "76561198064225299"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/959729591621417280/1DCC4AD3DA3BBB11BD80E21CD3A66F492400AD56/",
+    "type": "Video",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 96470381,
+    "createdAt": "2018-12-30T11:52:38.000Z",
+    "updatedAt": "2018-12-30T11:52:38.000Z",
+    "stats": {
+      "views": 68534,
+      "subscriptions": 648546,
+      "favorited": 65774,
+      "votesUp": 13904
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1607915797",
+    "steamClientUri": "steam://url/CommunityFilePage/1607915797"
+  },
+  {
+    "id": "818603284",
+    "isSimulated": false,
+    "title": "The Witcher 3: Wild Hunt Main Menu巫师3本体主菜单",
+    "description": "视频来源是游戏本体解包\r\n巫师3本体主菜单\r\n视频时长02:22\r\nBGM：Geralt of Rivia",
+    "author": {
+      "name": "SteamUser (76561198144938828)",
+      "steamId": "76561198144938828"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/109608352906165915/73A3549BDF09804A018A3D30BB943BB59F213901/",
+    "type": "Video",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Wallpaper",
+      "Game",
+      "Approved",
+      "Other resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 242983497,
+    "createdAt": "2016-12-15T09:39:25.000Z",
+    "updatedAt": "2017-02-08T17:00:08.000Z",
+    "stats": {
+      "views": 354633,
+      "subscriptions": 624121,
+      "favorited": 71038,
+      "votesUp": 32691
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=818603284",
+    "steamClientUri": "steam://url/CommunityFilePage/818603284"
+  },
+  {
     "id": "3235984631",
     "isSimulated": false,
     "title": "布吉岛-樱落",
@@ -508,6 +671,37 @@
     "steamClientUri": "steam://url/CommunityFilePage/3278399262"
   },
   {
+    "id": "1132505365",
+    "isSimulated": false,
+    "title": "Serenity - Anime Landscape",
+    "description": "",
+    "author": {
+      "name": "",
+      "steamId": "76561198091675872"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/848222561644929402/C83656D58E35585393A197A5A515E2FC500BE21F/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 14010200,
+    "createdAt": "2017-09-10T17:53:40.000Z",
+    "updatedAt": "2017-09-15T01:26:48.000Z",
+    "stats": {
+      "views": 135337,
+      "subscriptions": 651730,
+      "favorited": 40568,
+      "votesUp": 10217
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1132505365",
+    "steamClientUri": "steam://url/CommunityFilePage/1132505365"
+  },
+  {
     "id": "3477054430",
     "isSimulated": false,
     "title": "Cat with headphones on the roof",
@@ -611,198 +805,5 @@
     },
     "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3436033033",
     "steamClientUri": "steam://url/CommunityFilePage/3436033033"
-  },
-  {
-    "id": "1352275596",
-    "isSimulated": false,
-    "title": "Rick and Morty",
-    "description": "4K RES VERSION: https://steamcommunity.com/workshop/filedetails/?id=1789650110\r\n\r\nRick and Morty theme wallpaper!\r\n\r\nWarning, wallpaper has moving color, might give a headache, who knows.. :v\r\n\r\nThe art/background was made by /u/sustainmusic on reddit\r\nLink: https://www.reddit.com/r/rickandmorty/comments/896kzj/hello_there_i_dont_know_if_there_is_any_of_this/",
-    "author": {
-      "name": "",
-      "steamId": "76561198053036740"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/1767081074473168056/3CDBCD990FBD8C8F27B97052351F2D454B0F6ABE/",
-    "type": "Scene",
-    "resolution": "1920x1080",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Cartoon",
-      "Approved",
-      "Customizable"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 5536528,
-    "createdAt": "2018-04-04T17:10:22.000Z",
-    "updatedAt": "2021-11-05T00:20:13.000Z",
-    "stats": {
-      "views": 25698,
-      "subscriptions": 652062,
-      "favorited": 37725,
-      "votesUp": 6129
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1352275596",
-    "steamClientUri": "steam://url/CommunityFilePage/1352275596"
-  },
-  {
-    "id": "3009657615",
-    "isSimulated": false,
-    "title": "赛博color-水墨三玄色-绿动",
-    "description": "我是作者赛博_color\n是来自b站的一名up主，这是我的b站主页，请多多关注吖！\nhttps://space.bilibili.com/50993280?spm_id_from=333.934.0.0",
-    "author": {
-      "name": "",
-      "steamId": "76561198411457347"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2042996389018832386/309E79F3ADCE5E61A1D8E70ECB0E06B8B709E72C/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Girls"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 29944684,
-    "createdAt": "2023-07-25T16:02:48.000Z",
-    "updatedAt": "2023-07-25T16:02:48.000Z",
-    "stats": {
-      "views": 27973,
-      "subscriptions": 652772,
-      "favorited": 38639,
-      "votesUp": 3945
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3009657615",
-    "steamClientUri": "steam://url/CommunityFilePage/3009657615"
-  },
-  {
-    "id": "3019043758",
-    "isSimulated": false,
-    "title": "2000s Hacker Apartment on a Rainy Evening",
-    "description": "A dystopian apartment overlooking a gloomy city.",
-    "author": {
-      "name": "SteamUser (76561198008416188)",
-      "steamId": "76561198008416188"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2046375698703712469/9B19FA65D51642213EECC048A8B09DF132475B6E/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Audio responsive",
-      "Retro",
-      "Approved",
-      "Customizable",
-      "Video Texture",
-      "Media Integration"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 56517607,
-    "createdAt": "2023-08-12T15:34:08.000Z",
-    "updatedAt": "2024-04-10T10:57:30.000Z",
-    "stats": {
-      "views": 33087,
-      "subscriptions": 648453,
-      "favorited": 39096,
-      "votesUp": 5952
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3019043758",
-    "steamClientUri": "steam://url/CommunityFilePage/3019043758"
-  },
-  {
-    "id": "1975950854",
-    "isSimulated": false,
-    "title": "Nature in a Lightbulb",
-    "description": "Lightbulb made by me in Adobe Photoshop 2019.\nEffects made in Wallpaper Engine.",
-    "author": {
-      "name": "",
-      "steamId": "76561198228041560"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/1467563393551362455/CF4F9B579793058E6C9D60F302AB07920A700DBA/",
-    "type": "Scene",
-    "resolution": "1920x1080",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Landscape",
-      "Approved",
-      "Customizable"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 1724810,
-    "createdAt": "2020-01-22T14:39:27.000Z",
-    "updatedAt": "2020-08-04T17:31:12.000Z",
-    "stats": {
-      "views": 33260,
-      "subscriptions": 649783,
-      "favorited": 36363,
-      "votesUp": 6245
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1975950854",
-    "steamClientUri": "steam://url/CommunityFilePage/1975950854"
-  },
-  {
-    "id": "1937925563",
-    "isSimulated": false,
-    "title": "Tropical Paradise 4K [Customizable Colors & Audio Visualizer] - Vaporwave & Neon",
-    "description": "Original Artwork: https://aesthetik133.tumblr.com/post/179603317992\nYou can customize several colors to your own: 2 tons for the visualizer, the triangle shapes and the particles.\n\nMy website: https://windowscustomization.com/",
-    "author": {
-      "name": "",
-      "steamId": "76561198027987990"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/790876533999258058/B017D8C057288DFC185B8B5FFA4677DA91293A77/",
-    "type": "Scene",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Audio responsive",
-      "Retro",
-      "Approved",
-      "Customizable"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 10421195,
-    "createdAt": "2019-12-15T23:43:30.000Z",
-    "updatedAt": "2019-12-16T20:15:51.000Z",
-    "stats": {
-      "views": 32724,
-      "subscriptions": 645942,
-      "favorited": 35670,
-      "votesUp": 8551
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1937925563",
-    "steamClientUri": "steam://url/CommunityFilePage/1937925563"
-  },
-  {
-    "id": "2035555250",
-    "isSimulated": false,
-    "title": "她的房间",
-    "description": "原画来自  画师JW\r\n更多画师作品可以关注他的主页https://space.bilibili.com/330094126\r\n禁止商用，转载须注明出处及原画信息\r\n\r\n大家好，我是大污师，首先感谢大家这几年的支持和厚爱，我有些话想说一下，也许你们注意到了，近些日子我的壁纸产量放缓了，我的收入并不高，还在使用五年前的电脑进行创作。\r\n制作壁纸几乎占据了我所有的业余时间，有时还需要熬夜，最近我的第二个宝宝降生了，我不知道还能在这里坚持多久。有条件想支持一下的朋友可以考虑捐助一下下。\r\n再次感谢大家的支持\r\n[url=https://steamuserimages-a.akamaihd.net/ugc/1664606352306261863/E37DB5F74D34430C703495BA70FB63C9F39CDF20/]二维码捐赠 [/url]\r\nHello everyone, I am DWS, first of all, thank you for your support and love over the years, I would like to say something, maybe you have noticed that my wallpaper production has declined recently, my income is not high, I still use the computer five years ago to create.\r\nWallpaper making takes up almost all of my spare time, and sometimes I have to stay up late. Recently my second baby was born, and I don't know how much longer I can stay here. Conditionally want to support a friend can consider a donation.\r\nThanks again for your support\r\n[url=https://paypal.me/DWS2018?locale.x=zh_XC] PAYPAL [/url]",
-    "author": {
-      "name": "",
-      "steamId": "76561198064225299"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/1025072841651435070/A873BD56556E00E74EEFDAA2DCF98EF71D07400C/",
-    "type": "Video",
-    "resolution": "1920x1080",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Anime",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 58043698,
-    "createdAt": "2020-03-26T02:28:15.000Z",
-    "updatedAt": "2020-03-26T02:34:04.000Z",
-    "stats": {
-      "views": 77059,
-      "subscriptions": 626825,
-      "favorited": 52636,
-      "votesUp": 7917
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2035555250",
-    "steamClientUri": "steam://url/CommunityFilePage/2035555250"
   }
 ]

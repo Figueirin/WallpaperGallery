@@ -1,0 +1,773 @@
+[
+  {
+    "id": "3772649597",
+    "isSimulated": false,
+    "title": "【蔚蓝档案】Blue Archive 普拉娜",
+    "description": "有问题及时反馈\n喜欢的话给个好评！！！",
+    "author": {
+      "name": "",
+      "steamId": "76561199888626562"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/16270089398509684704/15095ED1866EB4DB9CF9F111AAA65F78528F6076/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper",
+      "Video Texture",
+      "Customizable",
+      "Puppet Warp"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 63788493,
+    "createdAt": "2026-07-27T10:15:13.000Z",
+    "updatedAt": "2026-07-27T10:23:37.000Z",
+    "stats": {
+      "views": 695,
+      "subscriptions": 7858,
+      "favorited": 635,
+      "votesUp": 163
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3772649597",
+    "steamClientUri": "steam://url/CommunityFilePage/3772649597"
+  },
+  {
+    "id": "3750880159",
+    "isSimulated": false,
+    "title": "Blue Archive | Ryuuge Kisaki (Swimsuit)",
+    "description": "[h1][b] A live2D web wallpaper for Blue Archive [/b][/h1]\n\nBGM: Blue Archive OST Theme 342\n\n[hr][/hr]\n\n[h1]Custom Features[/h1]\n\n[list]\n [*][b]Scale[/b]\n [*][b]Model Resolution[/b] (2K, 4K, 8K)\n [*][b]Target FPS[/b]\n [*][b]Intro Animation[/b]\n [*][b]Dialog[/b]\n [*][b]Headpatting[/b]\n [*][b]Mouse Tracking[/b] (Eye Movement Following Cursor)\n [*][b]Fireworks Effect[/b] on Mouse Click\n [*][b]Background Music (BGM)[/b]\n [*][b]Voiceline Volume Control[/b]\n [/list]\n\nSupports dialog text in [b]Japanese[/b], [b]English[/b], and [b]Simplified Chinese[/b].\n\n[hr][/hr]\n\n[h1]Implementation[/h1]\n\n[list]\n [*]Uses [url=https://github.com/EsotericSoftware/spine-runtimes]spine-webgl[/url] to render Spine models\n [*]Uses [url=https://github.com/nihui/realcugan-ncnn-vulkan]realcugan-ncnn-vulkan[/url] for 4x upscaling (8192×8192) of model textures\n [/list]\n\n[hr][/hr]\n\n[h1]Thanks[/h1]\n [url=https://steamcommunity.com/workshop/filedetails/?id=2956165539]https://steamcommunity.com/workshop/filedetails/?id=2956165539[/url]\n\n[hr][/hr]\n\n[h1]Copyright[/h1]\n\n[quote]Blue Archive is a registered trademark of NAT GAMES Co., Ltd., NEXON Korea Corp., and Yostar, Inc.\n This project is not affiliated with, endorsed by, or connected to NAT GAMES Co., Ltd., NEXON Korea Corp., NEXON GAMES Co., Ltd., IODivision, Yostar, Inc., or any of their subsidiaries or affiliates.\n All game assets, content, and materials are copyrighted by their respective owners and are used for informational and educational purposes only.[/quote]",
+    "author": {
+      "name": "",
+      "steamId": "76561199088244556"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/9902556463484448067/98263393DEA4ABC564B79E672B5AA43E91257BC4/",
+    "type": "Web",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Anime",
+      "Wallpaper",
+      "Customizable",
+      "Dynamic resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 189653350,
+    "createdAt": "2026-06-24T13:13:56.000Z",
+    "updatedAt": "2026-06-26T09:48:32.000Z",
+    "stats": {
+      "views": 1882,
+      "subscriptions": 7841,
+      "favorited": 654,
+      "votesUp": 159
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3750880159",
+    "steamClientUri": "steam://url/CommunityFilePage/3750880159"
+  },
+  {
+    "id": "3353921298",
+    "isSimulated": false,
+    "title": "花神诞祭动态壁纸1[4K]",
+    "description": "原神活动界面\r\n提取作者：风澪瑟\r\nbilibili：BV1wi1KYkEFt\r\n作者：20Mbps 码率，前后可循环。使用动态壁纸软件加载本地视频文件即可\r\n- 源素材来自于游戏本体，在 Unity 上进行复现处理\r\n- 能力所限，主要关注 Spine 动画部分，其余粒子特效（花瓣、飘带、气球等）与背景动效暂未复现",
+    "author": {
+      "name": "",
+      "steamId": "76561199573338683"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2460746728329128928/6975C2971B81B8C626026657D259B923D576F97C/",
+    "type": "Video",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 83007049,
+    "createdAt": "2024-10-24T11:16:54.000Z",
+    "updatedAt": "2024-10-24T11:16:54.000Z",
+    "stats": {
+      "views": 439,
+      "subscriptions": 7628,
+      "favorited": 874,
+      "votesUp": 146
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3353921298",
+    "steamClientUri": "steam://url/CommunityFilePage/3353921298"
+  },
+  {
+    "id": "3387433141",
+    "isSimulated": false,
+    "title": "Limbus Company - Ishmael",
+    "description": "Iggy Male \n\nLow effort but I wanted a wallpaper of this art so w/e\n\nSong - Compass by Mili (Instrumental and Vocal Mix) https://www.youtube.com/watch?v=lr4jlofnc2o\n\nArt is from Limbus Company by Project Moon",
+    "author": {
+      "name": "",
+      "steamId": "76561198131558140"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/6290173566448015/6E593BE946CEE492C5B3CCEE01CA6972A27E55ED/",
+    "type": "Scene",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Game"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 43776268,
+    "createdAt": "2024-12-19T19:32:02.000Z",
+    "updatedAt": "2024-12-21T15:06:41.000Z",
+    "stats": {
+      "views": 730,
+      "subscriptions": 7996,
+      "favorited": 541,
+      "votesUp": 110
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3387433141",
+    "steamClientUri": "steam://url/CommunityFilePage/3387433141"
+  },
+  {
+    "id": "3629421526",
+    "isSimulated": false,
+    "title": "绝区零 薇薇安 自拍丨Zenless Zone Zero Vivian",
+    "description": "ZenlessZoneZero\nZZZ\nゼンレスゾーンゼロ",
+    "author": {
+      "name": "",
+      "steamId": "76561199816490138"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/14541218542694780100/C6C75CB55938FB96009BC429763C715FA0E0D1B5/",
+    "type": "Scene",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Anime",
+      "Wallpaper",
+      "Other resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 7940514,
+    "createdAt": "2025-12-23T06:24:12.000Z",
+    "updatedAt": "2025-12-23T06:24:12.000Z",
+    "stats": {
+      "views": 867,
+      "subscriptions": 7656,
+      "favorited": 854,
+      "votesUp": 135
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3629421526",
+    "steamClientUri": "steam://url/CommunityFilePage/3629421526"
+  },
+  {
+    "id": "3554710562",
+    "isSimulated": false,
+    "title": "Dreamcore / Weirdcore (Music/Scene)",
+    "description": "I made this one. Scene and everything although music is not mine. I hope this relaxes your mind and helps you see feel everything around you.",
+    "author": {
+      "name": "",
+      "steamId": "76561199382754640"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/11494025911688386174/71B9FB10A3FD617388A36450EFE9D862418B9D17/",
+    "type": "Scene",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Relaxing",
+      "Wallpaper",
+      "Audio responsive",
+      "Video Texture"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 110144831,
+    "createdAt": "2025-08-23T20:56:30.000Z",
+    "updatedAt": "2025-09-05T02:30:50.000Z",
+    "stats": {
+      "views": 343,
+      "subscriptions": 8086,
+      "favorited": 450,
+      "votesUp": 106
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3554710562",
+    "steamClientUri": "steam://url/CommunityFilePage/3554710562"
+  },
+  {
+    "id": "3478910761",
+    "isSimulated": false,
+    "title": "[ 2K / 60FPS ] 安迪和莉莉 艾什莉描改+木偶大头 The Coffin of Andy and Leyley 吊带袜天使描改图",
+    "description": "吊带袜天使描改图 安迪和莉莉的棺材 艾什莉改图，图片也是我描改的....这个是练手作品...",
+    "author": {
+      "name": "",
+      "steamId": "76561198814195883"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/18433985086090379934/C1B3EF155F9C38EA2288626DD1015C74F3FB13F2/",
+    "type": "Scene",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime",
+      "Video Texture"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 20354751,
+    "createdAt": "2025-05-10T04:46:53.000Z",
+    "updatedAt": "2025-05-10T04:50:15.000Z",
+    "stats": {
+      "views": 1393,
+      "subscriptions": 7622,
+      "favorited": 842,
+      "votesUp": 168
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3478910761",
+    "steamClientUri": "steam://url/CommunityFilePage/3478910761"
+  },
+  {
+    "id": "3619928990",
+    "isSimulated": false,
+    "title": "Call Of The Night - Night - 4K",
+    "description": "Call Of The Night - Night\n\n-Music-\n-Creepy Nuts - Loss Time (Call Of The Night OST)\n\n-Options-\n-Nebula Flow\n-Ray\n-Extra Stars\n-Shine\n-Shine Color\n-Pulse\n-Pulse Color\n-Fireworks\n-Firework Color\n-Shafts\n-Shaft Color\n-Shooting Star\n-Twinkling Shooting Star\n-Twinkling Shooting Star Count",
+    "author": {
+      "name": "",
+      "steamId": "76561198850320344"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/15639156459733110074/755338F735FA938B18F6DD1A77AEBA42E1CC6174/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime",
+      "Customizable"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 14666104,
+    "createdAt": "2025-12-08T00:15:44.000Z",
+    "updatedAt": "2026-04-08T14:31:50.000Z",
+    "stats": {
+      "views": 233,
+      "subscriptions": 8080,
+      "favorited": 439,
+      "votesUp": 111
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3619928990",
+    "steamClientUri": "steam://url/CommunityFilePage/3619928990"
+  },
+  {
+    "id": "3546186790",
+    "isSimulated": false,
+    "title": "cyberwalker 02-playing game",
+    "description": "by 多兰克斯",
+    "author": {
+      "name": "",
+      "steamId": "76561198417085907"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/12161545258269790251/80D0CB33AE173D4DCD7896EEE7388CF9D048E91D/",
+    "type": "Video",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 210157682,
+    "createdAt": "2025-08-10T14:47:47.000Z",
+    "updatedAt": "2025-08-10T14:47:47.000Z",
+    "stats": {
+      "views": 1026,
+      "subscriptions": 7639,
+      "favorited": 849,
+      "votesUp": 130
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3546186790",
+    "steamClientUri": "steam://url/CommunityFilePage/3546186790"
+  },
+  {
+    "id": "3734366768",
+    "isSimulated": false,
+    "title": "Blue Archive | Asagi Mutsuki (Dress)",
+    "description": "[h1][b] A live2D web wallpaper for Blue Archive [/b][/h1]\n\nBGM: Blue Archive OST Theme 209 (Sometimes I Cry)\n\n[hr][/hr]\n\n[h1]Custom Features[/h1]\n\n[list]\n [*][b]Scale[/b]\n [*][b]Model Resolution[/b] (2K, 4K, 8K)\n [*][b]Target FPS[/b]\n [*][b]Intro Animation[/b]\n [*][b]Dialog[/b]\n [*][b]Headpatting[/b]\n [*][b]Mouse Tracking[/b] (Eye Movement Following Cursor)\n [*][b]Fireworks Effect[/b] on Mouse Click\n [*][b]Background Music (BGM)[/b]\n [*][b]Voiceline Volume Control[/b]\n [/list]\n\nSupports dialog text in [b]Japanese[/b], [b]English[/b], and [b]Simplified Chinese[/b].\n\n[hr][/hr]\n\n[h1]Implementation[/h1]\n\n[list]\n [*]Uses [url=https://github.com/EsotericSoftware/spine-runtimes]spine-webgl[/url] to render Spine models\n [*]Uses [url=https://github.com/nihui/realcugan-ncnn-vulkan]realcugan-ncnn-vulkan[/url] for 4x upscaling (8192×8192) of model textures\n [/list]\n\n[hr][/hr]\n\n[h1]Thanks[/h1]\n [url=https://steamcommunity.com/workshop/filedetails/?id=2956165539]https://steamcommunity.com/workshop/filedetails/?id=2956165539[/url]\n\n[hr][/hr]\n\n[h1]Copyright[/h1]\n\n[quote]Blue Archive is a registered trademark of NAT GAMES Co., Ltd., NEXON Korea Corp., and Yostar, Inc.\n This project is not affiliated with, endorsed by, or connected to NAT GAMES Co., Ltd., NEXON Korea Corp., NEXON GAMES Co., Ltd., IODivision, Yostar, Inc., or any of their subsidiaries or affiliates.\n All game assets, content, and materials are copyrighted by their respective owners and are used for informational and educational purposes only.[/quote]",
+    "author": {
+      "name": "",
+      "steamId": "76561199088244556"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/10120886921710961413/F06F0C8F042F69C729D0ABEDE09A3A332DBBF03A/",
+    "type": "Web",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Anime",
+      "Wallpaper",
+      "Customizable",
+      "Dynamic resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 157939275,
+    "createdAt": "2026-05-28T12:41:20.000Z",
+    "updatedAt": "2026-05-28T12:41:20.000Z",
+    "stats": {
+      "views": 1352,
+      "subscriptions": 7733,
+      "favorited": 708,
+      "votesUp": 175
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3734366768",
+    "steamClientUri": "steam://url/CommunityFilePage/3734366768"
+  },
+  {
+    "id": "3438096389",
+    "isSimulated": false,
+    "title": "世界之外的少女-莉莉丝（LILITH)(4K)",
+    "description": "",
+    "author": {
+      "name": "",
+      "steamId": "76561199073838075"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/32192049038743165/F379F3BFF23DA87400ECC8D5FBE17BDDC8D265DF/",
+    "type": "Video",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 120386684,
+    "createdAt": "2025-03-04T01:52:11.000Z",
+    "updatedAt": "2025-03-04T01:52:11.000Z",
+    "stats": {
+      "views": 508,
+      "subscriptions": 7567,
+      "favorited": 910,
+      "votesUp": 138
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3438096389",
+    "steamClientUri": "steam://url/CommunityFilePage/3438096389"
+  },
+  {
+    "id": "3785079299",
+    "isSimulated": false,
+    "title": "4k 11eyes Lieselotte·Werckmeister",
+    "description": "‍‍‍　　　　　　重なり燃え逝くアカツキを二人で見たい　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　\r\n‍‍　　　　　　　　　　　　  絶望の丘で　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　\r\n‍‍　　　　　　　　　‍ Knight master I miss you\r\n‍　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　\r\n‍　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　[h3]Character Information[/h3]\r\nName: Lieselotte·Werkmeister (リーゼロッテ・ヴェルクマイスター)\r\nAppears in: [b]11eyes -Sin, Damnation and the Atonement Girl-[/b]\r\n\r\n[h3]Source Material[/h3]\r\nThe image used in this work is from the [b]Deep One: 虚無と夢幻のフラグメント × 11eyes -Sin, Damnation and the Atonement Girl-[/b] collaboration event\r\n「絶えし赤夜を想う夢」\r\n\r\n[h3]Copyright Notice[/h3]\r\nThis is a non-commercial fan work. All rights to the original character and related copyrighted material belong to the respective copyright holders, including [b]DMM GAMES[/b].\r\nPlease credit the original source when reposting. Commercial use is prohibited.",
+    "author": {
+      "name": "",
+      "steamId": "76561199547265023"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/14196956845626260590/E8E90B10369EA4D88679BF63E03D10034328DC00/",
+    "type": "Video",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 56302317,
+    "createdAt": "2026-08-17T10:56:25.000Z",
+    "updatedAt": "2026-09-06T08:42:46.000Z",
+    "stats": {
+      "views": 7929,
+      "subscriptions": 7556,
+      "favorited": 630,
+      "votesUp": 424
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3785079299",
+    "steamClientUri": "steam://url/CommunityFilePage/3785079299"
+  },
+  {
+    "id": "3619539804",
+    "isSimulated": false,
+    "title": "-b站 聊会电影吧《芳华》解读(上中下合集)",
+    "description": "转载自B站UP主‘’聊会电影吧‘’，非自制。",
+    "author": {
+      "name": "",
+      "steamId": "76561199467805384"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/17576291070059029586/40F2F60C6BCD45B74D717184EE2D379297DF14EC/",
+    "type": "Video",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Memes",
+      "Wallpaper",
+      "Standard Definition"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 1172780851,
+    "createdAt": "2025-12-07T13:11:18.000Z",
+    "updatedAt": "2025-12-07T15:05:37.000Z",
+    "stats": {
+      "views": 2390,
+      "subscriptions": 7897,
+      "favorited": 526,
+      "votesUp": 186
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3619539804",
+    "steamClientUri": "steam://url/CommunityFilePage/3619539804"
+  },
+  {
+    "id": "3281315834",
+    "isSimulated": false,
+    "title": "Konata Bailando",
+    "description": "",
+    "author": {
+      "name": "",
+      "steamId": "76561199496860125"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2505772116891359188/D3307F699F68ED06A03DE7E3589F59072BFC2B98/",
+    "type": "Video",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Girls"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 180157463,
+    "createdAt": "2024-07-03T21:09:02.000Z",
+    "updatedAt": "2024-07-03T21:09:02.000Z",
+    "stats": {
+      "views": 575,
+      "subscriptions": 7845,
+      "favorited": 621,
+      "votesUp": 142
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3281315834",
+    "steamClientUri": "steam://url/CommunityFilePage/3281315834"
+  },
+  {
+    "id": "3408391135",
+    "isSimulated": false,
+    "title": "BrownDust 2 - Elise [Lovely Lady]",
+    "description": "",
+    "author": {
+      "name": "",
+      "steamId": "76561198088677774"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/17551635678480565/8FC1759A41A7A52C700BFA3154BE40FD51EC4B66/",
+    "type": "Video",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 11160495,
+    "createdAt": "2025-01-16T05:53:59.000Z",
+    "updatedAt": "2025-01-16T05:53:59.000Z",
+    "stats": {
+      "views": 1463,
+      "subscriptions": 7434,
+      "favorited": 1012,
+      "votesUp": 157
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3408391135",
+    "steamClientUri": "steam://url/CommunityFilePage/3408391135"
+  },
+  {
+    "id": "3411223135",
+    "isSimulated": false,
+    "title": "Blue Archive - Karin (Uniform) Live2D",
+    "description": "Karin (Uniform) Live2D\r\nWallpaper Engine Version (Seamless loop)\r\n\r\nBGM: Blue Archive OST 267\r\nLink: https://www.youtube.com/watch?v=-75jUnJhHc0\r\n\r\nCredits to the developer and publisher of Blue Archive: NAT GAMES and Yostar.",
+    "author": {
+      "name": "",
+      "steamId": "76561197961564370"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/4040836197496955/8E786468AA0F1B1271AF745E7E017BABC76B1927/",
+    "type": "Video",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 140314445,
+    "createdAt": "2025-01-20T13:55:55.000Z",
+    "updatedAt": "2025-01-20T13:55:55.000Z",
+    "stats": {
+      "views": 2690,
+      "subscriptions": 7538,
+      "favorited": 904,
+      "votesUp": 148
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3411223135",
+    "steamClientUri": "steam://url/CommunityFilePage/3411223135"
+  },
+  {
+    "id": "3804689861",
+    "isSimulated": false,
+    "title": "DJgun雨夜",
+    "description": "“一具在时光流逝中，逐渐变得可爱的尸体”\r\nhttps://www.bilibili.com/video/BV1f4eC6VE4K\r\nDJgun向关注她的大家说再见",
+    "author": {
+      "name": "",
+      "steamId": "76561198866437317"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/10475251962604921103/AE07806D66CE7DA768BA9FF2B6BA1B9C8FDED171/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper",
+      "Audio responsive",
+      "Video Texture",
+      "Customizable"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 174194098,
+    "createdAt": "2026-09-19T22:35:05.000Z",
+    "updatedAt": "2026-10-08T09:55:03.000Z",
+    "stats": {
+      "views": 2427,
+      "subscriptions": 8009,
+      "favorited": 435,
+      "votesUp": 142
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3804689861",
+    "steamClientUri": "steam://url/CommunityFilePage/3804689861"
+  },
+  {
+    "id": "3413525358",
+    "isSimulated": false,
+    "title": "尘白禁区/snowbreak 辰星欣描红妆 2k60帧",
+    "description": "壁纸来自官方，制作者搜B站up：安然__x",
+    "author": {
+      "name": "",
+      "steamId": "76561199159297857"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2915480415360871/8D2188FD92837D7B33056C0284002B546D02C501/",
+    "type": "Video",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 164621747,
+    "createdAt": "2025-01-24T13:42:20.000Z",
+    "updatedAt": "2025-01-24T13:42:20.000Z",
+    "stats": {
+      "views": 1505,
+      "subscriptions": 7253,
+      "favorited": 1180,
+      "votesUp": 150
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3413525358",
+    "steamClientUri": "steam://url/CommunityFilePage/3413525358"
+  },
+  {
+    "id": "3400457482",
+    "isSimulated": false,
+    "title": "Miyabi parallax",
+    "description": "zenless zone zero waifu with katana\ncinema pic",
+    "author": {
+      "name": "",
+      "steamId": "76561198114180247"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/36690755382561318/08C53F656BD516DCA610942D005416169D779756/",
+    "type": "Scene",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Wallpaper",
+      "Anime",
+      "Other resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 11946761,
+    "createdAt": "2025-01-04T17:14:39.000Z",
+    "updatedAt": "2025-01-04T17:14:39.000Z",
+    "stats": {
+      "views": 450,
+      "subscriptions": 7909,
+      "favorited": 540,
+      "votesUp": 120
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3400457482",
+    "steamClientUri": "steam://url/CommunityFilePage/3400457482"
+  },
+  {
+    "id": "3660707663",
+    "isSimulated": false,
+    "title": "爱弥斯像素壁纸-七饼",
+    "description": "小爱可爱捏！！！",
+    "author": {
+      "name": "",
+      "steamId": "76561198281609759"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/13324662170046205233/4A9FF0443DCF486366C052379DDD76C811485917/",
+    "type": "Video",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Game",
+      "Wallpaper"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 45632034,
+    "createdAt": "2026-02-05T23:30:20.000Z",
+    "updatedAt": "2026-10-07T03:12:59.000Z",
+    "stats": {
+      "views": 566,
+      "subscriptions": 7933,
+      "favorited": 506,
+      "votesUp": 128
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3660707663",
+    "steamClientUri": "steam://url/CommunityFilePage/3660707663"
+  },
+  {
+    "id": "3563328202",
+    "isSimulated": false,
+    "title": "Red - Hollow Knight: Silksong",
+    "description": "i liked this art a lot",
+    "author": {
+      "name": "",
+      "steamId": "76561198892577492"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/18019985184549212567/8664AEA1F6FE1240F1B95DC1068DE53614D47B94/",
+    "type": "Scene",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Game",
+      "Puppet Warp"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 6116752,
+    "createdAt": "2025-09-06T17:40:29.000Z",
+    "updatedAt": "2025-09-07T21:35:51.000Z",
+    "stats": {
+      "views": 448,
+      "subscriptions": 7979,
+      "favorited": 478,
+      "votesUp": 99
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3563328202",
+    "steamClientUri": "steam://url/CommunityFilePage/3563328202"
+  },
+  {
+    "id": "3523915808",
+    "isSimulated": false,
+    "title": "Wuthering Waves",
+    "description": "only with effects\n\n(。-`ω´-)🍜",
+    "author": {
+      "name": "",
+      "steamId": "76561199133466197"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/14352109419755999602/158F380A7579E72A5E8651DC1BD70FB14664355D/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Anime",
+      "Audio responsive",
+      "Customizable"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 14766216,
+    "createdAt": "2025-07-12T19:05:51.000Z",
+    "updatedAt": "2025-07-12T19:05:51.000Z",
+    "stats": {
+      "views": 478,
+      "subscriptions": 7793,
+      "favorited": 646,
+      "votesUp": 110
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3523915808",
+    "steamClientUri": "steam://url/CommunityFilePage/3523915808"
+  },
+  {
+    "id": "3525388129",
+    "isSimulated": false,
+    "title": "Honkai Impact 3 Theresa",
+    "description": "崩壊3rd テレサ・アポカリプス\r\nHonkai Impact 3 Theresa",
+    "author": {
+      "name": "",
+      "steamId": "76561199816490138"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/16045078839857927526/8E1C0CC499C4DDAA8892287A00645778A4C5A2EA/",
+    "type": "Scene",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Wallpaper",
+      "Anime",
+      "Other resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 19824179,
+    "createdAt": "2025-07-14T05:35:18.000Z",
+    "updatedAt": "2025-07-14T11:13:58.000Z",
+    "stats": {
+      "views": 761,
+      "subscriptions": 7496,
+      "favorited": 920,
+      "votesUp": 121
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3525388129",
+    "steamClientUri": "steam://url/CommunityFilePage/3525388129"
+  },
+  {
+    "id": "3371914305",
+    "isSimulated": false,
+    "title": "Arcane 4K-爆爆",
+    "description": "Arcane 4K-爆爆",
+    "author": {
+      "name": "",
+      "steamId": "76561199045637710"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/35560869621832354/290693C62426B8AABD0FF8DE9392EFB8E8CF4D50/",
+    "type": "Scene",
+    "resolution": "3440x1440",
+    "aspectRatio": "21:9",
+    "tags": [
+      "Wallpaper",
+      "Fantasy"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 19857271,
+    "createdAt": "2024-11-25T15:53:26.000Z",
+    "updatedAt": "2024-11-25T15:55:23.000Z",
+    "stats": {
+      "views": 470,
+      "subscriptions": 7853,
+      "favorited": 559,
+      "votesUp": 123
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3371914305",
+    "steamClientUri": "steam://url/CommunityFilePage/3371914305"
+  },
+  {
+    "id": "3606119644",
+    "isSimulated": false,
+    "title": "麻雀一番街Riichi Cityオンライン対戦麻雀ゲーム",
+    "description": "",
+    "author": {
+      "name": "",
+      "steamId": "76561198166819349"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/13055128033566480140/0F887584453E30CECE4F652660028D68675F61D9/",
+    "type": "Video",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 5758097,
+    "createdAt": "2025-11-15T12:32:58.000Z",
+    "updatedAt": "2025-11-15T12:32:58.000Z",
+    "stats": {
+      "views": 853,
+      "subscriptions": 7540,
+      "favorited": 870,
+      "votesUp": 117
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3606119644",
+    "steamClientUri": "steam://url/CommunityFilePage/3606119644"
+  }
+]
