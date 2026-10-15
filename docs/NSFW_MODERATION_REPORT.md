@@ -94,7 +94,7 @@ Para fornecer controle editorial imediato e rastreável sem necessidade de alter
 - **Prioridade Absoluta**: Se um ID constar na blacklist, o wallpaper é bloqueado imediatamente com motivo `manual_blacklist`, independentemente de sua classificação ou metadados na Steam.
 
 ### Como Adicionar ou Remover um Wallpaper da Blacklist:
-1. **Para bloquear**: Adicione o PublishedFileID da Steam no array `"blockedIds"` do arquivo [`config/blocked-wallpapers.json`](file:///home/renato/Documents/VSCode/WallpaperGallery/config/blocked-wallpapers.json).
+1. **Para bloquear**: Adicione o PublishedFileID da Steam no array `"blockedIds"` do arquivo [`config/blocked-wallpapers.json`](../config/blocked-wallpapers.json).
 2. **Para desbloquear**: Remova o PublishedFileID correspondente do array `"blockedIds"`.
 3. **Para aplicar**: Execute o comando de reconstrução offline:
    ```bash
@@ -141,7 +141,7 @@ O comando opera de forma direta, rápida (<100ms) e sem necessidade de flags com
 
 ## 8. Evidências de Testes
 
-A suíte [`tests/moderation.test.mjs`](file:///home/renato/Documents/VSCode/WallpaperGallery/tests/moderation.test.mjs) foi reestruturada para cobrir todos os 10 cenários requeridos:
+A suíte [`tests/moderation.test.mjs`](../tests/moderation.test.mjs) foi reestruturada para cobrir todos os 10 cenários requeridos:
 
 1. Bloqueio por `Mature` e `Questionable`.
 2. Bloqueio por palavras-chave (título, descrição, tags e ideogramas).
