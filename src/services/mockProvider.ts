@@ -11,7 +11,7 @@ import {
   extractFilterMetadata,
   findWallpaperById,
   paginateWallpapers,
-} from '../utils/filterWallpapers';
+} from '../utils/filterWallpapers.ts';
 
 export class MockWallpaperProvider implements IWallpaperDataProvider {
   private items: WallpaperItem[] = [];

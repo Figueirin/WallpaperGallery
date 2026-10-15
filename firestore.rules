@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // =========================================================================
+    // WallpaperGallery — Regras de Segurança do Cloud Firestore
+    // Plano Spark (Gratuito): Acesso público somente leitura para visitantes
+    // Escritas são 100% proibidas no cliente (feitas apenas pelo script admin)
+    // =========================================================================
+
+    // Catálogo de Wallpapers
+    match /wallpapers/{wallpaperId} {
+      // Visitantes da web podem apenas consultar/ler
+      allow read: if true;
+      // Nenhuma escrita é permitida a partir do cliente web público
+      allow write: if false;
+    }
+
+    // Metadados de sincronização e status do catálogo
+    match /sync_metadata/{docId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Bloqueio padrão para qualquer outra coleção
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

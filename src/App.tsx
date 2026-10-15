@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
-import { MockWallpaperProvider } from './services/mockProvider';
+import { createWallpaperProvider } from './services/providerFactory';
 import {
   WallpaperItem,
   FilterMetadata,
@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 import { getResolutionLabel } from './utils/filterWallpapers';
 
-const provider = new MockWallpaperProvider();
+const provider = createWallpaperProvider();
 const PAGE_SIZE = 8;
 
 function parseWallpaperIdFromUrl(): string | null {
