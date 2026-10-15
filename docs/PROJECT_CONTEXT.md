@@ -1,9 +1,9 @@
 > Registro histórico anterior à auditoria de 14/10/2026. Para estado atual, comandos e limites, consulte README.md, CODEX_AUDIT_REPORT.md e CODEX_CHANGELOG.md. Descrições antigas de fallback, agendamento e sincronização não são instruções operacionais vigentes.
 
-# Workshop Gallery - Contexto e Decisões do Projeto
+# WallpaperGallery - Contexto e Decisões do Projeto
 
 ## 1. Visão Geral
-- **Nome:** Workshop Gallery
+- **Nome:** WallpaperGallery
 - **Diretório Raiz:** `/home/renato/Documents/VSCode/WallpaperGallery`
 - **Repositório GitHub:** `https://github.com/Figueirin/WallpaperGallery`
 - **Propósito:** Catálogo web moderno, responsivo e dark mode para explorar wallpapers do Steam Workshop do Wallpaper Engine (AppID: 431960), com foco em descoberta visual para usuários Linux (KDE Plasma / Wallpaper Engine for KDE).

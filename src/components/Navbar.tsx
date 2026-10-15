@@ -1,3 +1,4 @@
+import { useLanguage } from '../i18n/LanguageContext';
 import { type KeyboardEvent } from 'react';
 import { Search, X, Sparkles, Loader2 } from 'lucide-react';
 
@@ -16,6 +17,7 @@ export function Navbar({
   onNavigateHome,
   isLoading = false,
 }: NavbarProps) {
+  const { t, language, setLanguage } = useLanguage();
   const handleClear = () => {
     onSearchChange('');
   };
@@ -28,7 +30,7 @@ export function Navbar({
 
   return (
     <header className="sticky top-0 z-30 w-full bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/80">
-      <div className="max-w-[2400px] w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 h-18 flex items-center justify-between gap-4">
+      <div className="max-w-[2400px] w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 min-h-18 py-3 flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
         {/* Identidade do Projeto / Logo */}
         <div
           onClick={onNavigateHome}
@@ -40,34 +42,34 @@ export function Navbar({
               onNavigateHome();
             }
           }}
-          aria-label={onNavigateHome ? 'Ir para a página inicial da galeria' : undefined}
+          aria-label={onNavigateHome ? t('home') : undefined}
           className={`flex items-center gap-3 shrink-0 ${
             onNavigateHome
               ? 'cursor-pointer hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-xl'
               : ''
           }`}
         >
-          <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center">
+          <div className="hidden sm:flex p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center">
             <Sparkles className="w-5 h-5" aria-hidden="true" />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <span className="font-bold text-base tracking-tight text-zinc-100">
-                Workshop Gallery
+                WallpaperGallery
               </span>
 
             </div>
             <p className="hidden md:block text-xs text-zinc-400">
-              Catálogo visual para Wallpaper Engine
+              {t('subtitle')}
             </p>
           </div>
         </div>
 
         {/* Barra de Pesquisa */}
-        <div className="flex-1 max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-2 sm:mx-4">
+        <div className="order-last sm:order-none w-full sm:w-auto sm:flex-1 min-w-0 md:max-w-lg lg:max-w-xl xl:max-w-2xl sm:mx-2">
           <div className="relative">
             <label htmlFor="wallpaper-search" className="sr-only">
-              Pesquisar wallpapers por título, tags ou autor
+              {t('searchLabel')}
             </label>
             <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-500">
               {isLoading ? (
@@ -82,14 +84,14 @@ export function Navbar({
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Pesquisar wallpapers..."
+              placeholder={t('searchPlaceholder')}
               className="w-full pl-10 pr-9 py-2 rounded-xl text-sm bg-zinc-900 border border-zinc-800 text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-colors"
             />
             {searchQuery && (
               <button
                 type="button"
                 onClick={handleClear}
-                aria-label="Limpar campo de pesquisa"
+                aria-label={t('clearSearchField')}
                 className="absolute inset-y-0 right-0 pr-3 flex items-center text-zinc-400 hover:text-zinc-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-r-xl"
               >
                 <X className="w-4 h-4" aria-hidden="true" />
@@ -102,15 +104,25 @@ export function Navbar({
         <div className="flex items-center gap-3 shrink-0">
           <div className="hidden lg:flex items-center gap-1.5 text-xs text-zinc-400 px-2.5 py-1 rounded-lg bg-zinc-900 border border-zinc-800">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>{totalCount} wallpapers</span>
+            <span>{t('wallpaperCount', { count: totalCount })}</span>
           </div>
+
+          <select
+            aria-label={t('language')}
+            value={language}
+            onChange={(event) => setLanguage(event.target.value === 'pt-BR' ? 'pt-BR' : 'en')}
+            className="w-16 px-1.5 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-xs text-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+          >
+            <option value="en" lang="en">EN</option>
+            <option value="pt-BR" lang="pt-BR">PT</option>
+          </select>
 
           <a
             href="https://github.com/Figueirin/WallpaperGallery"
             target="_blank"
             rel="noopener noreferrer"
-            title="Repositório no GitHub"
-            aria-label="Acessar repositório no GitHub"
+            title={t('githubTitle')}
+            aria-label={t('githubLabel')}
             className="p-2 rounded-xl text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900 border border-transparent hover:border-zinc-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
           >
             <svg

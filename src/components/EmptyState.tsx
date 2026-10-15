@@ -1,3 +1,4 @@
+import { useLanguage } from '../i18n/LanguageContext';
 import { SearchX, AlertTriangle, RotateCcw } from 'lucide-react';
 
 interface EmptyStateProps {
@@ -15,12 +16,13 @@ export function EmptyState({
   onReset,
   resetLabel,
 }: EmptyStateProps) {
+  const { t } = useLanguage();
   const isError = type === 'error';
 
   return (
     <div
       role="region"
-      aria-label={isError ? 'Aviso de erro' : 'Nenhum wallpaper encontrado'}
+      aria-label={isError ? t('errorNotice') : t('noneFound')}
       className="flex flex-col items-center justify-center p-12 text-center rounded-2xl bg-zinc-900/40 border border-zinc-800/60 max-w-lg mx-auto my-12"
     >
       <div
@@ -38,14 +40,14 @@ export function EmptyState({
       </div>
 
       <h3 className="text-lg font-semibold text-zinc-100 mb-1">
-        {title || (isError ? 'Falha ao carregar wallpapers' : 'Nenhum wallpaper encontrado')}
+        {title || (isError ? t('loadFailed') : t('noneFound'))}
       </h3>
 
       <p className="text-sm text-zinc-400 mb-6 max-w-sm">
         {description ||
           (isError
-            ? 'Não foi possível carregar o catálogo de wallpapers. Verifique a conexão e tente novamente.'
-            : 'Tente utilizar termos mais genéricos ou limpar os filtros aplicados.')}
+            ? t('loadErrorDescription')
+            : t('emptyDescription'))}
       </p>
 
       {onReset && (
@@ -55,7 +57,7 @@ export function EmptyState({
           className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-100 border border-zinc-700 hover:border-zinc-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
         >
           <RotateCcw className="w-4 h-4" aria-hidden="true" />
-          {resetLabel || (isError ? 'Tentar novamente' : 'Limpar pesquisa')}
+          {resetLabel || (isError ? t('retry') : t('clearSearch'))}
         </button>
       )}
     </div>

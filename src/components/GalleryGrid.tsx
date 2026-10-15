@@ -1,3 +1,4 @@
+import { useLanguage } from '../i18n/LanguageContext';
 import { WallpaperItem } from '../types/wallpaper';
 import { WallpaperCard } from './WallpaperCard';
 import { EmptyState } from './EmptyState';
@@ -15,25 +16,26 @@ export function GalleryGrid({
   searchQuery,
   onSelectWallpaper,
 }: GalleryGridProps) {
+  const { t } = useLanguage();
   if (wallpapers.length === 0) {
     return (
       <EmptyState
         type="empty"
-        title="Nenhum wallpaper encontrado"
+        title={t('noneFound')}
         description={
           searchQuery
-            ? `Nenhum resultado corresponde à busca por "${searchQuery}". Tente usar outros termos.`
-            : 'Nenhum wallpaper disponível no catálogo no momento.'
+            ? t('searchNoResults', { query: searchQuery })
+            : t('noCatalogItems')
         }
         onReset={onResetSearch}
-        resetLabel="Limpar busca"
+        resetLabel={t('clearQuery')}
       />
     );
   }
 
   return (
     <section
-      aria-label="Galeria de wallpapers do Steam Workshop"
+      aria-label={t('galleryLabel')}
       className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 min-[2100px]:grid-cols-6 gap-5 lg:gap-6"
     >
       {wallpapers.map((wallpaper) => (

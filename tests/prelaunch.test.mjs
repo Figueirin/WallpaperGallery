@@ -88,13 +88,13 @@ test('normalização não inventa nome; merge preserva nome resolvido somente pa
 
 test('HTML de entrada contém identidade, idioma, SEO textual, favicon e JSON-LD sem domínio inventado', () => {
   const html = readFileSync('index.html', 'utf8');
-  assert.match(html, /<html lang="pt-BR"/);
+  assert.match(html, /<html lang="en"/);
   assert.ok(html.includes(`<title>${SITE_TITLE}</title>`));
   assert.ok(html.includes(`name="description" content="${SITE_DESCRIPTION}"`));
   assert.ok(html.includes('name="viewport"'));
   for (const token of ['og:title', 'og:description', 'og:type', 'twitter:card', 'twitter:title', '/favicon.svg']) assert.ok(html.includes(token));
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)[1]);
-  assert.equal(schema['@type'], 'WebSite'); assert.equal(schema.inLanguage, 'pt-BR');
+  assert.equal(schema['@type'], 'WebSite'); assert.equal(schema.inLanguage, 'en');
   assert.equal(schema.url, undefined); assert.ok(!html.includes('rel="canonical"') && !html.includes('og:image'));
   assert.ok(readFileSync('public/robots.txt', 'utf8').includes('Allow: /'));
 });

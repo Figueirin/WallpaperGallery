@@ -15,6 +15,7 @@ O catálogo atual conta com **979 wallpapers reais**, com paginação e páginas
 - **Navegação:** paginação, página individual por wallpaper e links para a Workshop.
 - **Descoberta:** recomendações de wallpapers com características semelhantes nos detalhes.
 - **Interface responsiva:** navegação em telas de desktop e dispositivos móveis.
+- **Idiomas:** inglês e português do Brasil, com seletor EN/PT e preferência salva no navegador.
 - **Moderação por metadados:** classificações Steam, palavras-chave, tags e blacklist manual.
 - **Catálogo estático:** navegação sem backend ou banco de dados obrigatório.
 

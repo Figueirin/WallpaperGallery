@@ -1,6 +1,6 @@
+import { useLanguage } from './i18n/LanguageContext';
 import { wallpaperIdFromLocation, pageFromSearch, galleryUrl } from './utils/navigation';
 import { usePageMetadata } from './utils/usePageMetadata';
-import { SITE_TITLE, SITE_DESCRIPTION } from './utils/pageMetadata';
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { createWallpaperProvider } from './services/providerFactory';
 import {
@@ -59,8 +59,9 @@ function syncUrl(page: number, wallpaperId: string | null, replace = false) {
 }
 
 export function App() {
+  const { t } = useLanguage();
   const [selectedWallpaperId, setSelectedWallpaperId] = useState<string | null>(parseWallpaperIdFromUrl);
-  usePageMetadata(selectedWallpaperId ? undefined : SITE_TITLE, SITE_DESCRIPTION);
+  usePageMetadata(selectedWallpaperId ? undefined : t('siteTitle'), t('siteDescription'));
   const [wallpapers, setWallpapers] = useState<WallpaperItem[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(parsePageFromUrl);
   const [totalFilteredCount, setTotalFilteredCount] = useState(0);
@@ -75,7 +76,6 @@ export function App() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const requestVersion = useRef(0);
 
@@ -115,7 +115,6 @@ export function App() {
     try {
       setIsLoading(true);
       setHasError(false);
-      setErrorMessage(null);
 
       const result = await provider.getWallpapers({
         searchQuery: searchQuery,
@@ -146,11 +145,6 @@ export function App() {
       if (version !== requestVersion.current) return;
       console.error('Falha ao aplicar filtros e carregar wallpapers:', err);
       setHasError(true);
-      setErrorMessage(
-        err instanceof Error
-          ? err.message
-          : 'Ocorreu um erro inesperado ao filtrar o catálogo.'
-      );
     } finally {
       if (version === requestVersion.current) setIsLoading(false);
     }
@@ -273,11 +267,11 @@ export function App() {
           />
         ) : (
           <>
-            <h1 className="sr-only">Wallpapers do Wallpaper Engine e Steam Workshop</h1>
-            <h2 className="sr-only">Catálogo de wallpapers</h2>
+            <h1 className="sr-only">{t('siteHeading')}</h1>
+            <h2 className="sr-only">{t('catalogHeading')}</h2>
             {/* Banner Informativo de Ambiente e Compatibilidade */}
             <section
-              aria-label="Informações do catálogo"
+              aria-label={t('catalogInfo')}
               className="mb-6 p-4 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-zinc-400"
             >
               <div className="flex items-center gap-2.5">
@@ -286,10 +280,10 @@ export function App() {
                 </div>
                 <div>
                   <p className="font-medium text-zinc-300">
-                    Catálogo Steam Workshop (AppID 431960)
+                    {t('catalogSteam')}
                   </p>
                   <p className="text-zinc-500 text-[11px]">
-                    Explore pelo navegador no computador ou celular. A compatibilidade dos wallpapers depende do Wallpaper Engine e do sistema utilizado.
+                    {t('compatibility')}
                   </p>
                 </div>
               </div>
@@ -298,8 +292,8 @@ export function App() {
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-800/80 border border-zinc-700/60 text-zinc-300">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                   {totalFilteredCount < totalCatalogCount
-                    ? `${wallpapers.length} de ${totalFilteredCount} filtrados (${totalCatalogCount} total)`
-                    : `${totalCatalogCount} wallpapers no catálogo`}
+                    ? t('filteredCount', { shown: wallpapers.length, filtered: totalFilteredCount, total: totalCatalogCount })
+                    : t('catalogCount', { count: totalCatalogCount })}
                 </span>
               </div>
             </section>
@@ -326,10 +320,10 @@ export function App() {
               <div className="flex flex-wrap items-center gap-2">
                 <span className="text-sm font-semibold text-zinc-200">
                   {totalFilteredCount}{' '}
-                  {totalFilteredCount === 1 ? 'wallpaper encontrado' : 'wallpapers encontrados'}
+                  {totalFilteredCount === 1 ? t('foundOne') : t('foundMany')}
                   {totalFilteredCount > wallpapers.length && (
                     <span className="text-xs font-normal text-zinc-400 ml-1.5">
-                      (Página {currentPage} • {wallpapers.length} exibidos)
+                      {t('pageShown', { page: currentPage, count: wallpapers.length })}
                     </span>
                   )}
                 </span>
@@ -337,11 +331,11 @@ export function App() {
                 {/* Chips de Filtros Ativos para remoção rápida */}
                 {selectedType !== 'ALL' && (
                   <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-zinc-800 text-zinc-300 border border-zinc-700">
-                    Tipo: {selectedType}
+                    {t('type')} {selectedType}
                     <button
                       type="button"
                       onClick={() => handleSelectType('ALL')}
-                      aria-label="Remover filtro de tipo"
+                      aria-label={t('removeType')}
                       className="hover:text-zinc-100"
                     >
                       <X className="w-3 h-3" />
@@ -358,7 +352,7 @@ export function App() {
                     <button
                       type="button"
                       onClick={() => handleToggleResolution(res)}
-                      aria-label={`Remover filtro de resolução ${res}`}
+                      aria-label={t('removeResolution', { resolution: res })}
                       className="hover:text-zinc-100"
                     >
                       <X className="w-3 h-3" />
@@ -371,11 +365,11 @@ export function App() {
                     key={`active-tag-${tag}`}
                     className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-zinc-800 text-zinc-300 border border-zinc-700"
                   >
-                    Tag: {tag}
+                    {t('tagPrefix')} {tag}
                     <button
                       type="button"
                       onClick={() => handleToggleTag(tag)}
-                      aria-label={`Remover filtro da tag ${tag}`}
+                      aria-label={t('removeTag', { tag })}
                       className="hover:text-zinc-100"
                     >
                       <X className="w-3 h-3" />
@@ -385,11 +379,11 @@ export function App() {
 
                 {searchQuery.trim() !== '' && (
                   <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
-                    Busca: "{searchQuery}"
+                    {t('searchChip', { query: searchQuery })}
                     <button
                       type="button"
                       onClick={() => handleSearchChange('')}
-                      aria-label="Limpar termo de busca"
+                      aria-label={t('clearSearchTerm')}
                       className="hover:text-white"
                     >
                       <X className="w-3 h-3" />
@@ -404,7 +398,7 @@ export function App() {
                   onClick={handleResetAll}
                   className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors font-medium cursor-pointer"
                 >
-                  Limpar busca e filtros
+                  {t('clearAll')}
                 </button>
               )}
             </div>
@@ -415,10 +409,10 @@ export function App() {
             ) : hasError ? (
               <EmptyState
                 type="error"
-                title="Erro ao carregar o catálogo"
-                description={errorMessage || undefined}
+                title={t('catalogError')}
+                description={t('loadErrorDescription')}
                 onReset={() => fetchWallpapers(currentPage)}
-                resetLabel="Tentar novamente"
+                resetLabel={t('retry')}
               />
             ) : (
               <div className={`transition-opacity duration-200 ${isLoading ? 'opacity-60 pointer-events-none' : 'opacity-100'}`}>
@@ -447,7 +441,7 @@ export function App() {
                       className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors inline-flex items-center gap-1 cursor-pointer font-medium"
                     >
                       <ArrowUp className="w-3.5 h-3.5" aria-hidden="true" />
-                      <span>Voltar ao topo</span>
+                      <span>{t('backTop')}</span>
                     </button>
                   </div>
                 )}

@@ -1,3 +1,4 @@
+import { useLanguage } from '../i18n/LanguageContext';
 import { useState, useRef, useEffect } from 'react';
 import { WallpaperItem } from '../types/wallpaper';
 import { safeMediaUrl, safeWebDemoUrl } from '../utils/safeUrls';
@@ -13,6 +14,7 @@ import {
 interface WallpaperMediaProps {
   wallpaper: WallpaperItem;
   mode: 'card' | 'detail';
+  fit?: 'cover' | 'contain';
   isHovered?: boolean;
   className?: string;
   onVideoPlayChange?: (isPlaying: boolean) => void;
@@ -21,10 +23,12 @@ interface WallpaperMediaProps {
 export function WallpaperMedia({
   wallpaper: rawWallpaper,
   mode,
+  fit = 'cover',
   isHovered = false,
   className = '',
   onVideoPlayChange,
 }: WallpaperMediaProps) {
+  const { t } = useLanguage();
   const wallpaper = { ...rawWallpaper,
     previewUrl: safeMediaUrl(rawWallpaper.previewUrl),
     videoPreviewUrl: safeMediaUrl(rawWallpaper.videoPreviewUrl),
@@ -129,11 +133,11 @@ export function WallpaperMedia({
             )}
             <img
               src={wallpaper.previewUrl}
-              alt={`Pré-visualização do wallpaper ${wallpaper.title}`}
+              alt={t('previewAlt', { title: wallpaper.title })}
               loading="lazy"
               onLoad={() => setImageLoaded(true)}
               onError={() => setImageError(true)}
-              className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${
+              className={`w-full h-full ${fit === 'contain' ? 'object-contain' : 'object-cover group-hover:scale-105'} transition-transform duration-300 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
             />
@@ -152,7 +156,7 @@ export function WallpaperMedia({
                   setIsVideoPlaying(false);
                   onVideoPlayChange?.(false);
                 }}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${
+                className={`absolute inset-0 w-full h-full ${fit === 'contain' ? 'object-contain' : 'object-cover'} transition-opacity duration-300 pointer-events-none ${
                   isHovered && isVideoPlaying ? 'opacity-100' : 'opacity-0'
                 }`}
                 aria-hidden="true"
@@ -164,10 +168,10 @@ export function WallpaperMedia({
           <div
             className="flex flex-col items-center justify-center p-4 text-center text-zinc-500 w-full h-full bg-zinc-950"
             role="img"
-            aria-label="Imagem de prévia indisponível"
+            aria-label={t('previewImageMissing')}
           >
             <ImageOff className="w-8 h-8 mb-2 text-zinc-600" aria-hidden="true" />
-            <span className="text-xs font-medium">Prévia indisponível</span>
+            <span className="text-xs font-medium">{t('previewMissing')}</span>
           </div>
         )}
       </div>
@@ -192,7 +196,7 @@ export function WallpaperMedia({
           onError={() => setVideoError(true)}
           className="w-full h-full object-contain"
         >
-          Seu navegador não suporta reprodução de vídeo HTML5.
+          {t('videoUnsupported')}
         </video>
       </div>
     );
@@ -213,10 +217,10 @@ export function WallpaperMedia({
         <div className="relative z-10 max-w-md p-5 rounded-2xl bg-zinc-900/90 border border-zinc-800/80 backdrop-blur-md space-y-3">
           <div className="flex items-center justify-center gap-2 text-amber-400">
             <AlertCircle className="w-5 h-5" aria-hidden="true" />
-            <span className="text-xs font-semibold">Falha na reprodução do vídeo</span>
+            <span className="text-xs font-semibold">{t('videoFailed')}</span>
           </div>
           <p className="text-xs text-zinc-400">
-            Não foi possível carregar a transmissão do vídeo. Exibindo a imagem de capa em alta resolução.
+            {t('videoFailedDescription')}
           </p>
           <div className="flex items-center justify-center gap-3 pt-1">
             <button
@@ -225,7 +229,7 @@ export function WallpaperMedia({
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-medium transition-colors"
             >
               <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Tentar novamente</span>
+              <span>{t('retry')}</span>
             </button>
           </div>
         </div>
@@ -239,7 +243,7 @@ export function WallpaperMedia({
       <div className={`relative w-full h-full bg-black flex items-center justify-center ${className}`}>
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=0&rel=0`}
-          title={`Demonstração no YouTube: ${wallpaper.title}`}
+          title={t('youtubeTitle', { title: wallpaper.title })}
           allow="encrypted-media; picture-in-picture"
           referrerPolicy="no-referrer"
           allowFullScreen
@@ -260,7 +264,7 @@ export function WallpaperMedia({
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700 text-[11px] text-zinc-200"
           >
-            <span>Abrir em nova aba</span>
+            <span>{t('newTab')}</span>
             <ExternalLink className="w-3 h-3" aria-hidden="true" />
           </a>
           <button
@@ -268,12 +272,12 @@ export function WallpaperMedia({
             onClick={() => setShowInteractiveWeb(false)}
             className="px-2.5 py-1 rounded-lg bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700 text-[11px] text-zinc-200"
           >
-            Fechar Demo
+            {t('closeDemo')}
           </button>
         </div>
         <iframe
           src={wallpaper.webDemoUrl}
-          title={`Demonstração Web interativa: ${wallpaper.title}`}
+          title={t('webTitle', { title: wallpaper.title })}
           sandbox="allow-scripts"
           referrerPolicy="no-referrer"
           className="w-full h-full border-0"
@@ -289,7 +293,7 @@ export function WallpaperMedia({
         <>
           <img
             src={wallpaper.previewUrl}
-            alt={`Visualização ampliada do wallpaper ${wallpaper.title}`}
+            alt={t('largePreviewAlt', { title: wallpaper.title })}
             onError={() => setImageError(true)}
             className="w-full h-full object-contain bg-zinc-950"
           />
@@ -303,7 +307,7 @@ export function WallpaperMedia({
                 className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-cyan-600/90 hover:bg-cyan-500 text-white font-medium text-xs shadow-lg backdrop-blur-sm transition-colors"
               >
                 <Monitor className="w-4 h-4" aria-hidden="true" />
-                <span>Testar Demo Web Interativa</span>
+                <span>{t('tryWeb')}</span>
               </button>
             </div>
           )}
@@ -312,10 +316,10 @@ export function WallpaperMedia({
         <div
           className="flex flex-col items-center justify-center p-8 text-center text-zinc-500"
           role="img"
-          aria-label="Mídia indisponível"
+          aria-label={t('mediaMissing')}
         >
           <ImageOff className="w-12 h-12 mb-3 text-zinc-600" aria-hidden="true" />
-          <p className="text-sm font-medium">Prévia em alta resolução indisponível</p>
+          <p className="text-sm font-medium">{t('largePreviewMissing')}</p>
         </div>
       )}
     </div>
