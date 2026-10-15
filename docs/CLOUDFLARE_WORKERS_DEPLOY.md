@@ -29,7 +29,7 @@ npm ci
 npm run dev
 ```
 
-O catálogo JSON real é o provider padrão. Não é necessário configurar `VITE_DATA_PROVIDER`, Steam API ou Firebase para navegar pelos 979 wallpapers.
+O catálogo JSON real é o provider padrão. Não é necessário configurar `VITE_DATA_PROVIDER`, Steam API ou Firebase para navegar pelos 5.000 wallpapers.
 
 Antes de integrar alterações para produção:
 
@@ -91,8 +91,8 @@ Confira branch, commit, build command e deploy command nos registros do Worker. 
 ## Verificação após a publicação
 
 - [ ] O deployment corresponde ao commit esperado da `main`, com build e publicação bem-sucedidos.
-- [ ] O site mostra **979 wallpapers reais** no snapshot atual.
-- [ ] Busca, filtros, ordenação e paginação funcionam; página 40 possui 4 itens.
+- [ ] O site mostra **5.000 wallpapers reais** no snapshot atual.
+- [ ] Busca, filtros, ordenação e infinite scroll funcionam; são 200 shards de 25 itens, incluindo o último.
 - [ ] O detalhe abre a partir de um card, diretamente em nova aba e após F5.
 - [ ] Os links apontam para o item original na Steam Workshop.
 - [ ] O layout funciona em tela móvel.

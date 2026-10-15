@@ -12,7 +12,8 @@
     "sync:firestore": "node --experimental-strip-types scripts/sync-firestore.ts",
     "moderate:rebuild": "node --experimental-strip-types scripts/rebuild-catalog.ts",
     "typecheck": "tsc -b && tsc -p tsconfig.scripts.json",
-    "enrich:authors": "node --experimental-strip-types scripts/enrich-authors.ts"
+    "enrich:authors": "node --experimental-strip-types scripts/enrich-authors.ts",
+    "sync:expand": "node --experimental-strip-types scripts/expand-catalog.ts"
   },
   "dependencies": {
     "firebase": "^13.0.0",

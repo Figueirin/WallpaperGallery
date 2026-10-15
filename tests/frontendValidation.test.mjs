@@ -46,25 +46,25 @@ function createLocalCatalogFetch() {
   };
 }
 
-describe('Validação Funcional do Frontend com Catálogo Real Expandido (979 Wallpapers / 40 Shards de 25 Itens)', () => {
-  it('manifesto e catálogo contêm 979 wallpapers distribuídos em 40 shards de 25 itens (último com 4)', () => {
-    assert.strictEqual(manifest.totalItems, 979);
+describe('Validação Funcional do Frontend com Catálogo Real Expandido (5000 Wallpapers / 200 Shards de 25 Itens)', () => {
+  it('manifesto e catálogo contêm 5000 wallpapers distribuídos em 200 shards de 25 itens (último com 25)', () => {
+    assert.strictEqual(manifest.totalItems, 5000);
     assert.strictEqual(manifest.pageSize, 25);
     assert.strictEqual(manifest.pageSize, DEFAULT_PAGE_SIZE);
-    assert.strictEqual(manifest.totalPages, 40);
-    assert.strictEqual(manifest.shards.length, 40);
-    assert.strictEqual(fullCatalog.length, 979);
+    assert.strictEqual(manifest.totalPages, 200);
+    assert.strictEqual(manifest.shards.length, 200);
+    assert.strictEqual(fullCatalog.length, 5000);
 
-    // Valida os primeiros 39 shards (devem conter exatamente 25 itens cada)
-    for (let p = 1; p <= 39; p++) {
+    // Valida os primeiros 199 shards (devem conter exatamente 25 itens cada)
+    for (let p = 1; p <= 199; p++) {
       const shard = manifest.shards.find((s) => s.page === p);
       assert.ok(shard, `Shard da página ${p} deve existir`);
       assert.strictEqual(shard.count, 25, `Página ${p} deve ter 25 itens`);
     }
 
-    const lastShard = manifest.shards.find((s) => s.page === 40);
-    assert.ok(lastShard, 'Shard da página 40 deve existir');
-    assert.strictEqual(lastShard.count, 4, 'Página 40 (última) deve conter exatamente 4 itens restantes');
+    const lastShard = manifest.shards.find((s) => s.page === 200);
+    assert.ok(lastShard, 'Shard da página 200 deve existir');
+    assert.strictEqual(lastShard.count, 25, 'Página 200 (última) deve conter exatamente 25 itens restantes');
   });
 
   it('preserva 100% dos 178 wallpapers originais da fase anterior', () => {
@@ -90,19 +90,19 @@ describe('Validação Funcional do Frontend com Catálogo Real Expandido (979 Wa
     const collectedIds = new Set();
 
     // Testa as primeiras 5 páginas e as 2 últimas
-    const pagesToTest = [1, 2, 3, 4, 5, 39, 40];
+    const pagesToTest = [1, 2, 3, 4, 5, 199, 200];
     for (const page of pagesToTest) {
       const result = await provider.getWallpapers({ page, pageSize: 25 });
 
-      if (page < 40) {
+      if (page < 200) {
         assert.strictEqual(result.items.length, 25, `Página ${page} deve retornar 25 itens`);
         assert.strictEqual(result.hasMore, true, `Página ${page} deve ter hasMore = true`);
       } else {
-        assert.strictEqual(result.items.length, 4, 'Página 40 (última) deve retornar 4 itens');
-        assert.strictEqual(result.hasMore, false, 'Página 40 (última) deve ter hasMore = false');
+        assert.strictEqual(result.items.length, 25, 'Página 200 (última) deve retornar 25 itens');
+        assert.strictEqual(result.hasMore, false, 'Página 200 (última) deve ter hasMore = false');
       }
 
-      assert.strictEqual(result.total, 979);
+      assert.strictEqual(result.total, 5000);
       assert.strictEqual(result.page, page);
 
       for (const item of result.items) {
@@ -126,7 +126,7 @@ describe('Validação Funcional do Frontend com Catálogo Real Expandido (979 Wa
 
     const result = await provider.getWallpapers({ page: 20, pageSize: 25 });
     assert.strictEqual(result.items.length, 25);
-    assert.strictEqual(result.total, 979);
+    assert.strictEqual(result.total, 5000);
     assert.strictEqual(result.hasMore, true);
 
     // Deve carregar manifest.json e apenas pages/000020.json
@@ -136,7 +136,7 @@ describe('Validação Funcional do Frontend com Catálogo Real Expandido (979 Wa
     assert.strictEqual(fetchedUrls.some((u) => u.includes('pages/000019.json')), false);
   });
 
-  it('StaticCatalogProvider: acesso direto à página 40 (última) carrega apenas a página 40 com 4 itens', async () => {
+  it('StaticCatalogProvider: acesso direto à página 200 (última) carrega apenas a página 200 com 25 itens', async () => {
     const fetchedUrls = [];
     const trackingFetch = async (input, init) => {
       fetchedUrls.push(String(input));
@@ -148,17 +148,17 @@ describe('Validação Funcional do Frontend com Catálogo Real Expandido (979 Wa
       catalogPath: 'data/catalog',
     });
 
-    const result = await provider.getWallpapers({ page: 40, pageSize: 25 });
-    assert.strictEqual(result.items.length, 4);
-    assert.strictEqual(result.total, 979);
+    const result = await provider.getWallpapers({ page: 200, pageSize: 25 });
+    assert.strictEqual(result.items.length, 25);
+    assert.strictEqual(result.total, 5000);
     assert.strictEqual(result.hasMore, false);
 
     assert.ok(fetchedUrls.some((u) => u.includes('manifest.json')));
-    assert.ok(fetchedUrls.some((u) => u.includes('pages/000040.json')));
+    assert.ok(fetchedUrls.some((u) => u.includes('pages/000200.json')));
     assert.strictEqual(
       fetchedUrls.some((u) => u.includes('pages/000001.json')),
       false,
-      'Não deve carregar o shard 1 quando a página 40 for acessada diretamente'
+      'Não deve carregar o shard 1 quando a página 200 for acessada diretamente'
     );
   });
 
@@ -282,6 +282,6 @@ describe('Validação Funcional do Frontend com Catálogo Real Expandido (979 Wa
 
   it('Metadados do catálogo excedem o limite de 12 tags, ativando corretamente a funcionalidade de expansão/recolhimento', () => {
     assert.ok(manifest.metadata.tags.length > 12, 'Catálogo real deve ter mais de 12 tags');
-    assert.strictEqual(manifest.metadata.tags.length, 45);
+    assert.strictEqual(manifest.metadata.tags.length, 50);
   });
 });
