@@ -74,7 +74,7 @@ export function stripXxxPlaceholders(text: string): string {
     .replace(/[—\-_/]\s*xxx\s*[—\-_/]/gi, ' ')
     .replace(/[—\-_/]\s*xxx\b/gi, ' ')
     .replace(/\bxxx\s*[—\-_/]/gi, ' ')
-    .replace(/例如[：:][^.\n]*xxx/gi, ' ');
+    .replace(/例如[：:][^.\n。，、；！？!?]*?xxx\b/gi, ' ');
 }
 
 /**

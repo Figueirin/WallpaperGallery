@@ -561,9 +561,12 @@ export async function main() {
   // 1. Ler catálogo existente se já existir para realizar merge incremental
   let existingCatalog: WallpaperItem[] = [];
   let originalDiskCatalog: WallpaperItem[] = [];
-  if (existsSync(outputPath)) {
+  const hadOriginalDiskCatalog = existsSync(outputPath);
+  let originalRawBytes: string | null = null;
+  if (hadOriginalDiskCatalog) {
     try {
       const raw = readFileSync(outputPath, 'utf-8');
+      originalRawBytes = raw;
       const parsed = JSON.parse(raw);
       if (!Array.isArray(parsed) || parsed.some(item => !item || typeof item.id !== 'string')) throw new Error('Catálogo inválido');
       existingCatalog = parsed;
@@ -655,27 +658,44 @@ export async function main() {
   const lockPath = `${outputPath}.lock`;
   const lock = openSync(lockPath, 'wx');
   const tempPath = `${outputPath}.${process.pid}.tmp`;
+  let publicationStarted = false;
   try {
     // Detecta mudanças desde a leitura para evitar sobrescrever outro coletor.
-    if (existsSync(outputPath) && JSON.stringify(JSON.parse(readFileSync(outputPath, 'utf-8'))) !== JSON.stringify(originalDiskCatalog)) {
+    if (existsSync(outputPath)) {
+      if (!hadOriginalDiskCatalog) {
+        throw new Error('Catálogo alterado por outro processo');
+      }
+      const currentRaw = readFileSync(outputPath, 'utf-8');
+      if (currentRaw !== originalRawBytes) {
+        throw new Error('Catálogo alterado por outro processo');
+      }
+    } else if (hadOriginalDiskCatalog) {
       throw new Error('Catálogo alterado por outro processo');
     }
+
     writeFileSync(tempPath, JSON.stringify(finalWallpapers, null, 2), { encoding: 'utf-8', flag: 'wx' });
     renameSync(tempPath, outputPath);
+    publicationStarted = true;
 
     writeCatalogShardsSync(shardedDir, sharded, {
       isMock: isMockExport,
     });
   } catch (err) {
-    if (existsSync(outputPath) && originalDiskCatalog.length > 0) {
+    // R-01: Não restaurar arquivo que esta execução ainda não substituiu
+    // R-02: Restaurar exatamente os bytes originais ou remover arquivo se não existia
+    if (publicationStarted) {
       try {
-        writeFileSync(outputPath, JSON.stringify(originalDiskCatalog, null, 2), 'utf-8');
+        if (hadOriginalDiskCatalog && originalRawBytes !== null) {
+          writeFileSync(outputPath, originalRawBytes, 'utf-8');
+        } else if (!hadOriginalDiskCatalog && existsSync(outputPath)) {
+          unlinkSync(outputPath);
+        }
       } catch {}
     }
     throw err;
   } finally {
     closeSync(lock);
-    unlinkSync(lockPath);
+    if (existsSync(lockPath)) unlinkSync(lockPath);
     if (existsSync(tempPath)) unlinkSync(tempPath);
   }
 

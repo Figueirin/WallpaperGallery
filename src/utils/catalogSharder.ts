@@ -236,6 +236,16 @@ export function writeCatalogShardsSync(
   const tempDir = join(dirname(absDir), `.catalog_tmp_${process.pid}_${Date.now()}`);
   const rollbackDir = join(dirname(absDir), `.catalog_rollback_${process.pid}_${Date.now()}`);
 
+  const hadManifest = existsSync(join(absDir, 'manifest.json'));
+  const hadIndex = existsSync(join(absDir, 'index.json'));
+  const currentPagesDir = join(absDir, 'pages');
+  const originalPageFiles = existsSync(currentPagesDir)
+    ? new Set(readdirSync(currentPagesDir))
+    : new Set<string>();
+
+  let promotionStarted = false;
+  let rollbackSucceeded = false;
+
   try {
     mkdirSync(tempDir, { recursive: true });
     mkdirSync(join(tempDir, 'pages'), { recursive: true });
@@ -268,25 +278,22 @@ export function writeCatalogShardsSync(
     // 4. Cria cópia de rollback do estado anterior de absDir caso exista
     mkdirSync(rollbackDir, { recursive: true });
     mkdirSync(join(rollbackDir, 'pages'), { recursive: true });
-    if (existsSync(join(absDir, 'manifest.json'))) {
+    if (hadManifest) {
       copyFileSync(join(absDir, 'manifest.json'), join(rollbackDir, 'manifest.json'));
     }
-    if (existsSync(join(absDir, 'index.json'))) {
+    if (hadIndex) {
       copyFileSync(join(absDir, 'index.json'), join(rollbackDir, 'index.json'));
     }
-    const currentPagesDir = join(absDir, 'pages');
     if (existsSync(currentPagesDir)) {
-      for (const file of readdirSync(currentPagesDir)) {
-        const filePath = join(currentPagesDir, file);
-        try {
-          copyFileSync(filePath, join(rollbackDir, 'pages', file));
-        } catch {}
+      for (const file of originalPageFiles) {
+        copyFileSync(join(currentPagesDir, file), join(rollbackDir, 'pages', file));
       }
     }
 
+    // 5. Substitui manifest e index atomicamente (Início da promoção)
+    promotionStarted = true;
     mkdirSync(join(absDir, 'pages'), { recursive: true });
 
-    // 5. Substitui manifest e index atomicamente
     renameSync(join(tempDir, 'manifest.json'), join(absDir, 'manifest.json'));
     renameSync(join(tempDir, 'index.json'), join(absDir, 'index.json'));
 
@@ -313,21 +320,38 @@ export function writeCatalogShardsSync(
     }
   } catch (err) {
     // Rollback para restaurar manifesto, índice e páginas caso a promoção falhe
-    if (existsSync(rollbackDir)) {
+    if (promotionStarted && existsSync(rollbackDir)) {
       try {
-        if (existsSync(join(rollbackDir, 'manifest.json'))) {
+        if (hadManifest) {
           copyFileSync(join(rollbackDir, 'manifest.json'), join(absDir, 'manifest.json'));
+        } else if (existsSync(join(absDir, 'manifest.json'))) {
+          unlinkSync(join(absDir, 'manifest.json'));
         }
-        if (existsSync(join(rollbackDir, 'index.json'))) {
+
+        if (hadIndex) {
           copyFileSync(join(rollbackDir, 'index.json'), join(absDir, 'index.json'));
+        } else if (existsSync(join(absDir, 'index.json'))) {
+          unlinkSync(join(absDir, 'index.json'));
         }
-        const rbPages = join(rollbackDir, 'pages');
-        if (existsSync(rbPages)) {
-          for (const file of readdirSync(rbPages)) {
-            copyFileSync(join(rbPages, file), join(absDir, 'pages', file));
+
+        const pagesDir = join(absDir, 'pages');
+        if (existsSync(pagesDir)) {
+          const currentFiles = readdirSync(pagesDir);
+          // R-03: Remove shards criados por esta tentativa que não existiam na geração anterior
+          for (const file of currentFiles) {
+            if (!originalPageFiles.has(file)) {
+              unlinkSync(join(pagesDir, file));
+            }
+          }
+          // Restaura todos os shards que existiam originalmente
+          for (const file of originalPageFiles) {
+            copyFileSync(join(rollbackDir, 'pages', file), join(pagesDir, file));
           }
         }
-      } catch {}
+        rollbackSucceeded = true;
+      } catch (rollbackErr) {
+        console.error('Falha durante execução do rollback de shards:', rollbackErr);
+      }
     }
     throw err;
   } finally {
@@ -336,8 +360,11 @@ export function writeCatalogShardsSync(
     if (existsSync(tempDir)) {
       try { rmSync(tempDir, { recursive: true, force: true }); } catch {}
     }
+    // R-04: Se o rollback falhou após iniciar a promoção, preserva rollbackDir para recuperação/investigação
     if (existsSync(rollbackDir)) {
-      try { rmSync(rollbackDir, { recursive: true, force: true }); } catch {}
+      if (!promotionStarted || rollbackSucceeded) {
+        try { rmSync(rollbackDir, { recursive: true, force: true }); } catch {}
+      }
     }
   }
 }

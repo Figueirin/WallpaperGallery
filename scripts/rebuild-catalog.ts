@@ -153,9 +153,18 @@ export async function rebuildCatalog(options: {
   const lockPath = `${catalogPath}.lock`;
   const lock = openSync(lockPath, 'wx');
   const tempPath = `${catalogPath}.${process.pid}.tmp`;
+  let publicationStarted = false;
   try {
+    if (existsSync(catalogPath)) {
+      const currentRaw = readFileSync(catalogPath, 'utf-8');
+      if (currentRaw !== rawData) {
+        throw new Error('Catálogo alterado por outro processo');
+      }
+    }
+
     writeFileSync(tempPath, JSON.stringify(approvedItems, null, 2), { encoding: 'utf-8', flag: 'wx' });
     renameSync(tempPath, catalogPath);
+    publicationStarted = true;
 
     // Regeneração dos Shards e Manifesto Públicos
     writeCatalogShardsSync(shardedDir, sharded, {
@@ -163,7 +172,7 @@ export async function rebuildCatalog(options: {
     });
   } catch (err) {
     // Rollback para restaurar o catálogo anterior se a escrita dos shards falhar
-    if (existsSync(backupPath)) {
+    if (publicationStarted && existsSync(backupPath)) {
       try {
         copyFileSync(backupPath, catalogPath);
       } catch {}
