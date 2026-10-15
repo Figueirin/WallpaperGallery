@@ -29,6 +29,22 @@ export class MockWallpaperProvider implements IWallpaperDataProvider {
       return this.items;
     }
 
+    // 1. Tenta carregar o catálogo real sincronizado da Steam (catalog.json) se existir
+    try {
+      const catalogRes = await fetch('/data/catalog.json');
+      if (catalogRes.ok) {
+        const catalog = (await catalogRes.json()) as WallpaperItem[];
+        if (Array.isArray(catalog) && catalog.length > 0) {
+          this.items = catalog;
+          this.isLoaded = true;
+          return this.items;
+        }
+      }
+    } catch {
+      // Ignora falha de rede/arquivo e prossegue para o catálogo mock
+    }
+
+    // 2. Fallback para os dados simulados locais
     try {
       const response = await fetch('/data/mock-wallpapers.json');
       if (!response.ok) {

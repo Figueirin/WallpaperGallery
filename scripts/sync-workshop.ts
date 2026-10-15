@@ -1,14 +1,19 @@
 /**
- * WallpaperGallery — Script Gerador de Catálogo via Steam Web API (Etapa 8)
+ * WallpaperGallery — Script Gerador e Sincronizador de Catálogo via Steam Web API
  *
  * Consulta o Steam Workshop (AppID 431960 - Wallpaper Engine) via
  * IPublishedFileService/QueryFiles, normaliza metadados, categorias,
- * resoluções, mídias e gera o catálogo JSON do projeto.
+ * resoluções, mídias e funde incrementalmente novos wallpapers ao catálogo JSON.
  *
- * Suporta execução online com STEAM_API_KEY ou modo offline/demonstração (--mock-export).
+ * Suporta:
+ * - Leitura automática de variáveis do arquivo .env local (Node.js 20+)
+ * - Execução online via STEAM_API_KEY ou modo offline/demonstração (--mock-export)
+ * - Fusão incremental (merge sem perder itens anteriores já coletados)
+ * - Modos de consulta: --mode=all (populares + recentes), --mode=popular, --mode=recent
+ * - Paginação de múltiplas páginas com --pages=N (até 100 itens por página)
  */
 
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, readFileSync, existsSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import process from 'node:process';
 import type {
@@ -17,6 +22,13 @@ import type {
   WallpaperAgeRating,
   AspectRatio,
 } from '../src/types/wallpaper';
+
+// Carrega automaticamente o arquivo .env se existir no diretório de trabalho
+try {
+  process.loadEnvFile?.();
+} catch {
+  // Ignora silenciosamente caso o arquivo .env não exista
+}
 
 export const WALLPAPER_ENGINE_APP_ID = 431960;
 export const DEFAULT_OUTPUT_FILE = 'public/data/catalog.json';
@@ -231,53 +243,140 @@ export function normalizeSteamWorkshopItem(raw: SteamPublishedFileRaw): Wallpape
   };
 }
 
+export interface MergeResult {
+  merged: WallpaperItem[];
+  added: number;
+  updated: number;
+  unchanged: number;
+}
+
 /**
- * Consulta a Steam Web API IPublishedFileService/QueryFiles/v1/
+ * Funde incrementalmente novos wallpapers ao catálogo existente, sem duplicar nem apagar itens prévios.
+ */
+export function mergeWallpapers(
+  existingItems: WallpaperItem[],
+  incomingItems: WallpaperItem[]
+): MergeResult {
+  const map = new Map<string, WallpaperItem>();
+
+  for (const item of existingItems) {
+    if (item && item.id) {
+      map.set(item.id, item);
+    }
+  }
+
+  let added = 0;
+  let updated = 0;
+  let unchanged = 0;
+
+  for (const incoming of incomingItems) {
+    if (!incoming || !incoming.id) continue;
+
+    if (map.has(incoming.id)) {
+      const existing = map.get(incoming.id)!;
+      const statsChanged =
+        existing.stats?.views !== incoming.stats?.views ||
+        existing.stats?.subscriptions !== incoming.stats?.subscriptions ||
+        existing.stats?.favorited !== incoming.stats?.favorited ||
+        existing.stats?.votesUp !== incoming.stats?.votesUp;
+
+      const dateChanged = existing.updatedAt !== incoming.updatedAt;
+
+      if (statsChanged || dateChanged) {
+        map.set(incoming.id, {
+          ...existing,
+          ...incoming,
+          // Preserva campos customizados ou enriquecidos localmente
+          videoPreviewUrl: incoming.videoPreviewUrl || existing.videoPreviewUrl,
+          webDemoUrl: incoming.webDemoUrl || existing.webDemoUrl,
+          stats: {
+            ...existing.stats,
+            ...incoming.stats,
+          },
+        });
+        updated++;
+      } else {
+        unchanged++;
+      }
+    } else {
+      map.set(incoming.id, incoming);
+      added++;
+    }
+  }
+
+  return {
+    merged: Array.from(map.values()),
+    added,
+    updated,
+    unchanged,
+  };
+}
+
+/**
+ * Consulta a Steam Web API IPublishedFileService/QueryFiles/v1/ com paginação
  */
 export async function fetchSteamWorkshopWallpapers(options: {
   apiKey: string;
-  limit?: number;
+  limitPerPage?: number;
+  pages?: number;
   queryType?: number;
 }): Promise<WallpaperItem[]> {
-  const { apiKey, limit = 20, queryType = 1 } = options;
+  const { apiKey, limitPerPage = 100, pages = 1, queryType = 1 } = options;
+  const allWallpapers: WallpaperItem[] = [];
 
-  const params = new URLSearchParams({
-    key: apiKey,
-    appid: String(WALLPAPER_ENGINE_APP_ID),
-    query_type: String(queryType), // 1 = RankedByVote, 0 = RankedByPublicationDate
-    numperpage: String(Math.min(limit, 100)),
-    return_previews: 'true',
-    return_tags: 'true',
-    return_metadata: 'true',
-    return_vote_data: 'true',
-    return_kv_tags: 'true',
-  });
+  for (let page = 1; page <= pages; page++) {
+    const params = new URLSearchParams({
+      key: apiKey,
+      appid: String(WALLPAPER_ENGINE_APP_ID),
+      query_type: String(queryType), // 1 = RankedByVote, 0 = RankedByPublicationDate, 3 = RankedByTrend
+      page: String(page),
+      numperpage: String(Math.min(limitPerPage, 100)),
+      return_previews: 'true',
+      return_tags: 'true',
+      return_metadata: 'true',
+      return_vote_data: 'true',
+      return_kv_tags: 'true',
+    });
 
-  const url = `https://api.steampowered.com/IPublishedFileService/QueryFiles/v1/?${params.toString()}`;
+    const url = `https://api.steampowered.com/IPublishedFileService/QueryFiles/v1/?${params.toString()}`;
 
-  const response = await fetch(url, {
-    headers: {
-      Accept: 'application/json',
-      'User-Agent': 'WallpaperGallery-Catalog-Generator/1.0',
-    },
-  });
+    const response = await fetch(url, {
+      headers: {
+        Accept: 'application/json',
+        'User-Agent': 'WallpaperGallery-Catalog-Generator/1.0',
+      },
+    });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(
-      `Steam API request failed with status ${response.status}: ${errorText}`
-    );
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(
+        `Steam API request failed with status ${response.status}: ${errorText}`
+      );
+    }
+
+    const data = (await response.json()) as {
+      response?: {
+        publishedfiledetails?: SteamPublishedFileRaw[];
+        total?: number;
+      };
+    };
+
+    const rawItems = data.response?.publishedfiledetails || [];
+    if (rawItems.length === 0) {
+      break; // Não há mais itens disponíveis
+    }
+
+    for (const raw of rawItems) {
+      allWallpapers.push(normalizeSteamWorkshopItem(raw));
+    }
+
+    // Intervalo respeitoso entre requisições para evitar rate limit
+    if (page < pages) {
+      await new Promise((resolve) => setTimeout(resolve, 400));
+    }
   }
 
-  const data = (await response.json()) as {
-    response?: {
-      publishedfiledetails?: SteamPublishedFileRaw[];
-      total?: number;
-    };
-  };
-
-  const rawItems = data.response?.publishedfiledetails || [];
-  return rawItems.map(normalizeSteamWorkshopItem);
+  return allWallpapers;
 }
 
 /**
@@ -381,43 +480,108 @@ export async function main() {
     outArg ? outArg.split('=')[1] : DEFAULT_OUTPUT_FILE
   );
 
-  const limitArg = args.find((a) => a.startsWith('--limit='));
-  const limit = limitArg ? parseInt(limitArg.split('=')[1], 10) : 20;
+  const pagesArg = args.find((a) => a.startsWith('--pages='));
+  const pages = pagesArg ? Math.max(1, parseInt(pagesArg.split('=')[1], 10)) : 1;
+
+  const modeArg = args.find((a) => a.startsWith('--mode='));
+  const mode = modeArg ? modeArg.split('=')[1] : 'all'; // 'all', 'popular', 'recent'
 
   console.log('╔════════════════════════════════════════════════════════════╗');
   console.log('║   WallpaperGallery — Gerador de Catálogo Steam Workshop    ║');
   console.log('╚════════════════════════════════════════════════════════════╝\n');
 
-  let wallpapers: WallpaperItem[] = [];
+  let fetchedWallpapers: WallpaperItem[] = [];
 
   if (isMockExport || !apiKey) {
     if (!apiKey && !isMockExport) {
-      console.warn('⚠️  Nenhuma STEAM_API_KEY detectada no ambiente nem via --key=...');
+      console.warn('⚠️  Nenhuma STEAM_API_KEY detectada no arquivo .env nem no ambiente.');
       console.warn('ℹ️  Executando exportação em modo de demonstração (--mock-export).\n');
       console.warn('💡 Para consultar a API real da Steam, forneça:');
-      console.warn('   export STEAM_API_KEY="SUA_CHAVE_AQUI"');
+      console.warn('   Crie um arquivo .env contendo: STEAM_API_KEY="SUA_CHAVE_AQUI"');
       console.warn('   npm run sync:workshop\n');
     } else {
       console.log('📦 Modo de demonstração ativado (--mock-export / --offline).');
     }
 
-    wallpapers = generateMockSteamCatalog();
+    fetchedWallpapers = generateMockSteamCatalog();
   } else {
     console.log(`🌐 Conectando à Steam Web API (AppID ${WALLPAPER_ENGINE_APP_ID})...`);
-    console.log(`🔍 Buscando ${limit} itens mais populares...`);
+    console.log(`📋 Modo de consulta: [${mode.toUpperCase()}] | Páginas: ${pages}\n`);
+
     try {
-      wallpapers = await fetchSteamWorkshopWallpapers({ apiKey, limit });
+      if (mode === 'all') {
+        // Consulta tanto os mais populares (RankedByVote) quanto os recém-adicionados (RankedByPublicationDate)
+        console.log(`⭐ Coletando ${pages} página(s) de wallpapers mais populares (RankedByVote)...`);
+        const popular = await fetchSteamWorkshopWallpapers({
+          apiKey,
+          queryType: 1,
+          pages,
+          limitPerPage: 100,
+        });
+
+        console.log(`✨ Coletando ${pages} página(s) de wallpapers recém-adicionados (RankedByPublicationDate)...`);
+        const recent = await fetchSteamWorkshopWallpapers({
+          apiKey,
+          queryType: 0,
+          pages,
+          limitPerPage: 100,
+        });
+
+        fetchedWallpapers = [...popular, ...recent];
+      } else if (mode === 'recent') {
+        console.log(`✨ Coletando ${pages} página(s) de wallpapers recém-adicionados...`);
+        fetchedWallpapers = await fetchSteamWorkshopWallpapers({
+          apiKey,
+          queryType: 0,
+          pages,
+          limitPerPage: 100,
+        });
+      } else {
+        console.log(`⭐ Coletando ${pages} página(s) de wallpapers mais populares...`);
+        fetchedWallpapers = await fetchSteamWorkshopWallpapers({
+          apiKey,
+          queryType: 1,
+          pages,
+          limitPerPage: 100,
+        });
+      }
     } catch (err) {
       console.error('❌ Falha na conexão com a Steam API:', err);
       process.exit(1);
     }
   }
 
-  mkdirSync(dirname(outputPath), { recursive: true });
-  writeFileSync(outputPath, JSON.stringify(wallpapers, null, 2), 'utf-8');
+  // 1. Ler catálogo existente se já existir para realizar merge incremental
+  let existingCatalog: WallpaperItem[] = [];
+  if (existsSync(outputPath)) {
+    try {
+      const raw = readFileSync(outputPath, 'utf-8');
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) {
+        existingCatalog = parsed;
+      }
+    } catch (err) {
+      console.warn('⚠️  Não foi possível ler o catálogo existente. Criando novo arquivo.', err);
+    }
+  }
 
-  console.log(`\n✅ Sucesso! Catálogo gerado com ${wallpapers.length} wallpapers.`);
-  console.log(`📁 Arquivo salvo em: ${outputPath}\n`);
+  // 2. Fundir dados incrementalmente (evita perder wallpapers coletados anteriormente)
+  const { merged, added, updated, unchanged } = mergeWallpapers(
+    existingCatalog,
+    fetchedWallpapers
+  );
+
+  // 3. Salvar catálogo consolidado
+  mkdirSync(dirname(outputPath), { recursive: true });
+  writeFileSync(outputPath, JSON.stringify(merged, null, 2), 'utf-8');
+
+  console.log('\n📊 Relatório de Sincronização Incremental:');
+  console.log(`   • Total anterior no catálogo:     ${existingCatalog.length}`);
+  console.log(`   • Novos wallpapers inseridos:     +${added}`);
+  console.log(`   • Wallpapers com stats atualizados: ${updated}`);
+  console.log(`   • Wallpapers sem alterações:       ${unchanged}`);
+  console.log(`   • Total consolidado no catálogo:   ${merged.length}`);
+  console.log(`\n✅ Sucesso! Catálogo salvo em: ${outputPath}\n`);
 }
 
 // Execução direta via CLI se chamado diretamente

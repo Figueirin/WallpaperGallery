@@ -7,6 +7,7 @@ import {
   extractThematicTags,
   normalizeSteamWorkshopItem,
   generateMockSteamCatalog,
+  mergeWallpapers,
 } from '../scripts/sync-workshop.ts';
 
 describe('Sincronização e Normalização do Steam Workshop (Catalog Sync)', () => {
@@ -149,6 +150,100 @@ describe('Sincronização e Normalização do Steam Workshop (Catalog Sync)', ()
     });
   });
 
+  describe('fusão incremental de catálogos (mergeWallpapers)', () => {
+    const baseItemA = {
+      id: 'item-A',
+      title: 'Wallpaper A',
+      description: 'Desc A',
+      author: { name: 'User A' },
+      previewUrl: 'https://example.com/a.jpg',
+      type: 'Scene',
+      resolution: '1920x1080',
+      aspectRatio: '16:9',
+      tags: ['Nature'],
+      rating: 'Everyone',
+      createdAt: '2025-01-01T00:00:00Z',
+      updatedAt: '2025-01-01T00:00:00Z',
+      stats: { views: 100, subscriptions: 50 },
+      steamUrl: 'https://steamcommunity.com/sharedfiles/filedetails/?id=item-A',
+      steamClientUri: 'steam://url/CommunityFilePage/item-A',
+      videoPreviewUrl: '/videos/sample.mp4',
+    };
+
+    const baseItemB = {
+      id: 'item-B',
+      title: 'Wallpaper B',
+      description: 'Desc B',
+      author: { name: 'User B' },
+      previewUrl: 'https://example.com/b.jpg',
+      type: 'Video',
+      resolution: '2560x1440',
+      aspectRatio: '16:9',
+      tags: ['Cyberpunk'],
+      rating: 'Everyone',
+      createdAt: '2025-02-01T00:00:00Z',
+      updatedAt: '2025-02-01T00:00:00Z',
+      stats: { views: 200, subscriptions: 80 },
+      steamUrl: 'https://steamcommunity.com/sharedfiles/filedetails/?id=item-B',
+      steamClientUri: 'steam://url/CommunityFilePage/item-B',
+    };
+
+    it('deve adicionar novos itens ao catálogo sem duplicar existentes', () => {
+      const existing = [baseItemA];
+      const incoming = [baseItemA, baseItemB];
+
+      const result = mergeWallpapers(existing, incoming);
+
+      assert.strictEqual(result.merged.length, 2);
+      assert.strictEqual(result.added, 1);
+      assert.strictEqual(result.updated, 0);
+      assert.strictEqual(result.unchanged, 1);
+    });
+
+    it('deve atualizar estatísticas quando um item existente receber novos dados da Steam', () => {
+      const existing = [baseItemA];
+      const updatedIncomingA = {
+        ...baseItemA,
+        stats: { views: 350, subscriptions: 120 },
+        updatedAt: '2025-03-01T00:00:00Z',
+      };
+
+      const result = mergeWallpapers(existing, [updatedIncomingA]);
+
+      assert.strictEqual(result.merged.length, 1);
+      assert.strictEqual(result.added, 0);
+      assert.strictEqual(result.updated, 1);
+      assert.strictEqual(result.merged[0].stats.views, 350);
+      assert.strictEqual(result.merged[0].stats.subscriptions, 120);
+      assert.strictEqual(result.merged[0].updatedAt, '2025-03-01T00:00:00Z');
+    });
+
+    it('deve preservar propriedades customizadas locais como videoPreviewUrl', () => {
+      const existing = [baseItemA]; // Possui videoPreviewUrl: '/videos/sample.mp4'
+      const steamIncomingA = {
+        ...baseItemA,
+        videoPreviewUrl: undefined, // Steam crua não fornece videoPreviewUrl direto
+        stats: { views: 500 },
+      };
+
+      const result = mergeWallpapers(existing, [steamIncomingA]);
+
+      assert.strictEqual(result.merged.length, 1);
+      assert.strictEqual(result.merged[0].videoPreviewUrl, '/videos/sample.mp4');
+      assert.strictEqual(result.merged[0].stats.views, 500);
+    });
+
+    it('deve lidar com listas vazias ou nulas com segurança', () => {
+      const resultEmpty = mergeWallpapers([], [baseItemA]);
+      assert.strictEqual(resultEmpty.merged.length, 1);
+      assert.strictEqual(resultEmpty.added, 1);
+
+      const resultNoIncoming = mergeWallpapers([baseItemA], []);
+      assert.strictEqual(resultNoIncoming.merged.length, 1);
+      assert.strictEqual(resultNoIncoming.added, 0);
+    });
+  });
+
   describe('catálogo de demonstração (generateMockSteamCatalog)', () => {
     it('deve gerar múltiplos itens válidos para modo offline', () => {
       const catalog = generateMockSteamCatalog();
@@ -157,10 +252,17 @@ describe('Sincronização e Normalização do Steam Workshop (Catalog Sync)', ()
         assert.ok(item.id);
         assert.ok(item.title);
         assert.ok(item.previewUrl);
-        assert.ok(item.steamUrl.startsWith('https://steamcommunity.com/sharedfiles/filedetails/?id='));
-        assert.ok(item.steamClientUri.startsWith('steam://url/CommunityFilePage/'));
+        assert.ok(
+          item.steamUrl.startsWith(
+            'https://steamcommunity.com/sharedfiles/filedetails/?id='
+          )
+        );
+        assert.ok(
+          item.steamClientUri.startsWith('steam://url/CommunityFilePage/')
+        );
       });
     });
   });
 });
+
 

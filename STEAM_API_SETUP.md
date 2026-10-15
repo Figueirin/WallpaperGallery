@@ -183,4 +183,34 @@ npm run sync:workshop -- --mock-export
 
 ### Erro: *"Steam API request failed with status 429: Too Many Requests"*
 - **Causa:** Foram feitas muitas requisições em uma janela muito curta de tempo.
-- **Solução:** Aguarde alguns minutos antes de tentar novamente.
+- **Solução:** O script já possui atraso embutido entre páginas. Aguarde alguns minutos antes de tentar novamente.
+
+---
+
+## 8. Automação Diária na Nuvem (GitHub Actions)
+
+Para que o catálogo cresça de forma contínua e autônoma, sem você precisar rodar scripts no seu computador todos os dias, o projeto inclui um workflow de automação em [`.github/workflows/sync-catalog.yml`](./.github/workflows/sync-catalog.yml).
+
+### Como funciona:
+1. **Agendamento diário:** O GitHub Actions executa automaticamente todas as madrugadas (às 06:00 UTC / 03:00 de Brasília).
+2. **Coleta híbrida (Populares + Recentes):** Consulta tanto os itens mais populares quanto os recém-adicionados ao Workshop.
+3. **Fusão incremental:** Os novos wallpapers são mesclados ao [`public/data/catalog.json`](./public/data/catalog.json) existente sem sobrescrever nem perder os itens anteriores.
+4. **Commit automático:** Se houver novos wallpapers adicionados, o bot do GitHub Actions faz commit e push do catálogo atualizado para o repositório.
+
+### Como configurar a chave no GitHub (100% Seguro):
+
+> [!IMPORTANT]
+> Nunca faça commit do seu arquivo `.env` local. No GitHub, chaves e credenciais devem ser guardadas exclusivamente no **GitHub Secrets**, onde ficam criptografadas e invisíveis no código.
+
+1. Acesse o seu repositório no GitHub: **[https://github.com/Figueirin/WallpaperGallery](https://github.com/Figueirin/WallpaperGallery)**.
+2. Clique na aba **Settings** (Configurações) no menu superior do repositório.
+3. Na barra lateral esquerda, clique em **Secrets and variables** e depois em **Actions**.
+4. Clique no botão verde **New repository secret**.
+5. Preencha os campos:
+   - **Name:** `STEAM_API_KEY`
+   - **Secret:** Cole a sua chave de 32 caracteres da Steam API.
+6. Clique em **Add secret**.
+
+Pronto! A partir desse momento, o workflow automatizado terá acesso seguro à chave e rodará diariamente na nuvem. Você também pode disparar a execução manualmente quando quiser pela aba **Actions** > **Sincronizacao Diaria do Catalogo Steam** > **Run workflow**.
+
+

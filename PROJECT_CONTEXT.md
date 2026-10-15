@@ -121,18 +121,29 @@
   - **GIFs Animados:** Identificados automaticamente pela extensão e renderizados em loop pelo navegador com badge distintivo.
   - **YouTube Previews:** Suporte nativo para trailers de autores via `youtube-nocookie.com`.
 
-## 10. Sincronização do Steam Workshop (Etapa 8)
+## 10. Sincronização do Steam Workshop e Automação na Nuvem (Etapa 8)
 - **Script Gerador (`scripts/sync-workshop.ts`):**
   - Integração com a Steam Web API através do endpoint `IPublishedFileService/QueryFiles/v1/` com AppID 431960.
-  - Normalização inteligente de tags da Steam (ex: conversão de `"3840 x 2160"` para `"3840x2160"` e cálculo de `aspectRatio: 16:9`, `21:9`, `16:10`, `32:9`).
+  - Carregamento automático de variáveis do arquivo `.env` local (`process.loadEnvFile()` nativo do Node.js).
+  - Normalização inteligente de tags da Steam (conversão de `"3840 x 2160"` para `"3840x2160"` e cálculo de `aspectRatio: 16:9`, `21:9`, `16:10`, `32:9`).
   - Classificação de tipo (`Video`, `Web`, `Scene`, `Application`) e classificação etária (`Everyone`, `Questionable`, `Mature`).
   - Extração de links de preview do YouTube contidos na matriz de `previews` da Steam.
   - Geração de deep links diretos para o cliente Steam no Linux (`steam://url/CommunityFilePage/...`) e links web da comunidade.
+- **Fusão Incremental (`mergeWallpapers`):**
+  - O script lê o catálogo `catalog.json` já existente e funde os novos itens usando um `Map` indexado pelo ID único do item.
+  - Wallpapers existentes têm suas estatísticas (`views`, `subscriptions`, `favorited`, `votesUp`) e data de atualização sincronizadas sem duplicação e sem exclusão dos itens anteriores.
+  - Campos enriquecidos localmente (como `videoPreviewUrl` e `webDemoUrl`) são preservados.
+- **Automação Diária na Nuvem (GitHub Actions):**
+  - Workflow agendado em `.github/workflows/sync-catalog.yml` executado diariamente às 06:00 UTC (03:00 de Brasília) e acionável sob demanda via `workflow_dispatch`.
+  - Utiliza secret criptografado `STEAM_API_KEY` do repositório, garantindo total isolamento de credenciais.
+  - Comita e publica automaticamente o `catalog.json` consolidado sem requerer intervenção manual diária.
 - **Modos de Execução:**
-  - `npm run sync:workshop`: Consulta a API real da Steam utilizando `STEAM_API_KEY` definida no ambiente.
+  - `npm run sync:workshop`: Consulta a API real da Steam utilizando `STEAM_API_KEY` do `.env` ou ambiente.
+  - `npm run sync:workshop -- --mode=all --pages=3`: Coleta tanto os mais populares quanto os recém-publicados.
   - `npm run sync:workshop -- --mock-export`: Gera catálogo padronizado em modo offline/demonstração sem requerer credenciais.
 - **Suíte de Testes:**
-  - 70 testes automatizados cobrindo busca, filtros, ordenação, paginação, recomendações, detecção de formatos de mídia e normalização de payloads da Steam.
+  - 74 testes automatizados cobrindo busca, filtros, ordenação, paginação, recomendações, formatos de mídia, normalização e fusão incremental.
+
 
 
 
