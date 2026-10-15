@@ -17,6 +17,7 @@ import { writeFileSync, readFileSync, existsSync, mkdirSync, renameSync, openSyn
 import { resolve, dirname } from 'node:path';
 import process from 'node:process';
 import { isWallpaperItem } from '../src/utils/validateWallpaper.ts';
+import { createCatalogShards, writeCatalogShardsSync } from '../src/utils/catalogSharder.ts';
 import type {
   WallpaperItem,
   WallpaperType,
@@ -591,13 +592,29 @@ export async function main() {
     if (existsSync(tempPath)) unlinkSync(tempPath);
   }
 
+  // 4. Gerar e salvar catálogo particionado em shards (manifest.json, index.json, pages/*.json)
+  const shardedDir = outputPath.endsWith('.json')
+    ? outputPath.slice(0, -5)
+    : resolve(dirname(outputPath), 'catalog');
+
+  const sharded = createCatalogShards(merged, {
+    appId: WALLPAPER_ENGINE_APP_ID,
+    pageSize: 24,
+    allowSimulated: isMockExport,
+  });
+
+  writeCatalogShardsSync(shardedDir, sharded, {
+    isMock: isMockExport,
+  });
+
   console.log('\n📊 Relatório de Sincronização Incremental:');
   console.log(`   • Total anterior no catálogo:     ${existingCatalog.length}`);
   console.log(`   • Novos wallpapers inseridos:     +${added}`);
   console.log(`   • Wallpapers com stats atualizados: ${updated}`);
   console.log(`   • Wallpapers sem alterações:       ${unchanged}`);
   console.log(`   • Total consolidado no catálogo:   ${merged.length}`);
-  console.log(`\n✅ Sucesso! Catálogo salvo em: ${outputPath}\n`);
+  console.log(`\n✅ Sucesso! Catálogo salvo em: ${outputPath}`);
+  console.log(`✅ Sucesso! Shards salvos em: ${shardedDir}\n`);
 }
 
 // Execução direta via CLI se chamado diretamente
