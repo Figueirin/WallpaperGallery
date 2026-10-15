@@ -97,6 +97,7 @@ A moderação combina classificação Steam, tags, palavras-chave em títulos/de
 
 ## Documentação técnica
 
+- [Indexação no Google](docs/GOOGLE_INDEXING.md) e [auditoria SEO](docs/SEO_INDEXING_AUDIT.md)
 - [Deploy no Cloudflare Workers](docs/CLOUDFLARE_WORKERS_DEPLOY.md)
 - [Arquitetura JSON-First](docs/JSON_ARCHITECTURE_REPORT.md)
 - [Preparação pré-deploy](docs/PREDEPLOY_REPOSITORY_REPORT.md)

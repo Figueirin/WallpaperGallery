@@ -1,10 +1,13 @@
 import { useEffect } from 'react';
-import { updatePageMetadata } from './pageMetadata';
+import { updatePageMetadata, type PageMetadataOptions } from './pageMetadata';
+import { useLanguage } from '../i18n/LanguageContext';
 
-export function usePageMetadata(title?: string, description?: string) {
+export function usePageMetadata(title?: string, description?: string, options: PageMetadataOptions = {}) {
+  const { language } = useLanguage();
+  const { wallpaperId, image } = options;
   useEffect(() => {
     if (!title || !description) return;
-    // Each active view owns its metadata; avoid restoring a previous locale on navigation.
-    updatePageMetadata(title, description);
-  }, [title, description]);
+    // The active view owns metadata; never restore stale route/locale on unmount.
+    updatePageMetadata(title, description, { wallpaperId, image, language });
+  }, [title, description, wallpaperId, image, language]);
 }
