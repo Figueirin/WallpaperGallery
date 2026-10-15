@@ -52,26 +52,43 @@
   - Reprodução silenciosa automática de vídeo HTML5 nos cards animados quando o cursor paira sobre o item.
   - Pausa e reinício imediato ao retirar o cursor, liberando recursos.
   - Indicador visual animado de reprodução ("Preview") e fallback gracioso para imagem estática em caso de falha de carregamento ou restrições de movimento.
-- **Página de Detalhes Dedicada (`WallpaperDetailView`):**
-  - Roteamento SPA leve via HTML5 History API (`/wallpaper/:id`), sem dependências pesadas externas e com suporte nativo aos botões Voltar/Avançar do navegador (`popstate`).
-  - Player de mídia expandido: reprodução completa com controles para vídeos ou imagem em alta resolução para cenas.
-  - Informações técnicas estruturadas: resolução, proporção, tipo, tamanho estimado em MB e data de atualização formatada em português.
-  - Métricas do Steam Workshop: contadores de visualizações, inscrições, favoritos e avaliações positivas.
-  - Deep linking direto para cliente Steam no Linux e página web oficial da oficina.
-  - Tratamento resiliente de itens não encontrados via `EmptyState`.
-  - **Preservação de Estado:** Ao retornar para a galeria, todos os filtros ativos (tags, resolução, tipo), termos de busca e ordenação permanecem intactos.
+- **Transição Fluida na Página de Detalhes:**
+  - Animação sutil de entrada via CSS (`animate-detail-enter` de 280ms com fade-in e translação vertical leve de 10px; `animate-media-reveal` de 320ms com leve escala de 0.985 a 1).
+  - Respeito a `@media (prefers-reduced-motion: reduce)` desativando animações quando solicitado pelo sistema.
+- **Ampliação de Prévia no Hover (+25%):**
+  - Preview ampliado em ~25% (`group-hover:scale-[1.25]`) com ponto de ancoragem na base (`origin-bottom`).
+  - Elevação de camada (`group-hover:z-40`), borda iluminada e sombra profunda, sobrepondo-se aos cards vizinhos sem reflow da grade e sem cortar cantos.
+  - Reprodução de vídeo mantida em alta definição dentro da área ampliada.
+- **Recomendações Determinísticas ("Você também pode gostar"):**
+  - Algoritmo puro em `src/utils/recommendations.ts` que calcula afinidade priorizando: (1) tags em comum, (2) mesmo tipo de mídia, (3) resolução/proporção semelhante, e desempate por popularidade.
+  - Exclui estritamente o item atual e impede itens duplicados.
+  - Exibição de 4 a 6 sugestões responsivas abaixo dos detalhes com navegação fluida compatível com History API.
 
-## 6. Roteiro de Implementação do MVP
+## 6. Paginação com Carregamento Progressivo (Etapa 7)
+- **Carregamento em Lotes (Batch Loading):**
+  - Divisão do catálogo em páginas de 8 itens (`PAGE_SIZE = 8`), ideal para distribuição equilibrada em grades responsivas de 1 a 6 colunas.
+  - Função pura `paginateWallpapers` com proteção contra índices negativos ou tamanhos inválidos.
+  - Dataset do catálogo enriquecido para 16 itens simulados realistas com diversas categorias e metadados.
+- **Infinite Scroll Inteligente:**
+  - Sentinela de rolagem monitorada via `IntersectionObserver` nativo com margem antecipada de 250px (`rootMargin: '250px'`), carregando a próxima página de forma imperceptível antes do usuário atingir o fim da tela.
+- **Controles Manuais e Acessibilidade:**
+  - Botão de fallback explícito "Carregar mais wallpapers" com estado de carregamento animado (`Loader2`).
+  - Indicador de progresso claro ("Exibindo X de Y itens").
+  - Mensagem de conclusão ao atingir o fim do catálogo com atalho para "Voltar ao topo".
+  - Tratamento resiliente de falhas de rede com botão de tentativa sem perda dos itens já carregados.
+  - Reset automático da paginação para a página 1 ao alterar qualquer termo de busca, filtro ou critério de ordenação.
+
+## 7. Roteiro de Implementação do MVP
 - [x] **Etapa 1:** Análise de viabilidade técnica, estratégias de dados da Steam e plano de arquitetura. *(Concluído)*
 - [x] **Etapa 2:** Inicialização da estrutura do projeto em `WallpaperGallery`, configuração do Tailwind CSS v4, definição dos tipos TypeScript (`wallpaper.ts`), interface `IWallpaperDataProvider`, classe `MockWallpaperProvider` e dataset `mock-wallpapers.json`. *(Concluído)*
 - [x] **Etapa 3:** Interface base da galeria: Layout responsivo, cards visuais refinados, badges de resolução/tipo, tratamento de erro de imagem, barra de busca com debounce, estados vazios e tema escuro. *(Concluído)*
 - [x] **Etapa 4:** Pesquisa avançada, filtros combináveis (tags com OR, resolução e tipo com AND) e ordenação por popularidade/data/título. Testes automatizados. *(Concluído)*
 - [x] **Etapa 5 (Layout Desktop):** Refinamento do layout para monitores desktop e ultrawide: expansão de containers para `max-w-[2400px]`, grid responsivo dinâmico (4 colunas em 1366px, 5 em 1920px Full HD e 6 em 2560px ultrawide), barra de busca ampliada e painel de filtros otimizado em 2 colunas. *(Concluído)*
-- [x] **Etapa 6 (Experiência Interativa e Detalhes):** Ajuste de alinhamento dos filtros, hover com elevação, preview dinâmico de vídeo nos cards, visualização detalhada `/wallpaper/:id` com player de mídia, especificações técnicas, métricas do workshop e preservação do estado da galeria. 27 testes automatizados passando. *(Concluído)*
-- [ ] **Etapa 7:** Paginação com carregamento progressivo (infinite scroll / lazy loading).
+- [x] **Etapa 6 (Experiência Interativa e Detalhes):** Ajuste de alinhamento dos filtros, hover com elevação e +25% de escala na prévia, animação de entrada, recomendações inteligentes de wallpapers semelhantes, visualização detalhada `/wallpaper/:id` com player de mídia e métricas. *(Concluído)*
+- [x] **Etapa 7 (Paginação e Carregamento Progressivo):** Paginação via lotes dinâmicos, infinite scroll com IntersectionObserver, botão carregar mais, reset de página em novos filtros, indicador de progresso e 40 testes automatizados passando. *(Concluído)*
 - [ ] **Etapa 8:** Script gerador de catálogo via Steam Web API.
 
-## 7. Especificações de Layout Responsivo (Desktop & Ultrawide)
+## 8. Especificações de Layout Responsivo (Desktop & Ultrawide)
 - **Container Fluido:** Largura máxima de 2400px com margens laterais progressivas (`px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12`).
 - **Densidade da Grade (`GalleryGrid` & `LoadingSkeleton`):**
   - Mobile (< 640px): 1 coluna
@@ -84,4 +101,5 @@
   - Seletores de Tipo e Resolução dispostos em grade contígua com divisor vertical, mantendo proximidade ergonômica.
   - Seletor de ordenação e ação de limpeza alinhados na barra superior.
   - Barra de busca do `Navbar` ampliada de `max-w-md` para até `xl:max-w-2xl` em telas amplas.
+
 
