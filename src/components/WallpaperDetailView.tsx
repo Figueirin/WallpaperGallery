@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { WallpaperItem } from '../types/wallpaper';
 import { IWallpaperDataProvider } from '../services/dataProvider';
 import { getResolutionLabel } from '../utils/filterWallpapers';
+import { getRecommendedWallpapers } from '../utils/recommendations';
+import { WallpaperCard } from './WallpaperCard';
 import { EmptyState } from './EmptyState';
 import {
   ArrowLeft,
@@ -26,14 +28,17 @@ interface WallpaperDetailViewProps {
   wallpaperId: string;
   provider: IWallpaperDataProvider;
   onBack: () => void;
+  onSelectWallpaper?: (wallpaper: WallpaperItem) => void;
 }
 
 export function WallpaperDetailView({
   wallpaperId,
   provider,
   onBack,
+  onSelectWallpaper,
 }: WallpaperDetailViewProps) {
   const [wallpaper, setWallpaper] = useState<WallpaperItem | null>(null);
+  const [recommendations, setRecommendations] = useState<WallpaperItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
@@ -49,6 +54,15 @@ export function WallpaperDetailView({
         const item = await provider.getWallpaperById(wallpaperId);
         if (isMounted) {
           setWallpaper(item);
+          if (item) {
+            const allItemsResult = await provider.getWallpapers({ pageSize: 100 });
+            const recs = getRecommendedWallpapers(allItemsResult.items, item, 6);
+            if (isMounted) {
+              setRecommendations(recs);
+            }
+          } else {
+            setRecommendations([]);
+          }
         }
       } catch (err) {
         console.error('Falha ao carregar detalhes do wallpaper:', err);
@@ -365,7 +379,7 @@ export function WallpaperDetailView({
                 )}
 
                 {wallpaper.stats.votesUp !== undefined && (
-                  <div className="p-3 rounded-xl bg-zinc-950/80 border border-zinc-800/60">
+                  <div className="p-3 rounded-xl bg-zinc-950/80 border border-zinc-800/80">
                     <div className="flex items-center gap-1.5 text-zinc-400 mb-1">
                       <ThumbsUp className="w-3.5 h-3.5 text-sky-400" aria-hidden="true" />
                       <span>Votos Positivos</span>
@@ -380,7 +394,41 @@ export function WallpaperDetailView({
           )}
         </div>
       </div>
+
+      {/* Seção de Wallpapers Recomendados */}
+      {recommendations.length > 0 && (
+        <section
+          aria-label="Wallpapers recomendados"
+          className="pt-8 border-t border-zinc-800/80 space-y-5"
+        >
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 className="text-lg sm:text-xl font-bold tracking-tight text-zinc-100 flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-indigo-400" aria-hidden="true" />
+                <span>Você também pode gostar</span>
+              </h2>
+              <p className="text-xs text-zinc-400 mt-1">
+                Wallpapers com tags, temas ou características semelhantes
+              </p>
+            </div>
+            <span className="text-xs text-zinc-500 font-mono px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800">
+              {recommendations.length} recomendações
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
+            {recommendations.map((rec) => (
+              <WallpaperCard
+                key={rec.id}
+                wallpaper={rec}
+                onSelect={onSelectWallpaper}
+              />
+            ))}
+          </div>
+        </section>
+      )}
     </article>
   );
 }
+
 

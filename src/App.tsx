@@ -179,6 +179,7 @@ export function App() {
             wallpaperId={selectedWallpaperId}
             provider={provider}
             onBack={handleBackToGallery}
+            onSelectWallpaper={handleSelectWallpaper}
           />
         ) : (
           <>
