@@ -1,11 +1,12 @@
-import React from 'react';
-import { Search, X, Sparkles, Terminal } from 'lucide-react';
+import { type KeyboardEvent } from 'react';
+import { Search, X, Sparkles, Terminal, Loader2 } from 'lucide-react';
 
 interface NavbarProps {
   searchQuery: string;
   onSearchChange: (query: string) => void;
   totalCount: number;
   onNavigateHome?: () => void;
+  isLoading?: boolean;
 }
 
 export function Navbar({
@@ -13,12 +14,13 @@ export function Navbar({
   onSearchChange,
   totalCount,
   onNavigateHome,
+  isLoading = false,
 }: NavbarProps) {
   const handleClear = () => {
     onSearchChange('');
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Escape') {
       handleClear();
     }
@@ -71,7 +73,11 @@ export function Navbar({
               Pesquisar wallpapers por título, tags ou autor
             </label>
             <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-500">
-              <Search className="w-4 h-4" aria-hidden="true" />
+              {isLoading ? (
+                <Loader2 className="w-4 h-4 text-indigo-400 animate-spin" aria-hidden="true" />
+              ) : (
+                <Search className="w-4 h-4" aria-hidden="true" />
+              )}
             </div>
             <input
               id="wallpaper-search"
@@ -79,7 +85,7 @@ export function Navbar({
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Pesquisar por título, autor ou tag..."
+              placeholder="Pesquisar wallpapers..."
               className="w-full pl-10 pr-9 py-2 rounded-xl text-sm bg-zinc-900 border border-zinc-800 text-zinc-100 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-colors"
             />
             {searchQuery && (

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   SlidersHorizontal,
   RotateCcw,
@@ -7,6 +8,8 @@ import {
   Monitor,
   Tag as TagIcon,
   ArrowUpDown,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 import { FilterMetadata, SortOption, WallpaperType } from '../types/wallpaper';
 import { getResolutionLabel } from '../utils/filterWallpapers';
@@ -45,6 +48,13 @@ export function FilterBar({
     Application: <Monitor className="w-3.5 h-3.5" aria-hidden="true" />,
   };
 
+  const [isExpandedTags, setIsExpandedTags] = useState(false);
+
+  const visibleTags = isExpandedTags
+    ? metadata.tags
+    : metadata.tags.filter((tag, idx) => idx < 12 || selectedTags.includes(tag));
+  const hiddenCount = metadata.tags.length - visibleTags.length;
+
   return (
     <section
       aria-label="Filtros e ordenação do catálogo"
@@ -68,7 +78,7 @@ export function FilterBar({
             <button
               type="button"
               onClick={onResetFilters}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 border border-transparent hover:border-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 border border-transparent hover:border-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
               title="Restaurar todos os filtros para o padrão"
             >
               <RotateCcw className="w-3 h-3" aria-hidden="true" />
@@ -106,9 +116,9 @@ export function FilterBar({
             <button
               type="button"
               onClick={() => onSelectType('ALL')}
-              className={`px-2.5 py-1 rounded-lg border font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
+              className={`px-2.5 py-1 rounded-lg border font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer ${
                 selectedType === 'ALL'
-                  ? 'bg-indigo-600 text-white border-indigo-500'
+                  ? 'bg-indigo-600 text-white border-indigo-500 shadow-xs'
                   : 'bg-zinc-950/80 text-zinc-400 border-zinc-800 hover:text-zinc-200 hover:border-zinc-700'
               }`}
             >
@@ -119,9 +129,9 @@ export function FilterBar({
                 key={`type-${type}`}
                 type="button"
                 onClick={() => onSelectType(selectedType === type ? 'ALL' : type)}
-                className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
+                className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer ${
                   selectedType === type
-                    ? 'bg-indigo-600 text-white border-indigo-500'
+                    ? 'bg-indigo-600 text-white border-indigo-500 shadow-xs'
                     : 'bg-zinc-950/80 text-zinc-400 border-zinc-800 hover:text-zinc-200 hover:border-zinc-700'
                 }`}
               >
@@ -150,9 +160,9 @@ export function FilterBar({
                     type="button"
                     onClick={() => onToggleResolution(res)}
                     aria-pressed={isSelected}
-                    className={`px-2.5 py-1 rounded-lg border font-mono transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
+                    className={`px-2.5 py-1 rounded-lg border font-mono transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer ${
                       isSelected
-                        ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40 font-semibold'
+                        ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40 font-semibold shadow-xs'
                         : 'bg-zinc-950/80 text-zinc-400 border-zinc-800 hover:text-zinc-200 hover:border-zinc-700'
                     }`}
                     title={`Resolução nominal: ${res}`}
@@ -166,12 +176,12 @@ export function FilterBar({
         )}
       </div>
 
-      {/* Linha 2: Filtro por Tags (Multi-select com lógica OR) */}
+      {/* Linha 2: Filtro por Tags com visualização colapsável inteligente */}
       {metadata.tags.length > 0 && (
         <div className="flex flex-col sm:flex-row sm:items-start gap-2 pt-3 border-t border-zinc-800/40">
           <span className="text-zinc-400 font-medium shrink-0 sm:pt-1">Tags (OU):</span>
-          <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filtrar por tags temáticas">
-            {metadata.tags.map((tag) => {
+          <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="Filtrar por tags temáticas">
+            {visibleTags.map((tag) => {
               const isSelected = selectedTags.includes(tag);
               return (
                 <button
@@ -179,9 +189,9 @@ export function FilterBar({
                   type="button"
                   onClick={() => onToggleTag(tag)}
                   aria-pressed={isSelected}
-                  className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
+                  className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer ${
                     isSelected
-                      ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40 font-semibold'
+                      ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40 font-semibold shadow-xs'
                       : 'bg-zinc-950/80 text-zinc-400 border-zinc-800 hover:text-zinc-200 hover:border-zinc-700'
                   }`}
                 >
@@ -190,6 +200,23 @@ export function FilterBar({
                 </button>
               );
             })}
+
+            {/* Botão para Expandir / Recolher Tags quando houver muitas */}
+            {metadata.tags.length > 12 && (
+              <button
+                type="button"
+                onClick={() => setIsExpandedTags((prev) => !prev)}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-dashed border-zinc-700 bg-zinc-900/60 hover:bg-zinc-800 text-zinc-300 hover:text-white text-xs font-medium transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                aria-expanded={isExpandedTags}
+              >
+                <span>{isExpandedTags ? 'Recolher tags' : `+${hiddenCount} tags`}</span>
+                {isExpandedTags ? (
+                  <ChevronUp className="w-3 h-3 text-zinc-400" aria-hidden="true" />
+                ) : (
+                  <ChevronDown className="w-3 h-3 text-zinc-400" aria-hidden="true" />
+                )}
+              </button>
+            )}
           </div>
         </div>
       )}

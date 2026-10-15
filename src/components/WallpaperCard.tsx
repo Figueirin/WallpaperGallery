@@ -1,5 +1,5 @@
 import { steamLinks } from '../utils/safeUrls';
-import { useState } from 'react';
+import { useState, type KeyboardEvent } from 'react';
 import { WallpaperItem } from '../types/wallpaper';
 import { WallpaperMedia } from './WallpaperMedia';
 import {
@@ -50,18 +50,28 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
     }
   };
 
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleCardClick();
+    }
+  };
+
   return (
     <article
       onClick={handleCardClick}
+      onKeyDown={handleKeyDown}
       onFocus={handleMouseEnter}
       onBlur={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      tabIndex={0}
+      role="article"
       aria-label={`Visualizar detalhes do wallpaper: ${wallpaper.title}`}
-      className="group relative flex flex-col rounded-2xl bg-zinc-900/80 border border-zinc-800/80 hover:border-zinc-700 hover:shadow-2xl hover:shadow-black/70 transition-all duration-300 ease-out hover:z-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
+      className="group relative flex flex-col rounded-2xl bg-zinc-900/80 border border-zinc-800/80 hover:border-zinc-700/80 hover:shadow-xl hover:shadow-black/40 hover:-translate-y-0.5 transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
     >
-      {/* Área da Imagem de Prévia / Vídeo com ampliação de ~25% em destaque no hover */}
-      <div className="relative aspect-video w-full rounded-t-2xl overflow-hidden bg-zinc-950 flex items-center justify-center transition-all duration-300 ease-out origin-bottom group-hover:scale-[1.25] group-hover:rounded-2xl group-hover:shadow-2xl group-hover:shadow-black/95 group-hover:ring-1 group-hover:ring-white/15 group-hover:z-40 motion-reduce:group-hover:scale-100">
+      {/* Área da Imagem de Prévia / Vídeo com zoom sutil e contido no hover */}
+      <div className="relative aspect-video w-full rounded-t-2xl overflow-hidden bg-zinc-950 flex items-center justify-center">
         <WallpaperMedia
           wallpaper={wallpaper}
           mode="card"
@@ -111,14 +121,12 @@ export function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
       <div className="p-4 flex-1 flex flex-col justify-between">
         <div>
           {wallpaper.isSimulated && <span className="text-xs text-amber-300">Demonstração</span>}
-          {/* Título */}
+          {/* Título com truncamento limpo */}
           <h3
             title={wallpaper.title}
-            className="text-sm font-semibold text-zinc-100 group-hover:text-indigo-400 transition-colors line-clamp-1"
+            className="text-sm font-semibold text-zinc-100 group-hover:text-indigo-400 transition-colors truncate leading-snug"
           >
-            <button type="button" className="text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded" onClick={(event) => { event.stopPropagation(); handleCardClick(); }}>
-              {wallpaper.title}
-            </button>
+            {wallpaper.title}
           </h3>
 
           {/* Autor */}

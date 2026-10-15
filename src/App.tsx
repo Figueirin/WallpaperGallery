@@ -181,7 +181,6 @@ export function App() {
   // Executa busca com debounce para digitação e sincronização de filtros
   useEffect(() => {
     requestVersion.current++;
-    setIsLoading(true);
     const timeoutId = setTimeout(() => {
       fetchWallpapers(currentPage);
     }, 120);
@@ -281,6 +280,7 @@ export function App() {
         onSearchChange={handleSearchChange}
         totalCount={totalCatalogCount}
         onNavigateHome={selectedWallpaperId ? handleBackToGallery : undefined}
+        isLoading={isLoading}
       />
 
       {/* Conteúdo Principal */}
@@ -440,7 +440,7 @@ export function App() {
             </div>
 
             {/* Área de Exibição da Galeria / Skeleton / Erro */}
-            {isLoading ? (
+            {isLoading && wallpapers.length === 0 ? (
               <LoadingSkeleton count={PAGE_SIZE} />
             ) : hasError ? (
               <EmptyState
@@ -451,7 +451,7 @@ export function App() {
                 resetLabel="Tentar novamente"
               />
             ) : (
-              <>
+              <div className={`transition-opacity duration-200 ${isLoading ? 'opacity-60 pointer-events-none' : 'opacity-100'}`}>
                 <GalleryGrid
                   wallpapers={wallpapers}
                   onResetSearch={handleResetAll}
@@ -481,7 +481,7 @@ export function App() {
                     </button>
                   </div>
                 )}
-              </>
+              </div>
             )}
           </>
         )}

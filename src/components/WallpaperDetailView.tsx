@@ -54,7 +54,7 @@ export function WallpaperDetailView({
         if (isMounted) {
           setWallpaper(item);
           if (item) {
-            const allItemsResult = await provider.getWallpapers({ pageSize: 100 });
+            const allItemsResult = await provider.getWallpapers({ pageSize: 48 });
             const recs = getRecommendedWallpapers(allItemsResult.items, item, 6);
             if (isMounted) {
               setRecommendations(recs);
@@ -78,6 +78,17 @@ export function WallpaperDetailView({
       isMounted = false;
     };
   }, [wallpaperId, provider]);
+
+  // Atalho de teclado Escape para retornar à galeria
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onBack();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onBack]);
 
   // Formatação de data em português
   const formatDate = (isoDate: string) => {
@@ -152,9 +163,11 @@ export function WallpaperDetailView({
           type="button"
           onClick={onBack}
           className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-zinc-100 border border-zinc-800 hover:border-zinc-700 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
+          title="Voltar para a Galeria (Esc)"
         >
           <ArrowLeft className="w-4 h-4" aria-hidden="true" />
           <span>Voltar para a Galeria</span>
+          <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[10px] bg-zinc-800 border border-zinc-700 text-zinc-400 font-mono ml-1">Esc</kbd>
         </button>
 
         {/* Links Externos para Steam */}
@@ -370,6 +383,44 @@ export function WallpaperDetailView({
               </div>
             </div>
           )}
+
+          {/* Cartão de Ação Direta no Steam */}
+          <div className="p-5 rounded-2xl bg-gradient-to-b from-indigo-950/40 to-zinc-900/90 border border-indigo-500/30 space-y-3.5">
+            <div className="flex items-center gap-2.5">
+              <div className="p-2 rounded-xl bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
+                <Sparkles className="w-4 h-4" aria-hidden="true" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-sm text-zinc-100">Disponível no Steam</h3>
+                <p className="text-[11px] text-zinc-400">Wallpaper Engine • AppID 431960</p>
+              </div>
+            </div>
+            <p className="text-xs text-zinc-300 leading-relaxed">
+              Abra a página oficial na Comunidade Steam para se inscrever ou abrir diretamente no cliente Linux.
+            </p>
+            <div className="flex flex-col gap-2 pt-1">
+              {steamLinks(wallpaper.id, wallpaper.isSimulated).web && (
+                <a
+                  href={steamLinks(wallpaper.id, wallpaper.isSimulated).web}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
+                >
+                  <span>Abrir no Steam Workshop</span>
+                  <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                </a>
+              )}
+              {steamLinks(wallpaper.id, wallpaper.isSimulated).client && (
+                <a
+                  href={steamLinks(wallpaper.id, wallpaper.isSimulated).client}
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-medium bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 hover:border-zinc-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
+                >
+                  <MonitorPlay className="w-3.5 h-3.5 text-emerald-400" aria-hidden="true" />
+                  <span>Abrir no Cliente Steam (Linux)</span>
+                </a>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 

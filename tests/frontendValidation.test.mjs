@@ -225,4 +225,22 @@ describe('Validação Funcional do Frontend com Catálogo Real (178 Wallpapers /
     const ids = new Set(recs.map((r) => r.id));
     assert.strictEqual(ids.size, recs.length, 'Recomendações não devem ter duplicatas');
   });
+
+  it('Recomendações funcionam com amostra de 48 itens sem duplicatas nem auto-recomendação', () => {
+    const sample = fullCatalog.slice(0, 48);
+    const currentItem = sample[5];
+    const recs = getRecommendedWallpapers(sample, currentItem, 6);
+
+    assert.ok(recs.length <= 6);
+    assert.strictEqual(recs.some((r) => r.id === currentItem.id), false);
+    const ids = new Set(recs.map((r) => r.id));
+    assert.strictEqual(ids.size, recs.length);
+  });
+
+  it('Metadados do catálogo excedem o limite de 12 tags, ativando corretamente a funcionalidade de expansão/recolhimento', () => {
+    assert.ok(manifest.metadata.tags.length > 12, 'Catálogo real deve ter mais de 12 tags');
+    assert.strictEqual(manifest.metadata.tags.length, 36);
+  });
 });
+
+
