@@ -1,5 +1,36 @@
 [
   {
+    "id": "3250755486",
+    "isSimulated": false,
+    "title": "cat eating a chips through the windows 7 wallpaper",
+    "description": "mm yummy!",
+    "author": {
+      "name": "SteamUser (76561198968063586)",
+      "steamId": "76561198968063586"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/2490005628741248007/4FF29298DDB46E531A49842B5DA927AD9F70D658/",
+    "type": "Scene",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Wallpaper",
+      "Other resolution",
+      "Memes"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 7932333,
+    "createdAt": "2024-05-20T13:27:38.000Z",
+    "updatedAt": "2024-05-20T13:27:38.000Z",
+    "stats": {
+      "views": 51318,
+      "subscriptions": 1652286,
+      "favorited": 67619,
+      "votesUp": 8929
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3250755486",
+    "steamClientUri": "steam://url/CommunityFilePage/3250755486"
+  },
+  {
     "id": "3118949804",
     "isSimulated": false,
     "title": "Anime Girl With Purple Eyes",
@@ -125,6 +156,39 @@
     },
     "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=875617215",
     "steamClientUri": "steam://url/CommunityFilePage/875617215"
+  },
+  {
+    "id": "923576681",
+    "isSimulated": false,
+    "title": "Simplistic Audio Visualizer",
+    "description": "Simple Audio Responsive Wallpaper.\r\nA bunch of configuration options.\r\nA Simple Overlay to give out a 3D look.\r\n\r\n****The Front Image always has to be a Png.\r\n**** When using bars, decreasing both Gap between bars and Height of bars results in a lot of smaller rectangles being drawn which will cause noticable frame drop. Try not to decrease both of these values.\r\n\r\n\r\nThis wallpaper uses 2 set of wallpapers, A Jpg and a Png file on the top of it, giving a 3D immersion look.\r\n\r\nFor those who donot know how to cut the images,\r\nAll Images used in the intro video are added in the discussions. (Dropbox link). Download and use.\r\nAny and All files further coming in the upcoming updates will be added into the same dropbox link.\r\n\r\nShow me your creativity!!!! Post them in discussions to showoff and inspire :D\r\n\r\nAm still new to coding so, Let me know your Feedback and Suggestions.\r\n\r\nCheck out of First Wallpaper\r\nhttp://steamcommunity.com/sharedfiles/filedetails/?id=893418273\r\n\r\nLatest Update notes:\r\n\r\nUpdate: 19 May\r\nAdded Background video options on request of @Refl3x\r\nSmall Bug with bottomBouncing bars opacity not setting based on settings.\r\n\r\nUpdate: 18 May\r\nAdded proper options to fit the images both front and back\r\nChanges in Image setting options to enable better fit for resolution of wallpaper used",
+    "author": {
+      "name": "",
+      "steamId": "76561198068163730"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/778406469266086983/2C00A6A7A0019CC19833362058E539B44566E88B/",
+    "type": "Web",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Wallpaper",
+      "Music",
+      "Audio responsive",
+      "Approved",
+      "Dynamic resolution"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 19224580,
+    "createdAt": "2017-05-11T15:17:55.000Z",
+    "updatedAt": "2017-05-20T17:05:24.000Z",
+    "stats": {
+      "views": 115603,
+      "subscriptions": 1630172,
+      "favorited": 23574,
+      "votesUp": 8165
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=923576681",
+    "steamClientUri": "steam://url/CommunityFilePage/923576681"
   },
   {
     "id": "821372791",
@@ -739,68 +803,5 @@
     },
     "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=2800248288",
     "steamClientUri": "steam://url/CommunityFilePage/2800248288"
-  },
-  {
-    "id": "1915396780",
-    "isSimulated": false,
-    "title": "Above New York City v2 [4K]",
-    "description": "Above NYC v2\r\nResolution: 3840x2160\r\n\r\nChanges\r\n- added a transition between start and end\r\n- crop out the logo in the bottom right\r\n\r\nOther resolutions:\r\n1920x1080 FHD [https://steamcommunity.com/sharedfiles/filedetails/?id=1915402495]\r\n\r\n\r\nOriginal Video: [https://www.youtube.com/watch?v=UN3uF3990Q0&t=]",
-    "author": {
-      "name": "SteamUser (76561198042609114)",
-      "steamId": "76561198042609114"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/761600337171617428/4B1C7AAC91A996FBF8FAFD87A93B91ED7E4F42F5/",
-    "type": "Video",
-    "resolution": "3840x2160",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Wallpaper",
-      "Landscape"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 838419743,
-    "createdAt": "2019-11-17T23:50:38.000Z",
-    "updatedAt": "2019-11-17T23:50:38.000Z",
-    "stats": {
-      "views": 90339,
-      "subscriptions": 1247571,
-      "favorited": 87995,
-      "votesUp": 14660
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=1915396780",
-    "steamClientUri": "steam://url/CommunityFilePage/1915396780"
-  },
-  {
-    "id": "3195212886",
-    "isSimulated": false,
-    "title": "熠烛 芙莉莲×老东西可爱捏 眼动跟随                           Frieren•Eye tracking•Customizable",
-    "description": "Frieren•Eye tracking•Audio visualization•Customizable\nbilibili：熠烛丶",
-    "author": {
-      "name": "SteamUser (76561199275007305)",
-      "steamId": "76561199275007305"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/2441586954963699462/9BA5F12773FA6FB5C2B9B7D2B7E00ACDA780271A/",
-    "type": "Scene",
-    "resolution": "2560x1440",
-    "aspectRatio": "16:9",
-    "tags": [
-      "Anime",
-      "Wallpaper",
-      "Audio responsive",
-      "Customizable",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 87510906,
-    "createdAt": "2024-03-22T01:03:03.000Z",
-    "updatedAt": "2026-06-30T12:55:56.000Z",
-    "stats": {
-      "views": 78640,
-      "subscriptions": 1235564,
-      "favorited": 91075,
-      "votesUp": 16360
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3195212886",
-    "steamClientUri": "steam://url/CommunityFilePage/3195212886"
   }
 ]

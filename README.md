@@ -6,7 +6,7 @@
 
 O WallpaperGallery reúne wallpapers públicos da Workshop em uma interface visual para explorar temas e encontrar opções para o desktop. Você pode pesquisar, combinar filtros, comparar resultados e visitar o item original na Steam.
 
-O catálogo atual conta com **5.000 wallpapers reais**, com rolagem progressiva e páginas individuais de detalhes. O site utiliza metadados e previews públicos; os pacotes dos wallpapers continuam na Workshop.
+O catálogo atual conta com **15.000 wallpapers reais**, com rolagem progressiva e páginas individuais de detalhes. O site utiliza metadados e previews públicos; os pacotes dos wallpapers continuam na Workshop.
 
 ## Funcionalidades
 
@@ -35,7 +35,7 @@ manifest.json + index.json + shards
 Frontend React
 ```
 
-O **manifesto** descreve o catálogo; o **índice** ajuda nas buscas, filtros e ordenação; os **shards** guardam os dados completos, carregados sob demanda. Atualmente são 200 shards, com até 25 wallpapers cada. A navegação não consulta a Steam API para sincronizar o catálogo.
+O **manifesto** descreve o catálogo; o **índice** ajuda nas buscas, filtros e ordenação; os **shards** guardam os dados completos, carregados sob demanda. Atualmente são 600 shards, com até 25 wallpapers cada. A navegação não consulta a Steam API para sincronizar o catálogo.
 
 ## Stack
 
@@ -58,7 +58,7 @@ npm ci
 npm run dev
 ```
 
-O catálogo JSON real é a fonte padrão de dados. Os comandos acima abrem os 5.000 wallpapers sem precisar configurar variável de ambiente, chave Steam ou Firebase.
+O catálogo JSON real é a fonte padrão de dados. Os comandos acima abrem os 15.000 wallpapers sem precisar configurar variável de ambiente, chave Steam ou Firebase.
 
 ## Contribuir e testar
 
@@ -101,7 +101,8 @@ A moderação combina classificação Steam, tags, palavras-chave em títulos/de
 - [Deploy no Cloudflare Workers](docs/CLOUDFLARE_WORKERS_DEPLOY.md)
 - [Arquitetura JSON-First](docs/JSON_ARCHITECTURE_REPORT.md)
 - [Preparação pré-deploy](docs/PREDEPLOY_REPOSITORY_REPORT.md)
-- [Expansão para 5K e avaliação JSON-First](docs/CATALOG_5K_EXPANSION_REPORT.md)
+- [Expansão para 15K e projeções de escala](docs/CATALOG_15K_EXPANSION_REPORT.md)
+- [Expansão anterior para 5K e avaliação JSON-First](docs/CATALOG_5K_EXPANSION_REPORT.md)
 - [Expansão anterior do catálogo](docs/CATALOG_EXPANSION_REPORT.md)
 - [Validação do frontend](docs/FRONTEND_VALIDATION_REPORT.md) e [correções pré-lançamento](docs/PRELAUNCH_FIXES_REPORT.md)
 - [Auditoria final de moderação e integridade](docs/CODEX_FINAL_AUDIT.md)

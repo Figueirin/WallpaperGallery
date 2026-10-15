@@ -29,6 +29,7 @@ test('expansão usa moderador real: dedup, blacklist, rating, texto, entrada inv
   acceptBatch(state,'popular',{publishedfiledetails:[raw(1,{title:'Updated'}),raw(2),raw(3),raw(4,{tags:[{tag:'Mature'}]}),raw(5,{title:'rule34'}),raw(6,{preview_url:'javascript:bad'}),raw(7,{consumer_appid:1})],next_cursor:'next'},pipeline(),1);
   assert.equal(state.examined,7);assert.equal(state.duplicates,1);assert.equal(state.rejected,5);assert.deepEqual(state.added.map(item=>item.id),['2']);assert.equal(JSON.stringify(existing),original);
   assert.equal(state.examined,state.duplicates+state.rejected+state.added.length);
+  assert.equal(state.sources.popular.duplicates,1);assert.equal(state.sources.popular.rejected,5);
   assert.equal(state.sources.popular.exhausted,false); // Existing IDs still advance discovery.
 });
 
@@ -42,7 +43,7 @@ test('limites e cursores: nunca excede target/budget, interrompe repetição, va
   acceptBatch(target,'popular',{publishedfiledetails:candidates,next_cursor:'*'},pipeline(),0);assert.equal(target.added.length,2);assert.ok(target.sources.popular.exhausted);
   const empty=newExpansionState([],5000,100);acceptBatch(empty,'popular',{publishedfiledetails:[]},pipeline(),0);assert.ok(empty.sources.popular.exhausted);
   const repeated=newExpansionState([],5000,1000);acceptBatch(repeated,'popular',{publishedfiledetails:[raw(10)],next_cursor:'n'},pipeline(),0);acceptBatch(repeated,'popular',{publishedfiledetails:[raw(10)],next_cursor:'z'},pipeline(),0);assert.ok(repeated.sources.popular.exhausted);
-  assert.throws(()=>newExpansionState([],5000,12001),/12.000/);
+  assert.throws(()=>newExpansionState([],15000,25001),/25.000/);
 });
 
 test('mistura limitada de descoberta converge a 70% popular / 30% recent; estado serializado é retomável', () => {
@@ -55,14 +56,34 @@ test('mistura limitada de descoberta converge a 70% popular / 30% recent; estado
   assert.equal(state.sources.popular.examined,700);assert.equal(state.sources.recent.examined,300);assert.equal(state.added.length,1000);
 });
 
-test('catálogo 5K: todos os 979 itens anteriores preservados integralmente, sem perda de metadados', async () => {
+test('catálogo 15K: todos os 979 itens anteriores preservados integralmente, sem perda de metadados', async () => {
   const {readFileSync}=await import('node:fs');const {createHash}=await import('node:crypto');
   const original=JSON.parse(readFileSync('tests/fixtures/pre-5k-catalog.json','utf8'));
   const catalog=JSON.parse(readFileSync('public/data/catalog.json','utf8'));
   const byId=new Map(catalog.map(item=>[item.id,item]));
-  assert.equal(Object.keys(original).length,979);assert.equal(catalog.length,5000);assert.equal(byId.size,5000);
+  assert.equal(Object.keys(original).length,979);assert.equal(catalog.length,15000);assert.equal(byId.size,15000);
   for(const [id,hash] of Object.entries(original)){
     assert.ok(byId.has(id),id);
     assert.equal(createHash('sha256').update(JSON.stringify(byId.get(id))).digest('hex'),hash,`Metadata original preservada: ${id}`);
   }
+});
+
+
+test('orçamento 15K: teto 25.000, estado v2 e contabilidade por fonte sobrevivem ao resume', () => {
+  let state=newExpansionState([],15000,25000);assert.equal(state.version,2);
+  acceptBatch(state,'popular',{publishedfiledetails:[raw(10),raw(10),raw(11,{tags:[{tag:'Mature'}]})],next_cursor:'a'},pipeline(),0);
+  state=JSON.parse(JSON.stringify(state));
+  acceptBatch(state,'recent',{publishedfiledetails:[raw(10),raw(12),raw(13,{title:'rule34'})],next_cursor:'b'},pipeline(),0);
+  for(const source of Object.values(state.sources)) assert.equal(source.examined,source.added+source.duplicates+source.rejected);
+  assert.equal(state.examined,6);assert.equal(state.duplicates,2);assert.equal(state.rejected,2);assert.equal(state.added.length,2);
+});
+
+
+test('15K preserva integralmente os 5000 itens do snapshot anterior, além dos 979 históricos', async () => {
+  const {readFileSync}=await import('node:fs');const {createHash}=await import('node:crypto');
+  const original=JSON.parse(readFileSync('tests/fixtures/pre-15k-catalog.json','utf8'));
+  const catalog=JSON.parse(readFileSync('public/data/catalog.json','utf8'));
+  const byId=new Map(catalog.map(item=>[item.id,item]));
+  assert.equal(Object.keys(original).length,5000);assert.equal(catalog.length,15000);assert.equal(byId.size,15000);
+  for(const [id,hash] of Object.entries(original)) assert.equal(createHash('sha256').update(JSON.stringify(byId.get(id))).digest('hex'),hash,`Todos os campos originais: ${id}`);
 });

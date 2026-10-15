@@ -43,27 +43,27 @@ export interface ExpansionState {
   duplicates: number;
   rejected: number;
   reasons: Record<string, number>;
-  sources: Record<Source, { examined: number; added: number; cursor: string; cursors: string[]; ids: string[]; exhausted: boolean }>;
+  sources: Record<Source, { examined: number; added: number; duplicates: number; rejected: number; cursor: string; cursors: string[]; ids: string[]; exhausted: boolean }>;
   seen: string[];
   added: WallpaperItem[];
 }
 export function newExpansionState(existing: WallpaperItem[], target: number, maxCandidates: number, catalogHash = '', policyHash = ''): ExpansionState {
-  if (!Number.isSafeInteger(target) || target < existing.length || !Number.isSafeInteger(maxCandidates) || maxCandidates < 1 || maxCandidates > 12000) throw new Error('Meta/limite inválidos (máximo 12.000 candidatos)');
-  const source = () => ({ examined: 0, added: 0, cursor: '*', cursors: [] as string[], ids: [] as string[], exhausted: false });
-  return { version: 1, catalogHash, policyHash, target, maxCandidates, startedAt: new Date().toISOString(), requests: 0, examined: 0, duplicates: 0, rejected: 0, reasons: {}, sources: { popular: source(), recent: source() }, seen: existing.map(w => w.id), added: [] };
+  if (!Number.isSafeInteger(target) || target < existing.length || !Number.isSafeInteger(maxCandidates) || maxCandidates < 1 || maxCandidates > 25000) throw new Error('Meta/limite inválidos (máximo 25.000 candidatos)');
+  const source = () => ({ examined: 0, added: 0, duplicates: 0, rejected: 0, cursor: '*', cursors: [] as string[], ids: [] as string[], exhausted: false });
+  return { version: 2, catalogHash, policyHash, target, maxCandidates, startedAt: new Date().toISOString(), requests: 0, examined: 0, duplicates: 0, rejected: 0, reasons: {}, sources: { popular: source(), recent: source() }, seen: existing.map(w => w.id), added: [] };
 }
 export function acceptBatch(state: ExpansionState, source: Source, batch: CursorBatch, pipeline: ModerationPipeline, existingCount: number): void {
   const stream = state.sources[source];
   const seen = new Set(state.seen), sourceIds = new Set(stream.ids);
   let advanced = 0;
-  const reject = (reasons: string[]) => { state.rejected++; for (const reason of new Set(reasons)) state.reasons[reason] = (state.reasons[reason] ?? 0) + 1; };
+  const reject = (reasons: string[]) => { state.rejected++; stream.rejected++; for (const reason of new Set(reasons)) state.reasons[reason] = (state.reasons[reason] ?? 0) + 1; };
   for (const raw of batch.publishedfiledetails) {
     if (state.examined >= state.maxCandidates || existingCount + state.added.length >= state.target) break;
     state.examined++; stream.examined++;
     const id = typeof raw?.publishedfileid === 'string' ? raw.publishedfileid : '';
     if (id && !sourceIds.has(id)) { sourceIds.add(id); advanced++; }
     if (!/^[1-9]\d*$/.test(id) || BigInt(id) > 18446744073709551615n) { reject(['invalid_id']); continue; }
-    if (seen.has(id)) { state.duplicates++; continue; }
+    if (seen.has(id)) { state.duplicates++; stream.duplicates++; continue; }
     seen.add(id);
     if ((raw.result !== undefined && raw.result !== 1) || raw.banned || (raw.visibility !== undefined && raw.visibility !== 0) || raw.consumer_appid !== WALLPAPER_ENGINE_APP_ID) { reject(['unavailable_or_wrong_app']); continue; }
     if (typeof raw.title !== 'string' || !raw.title.trim() || typeof raw.preview_url !== 'string') { reject(['missing_metadata']); continue; }
@@ -110,7 +110,7 @@ export async function main() {
   let state = newExpansionState(existing, target, maxCandidates, digest(bytes), policyHash);
   if (existsSync(checkpoint)) {
     state = JSON.parse(readFileSync(checkpoint, 'utf8'));
-    if (state.version !== 1 || state.catalogHash !== digest(bytes) || state.policyHash !== policyHash || state.target !== target || state.maxCandidates !== maxCandidates) throw new Error('Checkpoint incompatível com catálogo/política/opções atuais');
+    if (state.version !== 2 || state.catalogHash !== digest(bytes) || state.policyHash !== policyHash || state.target !== target || state.maxCandidates !== maxCandidates) throw new Error('Checkpoint incompatível com catálogo/política/opções atuais');
   }
   const apiKey = process.env.STEAM_API_KEY;
   if (!apiKey) throw new Error('STEAM_API_KEY ausente');
@@ -137,7 +137,7 @@ export async function main() {
   if (combined.some(item => !isWallpaperItem(item) || item.isSimulated || pipeline.evaluateItem(item).status !== 'safe')) throw new Error('Validação final de staging falhou');
   if (digest(readFileSync('public/data/catalog.json')) !== state.catalogHash) throw new Error('Catálogo mudou durante a coleta');
   writeFileSync(resolve(staging, 'catalog.json'), JSON.stringify(combined, null, 2));
-  console.log(JSON.stringify({ complete: combined.length >= target, total: combined.length, examined: state.examined, duplicates: state.duplicates, rejected: state.rejected, reasons: state.reasons, sources: Object.fromEntries(Object.entries(state.sources).map(([key, value]) => [key, { examined: value.examined, added: value.added, exhausted: value.exhausted }])) }));
+  console.log(JSON.stringify({ complete: combined.length >= target, total: combined.length, examined: state.examined, duplicates: state.duplicates, rejected: state.rejected, reasons: state.reasons, sources: Object.fromEntries(Object.entries(state.sources).map(([key, value]) => [key, { examined: value.examined, added: value.added, duplicates: value.duplicates, rejected: value.rejected, exhausted: value.exhausted }])) }));
   } finally { closeSync(lock); unlinkSync(lockPath); }
 }
 if (process.argv[1]?.endsWith('/expand-catalog.ts')) main().catch(() => { console.error('Expansão interrompida; catálogo público preservado. Verifique limite, rede, autorização ou checkpoint.'); process.exitCode = 1; });
