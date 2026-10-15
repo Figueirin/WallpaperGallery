@@ -58,10 +58,10 @@ describe('Sincronização e Normalização do Steam Workshop (Catalog Sync)', ()
       assert.strictEqual(res.aspectRatio, '32:9');
     });
 
-    it('deve fornecer 1920x1080 16:9 como padrão na ausência de tag', () => {
+    it('deve preservar resolução desconhecida sem inventar metadados', () => {
       const res = normalizeResolution(['Anime', 'Cyberpunk']);
-      assert.strictEqual(res.resolution, '1920x1080');
-      assert.strictEqual(res.aspectRatio, '16:9');
+      assert.strictEqual(res.resolution, 'Não informada');
+      assert.strictEqual(res.aspectRatio, 'Other');
     });
   });
 

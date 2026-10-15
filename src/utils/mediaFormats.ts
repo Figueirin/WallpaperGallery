@@ -19,14 +19,17 @@ export type DetectedMediaFormat =
 export function extractYouTubeVideoId(url?: string): string | null {
   if (!url || typeof url !== 'string') return null;
 
-  const trimmed = url.trim();
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol !== 'https:' || parsed.username || parsed.password) return null;
+    let id: string | null = null;
+    if (parsed.hostname === 'youtu.be') id = parsed.pathname.slice(1);
+    if (['youtube.com', 'www.youtube.com', 'm.youtube.com', 'www.youtube-nocookie.com'].includes(parsed.hostname)) {
+      id = parsed.pathname === '/watch' ? parsed.searchParams.get('v') : parsed.pathname.match(/^\/(?:embed|v|shorts)\/([^/]+)$/)?.[1] ?? null;
+    }
+    return id && /^[\w-]{11}$/.test(id) ? id : null;
+  } catch { return null; }
 
-  // youtube.com/watch?v=ID ou youtube.com/shorts/ID ou youtu.be/ID
-  const regExp =
-    /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/;
-  const match = trimmed.match(regExp);
-
-  return match && match[1] ? match[1] : null;
 }
 
 /**

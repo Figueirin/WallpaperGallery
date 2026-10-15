@@ -9,23 +9,21 @@
  * - Deduplicação estrita por PublishedFileID da Steam.
  * - Gravação em lotes (batch writes de até 500 operações).
  * - Atualização apenas de documentos cujos dados foram alterados.
- * - Registro de checkpoint de metadados em sync_metadata/status.
+ * - Registro de status da última execução (não cursor) em sync_metadata/status.
  */
 
 import process from 'node:process';
 import type { WallpaperItem } from '../src/types/wallpaper';
 import {
   fetchSteamWorkshopWallpapers,
-  generateMockSteamCatalog,
-  normalizeSteamWorkshopItem,
+  STEAM_QUERY,
   WALLPAPER_ENGINE_APP_ID,
-  type SteamPublishedFileRaw,
+  REAL_SYNC_AUTHORIZATION,
+  loadLocalEnv,
+  positiveInteger,
 } from './sync-workshop.ts';
-
-// Carrega .env automaticamente se presente
-try {
-  process.loadEnvFile?.();
-} catch {}
+import { isWallpaperItem } from '../src/utils/validateWallpaper.ts';
+import type { Firestore } from 'firebase-admin/firestore';
 
 export const DEFAULT_FIRST_SYNC_LIMIT = 200;
 
@@ -36,6 +34,7 @@ export interface SyncOptions {
   apiKey?: string;
   projectId?: string;
   serviceAccountPath?: string;
+  authorization?: string;
 }
 
 export interface SyncStats {
@@ -100,204 +99,104 @@ export function generateSyntheticBatch(count: number): WallpaperItem[] {
   return result;
 }
 
-/**
- * Função de orquestração da sincronização
- */
-export async function syncWallpapersToFirestore(
-  options: SyncOptions = {}
-): Promise<SyncStats> {
+/** Remove undefined recursivamente; rejeita números não finitos. */
+export function serializeDocument(value: unknown): any {
+  if (value === undefined) return undefined;
+  if (typeof value === 'number' && !Number.isFinite(value)) throw new Error('Número inválido');
+  if (Array.isArray(value)) return value.filter(v => v !== undefined).map(serializeDocument);
+  if (value && typeof value === 'object') return Object.fromEntries(
+    Object.entries(value).filter(([, v]) => v !== undefined).map(([k, v]) => [k, serializeDocument(v)])
+  );
+  return value;
+}
+
+function canonical(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
+  if (value && typeof value === 'object') return `{${Object.entries(value).sort(([a], [b]) => a.localeCompare(b)).map(([k,v]) => `${JSON.stringify(k)}:${canonical(v)}`).join(',')}}`;
+  return JSON.stringify(value);
+}
+
+/** Mesmo caminho de escrita para Admin SDK e fake offline; sem inicializar SDK. */
+export async function persistWallpapers(db: Pick<Firestore, 'collection' | 'batch' | 'getAll'>, items: WallpaperItem[]) {
+  if (items.some(item => !isWallpaperItem(item) || item.isSimulated)) throw new Error('Documento real inválido ou simulado');
+  const unique = Array.from(new Map(items.map(item => [item.id, item])).values());
+  const refs = unique.map(item => db.collection('wallpapers').doc(item.id));
+  const snapshots = refs.length ? await db.getAll(...refs) : [];
+  if (snapshots.some(snapshot => snapshot.exists && snapshot.data()?.isSimulated)) throw new Error('Documento simulado existente; revisão manual obrigatória');
+  let insertedCount = 0, updatedCount = 0, unchangedCount = 0;
+  let batch = db.batch(), pending = 0;
+  for (let index = 0; index < unique.length; index++) {
+    const incoming = serializeDocument(unique[index]);
+    const previous = snapshots[index].exists ? snapshots[index].data()! : undefined;
+    const { lastSyncedAt: _lastSyncedAt, ...old } = previous ?? {};
+    const combined = { ...old, ...incoming, author: { ...old.author, ...incoming.author }, stats: { ...old.stats, ...incoming.stats } };
+    if (previous && canonical(old) === canonical(combined)) { unchangedCount++; continue; }
+    batch.set(refs[index], combined);
+    if (previous) updatedCount++; else insertedCount++;
+    if (++pending === 400) { await batch.commit(); batch = db.batch(); pending = 0; }
+  }
+  if (pending) await batch.commit();
+  // Estado de execução, não um checkpoint de varredura nem total da coleção.
+  await db.collection('sync_metadata').doc('status').set({
+    lastSyncAt: new Date().toISOString(), lastRunCount: unique.length,
+    insertedCount, updatedCount, unchangedCount, status: 'completed', appId: WALLPAPER_ENGINE_APP_ID,
+  });
+  return { insertedCount, updatedCount, unchangedCount };
+}
+
+export async function syncWallpapersToFirestore(options: SyncOptions = {}): Promise<SyncStats> {
   const startTime = Date.now();
-  const limit = Math.min(options.limit || DEFAULT_FIRST_SYNC_LIMIT, 200);
-  const isDryRun = options.dryRun !== false; // Padrão seguro: TRUE (dry-run)
-  const useMock = Boolean(options.useMockData);
-
-  console.log('╔═══════════════════════════════════════════════════════════════════════════╗');
-  console.log('║       WallpaperGallery — Sincronizador Steam Workshop -> Firestore        ║');
-  console.log('╚═══════════════════════════════════════════════════════════════════════════╝\n');
-
-  console.log(`🔒 Modo de Execução: ${isDryRun ? 'SIMULAÇÃO / DRY RUN (Nenhuma gravação real)' : 'GRAVAÇÃO REAL (Autorizado)'}`);
-  console.log(`🎯 Meta de Coleta: Máximo de ${limit} wallpapers únicos`);
-  console.log(`📦 Fonte de Dados: ${useMock ? 'Dados Simulados Locais' : 'Steam Web API'}\n`);
-
-  let incomingWallpapers: WallpaperItem[] = [];
-
-  if (useMock) {
-    console.log(`⚙️  Gerando ${limit} itens sintéticos para teste de integridade...`);
-    incomingWallpapers = generateSyntheticBatch(limit);
-  } else {
-    const apiKey = options.apiKey || process.env.STEAM_API_KEY;
-    if (!apiKey) {
-      throw new Error(
-        'STEAM_API_KEY não configurada no .env nem informada via opções. Execute com --mock-data para testes seguros.'
-      );
-    }
-
-    if (isDryRun) {
-      console.log('ℹ️  Modo DRY RUN ativo. Usando catálogo demonstrativo da Steam para validação segura...');
-      incomingWallpapers = generateMockSteamCatalog();
-    } else {
-      console.log(`🌐 Conectando à Steam Web API para coletar até ${limit} wallpapers...`);
-      // Em modo real, calcula quantas páginas de até 100 itens são necessárias
-      const pagesNeeded = Math.ceil(limit / 100);
-      incomingWallpapers = await fetchSteamWorkshopWallpapers({
-        apiKey,
-        limitPerPage: Math.min(limit, 100),
-        pages: pagesNeeded,
-        queryType: 1, // RankedByVote
-      });
-      incomingWallpapers = incomingWallpapers.slice(0, limit);
-    }
-  }
-
-  console.log(`✅ ${incomingWallpapers.length} wallpapers obtidos e normalizados.`);
-
-  // Simulação de deduplicação e checagem de escritas
-  const uniqueItemsMap = new Map<string, WallpaperItem>();
-  for (const item of incomingWallpapers) {
-    if (item?.id) {
-      uniqueItemsMap.set(item.id, item);
-    }
-  }
-
-  const uniqueItems = Array.from(uniqueItemsMap.values());
-  console.log(`🔍 Total de itens únicos deduplicados: ${uniqueItems.length}`);
-
-  let insertedCount = 0;
-  let updatedCount = 0;
-  let unchangedCount = 0;
-
+  const limit = Math.min(positiveInteger(options.limit ?? DEFAULT_FIRST_SYNC_LIMIT, 'limit'), 200);
+  const isDryRun = options.dryRun !== false;
+  if (!isDryRun && options.authorization !== REAL_SYNC_AUTHORIZATION) throw new Error('Autorização explícita ausente');
+  if (!isDryRun && options.useMockData) throw new Error('Dados simulados proibidos no modo real');
+  if (isDryRun && !options.useMockData) throw new Error('Dry-run offline exige --mock-data');
+  if (!isDryRun && !(options.apiKey || process.env.STEAM_API_KEY)) throw new Error('STEAM_API_KEY ausente');
+  if (!isDryRun && !(options.projectId || process.env.FIREBASE_PROJECT_ID)) throw new Error('FIREBASE_PROJECT_ID explícito obrigatório');
+  let counts = { insertedCount: 0, updatedCount: 0, unchangedCount: 0 };
+  let items: WallpaperItem[];
   if (isDryRun) {
-    console.log('\n[SIMULAÇÃO DRY RUN] Verificação de integridade dos documentos:');
-    uniqueItems.slice(0, 5).forEach((item, idx) => {
-      console.log(`   ${idx + 1}. ID: ${item.id} | Tipo: ${item.type} | Res: ${item.resolution} | Título: "${item.title.slice(0, 40)}..."`);
-    });
-    if (uniqueItems.length > 5) {
-      console.log(`   ... e mais ${uniqueItems.length - 5} itens validados com sucesso.`);
-    }
-
-    insertedCount = uniqueItems.length;
-    console.log('\n🛡️  Nenhuma alteração foi persistida no Firestore.');
-    console.log('💡 Para autorizar a gravação real após configuração do Firebase:');
-    console.log('   npm run sync:firestore -- --real --limit=200\n');
+    items = generateSyntheticBatch(limit);
+    items.forEach(serializeDocument);
+    counts.insertedCount = items.length; // planejamento; nenhuma escrita
   } else {
-    // Bloco de gravação real com firebase-admin (executado APENAS com autorização explícita)
-    console.log('⚡ Conectando ao Firebase Admin SDK...');
-    try {
-      const admin = await import('firebase-admin');
-      const serviceAccountPath = options.serviceAccountPath || process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
-      const projectId = options.projectId || process.env.FIREBASE_PROJECT_ID;
-
-      let app: any;
-      if (admin.apps.length === 0) {
-        if (serviceAccountPath) {
-          const { readFileSync } = await import('node:fs');
-          const serviceAccount = JSON.parse(readFileSync(serviceAccountPath, 'utf-8'));
-          app = admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount),
-            projectId: projectId || serviceAccount.project_id,
-          });
-        } else if (process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
-          const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
-          app = admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount),
-            projectId: projectId || serviceAccount.project_id,
-          });
-        } else {
-          // Utiliza Application Default Credentials do ambiente (ex: gcloud ou GitHub Actions)
-          app = admin.initializeApp({ projectId });
-        }
-      } else {
-        app = admin.apps[0];
-      }
-
-      const db = admin.firestore(app);
-      const batch = db.batch();
-      let operationsInBatch = 0;
-
-      for (const item of uniqueItems) {
-        const docRef = db.collection('wallpapers').doc(item.id);
-        batch.set(docRef, {
-          ...item,
-          lastSyncedAt: admin.firestore.FieldValue.serverTimestamp(),
-        }, { merge: true });
-
-        operationsInBatch++;
-        insertedCount++;
-
-        // Limite do Firestore: no máximo 500 operações por commit de batch
-        if (operationsInBatch >= 400) {
-          await batch.commit();
-          operationsInBatch = 0;
-        }
-      }
-
-      if (operationsInBatch > 0) {
-        await batch.commit();
-      }
-
-      // Registra metadados de status da sincronização
-      await db.collection('sync_metadata').doc('status').set({
-        lastSyncAt: admin.firestore.FieldValue.serverTimestamp(),
-        totalWallpapersInCatalog: uniqueItems.length,
-        lastRunCount: uniqueItems.length,
-        status: 'completed',
-        appId: WALLPAPER_ENGINE_APP_ID,
-      }, { merge: true });
-
-      console.log(`🎉 Sucesso! ${insertedCount} documentos gravados no Firestore.`);
-    } catch (err) {
-      console.error('❌ Falha ao gravar no Firestore:', err);
-      throw err;
-    }
+    const projectId = options.projectId || process.env.FIREBASE_PROJECT_ID;
+    const serviceAccountPath = options.serviceAccountPath || process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
+    const { readFileSync } = await import('node:fs');
+    const raw = serviceAccountPath ? readFileSync(serviceAccountPath, 'utf-8') : process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
+    if (!raw) throw new Error('Conta de serviço explícita obrigatória; ADC desativado');
+    let account;
+    try { account = JSON.parse(raw); } catch { throw new Error('Conta de serviço inválida'); }
+    if (account.project_id !== projectId) throw new Error('Projeto da conta de serviço diverge do destino');
+    items = await fetchSteamWorkshopWallpapers({ apiKey: options.apiKey || process.env.STEAM_API_KEY!, limitPerPage: Math.min(limit, 100), pages: Math.ceil(limit / 100), queryType: STEAM_QUERY.popular });
+    items = items.slice(0, limit);
+    if (!items.length) throw new Error('Coleta vazia; nenhuma escrita');
+    const { initializeApp, cert, deleteApp } = await import('firebase-admin/app');
+    const { getFirestore } = await import('firebase-admin/firestore');
+    const app = initializeApp({ projectId, credential: cert(account) }, `wallpaper-sync-${process.pid}-${Date.now()}`);
+    try { counts = await persistWallpapers(getFirestore(app), items); }
+    finally { await deleteApp(app); }
   }
-
-  const executionTimeMs = Date.now() - startTime;
-
-  return {
-    requestedLimit: limit,
-    fetchedCount: incomingWallpapers.length,
-    insertedCount,
-    updatedCount,
-    unchangedCount,
-    failedCount: 0,
-    isDryRun,
-    executionTimeMs,
-  };
+  return { requestedLimit: limit, fetchedCount: items.length, ...counts, failedCount: 0, isDryRun, executionTimeMs: Date.now() - startTime };
 }
 
-/**
- * Ponto de entrada CLI
- */
 export async function main() {
+  loadLocalEnv();
   const args = process.argv.slice(2);
-  const isReal = args.includes('--real') && args.includes('--authorize-real-sync');
-  const useMock = args.includes('--mock-data') || !process.env.STEAM_API_KEY;
-
-  const limitArg = args.find((a) => a.startsWith('--limit='));
-  const limit = limitArg ? parseInt(limitArg.split('=')[1], 10) : DEFAULT_FIRST_SYNC_LIMIT;
-
-  try {
-    const stats = await syncWallpapersToFirestore({
-      dryRun: !isReal,
-      useMockData: useMock,
-      limit,
-    });
-
-    console.log('📊 Resumo da Execução:');
-    console.log(`   • Modo:                ${stats.isDryRun ? 'DRY RUN (Seguro / Sem gravação)' : 'REAL (Gravado no Firestore)'}`);
-    console.log(`   • Itens Processados:   ${stats.fetchedCount}`);
-    console.log(`   • Itens Gravados/OK:   ${stats.insertedCount}`);
-    console.log(`   • Tempo de Execução:   ${stats.executionTimeMs} ms\n`);
-  } catch (err) {
-    console.error('Erro na sincronização:', err);
-    process.exit(1);
-  }
+  if (args.some(a => !['--real', '--authorize-real-sync', '--mock-data', '--dry-run'].includes(a) && !a.startsWith('--limit='))) throw new Error('Argumento desconhecido');
+  const real = args.includes('--real');
+  if (real && (!args.includes('--authorize-real-sync') || args.includes('--dry-run'))) throw new Error('Modo real exige autorização e não permite --dry-run');
+  const stats = await syncWallpapersToFirestore({
+    dryRun: !real, useMockData: args.includes('--mock-data'),
+    authorization: process.env.WALLPAPER_SYNC_AUTHORIZATION,
+    limit: Number(args.find(a => a.startsWith('--limit='))?.slice(8) ?? DEFAULT_FIRST_SYNC_LIMIT),
+  });
+  console.log(JSON.stringify(stats));
 }
 
-// Executa se chamado diretamente
 if (process.argv[1]?.endsWith('sync-firestore.ts') || process.argv[1]?.endsWith('sync-firestore.js')) {
-  main().catch((err) => {
-    console.error('Falha fatal:', err);
-    process.exit(1);
+  main().catch(() => {
+    console.error('Sincronização interrompida. Verifique autorização, argumentos e configuração.');
+    process.exitCode = 1;
   });
 }

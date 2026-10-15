@@ -13,7 +13,7 @@
  * - Paginação de múltiplas páginas com --pages=N (até 100 itens por página)
  */
 
-import { writeFileSync, readFileSync, existsSync, mkdirSync } from 'node:fs';
+import { writeFileSync, readFileSync, existsSync, mkdirSync, renameSync, openSync, closeSync, unlinkSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import process from 'node:process';
 import type {
@@ -23,15 +23,21 @@ import type {
   AspectRatio,
 } from '../src/types/wallpaper';
 
-// Carrega automaticamente o arquivo .env se existir no diretório de trabalho
-try {
-  process.loadEnvFile?.();
-} catch {
-  // Ignora silenciosamente caso o arquivo .env não exista
-}
-
 export const WALLPAPER_ENGINE_APP_ID = 431960;
 export const DEFAULT_OUTPUT_FILE = 'public/data/catalog.json';
+export const STEAM_QUERY = { popular: 0, recent: 1 } as const;
+export const REAL_SYNC_AUTHORIZATION = 'AUTORIZO A PRIMEIRA SINCRONIZAÇÃO DE 200 WALLPAPERS.';
+
+export function loadLocalEnv() {
+  try { process.loadEnvFile(); } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw new Error('Arquivo .env inválido');
+  }
+}
+
+export function positiveInteger(value: number, name: string): number {
+  if (!Number.isSafeInteger(value) || value < 1) throw new Error(`${name} deve ser um inteiro positivo`);
+  return value;
+}
 
 /**
  * Estrutura bruta de um item retornado pela API IPublishedFileService da Steam
@@ -103,7 +109,7 @@ export interface SteamPublishedFileRaw {
 export function normalizeWallpaperType(tags: string[]): WallpaperType {
   const lowerTags = tags.map((t) => t.toLowerCase().trim());
 
-  if (lowerTags.some((t) => t.includes('video'))) return 'Video';
+  if (lowerTags.some((t) => t === 'video')) return 'Video';
   if (
     lowerTags.some(
       (t) => t === 'web' || t.includes('html') || t.includes('webgl')
@@ -111,7 +117,7 @@ export function normalizeWallpaperType(tags: string[]): WallpaperType {
   ) {
     return 'Web';
   }
-  if (lowerTags.some((t) => t.includes('application') || t.includes('exe'))) {
+  if (lowerTags.some((t) => t === 'application' || t === 'exe')) {
     return 'Application';
   }
   return 'Scene';
@@ -152,8 +158,8 @@ export function normalizeResolution(tags: string[]): {
     }
   }
 
-  // Padrão seguro para Wallpaper Engine
-  return { resolution: '1920x1080', aspectRatio: '16:9' };
+  // Metadado ausente permanece desconhecido
+  return { resolution: 'Não informada', aspectRatio: 'Other' };
 }
 
 /**
@@ -199,7 +205,7 @@ export function normalizeSteamWorkshopItem(raw: SteamPublishedFileRaw): Wallpape
 
   const createdAt = raw.time_created
     ? new Date(raw.time_created * 1000).toISOString()
-    : new Date().toISOString();
+    : '';
 
   const updatedAt = raw.time_updated
     ? new Date(raw.time_updated * 1000).toISOString()
@@ -214,6 +220,7 @@ export function normalizeSteamWorkshopItem(raw: SteamPublishedFileRaw): Wallpape
 
   return {
     id: String(raw.publishedfileid),
+    isSimulated: false,
     title: raw.title || `Wallpaper #${raw.publishedfileid}`,
     description: (raw.file_description || '').trim(),
     author: {
@@ -221,8 +228,7 @@ export function normalizeSteamWorkshopItem(raw: SteamPublishedFileRaw): Wallpape
       steamId: raw.creator,
     },
     previewUrl:
-      raw.preview_url ||
-      'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=80',
+      raw.preview_url || '',
     youtubePreviewUrl,
     type,
     resolution,
@@ -274,30 +280,16 @@ export function mergeWallpapers(
 
     if (map.has(incoming.id)) {
       const existing = map.get(incoming.id)!;
-      const statsChanged =
-        existing.stats?.views !== incoming.stats?.views ||
-        existing.stats?.subscriptions !== incoming.stats?.subscriptions ||
-        existing.stats?.favorited !== incoming.stats?.favorited ||
-        existing.stats?.votesUp !== incoming.stats?.votesUp;
-
-      const dateChanged = existing.updatedAt !== incoming.updatedAt;
-
-      if (statsChanged || dateChanged) {
-        map.set(incoming.id, {
-          ...existing,
-          ...incoming,
-          // Preserva campos customizados ou enriquecidos localmente
-          videoPreviewUrl: incoming.videoPreviewUrl || existing.videoPreviewUrl,
-          webDemoUrl: incoming.webDemoUrl || existing.webDemoUrl,
-          stats: {
-            ...existing.stats,
-            ...incoming.stats,
-          },
-        });
+      const defined = <T extends object>(value: T) => Object.fromEntries(Object.entries(value).filter(([, v]) => v !== undefined));
+      const combined = {
+        ...existing, ...defined(incoming),
+        author: { ...existing.author, ...defined(incoming.author) },
+        stats: { ...existing.stats, ...defined(incoming.stats) },
+      } as WallpaperItem;
+      if (JSON.stringify(combined) !== JSON.stringify(existing)) {
+        map.set(incoming.id, combined);
         updated++;
-      } else {
-        unchanged++;
-      }
+      } else { unchanged++; }
     } else {
       map.set(incoming.id, incoming);
       added++;
@@ -320,15 +312,20 @@ export async function fetchSteamWorkshopWallpapers(options: {
   limitPerPage?: number;
   pages?: number;
   queryType?: number;
+  fetchImpl?: typeof fetch;
+  sleep?: (ms: number) => Promise<void>;
 }): Promise<WallpaperItem[]> {
-  const { apiKey, limitPerPage = 100, pages = 1, queryType = 1 } = options;
+  const { apiKey, limitPerPage = 100, pages = 1, queryType = STEAM_QUERY.popular, fetchImpl = fetch, sleep = (ms: number) => new Promise<void>(r => setTimeout(r, ms)) } = options;
+  positiveInteger(pages, "pages");
+  positiveInteger(limitPerPage, "limitPerPage");
+  if (pages > 1000) throw new Error("Use no máximo 1000 páginas; varredura histórica exige cursor");
   const allWallpapers: WallpaperItem[] = [];
 
   for (let page = 1; page <= pages; page++) {
     const params = new URLSearchParams({
       key: apiKey,
       appid: String(WALLPAPER_ENGINE_APP_ID),
-      query_type: String(queryType), // 1 = RankedByVote, 0 = RankedByPublicationDate, 3 = RankedByTrend
+      query_type: String(queryType), // 0 = RankedByVote, 1 = RankedByPublicationDate
       page: String(page),
       numperpage: String(Math.min(limitPerPage, 100)),
       return_previews: 'true',
@@ -340,20 +337,23 @@ export async function fetchSteamWorkshopWallpapers(options: {
 
     const url = `https://api.steampowered.com/IPublishedFileService/QueryFiles/v1/?${params.toString()}`;
 
-    const response = await fetch(url, {
-      headers: {
-        Accept: 'application/json',
-        'User-Agent': 'WallpaperGallery-Catalog-Generator/1.0',
-      },
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(
-        `Steam API request failed with status ${response.status}: ${errorText}`
-      );
+    let response: Response | undefined;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        response = await fetchImpl(url, {
+          headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(15000),
+        });
+      } catch {
+        if (attempt === 2) throw new Error('Steam API: falha de rede ou timeout');
+      }
+      if (response?.ok) break;
+      if (response && response.status !== 429 && response.status < 500) {
+        throw new Error(`Steam API: HTTP ${response.status}`);
+      }
+      if (attempt === 2) throw new Error(`Steam API: tentativas esgotadas (HTTP ${response?.status ?? 'rede'})`);
+      await sleep(500 * 2 ** attempt);
     }
-
+    if (!response) throw new Error('Steam API: sem resposta');
     const data = (await response.json()) as {
       response?: {
         publishedfiledetails?: SteamPublishedFileRaw[];
@@ -361,22 +361,25 @@ export async function fetchSteamWorkshopWallpapers(options: {
       };
     };
 
-    const rawItems = data.response?.publishedfiledetails || [];
+    if (!Array.isArray(data.response?.publishedfiledetails)) throw new Error('Steam API: resposta inválida');
+    const rawItems = data.response.publishedfiledetails;
     if (rawItems.length === 0) {
       break; // Não há mais itens disponíveis
     }
 
     for (const raw of rawItems) {
+      if (!/^\d+$/.test(raw.publishedfileid) || typeof raw.title !== 'string') throw new Error('Steam API: item inválido');
+      if ((raw.result !== undefined && raw.result !== 1) || raw.banned || (raw.visibility !== undefined && raw.visibility !== 0) || (raw.consumer_appid !== undefined && raw.consumer_appid !== WALLPAPER_ENGINE_APP_ID)) continue;
       allWallpapers.push(normalizeSteamWorkshopItem(raw));
     }
 
     // Intervalo respeitoso entre requisições para evitar rate limit
     if (page < pages) {
-      await new Promise((resolve) => setTimeout(resolve, 400));
+      await sleep(400);
     }
   }
 
-  return allWallpapers;
+  return Array.from(new Map(allWallpapers.map(item => [item.id, item])).values());
 }
 
 /**
@@ -460,28 +463,30 @@ export function generateMockSteamCatalog(): WallpaperItem[] {
     },
   ];
 
-  return mockSteamRaw.map(normalizeSteamWorkshopItem);
+  return mockSteamRaw.map(raw => ({ ...normalizeSteamWorkshopItem(raw), isSimulated: true }));
 }
 
 /**
  * Função principal executada via linha de comando
  */
 export async function main() {
+  loadLocalEnv();
   const args = process.argv.slice(2);
   const isMockExport =
     args.includes('--mock-export') || args.includes('--offline');
 
   const keyArg = args.find((a) => a.startsWith('--key='));
-  const apiKey = keyArg ? keyArg.split('=')[1] : process.env.STEAM_API_KEY;
+  if (keyArg) throw new Error('Use STEAM_API_KEY no ambiente, nunca --key');
+  const apiKey = process.env.STEAM_API_KEY;
 
   const outArg = args.find((a) => a.startsWith('--out='));
   const outputPath = resolve(
     process.cwd(),
-    outArg ? outArg.split('=')[1] : DEFAULT_OUTPUT_FILE
+    outArg ? outArg.slice(6) : isMockExport ? 'public/data/demo-catalog.json' : DEFAULT_OUTPUT_FILE
   );
 
   const pagesArg = args.find((a) => a.startsWith('--pages='));
-  const pages = pagesArg ? Math.max(1, parseInt(pagesArg.split('=')[1], 10)) : 1;
+  const pages = positiveInteger(pagesArg ? Number(pagesArg.slice(8)) : 1, 'pages');
 
   const modeArg = args.find((a) => a.startsWith('--mode='));
   const mode = modeArg ? modeArg.split('=')[1] : 'all'; // 'all', 'popular', 'recent'
@@ -490,19 +495,15 @@ export async function main() {
   console.log('║   WallpaperGallery — Gerador de Catálogo Steam Workshop    ║');
   console.log('╚════════════════════════════════════════════════════════════╝\n');
 
+  if (args.some(arg => !['--mock-export', '--offline', '--authorize-real-sync'].includes(arg) && !['--mode=', '--pages=', '--out='].some(prefix => arg.startsWith(prefix)))) throw new Error('Argumento desconhecido');
+  if (!isMockExport && pages !== 1) throw new Error('Primeira sincronização limitada a no máximo 200 itens (uma página por ordenação)');
+  if (!['all', 'popular', 'recent'].includes(mode)) throw new Error('mode inválido');
+  if (!isMockExport && (process.env.WALLPAPER_SYNC_AUTHORIZATION !== REAL_SYNC_AUTHORIZATION || !args.includes('--authorize-real-sync'))) throw new Error('Sincronização real exige autorização explícita');
+  if (!isMockExport && !apiKey) throw new Error('STEAM_API_KEY ausente');
+  if (isMockExport && outputPath === resolve(DEFAULT_OUTPUT_FILE)) throw new Error('Demonstração não pode sobrescrever catálogo real');
   let fetchedWallpapers: WallpaperItem[] = [];
 
-  if (isMockExport || !apiKey) {
-    if (!apiKey && !isMockExport) {
-      console.warn('⚠️  Nenhuma STEAM_API_KEY detectada no arquivo .env nem no ambiente.');
-      console.warn('ℹ️  Executando exportação em modo de demonstração (--mock-export).\n');
-      console.warn('💡 Para consultar a API real da Steam, forneça:');
-      console.warn('   Crie um arquivo .env contendo: STEAM_API_KEY="SUA_CHAVE_AQUI"');
-      console.warn('   npm run sync:workshop\n');
-    } else {
-      console.log('📦 Modo de demonstração ativado (--mock-export / --offline).');
-    }
-
+  if (isMockExport) {
     fetchedWallpapers = generateMockSteamCatalog();
   } else {
     console.log(`🌐 Conectando à Steam Web API (AppID ${WALLPAPER_ENGINE_APP_ID})...`);
@@ -513,16 +514,16 @@ export async function main() {
         // Consulta tanto os mais populares (RankedByVote) quanto os recém-adicionados (RankedByPublicationDate)
         console.log(`⭐ Coletando ${pages} página(s) de wallpapers mais populares (RankedByVote)...`);
         const popular = await fetchSteamWorkshopWallpapers({
-          apiKey,
-          queryType: 1,
+          apiKey: apiKey!,
+          queryType: STEAM_QUERY.popular,
           pages,
           limitPerPage: 100,
         });
 
         console.log(`✨ Coletando ${pages} página(s) de wallpapers recém-adicionados (RankedByPublicationDate)...`);
         const recent = await fetchSteamWorkshopWallpapers({
-          apiKey,
-          queryType: 0,
+          apiKey: apiKey!,
+          queryType: STEAM_QUERY.recent,
           pages,
           limitPerPage: 100,
         });
@@ -531,22 +532,22 @@ export async function main() {
       } else if (mode === 'recent') {
         console.log(`✨ Coletando ${pages} página(s) de wallpapers recém-adicionados...`);
         fetchedWallpapers = await fetchSteamWorkshopWallpapers({
-          apiKey,
-          queryType: 0,
+          apiKey: apiKey!,
+          queryType: STEAM_QUERY.recent,
           pages,
           limitPerPage: 100,
         });
       } else {
         console.log(`⭐ Coletando ${pages} página(s) de wallpapers mais populares...`);
         fetchedWallpapers = await fetchSteamWorkshopWallpapers({
-          apiKey,
-          queryType: 1,
+          apiKey: apiKey!,
+          queryType: STEAM_QUERY.popular,
           pages,
           limitPerPage: 100,
         });
       }
     } catch (err) {
-      console.error('❌ Falha na conexão com a Steam API:', err);
+      console.error('Falha na coleta Steam; catálogo preservado.');
       process.exit(1);
     }
   }
@@ -557,13 +558,14 @@ export async function main() {
     try {
       const raw = readFileSync(outputPath, 'utf-8');
       const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) {
-        existingCatalog = parsed;
-      }
+      if (!Array.isArray(parsed) || parsed.some(item => !item || typeof item.id !== 'string')) throw new Error('Catálogo inválido');
+      existingCatalog = parsed;
     } catch (err) {
-      console.warn('⚠️  Não foi possível ler o catálogo existente. Criando novo arquivo.', err);
+      throw new Error('Catálogo existente inválido; original preservado', { cause: err });
     }
   }
+
+  if (existingCatalog.some(item => Boolean(item.isSimulated) !== isMockExport)) throw new Error('Não é permitido misturar dados reais e simulados');
 
   // 2. Fundir dados incrementalmente (evita perder wallpapers coletados anteriormente)
   const { merged, added, updated, unchanged } = mergeWallpapers(
@@ -573,7 +575,18 @@ export async function main() {
 
   // 3. Salvar catálogo consolidado
   mkdirSync(dirname(outputPath), { recursive: true });
-  writeFileSync(outputPath, JSON.stringify(merged, null, 2), 'utf-8');
+  const lockPath = `${outputPath}.lock`;
+  const lock = openSync(lockPath, 'wx');
+  const tempPath = `${outputPath}.${process.pid}.tmp`;
+  try {
+    // Detecta mudanças desde a leitura para evitar sobrescrever outro coletor.
+    if (existsSync(outputPath) && JSON.stringify(JSON.parse(readFileSync(outputPath, 'utf-8'))) !== JSON.stringify(existingCatalog)) throw new Error('Catálogo alterado por outro processo');
+    writeFileSync(tempPath, JSON.stringify(merged, null, 2), { encoding: 'utf-8', flag: 'wx' });
+    renameSync(tempPath, outputPath);
+  } finally {
+    closeSync(lock); unlinkSync(lockPath);
+    if (existsSync(tempPath)) unlinkSync(tempPath);
+  }
 
   console.log('\n📊 Relatório de Sincronização Incremental:');
   console.log(`   • Total anterior no catálogo:     ${existingCatalog.length}`);
@@ -586,8 +599,8 @@ export async function main() {
 
 // Execução direta via CLI se chamado diretamente
 if (process.argv[1]?.endsWith('sync-workshop.ts') || process.argv[1]?.endsWith('sync-workshop.js')) {
-  main().catch((err) => {
-    console.error('Erro na execução:', err);
+  main().catch(() => {
+    console.error('Sincronização interrompida. Verifique autorização, argumentos e configuração.');
     process.exit(1);
   });
 }
