@@ -163,3 +163,4 @@ describe('Sincronização e Normalização do Steam Workshop (Catalog Sync)', ()
     });
   });
 });
+

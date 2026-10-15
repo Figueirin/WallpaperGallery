@@ -195,3 +195,4 @@ describe('Detecção e Extração de Formatos de Mídia (Media Formats)', () => 
     });
   });
 });
+
