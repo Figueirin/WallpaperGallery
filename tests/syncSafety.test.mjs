@@ -98,6 +98,7 @@ test('Steam: enum, paginação, filtro de indisponíveis, dedup e retry sem rede
   let attempts = 0;
   await assert.rejects(fetchSteamWorkshopWallpapers({ apiKey: 'fixture', fetchImpl: async () => { attempts++; return new Response('SECRET MUST NOT BE LOGGED', { status: 403 }); } }), /HTTP 403/);
   assert.equal(attempts, 1);
+  await assert.rejects(fetchSteamWorkshopWallpapers({ apiKey: 'fixture', fetchImpl: async () => Response.json({ response: { publishedfiledetails: [{ ...input, subscriptions: 'invalid' }] } }) }), /metadados normalizados inválidos/);
 });
 
 test('merge preserva stats ausentes e detecta título; normalização é determinística', () => {

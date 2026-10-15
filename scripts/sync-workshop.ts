@@ -16,6 +16,7 @@
 import { writeFileSync, readFileSync, existsSync, mkdirSync, renameSync, openSync, closeSync, unlinkSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import process from 'node:process';
+import { isWallpaperItem } from '../src/utils/validateWallpaper.ts';
 import type {
   WallpaperItem,
   WallpaperType,
@@ -370,7 +371,9 @@ export async function fetchSteamWorkshopWallpapers(options: {
     for (const raw of rawItems) {
       if (!/^\d+$/.test(raw.publishedfileid) || typeof raw.title !== 'string') throw new Error('Steam API: item inválido');
       if ((raw.result !== undefined && raw.result !== 1) || raw.banned || (raw.visibility !== undefined && raw.visibility !== 0) || (raw.consumer_appid !== undefined && raw.consumer_appid !== WALLPAPER_ENGINE_APP_ID)) continue;
-      allWallpapers.push(normalizeSteamWorkshopItem(raw));
+      const item = normalizeSteamWorkshopItem(raw);
+      if (!isWallpaperItem(item)) throw new Error('Steam API: metadados normalizados inválidos');
+      allWallpapers.push(item);
     }
 
     // Intervalo respeitoso entre requisições para evitar rate limit
