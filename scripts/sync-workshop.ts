@@ -18,6 +18,7 @@ import { resolve, dirname } from 'node:path';
 import process from 'node:process';
 import { isWallpaperItem } from '../src/utils/validateWallpaper.ts';
 import { createCatalogShards, writeCatalogShardsSync } from '../src/utils/catalogSharder.ts';
+import { ModerationPipeline } from '../src/services/moderation/moderationPipeline.ts';
 import type {
   WallpaperItem,
   WallpaperType,
@@ -554,6 +555,35 @@ export async function main() {
       console.error('Falha na coleta Steam; catálogo preservado.');
       process.exit(1);
     }
+  }
+
+  // Filtragem e Moderação de Conteúdo Obrigatória (NSFW / Mature)
+  if (!isMockExport) {
+    console.log(`🛡️ Aplicando moderação de conteúdo sobre ${fetchedWallpapers.length} wallpapers coletados...`);
+    const pipeline = new ModerationPipeline();
+    const approved: WallpaperItem[] = [];
+    const quarantined: Array<{ item: WallpaperItem; reasons: string[] }> = [];
+
+    for (const item of fetchedWallpapers) {
+      const decision = await pipeline.evaluateItem(item);
+      if (decision.status === 'safe') {
+        approved.push(item);
+      } else {
+        quarantined.push({ item, reasons: decision.reasons.map((r) => r.message) });
+      }
+    }
+    pipeline.saveVisualCache();
+
+    if (quarantined.length > 0) {
+      console.log(`⚠️ ${quarantined.length} wallpaper(s) retidos por moderação/quarentena e excluídos do catálogo.`);
+      try {
+        const qPath = resolve('.moderation/quarantine.json');
+        mkdirSync(dirname(qPath), { recursive: true });
+        writeFileSync(qPath, JSON.stringify(quarantined, null, 2), 'utf-8');
+      } catch {}
+    }
+    fetchedWallpapers = approved;
+    console.log(`✅ ${fetchedWallpapers.length} wallpaper(s) aprovados para o catálogo público.\n`);
   }
 
   // 1. Ler catálogo existente se já existir para realizar merge incremental

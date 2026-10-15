@@ -168,44 +168,6 @@
     "steamClientUri": "steam://url/CommunityFilePage/3531878415"
   },
   {
-    "id": "3589454154",
-    "isSimulated": false,
-    "title": "土星 | Saturn - Sykm",
-    "description": "//======= v1.0  2025.10.19 =======//\r\n……\r\n\r\n//======= v2.0  2025.10.24 =======//\r\nTranslation：\r\nCelestial Bodies Displayed in the System:\r\n    Saturn,Sun,17 moons including Mimas​​(Satellite 1) to Pandora​​(Satellite 17)\r\nLocal Calculation Methods:\r\n    1.VSOP87 semi-analytical theory (Bretagnon & Francou, 1988)\r\n    2.Kepler's Equation Solver: 4th-order Taylor expansion for low eccentricity; 5th-order Householder iterations for moderate eccentricity; Mikkola's cubic method (1987) for high eccentricity.\r\n    3.Perturbation Theories: Oblateness perturbations (J₂–J₈ terms); Kaula's theory (1966) first-order + second-order short-period terms.\r\n    4.Resonance Dynamics: Mean-motion resonances, Laplace resonance, co-orbital resonance, solar perturbations, N-body perturbations.\r\n    5.General Relativity corrections\r\n    6.Tidal evolution\r\n    7.Radiation pressure perturbations\r\nAccuracy (excluding Hyperion):\r\n    1 year: ~±1,000 km\r\n    10 years: ~±5,000 km\r\n    100 years: ~±50,000 km\r\n    For general reference, not for precise applications.\r\nOperation Instructions:\r\n    Click the clock to display the simulation system time.\r\n\r\n系统显示天体：\r\n    土星、太阳、土卫1到土卫17等17颗卫星\r\n\r\n本地计算方法：\r\n    1.VSOP87半解析理论 (Bretagnon & Francou, 1988)\r\n    2.开普勒方程求解：低偏心率4阶泰勒展开，中等偏心率5阶Householder迭代，高偏心率Mikkola三次方法 (1987)；\r\n    4.摄动理论：扁率摄动（J₂-J₈项），Kaula理论 (1966)一阶+二阶短周期项；\r\n    5.共振动力学：平运动共振、Laplace共振、共轨共振、太阳摄动、N体摄动；\r\n    6.广义相对论修正\r\n    7.潮汐演化\r\n    8.辐射压摄动\r\n\r\n精度：（除土卫7 Hyperion外）\r\n    1年约±1,000 km\r\n    10年约±5,000 km\r\n    100年约±50,000 km\r\n     翻译成人话：短期内还凑合，超过10年权当图一乐\r\n\r\n操作说明：\r\n    单击时钟会显示模拟系统的时间\r\n\r\n参考资料：\r\n1.Bretagnon, P., & Francou, G. (1988). Planetary theories in rectangular and spherical variables. VSOP87 solutions. Astronomy and Astrophysics, 202, 309-315.\r\n2.Kaula, W. M. (1966). Theory of Satellite Geodesy. Blaisdell Publishing Company.\r\n(Dover reprint: ISBN 978-0486414652)\r\n3.Murray, C. D., & Dermott, S. F. (1999). Solar System Dynamics. Cambridge University Press.\r\n4.Jacobson, R. A., et al. (2006). The Gravity Field of the Saturnian System from Satellite Observations and Spacecraft Tracking Data. The Astronomical Journal, 132(6), 2520-2526.\r\n5.Lainey, V., et al. (2017). New constraints on Saturn's interior from Cassini astrometric data. Icarus, 281, 286-296.\r\n6.French, R. G., et al. (2017). Noncircular features in Saturn's rings IV. Icarus, 290, 14-45.\r\n7.Wisdom, J., Peale, S. J., & Mignard, F. (1984). The chaotic rotation of Hyperion. Icarus, 58(2), 137-152.\r\n8.Dermott, S. F., & Murray, C. D. (1981). The dynamics of tadpole and horseshoe orbits II. Icarus, 48(1), 1-11.\r\n9.Mikkola, S. (1987). A cubic approximation for Kepler's equation. Celestial Mechanics, 40(3-4), 329-334.\r\n10.Danby, J. M. A. (1988). Fundamentals of Celestial Mechanics (2nd ed.). Willmann-Bell.\r\nISBN: 978-0943396200\r\n11.Soffel, M., et al. (2003). The IAU 2000 Resolutions for Astrometry, Celestial Mechanics, and Metrology. The Astronomical Journal, 126(6), 2687-2706.\r\n12.Will, C. M. (2014). The Confrontation between General Relativity and Experiment. Living Reviews in Relativity, 17, 4.\r\n13.JPL Solar System Dynamics - Horizons Ephemeris System.\r\nhttps://ssd.jpl.nasa.gov/horizons/\r\n14.NASA Cassini Mission Archive.\r\nhttps://solarsystem.nasa.gov/missions/cassini/\r\n\r\n更新：\r\n1.优化了卫星轨道计算方法，修改了错误，减小了性能占用\r\n2.自定义文本大小和上下位置可调\r\nbtw：多亏deepseek，claude等AI可以帮忙查数据，解释数学物理问题，debug……这些工作放在以前一个人完成，可能要花费数十倍的时间精力~\r\n\r\n感谢订阅!\r\n有问题和建议请移步b站https://space.bilibili.com/1552133264,留言或私信，有空会看\r\n资源脚本未经许可请勿商用",
-    "author": {
-      "name": "SteamUser (76561199107908627)",
-      "steamId": "76561199107908627"
-    },
-    "previewUrl": "https://images.steamusercontent.com/ugc/15858639662499514706/0DA7956B815CA663379E389A4F5ECB0D6A7B0FC0/",
-    "type": "Scene",
-    "resolution": "Não informada",
-    "aspectRatio": "Other",
-    "tags": [
-      "Technology",
-      "Wallpaper",
-      "Audio responsive",
-      "Customizable",
-      "Dynamic resolution",
-      "HDR",
-      "Media Integration",
-      "3D",
-      "User Shortcut",
-      "Approved"
-    ],
-    "rating": "Everyone",
-    "fileSizeBytes": 257777947,
-    "createdAt": "2025-10-18T21:15:07.000Z",
-    "updatedAt": "2025-10-23T18:49:55.000Z",
-    "stats": {
-      "views": 36091,
-      "subscriptions": 607480,
-      "favorited": 27186,
-      "votesUp": 5829
-    },
-    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3589454154",
-    "steamClientUri": "steam://url/CommunityFilePage/3589454154"
-  },
-  {
     "id": "3373818743",
     "isSimulated": false,
     "title": "Sunset Cat [4K]",
@@ -794,5 +756,39 @@
     },
     "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3451858260",
     "steamClientUri": "steam://url/CommunityFilePage/3451858260"
+  },
+  {
+    "id": "3558034522",
+    "isSimulated": false,
+    "title": "[Wakaba Mutsumi]Fresh summer - It's MyGO!!!!!/AveMujica",
+    "description": "Source/原画：https://www.pixiv.net/artworks/123655095\r\nArtist/画师：虎皮玄椒\r\neffect producer/动效：bai22331\r\nmusic/音乐：Hea2t - 初夏的风\r\ntips：若叶睦，Mutsu Wakaka，It's_MyGO!!!!!，AveMujica，迷途之子，颂乐人偶,Wakaba Mutsumi，Mortis",
+    "author": {
+      "name": "SteamUser (76561199049526665)",
+      "steamId": "76561199049526665"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/9473769847901222910/76F510BE536BB9C6389295544414F94933A3D2D2/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper",
+      "Audio responsive",
+      "Customizable",
+      "Puppet Warp",
+      "Approved"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 25358769,
+    "createdAt": "2025-08-29T09:13:07.000Z",
+    "updatedAt": "2025-09-10T07:32:04.000Z",
+    "stats": {
+      "views": 21181,
+      "subscriptions": 414213,
+      "favorited": 25757,
+      "votesUp": 3763
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3558034522",
+    "steamClientUri": "steam://url/CommunityFilePage/3558034522"
   }
 ]

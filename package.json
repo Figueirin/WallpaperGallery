@@ -10,6 +10,7 @@
     "test": "node --import ./tests/helpers/offline.mjs --test --test-isolation=none --experimental-strip-types tests/*.test.mjs",
     "sync:workshop": "node --experimental-strip-types scripts/sync-workshop.ts",
     "sync:firestore": "node --experimental-strip-types scripts/sync-firestore.ts",
+    "moderate:rebuild": "node --experimental-strip-types scripts/rebuild-catalog.ts",
     "typecheck": "tsc -b && tsc -p tsconfig.scripts.json"
   },
   "dependencies": {

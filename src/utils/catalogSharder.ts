@@ -16,6 +16,7 @@ import {
   closeSync,
   unlinkSync,
   rmSync,
+  readdirSync,
 } from 'node:fs';
 import { resolve, join, dirname } from 'node:path';
 import type {
@@ -269,11 +270,25 @@ export function writeCatalogShardsSync(
     renameSync(join(tempDir, 'index.json'), join(absDir, 'index.json'));
 
     // Move shards
+    const activeFiles = new Set<string>();
     for (const shard of shardedData.shards) {
+      activeFiles.add(shard.file);
       const srcShard = join(tempDir, shard.file);
       const destShard = join(absDir, shard.file);
       if (existsSync(srcShard)) {
         renameSync(srcShard, destShard);
+      }
+    }
+
+    // Prune stale shard files in absDir/pages
+    const pagesDir = join(absDir, 'pages');
+    if (existsSync(pagesDir)) {
+      const existingPageFiles = readdirSync(pagesDir);
+      for (const file of existingPageFiles) {
+        const relativeShard = `pages/${file}`;
+        if (!activeFiles.has(relativeShard)) {
+          try { unlinkSync(join(pagesDir, file)); } catch {}
+        }
       }
     }
   } finally {
