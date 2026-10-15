@@ -1,0 +1,736 @@
+[
+  {
+    "id": "3407317466",
+    "isSimulated": false,
+    "title": "S4U 都市朋克2011与爱的重拳",
+    "description": "天空",
+    "author": {
+      "name": "SteamUser (76561199688000549)",
+      "steamId": "76561199688000549"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/34439408742576022/CCA4A82CD4F97978F62867F17D2681495A412B50/",
+    "type": "Scene",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Wallpaper",
+      "Pixel art",
+      "Standard Definition",
+      "Customizable"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 48617703,
+    "createdAt": "2025-01-14T11:15:23.000Z",
+    "updatedAt": "2025-01-14T11:33:44.000Z",
+    "stats": {
+      "views": 7719,
+      "subscriptions": 213770,
+      "favorited": 13476,
+      "votesUp": 2158
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3407317466",
+    "steamClientUri": "steam://url/CommunityFilePage/3407317466"
+  },
+  {
+    "id": "3810650535",
+    "isSimulated": false,
+    "title": "FRAC_桌面互动壁纸",
+    "description": "AI Generated. All characters are fictional.\nBLBL：FRAC_LAB",
+    "author": {
+      "name": "SteamUser (76561198342777421)",
+      "steamId": "76561198342777421"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/9760761451974651741/9F3B0C621FD13C1C777B8026164A0F75F33B5B6A/",
+    "type": "Web",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "CGI",
+      "Wallpaper",
+      "Customizable",
+      "Dynamic resolution"
+    ],
+    "rating": "Questionable",
+    "fileSizeBytes": 443058965,
+    "createdAt": "2026-09-30T08:27:57.000Z",
+    "updatedAt": "2026-10-08T13:49:43.000Z",
+    "stats": {
+      "views": 45415,
+      "subscriptions": 157884,
+      "favorited": 8537,
+      "votesUp": 2695
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3810650535",
+    "steamClientUri": "steam://url/CommunityFilePage/3810650535"
+  },
+  {
+    "id": "3679122549",
+    "isSimulated": false,
+    "title": "[16:9] 超かぐや姫 All-in-One",
+    "description": "This wallpaper is designed for 16:9 aspect ratios. For 21:9 displays, please download the 21:9 version.\r\nCosmic Princess Kaguya!\r\nChou Kaguya-hime!\r\n초 카구야 공주!\r\n초 가구야 공주!\r\n超かぐや姫！\r\n\r\n# Custom Song Guide\r\n1. Right-click the wallpaper -> \"Open in Explorer\".\r\n2. Right-click \"data.json\" -> Open with Notepad.\r\n3. Set paths for \"music\", \"mv\", and \"subtitle\" to add your song.\r\n- Note: The MV file MUST be in .webm format to play.\r\n\r\n# Custom Background Guide\r\n1 custom background is provided by default. To add more:\r\n1. Put your background images in the \"background\" folder.\r\n2. Name them as \"bgXXX\" (e.g., bg001, bg002). They apply automatically.\r\n\r\n- Performance Tip: We highly recommend downscaling your background to ~720px width and putting it in the \"thumb\" folder. (It works without a thumbnail, but helps performance).\r\n- Naming Rule: The \"bg\" numbers MUST be consecutive. If the sequence breaks (e.g., bg001, bg002, bg004), subsequent backgrounds will NOT load.\r\n\r\n\r\n\r\n### 楽曲カスタム\r\n1. 壁紙を右クリック -> 「エクスプローラーで開く」\r\n2. 「data.json」を右クリック -> 「メモ帳」で開く\r\n3. 各項目（music, mv, subtitle）のパスを指定\r\n- 注意：MVは必ず「.webm」形式にしてください。\r\n\r\n### 背景カスタム\r\n1. 「background」フォルダに画像を投入\r\n2. ファイル名を「bgXXX」（例：bg001, bg002）に設定\r\n- 推奨：動作軽量化のため、横幅720pxの縮小画像を「thumb」フォルダにも入れてください。\r\n- 注意：「bg」後の数字は必ず連続させてください（1, 2, 4のように飛ぶと読み込まれません）。\r\n\r\n\r\n\r\n# 노래 커스텀 가이드\r\n1. 월페이퍼 우클릭 -> '파일 탐색기에서 열기' 클릭\r\n2. 'data.json' 파일 우클릭 -> '메모장'으로 열기\r\n3. \"music\", \"mv\", \"subtitle\"의 경로를 지정하여 원하는 곡을 추가 가능\r\n- 주의: MV 파일은 반드시 .webm 형식이어야 함\r\n\r\n# 배경 커스텀 가이드\r\n기본적으로 1개의 배경 커스텀 옵션이 제공되는데, 더 추가하고 싶다면\r\n1. \"background\" 폴더에 배경 이미지 넣기\r\n2. 파일 이름을 \"bgXXX\" 형식(예: bg001, bg002)으로 설정하면 자동으로 적용됨\r\n\r\n- 권장 사항: 원활한 구동을 위해 가로 폭 720px 정도로 축소한 이미지를 \"thumb\" 폴더에도 함께 넣는 것을 강력히 권장함. (넣지 않아도 작동 자체는 함.)\r\n- 파일 이름 규칙: 'bg' 뒤의 숫자는 반드시 연속되어야 함. 중간에 숫자가 비면(예: bg001, bg002, bg004), 그 이후의 배경은 안 불러옴",
+    "author": {
+      "name": "SteamUser (76561198790474694)",
+      "steamId": "76561198790474694"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/18194952562305610540/1786343D253FC791763D8148FF433581E8195161/",
+    "type": "Web",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Anime",
+      "Wallpaper",
+      "Customizable",
+      "Dynamic resolution",
+      "Oversized"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 3297405071,
+    "createdAt": "2026-03-05T14:09:35.000Z",
+    "updatedAt": "2026-03-05T18:54:51.000Z",
+    "stats": {
+      "views": 75235,
+      "subscriptions": 116513,
+      "favorited": 13695,
+      "votesUp": 4084
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3679122549",
+    "steamClientUri": "steam://url/CommunityFilePage/3679122549"
+  },
+  {
+    "id": "3441931778",
+    "isSimulated": false,
+    "title": "HAMMOND YOU IDIOT!, YOU UPLOAD THE WHOLE TOP GEAR BURMA SPECIAL PART 1 ON WALLPAPER ENGINE WORKSHOP!!",
+    "description": "it the whole Top Gear Burma Special Part 1\r\n\r\nhere part 2 tho : https://steamcommunity.com/sharedfiles/filedetails/?id=3501083810",
+    "author": {
+      "name": "SteamUser (76561198182863398)",
+      "steamId": "76561198182863398"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/26563382672402892/BD102A7E8E5686D4C761055DC338364E4E419988/",
+    "type": "Video",
+    "resolution": "1280x720",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Wallpaper",
+      "Memes"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 970116571,
+    "createdAt": "2025-03-10T09:34:06.000Z",
+    "updatedAt": "2025-03-10T09:34:06.000Z",
+    "stats": {
+      "views": 12857,
+      "subscriptions": 67805,
+      "favorited": 6914,
+      "votesUp": 2654
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3441931778",
+    "steamClientUri": "steam://url/CommunityFilePage/3441931778"
+  },
+  {
+    "id": "3820020224",
+    "isSimulated": false,
+    "title": "双飞现实闷骚双胞胎",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561198177219058)",
+      "steamId": "76561198177219058"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/15315353597479914259/F094935FDEDDEC5FDA71C019BBFA18BF0E16DA8A/",
+    "type": "Video",
+    "resolution": "1280x720",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 1652474078,
+    "createdAt": "2026-10-15T02:36:30.000Z",
+    "updatedAt": "2026-10-15T02:36:30.000Z",
+    "stats": {
+      "views": 12,
+      "subscriptions": 351,
+      "favorited": 9,
+      "votesUp": 0
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3820020224",
+    "steamClientUri": "steam://url/CommunityFilePage/3820020224"
+  },
+  {
+    "id": "3820005174",
+    "isSimulated": false,
+    "title": "CxC(HSR)2k",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561199024755681)",
+      "steamId": "76561199024755681"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/10801146734374879723/C041D759E3B1E893A4603C370ECFA47E092D8443/",
+    "type": "Video",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 1086348473,
+    "createdAt": "2026-10-15T01:44:13.000Z",
+    "updatedAt": "2026-10-15T01:44:13.000Z",
+    "stats": {
+      "views": 9,
+      "subscriptions": 193,
+      "favorited": 26,
+      "votesUp": 2
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3820005174",
+    "steamClientUri": "steam://url/CommunityFilePage/3820005174"
+  },
+  {
+    "id": "3819998506",
+    "isSimulated": false,
+    "title": "【SalityFX】aerith-x-cloud-in-the-slum-church_1080p",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561198240625284)",
+      "steamId": "76561198240625284"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/10310317408420372289/B0F61DA9161D9931D57DFCF4FEBAFF2A17B50CAC/",
+    "type": "Video",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "CGI",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 17095910,
+    "createdAt": "2026-10-15T01:22:15.000Z",
+    "updatedAt": "2026-10-15T01:22:15.000Z",
+    "stats": {
+      "views": 17,
+      "subscriptions": 168,
+      "favorited": 17,
+      "votesUp": 2
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3819998506",
+    "steamClientUri": "steam://url/CommunityFilePage/3819998506"
+  },
+  {
+    "id": "3820010572",
+    "isSimulated": false,
+    "title": "Cyrene",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561199024755681)",
+      "steamId": "76561199024755681"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/15575942723810195909/0CAD9A2CADAEAD631E561A4E77D566AC7E64E54E/",
+    "type": "Video",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 628599345,
+    "createdAt": "2026-10-15T02:00:38.000Z",
+    "updatedAt": "2026-10-15T02:00:38.000Z",
+    "stats": {
+      "views": 5,
+      "subscriptions": 145,
+      "favorited": 20,
+      "votesUp": 1
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3820010572",
+    "steamClientUri": "steam://url/CommunityFilePage/3820010572"
+  },
+  {
+    "id": "3819994003",
+    "isSimulated": false,
+    "title": "CottH",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561199024755681)",
+      "steamId": "76561199024755681"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/11506000918737662038/93896FA58FFFBA675B028C9C7902FD7EEEDF37CD/",
+    "type": "Video",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 305153756,
+    "createdAt": "2026-10-15T01:10:13.000Z",
+    "updatedAt": "2026-10-15T01:10:13.000Z",
+    "stats": {
+      "views": 7,
+      "subscriptions": 136,
+      "favorited": 8,
+      "votesUp": 3
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3819994003",
+    "steamClientUri": "steam://url/CommunityFilePage/3819994003"
+  },
+  {
+    "id": "3819999850",
+    "isSimulated": false,
+    "title": "CottontailVA",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561199024755681)",
+      "steamId": "76561199024755681"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/16363628756587356976/560506C3899C92939C34AEC04BB9AB31074BBDE9/",
+    "type": "Video",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 1152973774,
+    "createdAt": "2026-10-15T01:27:19.000Z",
+    "updatedAt": "2026-10-15T01:27:19.000Z",
+    "stats": {
+      "views": 7,
+      "subscriptions": 129,
+      "favorited": 13,
+      "votesUp": 1
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3819999850",
+    "steamClientUri": "steam://url/CommunityFilePage/3819999850"
+  },
+  {
+    "id": "3820008717",
+    "isSimulated": false,
+    "title": "Borij - (JCW-195)",
+    "description": "谶言曰：\n参悟天机需行善，逆水迎波网上传。\n伸手举报党来犯，灾厄灾病替吾患。\n修身修行心放宽，烂人烂事随风散。\n天地之大人漫漫，一切因果终需还。",
+    "author": {
+      "name": "SteamUser (76561198098709099)",
+      "steamId": "76561198098709099"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/15615185926194542565/1DE75FF766522B864972D2792EED38BAD6F4483B/",
+    "type": "Video",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Girls",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 178561141,
+    "createdAt": "2026-10-15T01:55:10.000Z",
+    "updatedAt": "2026-10-15T01:55:10.000Z",
+    "stats": {
+      "views": 12,
+      "subscriptions": 100,
+      "favorited": 16,
+      "votesUp": 4
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3820008717",
+    "steamClientUri": "steam://url/CommunityFilePage/3820008717"
+  },
+  {
+    "id": "3820014591",
+    "isSimulated": false,
+    "title": "Borij - (JCW-196)",
+    "description": "谶言曰：\n参悟天机需行善，逆水迎波网上传。\n伸手举报党来犯，灾厄灾病替吾患。\n修身修行心放宽，烂人烂事随风散。\n天地之大人漫漫，一切因果终需还。谶言曰：\n参悟天机需行善，逆水迎波网上传。\n伸手举报党来犯，灾厄灾病替吾患。\n修身修行心放宽，烂人烂事随风散。\n天地之大人漫漫，一切因果终需还。",
+    "author": {
+      "name": "SteamUser (76561198098709099)",
+      "steamId": "76561198098709099"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/9379286252460395979/209DF93C8EFF143402B3DE6ED8A8E05CBFD18308/",
+    "type": "Video",
+    "resolution": "1280x720",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Girls",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 125345422,
+    "createdAt": "2026-10-15T02:13:06.000Z",
+    "updatedAt": "2026-10-15T02:13:06.000Z",
+    "stats": {
+      "views": 5,
+      "subscriptions": 83,
+      "favorited": 12,
+      "votesUp": 2
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3820014591",
+    "steamClientUri": "steam://url/CommunityFilePage/3820014591"
+  },
+  {
+    "id": "3820022453",
+    "isSimulated": false,
+    "title": "Denia",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561199024755681)",
+      "steamId": "76561199024755681"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/9231244029126168120/9D021B3B43E050EDE308E2B5403554069461CCC6/",
+    "type": "Video",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 2074858790,
+    "createdAt": "2026-10-15T02:39:19.000Z",
+    "updatedAt": "2026-10-15T02:39:19.000Z",
+    "stats": {
+      "views": 4,
+      "subscriptions": 63,
+      "favorited": 12,
+      "votesUp": 0
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3820022453",
+    "steamClientUri": "steam://url/CommunityFilePage/3820022453"
+  },
+  {
+    "id": "3820021981",
+    "isSimulated": false,
+    "title": "Futa Widowmaker, Pharah & Mercy 18+ NSFW",
+    "description": "neonsin",
+    "author": {
+      "name": "SteamUser (76561198217249089)",
+      "steamId": "76561198217249089"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/10468526475403622095/85FFE9339DD314A2D8F81F5C92F0AE874FA1F824/",
+    "type": "Video",
+    "resolution": "1280x720",
+    "aspectRatio": "16:9",
+    "tags": [
+      "CGI",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 23541058,
+    "createdAt": "2026-10-15T02:36:42.000Z",
+    "updatedAt": "2026-10-15T02:36:42.000Z",
+    "stats": {
+      "views": 5,
+      "subscriptions": 58,
+      "favorited": 5,
+      "votesUp": 0
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3820021981",
+    "steamClientUri": "steam://url/CommunityFilePage/3820021981"
+  },
+  {
+    "id": "3820016012",
+    "isSimulated": false,
+    "title": "Demon girl 2k",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561199024755681)",
+      "steamId": "76561199024755681"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/12807782809447560641/E94BD3F244AB79DFD5A2D9B754C82C0F97FE1593/",
+    "type": "Video",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 1438944893,
+    "createdAt": "2026-10-15T02:22:26.000Z",
+    "updatedAt": "2026-10-15T02:22:26.000Z",
+    "stats": {
+      "views": 2,
+      "subscriptions": 44,
+      "favorited": 7,
+      "votesUp": 0
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3820016012",
+    "steamClientUri": "steam://url/CommunityFilePage/3820016012"
+  },
+  {
+    "id": "3820008461",
+    "isSimulated": false,
+    "title": "Caitlyn x Vi Oil and Water 4k Vertical Combo (Arcane)",
+    "description": "Pictures by Beeg3D",
+    "author": {
+      "name": "SteamUser (76561198351342493)",
+      "steamId": "76561198351342493"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/15063951904453616363/2EC5952CDFFB70CB3DEE647E6E6EFC7BBCF96F64/",
+    "type": "Scene",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "CGI",
+      "Wallpaper",
+      "Customizable",
+      "Other resolution"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 51822868,
+    "createdAt": "2026-10-15T01:53:18.000Z",
+    "updatedAt": "2026-10-15T01:53:18.000Z",
+    "stats": {
+      "views": 6,
+      "subscriptions": 48,
+      "favorited": 2,
+      "votesUp": 1
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3820008461",
+    "steamClientUri": "steam://url/CommunityFilePage/3820008461"
+  },
+  {
+    "id": "3820023399",
+    "isSimulated": false,
+    "title": "Borij - (JCW-197)",
+    "description": "谶言曰：\n参悟天机需行善，逆水迎波网上传。\n伸手举报党来犯，灾厄灾病替吾患。\n修身修行心放宽，烂人烂事随风散。\n天地之大人漫漫，一切因果终需还。",
+    "author": {
+      "name": "SteamUser (76561198098709099)",
+      "steamId": "76561198098709099"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/12076527298036592364/C166EE2C12B564B0E3F82BDD954A44086FEE7FE1/",
+    "type": "Video",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Girls",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 154276134,
+    "createdAt": "2026-10-15T02:43:14.000Z",
+    "updatedAt": "2026-10-15T02:43:14.000Z",
+    "stats": {
+      "views": 4,
+      "subscriptions": 34,
+      "favorited": 5,
+      "votesUp": 0
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3820023399",
+    "steamClientUri": "steam://url/CommunityFilePage/3820023399"
+  },
+  {
+    "id": "3820026962",
+    "isSimulated": false,
+    "title": "Dialyn",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561199024755681)",
+      "steamId": "76561199024755681"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/12444116490947307674/CD1C9CC80E96D8E3F25ECA3FE5D8E501E2DDD18D/",
+    "type": "Video",
+    "resolution": "2560x1440",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 760672798,
+    "createdAt": "2026-10-15T03:00:08.000Z",
+    "updatedAt": "2026-10-15T03:00:08.000Z",
+    "stats": {
+      "views": 1,
+      "subscriptions": 21,
+      "favorited": 3,
+      "votesUp": 0
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3820026962",
+    "steamClientUri": "steam://url/CommunityFilePage/3820026962"
+  },
+  {
+    "id": "3819993822",
+    "isSimulated": false,
+    "title": "Marin Blushing, MDuD",
+    "description": "Marin Kitagawa, Blushing, My Dress Up Darling, Sono Bisque Doll wa Koi wo Suru",
+    "author": {
+      "name": "SteamUser (76561197991626718)",
+      "steamId": "76561197991626718"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/17664188356702020528/99FB78D6DF284BB6B6BEFCDDF88F045262ACDD03/",
+    "type": "Scene",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 2758325,
+    "createdAt": "2026-10-15T01:07:34.000Z",
+    "updatedAt": "2026-10-15T01:07:34.000Z",
+    "stats": {
+      "views": 4,
+      "subscriptions": 19,
+      "favorited": 0,
+      "votesUp": 1
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3819993822",
+    "steamClientUri": "steam://url/CommunityFilePage/3819993822"
+  },
+  {
+    "id": "3820028332",
+    "isSimulated": false,
+    "title": "D.Va & Tracer Feet 18+ NSFW",
+    "description": "doopysart",
+    "author": {
+      "name": "SteamUser (76561198217249089)",
+      "steamId": "76561198217249089"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/12658806684579532111/E11FB0EF250DAC0F998E70432173BF9E1D4F595F/",
+    "type": "Video",
+    "resolution": "1920x1080",
+    "aspectRatio": "16:9",
+    "tags": [
+      "CGI",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 14850783,
+    "createdAt": "2026-10-15T02:59:21.000Z",
+    "updatedAt": "2026-10-15T02:59:21.000Z",
+    "stats": {
+      "views": 1,
+      "subscriptions": 17,
+      "favorited": 1,
+      "votesUp": 0
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3820028332",
+    "steamClientUri": "steam://url/CommunityFilePage/3820028332"
+  },
+  {
+    "id": "3820015510",
+    "isSimulated": false,
+    "title": "Perdita",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561198153790985)",
+      "steamId": "76561198153790985"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/13404759428074353159/D52C5A0330FF06B5B36CE5F82E1D0E4F31671455/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Cartoon",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 4520658,
+    "createdAt": "2026-10-15T02:15:00.000Z",
+    "updatedAt": "2026-10-15T02:15:00.000Z",
+    "stats": {
+      "views": 2,
+      "subscriptions": 16,
+      "favorited": 1,
+      "votesUp": 0
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3820015510",
+    "steamClientUri": "steam://url/CommunityFilePage/3820015510"
+  },
+  {
+    "id": "3820027673",
+    "isSimulated": false,
+    "title": "Toriel",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561198153790985)",
+      "steamId": "76561198153790985"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/16065092229273111116/06ECC6192B4A24F654AC5BE8430A7E93F904A389/",
+    "type": "Scene",
+    "resolution": "3840x2160",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Cartoon",
+      "Wallpaper"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 4221355,
+    "createdAt": "2026-10-15T02:57:26.000Z",
+    "updatedAt": "2026-10-15T02:57:26.000Z",
+    "stats": {
+      "views": 1,
+      "subscriptions": 9,
+      "favorited": 0,
+      "votesUp": 0
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3820027673",
+    "steamClientUri": "steam://url/CommunityFilePage/3820027673"
+  },
+  {
+    "id": "3820002369",
+    "isSimulated": false,
+    "title": "PURE MEDIA VOL.224 Yeha (예하) – The secret xxx class",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561199198756258)",
+      "steamId": "76561199198756258"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/13309580418171284619/6B5F8096A45E84C81E097A12E68EEA53DF120F6A/",
+    "type": "Scene",
+    "resolution": "Não informada",
+    "aspectRatio": "Other",
+    "tags": [
+      "Unspecified",
+      "Wallpaper",
+      "Video Texture",
+      "Other resolution",
+      "No Animation"
+    ],
+    "rating": "Mature",
+    "fileSizeBytes": 99858517,
+    "createdAt": "2026-10-15T01:35:31.000Z",
+    "updatedAt": "2026-10-15T01:35:31.000Z",
+    "stats": {
+      "views": 14,
+      "subscriptions": 8,
+      "favorited": 1,
+      "votesUp": 0
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3820002369",
+    "steamClientUri": "steam://url/CommunityFilePage/3820002369"
+  },
+  {
+    "id": "3819994689",
+    "isSimulated": false,
+    "title": "Gappy Part 8",
+    "description": "",
+    "author": {
+      "name": "SteamUser (76561199226740054)",
+      "steamId": "76561199226740054"
+    },
+    "previewUrl": "https://images.steamusercontent.com/ugc/15261524957252592746/110C2A90BBEC107963625EE2041D888CC31F5DF8/",
+    "type": "Scene",
+    "resolution": "1366x768",
+    "aspectRatio": "16:9",
+    "tags": [
+      "Anime",
+      "Wallpaper",
+      "Audio responsive",
+      "Media Integration"
+    ],
+    "rating": "Everyone",
+    "fileSizeBytes": 14555846,
+    "createdAt": "2026-10-15T01:10:13.000Z",
+    "updatedAt": "2026-10-15T01:36:56.000Z",
+    "stats": {
+      "views": 3,
+      "subscriptions": 7,
+      "favorited": 1,
+      "votesUp": 1
+    },
+    "steamUrl": "https://steamcommunity.com/sharedfiles/filedetails/?id=3819994689",
+    "steamClientUri": "steam://url/CommunityFilePage/3819994689"
+  }
+]

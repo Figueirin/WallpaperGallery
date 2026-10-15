@@ -558,18 +558,31 @@ export async function main() {
 
   // 1. Ler catálogo existente se já existir para realizar merge incremental
   let existingCatalog: WallpaperItem[] = [];
+  let originalDiskCatalog: WallpaperItem[] = [];
   if (existsSync(outputPath)) {
     try {
       const raw = readFileSync(outputPath, 'utf-8');
       const parsed = JSON.parse(raw);
       if (!Array.isArray(parsed) || parsed.some(item => !item || typeof item.id !== 'string')) throw new Error('Catálogo inválido');
       existingCatalog = parsed;
+      originalDiskCatalog = parsed;
     } catch (err) {
       throw new Error('Catálogo existente inválido; original preservado', { cause: err });
     }
   }
 
-  if (existingCatalog.some(item => Boolean(item.isSimulated) !== isMockExport)) throw new Error('Não é permitido misturar dados reais e simulados');
+  if (existingCatalog.some(item => Boolean(item.isSimulated) !== isMockExport)) {
+    if (!isMockExport && existingCatalog.every(item => item.isSimulated)) {
+      console.log('⚠️ Catálogo existente contém apenas dados de demonstração simulados.');
+      console.log('   Preservando cópia em legacy-simulated-samples.json e iniciando catálogo de produção real...');
+      try {
+        writeFileSync(resolve(dirname(outputPath), 'legacy-simulated-samples.json'), JSON.stringify(existingCatalog, null, 2), 'utf-8');
+      } catch {}
+      existingCatalog = [];
+    } else {
+      throw new Error('Não é permitido misturar dados reais e simulados');
+    }
+  }
 
   // 2. Fundir dados incrementalmente (evita perder wallpapers coletados anteriormente)
   const { merged, added, updated, unchanged } = mergeWallpapers(
@@ -584,7 +597,7 @@ export async function main() {
   const tempPath = `${outputPath}.${process.pid}.tmp`;
   try {
     // Detecta mudanças desde a leitura para evitar sobrescrever outro coletor.
-    if (existsSync(outputPath) && JSON.stringify(JSON.parse(readFileSync(outputPath, 'utf-8'))) !== JSON.stringify(existingCatalog)) throw new Error('Catálogo alterado por outro processo');
+    if (existsSync(outputPath) && JSON.stringify(JSON.parse(readFileSync(outputPath, 'utf-8'))) !== JSON.stringify(originalDiskCatalog)) throw new Error('Catálogo alterado por outro processo');
     writeFileSync(tempPath, JSON.stringify(merged, null, 2), { encoding: 'utf-8', flag: 'wx' });
     renameSync(tempPath, outputPath);
   } finally {
@@ -619,8 +632,11 @@ export async function main() {
 
 // Execução direta via CLI se chamado diretamente
 if (process.argv[1]?.endsWith('sync-workshop.ts') || process.argv[1]?.endsWith('sync-workshop.js')) {
-  main().catch(() => {
+  main().catch((err) => {
     console.error('Sincronização interrompida. Verifique autorização, argumentos e configuração.');
+    if (err instanceof Error) {
+      console.error(`Detalhe: ${err.message}`);
+    }
     process.exit(1);
   });
 }
