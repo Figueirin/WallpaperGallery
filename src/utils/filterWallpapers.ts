@@ -148,3 +148,32 @@ export function findWallpaperById(
   return items.find((item) => item.id === id) || null;
 }
 
+/**
+ * Aplica paginação pura sobre uma coleção de itens, calculando limites e hasMore.
+ */
+export function paginateWallpapers<T>(
+  items: readonly T[],
+  page: number = 1,
+  pageSize: number = 24
+): {
+  items: T[];
+  total: number;
+  page: number;
+  pageSize: number;
+  hasMore: boolean;
+} {
+  const safePage = page && page > 0 ? Math.floor(page) : 1;
+  const safePageSize = pageSize && pageSize > 0 ? Math.floor(pageSize) : 24;
+  const startIndex = (safePage - 1) * safePageSize;
+  const paginatedItems = items.slice(startIndex, startIndex + safePageSize);
+
+  return {
+    items: paginatedItems,
+    total: items.length,
+    page: safePage,
+    pageSize: safePageSize,
+    hasMore: startIndex + safePageSize < items.length,
+  };
+}
+
+

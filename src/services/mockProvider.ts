@@ -1,15 +1,16 @@
-import {
+import type {
   WallpaperItem,
   WallpaperFilterOptions,
   PaginatedResult,
   FilterMetadata,
 } from '../types/wallpaper';
-import { IWallpaperDataProvider } from './dataProvider';
-import fallbackMockData from '../../public/data/mock-wallpapers.json';
+import type { IWallpaperDataProvider } from './dataProvider';
+import fallbackMockData from '../../public/data/mock-wallpapers.json' with { type: 'json' };
 import {
   filterAndSortWallpapers,
   extractFilterMetadata,
   findWallpaperById,
+  paginateWallpapers,
 } from '../utils/filterWallpapers';
 
 export class MockWallpaperProvider implements IWallpaperDataProvider {
@@ -47,20 +48,7 @@ export class MockWallpaperProvider implements IWallpaperDataProvider {
   async getWallpapers(options: WallpaperFilterOptions = {}): Promise<PaginatedResult<WallpaperItem>> {
     const data = await this.loadData();
     const filtered = filterAndSortWallpapers(data, options);
-
-    // Paginação simples sem alterar catálogo original
-    const page = options.page && options.page > 0 ? options.page : 1;
-    const pageSize = options.pageSize && options.pageSize > 0 ? options.pageSize : 24;
-    const startIndex = (page - 1) * pageSize;
-    const paginatedItems = filtered.slice(startIndex, startIndex + pageSize);
-
-    return {
-      items: paginatedItems,
-      total: filtered.length,
-      page,
-      pageSize,
-      hasMore: startIndex + pageSize < filtered.length,
-    };
+    return paginateWallpapers(filtered, options.page, options.pageSize);
   }
 
   async getWallpaperById(id: string): Promise<WallpaperItem | null> {
