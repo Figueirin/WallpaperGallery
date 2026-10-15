@@ -21,6 +21,6 @@ npm run sync:firestore -- --mock-data --limit=200
 npm run sync:workshop -- --mock-export
 ```
 
-O segundo comando gera `public/data/demo-catalog.json`. Nunca mistura demonstração com catálogo real. Os workflows são manuais e executam somente validações offline, sem secrets, cron, commits ou push.
+O segundo comando gera `public/data/demo-catalog.json` e os shards correspondentes em `public/data/demo-catalog/`. Nunca mistura demonstração com catálogo real. Os workflows são manuais e executam somente validações offline, sem secrets, cron, commits ou push.
 
-A primeira coleta real está pendente da autorização expressa do proprietário. Veja [guia Steam](STEAM_API_SETUP.md), [guia Firestore](docs/FIREBASE_MIGRATION_GUIDE.md), [auditoria independente](CODEX_AUDIT_REPORT.md) e [alterações](CODEX_CHANGELOG.md). Nenhum ambiente real foi validado; testes aprovados não significam prontidão para produção.
+A arquitetura do catálogo estático de alta escala utiliza particionamento em shards (`manifest.json`, `index.json` e `pages/*.json`). A primeira coleta real está pendente da autorização expressa do proprietário. Veja [arquitetura JSON-First](JSON_ARCHITECTURE_REPORT.md), [guia Steam](STEAM_API_SETUP.md), [guia Firestore](docs/FIREBASE_MIGRATION_GUIDE.md), [auditoria independente](CODEX_AUDIT_REPORT.md) e [alterações](CODEX_CHANGELOG.md). Nenhum ambiente real foi validado; testes aprovados não significam prontidão para produção.
