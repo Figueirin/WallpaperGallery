@@ -2,6 +2,11 @@ export const PRODUCT_NAME = 'WallpaperGallery';
 export type Language = 'en' | 'pt-BR';
 
 const en = {
+  loadingMore: 'Loading more wallpapers...',
+  endResults: "You've reached the end.",
+  loadMoreError: 'Unable to load more wallpapers.',
+  loadMore: 'Load more',
+  loadedCount: '{count} of {total} wallpapers loaded',
   wallpaperCount: '{count} wallpapers',
   tagPrefix: 'Tag:',
   siteTitle: "WallpaperGallery | Wallpaper Engine wallpapers",
@@ -148,6 +153,11 @@ const en = {
 
 export type TranslationKey = keyof typeof en;
 const pt: Record<TranslationKey, string> = {
+  loadingMore: 'Carregando mais wallpapers...',
+  endResults: 'Você chegou ao fim.',
+  loadMoreError: 'Não foi possível carregar mais wallpapers.',
+  loadMore: 'Carregar mais',
+  loadedCount: '{count} de {total} wallpapers carregados',
   wallpaperCount: '{count} wallpapers',
   tagPrefix: 'Tag:',
   siteTitle: "WallpaperGallery | Wallpapers do Wallpaper Engine",

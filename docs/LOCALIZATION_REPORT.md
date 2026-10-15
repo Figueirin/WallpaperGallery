@@ -1,5 +1,7 @@
 # Branding, recomendações e idiomas
 
+> Registro da etapa de internacionalização. A variante de cards e a paginação descritas aqui foram substituídas na [etapa de infinite scroll](INFINITE_SCROLL_REPORT.md).
+
 Implementação em **dev**, em 15/10/2026. Nenhuma alteração em main ou publicação remota.
 
 ## Branding

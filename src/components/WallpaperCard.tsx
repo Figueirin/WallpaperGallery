@@ -1,7 +1,7 @@
 import { useLanguage } from '../i18n/LanguageContext';
 import { steamLinks } from '../utils/safeUrls';
 import { AuthorName } from './AuthorName';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { WallpaperItem } from '../types/wallpaper';
 import { WallpaperMedia } from './WallpaperMedia';
 import {
@@ -16,10 +16,9 @@ import {
 interface WallpaperCardProps {
   wallpaper: WallpaperItem;
   onSelect?: (wallpaper: WallpaperItem) => void;
-  variant?: 'default' | 'recommendation';
 }
 
-export function WallpaperCard({ wallpaper, onSelect, variant = 'default' }: WallpaperCardProps) {
+export const WallpaperCard = memo(function WallpaperCard({ wallpaper, onSelect }: WallpaperCardProps) {
   const { t } = useLanguage();
   const [isHovered, setIsHovered] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -67,7 +66,6 @@ export function WallpaperCard({ wallpaper, onSelect, variant = 'default' }: Wall
         <WallpaperMedia
           wallpaper={wallpaper}
           mode="card"
-          fit={variant === 'recommendation' ? 'contain' : 'cover'}
           isHovered={isHovered}
           onVideoPlayChange={setIsVideoPlaying}
         />
@@ -117,7 +115,7 @@ export function WallpaperCard({ wallpaper, onSelect, variant = 'default' }: Wall
           {/* Título com truncamento limpo */}
           <h3
             title={wallpaper.title}
-            className={`text-sm font-semibold text-zinc-100 group-hover:text-indigo-400 transition-colors leading-snug ${variant === 'recommendation' ? 'line-clamp-2 min-h-10' : 'truncate'}`}
+            className="text-sm font-semibold text-zinc-100 group-hover:text-indigo-400 transition-colors leading-snug truncate"
           >
             <a href={`/wallpaper/${encodeURIComponent(wallpaper.id)}`}
               onClick={(event) => {
@@ -188,5 +186,4 @@ export function WallpaperCard({ wallpaper, onSelect, variant = 'default' }: Wall
       </div>
     </article>
   );
-}
-
+});

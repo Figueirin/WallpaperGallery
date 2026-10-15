@@ -14,7 +14,6 @@ import {
 interface WallpaperMediaProps {
   wallpaper: WallpaperItem;
   mode: 'card' | 'detail';
-  fit?: 'cover' | 'contain';
   isHovered?: boolean;
   className?: string;
   onVideoPlayChange?: (isPlaying: boolean) => void;
@@ -23,7 +22,6 @@ interface WallpaperMediaProps {
 export function WallpaperMedia({
   wallpaper: rawWallpaper,
   mode,
-  fit = 'cover',
   isHovered = false,
   className = '',
   onVideoPlayChange,
@@ -137,7 +135,7 @@ export function WallpaperMedia({
               loading="lazy"
               onLoad={() => setImageLoaded(true)}
               onError={() => setImageError(true)}
-              className={`w-full h-full ${fit === 'contain' ? 'object-contain' : 'object-cover group-hover:scale-105'} transition-transform duration-300 ${
+              className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
             />
@@ -156,7 +154,7 @@ export function WallpaperMedia({
                   setIsVideoPlaying(false);
                   onVideoPlayChange?.(false);
                 }}
-                className={`absolute inset-0 w-full h-full ${fit === 'contain' ? 'object-contain' : 'object-cover'} transition-opacity duration-300 pointer-events-none ${
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${
                   isHovered && isVideoPlaying ? 'opacity-100' : 'opacity-0'
                 }`}
                 aria-hidden="true"

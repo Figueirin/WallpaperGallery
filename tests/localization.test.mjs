@@ -18,7 +18,8 @@ buildSync({ stdin: { contents: `
   export { Footer } from './src/components/Footer.tsx';
   export { EmptyState } from './src/components/EmptyState.tsx';
   export { FilterBar } from './src/components/FilterBar.tsx';
-  export { Pagination } from './src/components/Pagination.tsx';
+  export { InfiniteScrollFooter } from './src/components/InfiniteScrollFooter.tsx';
+  export { GalleryGrid } from './src/components/GalleryGrid.tsx';
   export { LoadingSkeleton } from './src/components/LoadingSkeleton.tsx';
   export { WallpaperRecommendations } from './src/components/WallpaperRecommendations.tsx';
 `, resolveDir: process.cwd(), loader: 'tsx' }, bundle: true, platform: 'node', format: 'esm', jsx: 'automatic', external: ['react', 'react/jsx-runtime', 'lucide-react'], outfile, logLevel: 'silent' });
@@ -83,7 +84,7 @@ test('dicionários: mesmas chaves e placeholders; traduções e interpolação m
   assert.equal(translate('en', 'previewAlt', { title: '夜空 — Paisagem' }), 'Wallpaper preview: 夜空 — Paisagem');
 });
 
-test('interface real em EN/PT-BR: busca, seletor acessível, filtros, paginação, loading, erros e rodapé', () => {
+test('interface real em EN/PT-BR: busca, seletor acessível, filtros, progresso, loading, erros e rodapé', () => {
   for (const language of ['en', 'pt-BR']) {
     const navbar = render(language, ui.Navbar, { searchQuery: '', totalCount: 979, onSearchChange() {} });
     assert.ok(navbar.includes('WallpaperGallery'));
@@ -95,15 +96,16 @@ test('interface real em EN/PT-BR: busca, seletor acessível, filtros, paginaçã
     assert.ok(filters.includes(translate(language, 'filters')));
     assert.ok(filters.includes(translate(language, 'newest')));
     assert.ok(filters.includes('OriginalTag'));
-    const pagination = render(language, ui.Pagination, { currentPage: 2, totalItems: 979, pageSize: 25, onPageChange() {} });
-    assert.ok(pagination.includes(translate(language, 'pageOf', { page: 2, total: 40 })));
+    const progress = render(language, ui.InfiniteScrollFooter, { loaded: 50, total: 979, loading: false, hasMore: true, error: false, onLoadMore() {} });
+    assert.ok(progress.includes(translate(language, 'loadedCount', { count: 50, total: 979 })));
+    assert.ok(progress.includes(translate(language, 'loadMore')));
     assert.ok(render(language, ui.LoadingSkeleton).includes(translate(language, 'loadingGallery')));
     assert.ok(render(language, ui.EmptyState, { type: 'error' }).includes(translate(language, 'loadErrorDescription')));
     assert.ok(render(language, ui.Footer).includes(translate(language, 'footerDescription')));
   }
 });
 
-test('recomendações reais: cards maiores, sem crop, links nativos e metadata original em ambos os idiomas', () => {
+test('recomendações reais: cards idênticos ao grid principal, links nativos e metadata original em ambos os idiomas', () => {
   const wallpapers = JSON.parse(readFileSync('public/data/catalog.json', 'utf8')).slice(0, 3);
   const before = JSON.stringify(wallpapers);
   for (const language of ['en', 'pt-BR']) {
@@ -111,10 +113,13 @@ test('recomendações reais: cards maiores, sem crop, links nativos e metadata o
     assert.ok(html.includes(translate(language, 'youMayLike')));
     assert.ok(html.includes('grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'));
     assert.ok(!html.includes('xl:grid-cols-6'));
-    assert.ok(html.includes('object-contain'));
+    assert.ok(html.includes('object-cover'));
+    const mainGrid = render(language, ui.GalleryGrid, { wallpapers, onSelectWallpaper() {} });
+    assert.deepEqual(html.match(/<article\b[\s\S]*?<\/article>/g), mainGrid.match(/<article\b[\s\S]*?<\/article>/g));
     assert.ok(html.includes('aspect-video'));
     assert.ok(html.includes('focus-visible:ring-2'));
-    assert.ok(html.includes('line-clamp-2'));
+    assert.ok(html.includes('truncate'));
+    assert.ok(!html.includes('min-h-10'));
     for (const wallpaper of wallpapers) assert.ok(html.includes(`href="/wallpaper/${wallpaper.id}"`));
     assert.equal(JSON.stringify(wallpapers), before);
   }
@@ -127,4 +132,22 @@ test('branding e SEO: produto único, fallback inglês, Steam Workshop preservad
   const html = readFileSync('index.html', 'utf8');
   for (const marker of ['lang="en"', 'content="WallpaperGallery"', '"name":"WallpaperGallery"', 'Steam Workshop', '"inLanguage":"en"', 'content="en_US"']) assert.ok(html.includes(marker), marker);
   assert.ok(!html.includes('rel="canonical"'));
+});
+
+
+test('infinite scroll: mensagens EN/PT-BR de carregamento, fim, erro e botão acessível', () => {
+  for (const language of ['en', 'pt-BR']) {
+    const base = { loaded: 25, total: 979, onLoadMore() {}, error: false, loading: false, hasMore: true };
+    const loading = render(language, ui.InfiniteScrollFooter, { ...base, loading: true });
+    assert.ok(loading.includes(translate(language, 'loadingMore')));
+    assert.ok(loading.includes('disabled=""'));
+    assert.ok(loading.includes('aria-live="polite"'));
+    const end = render(language, ui.InfiniteScrollFooter, { ...base, hasMore: false });
+    assert.ok(end.includes(renderToStaticMarkup(createElement('p', { role: 'status', 'aria-live': 'polite' }, translate(language, 'endResults')))));
+    assert.ok(!end.includes('<button'));
+    const error = render(language, ui.InfiniteScrollFooter, { ...base, error: true });
+    assert.ok(error.includes(translate(language, 'loadMoreError')));
+    assert.ok(error.includes(translate(language, 'retry')));
+    assert.ok(!error.includes('disabled=""'));
+  }
 });

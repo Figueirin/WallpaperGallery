@@ -31,7 +31,6 @@ export function WallpaperRecommendations({ wallpapers, onSelectWallpaper }: { wa
               <WallpaperCard
                 key={rec.id}
                 wallpaper={rec}
-                variant="recommendation"
                 onSelect={onSelectWallpaper}
               />
             ))}
