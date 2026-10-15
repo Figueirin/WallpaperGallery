@@ -1,6 +1,6 @@
 # Migração para catálogo padrão e remoção da demonstração
 
-Data: **15/10/2026**. Estado da validação local: **PRONTO PARA PRODUÇÃO**. Publicação remota será registrada após os envios autorizados.
+Data: **15/10/2026**. Estado da validação local: **PRONTO PARA PRODUÇÃO**. Publicação remota **não realizada**: faltou autenticação de escrita no GitHub e o proprietário escolheu concluir localmente para enviar depois.
 
 ## Branches e preservação
 
@@ -57,6 +57,21 @@ Não há navegador automatizado instalado: não se afirma validação visual de 
 
 ## Integração e publicação
 
-Esta seção será completada com os hashes e resultados efetivos de merge/push. Antes dos envios, será conferido se as referências remotas continuam nas versões buscadas. A main receberá o resultado validado de dev e executará novamente typecheck/build, sem variável definida no comando. Pushes serão feitos na ordem dev → main, sem força.
+- Merge de `origin/main` em `dev`: **`173ee9f`**, preservando `d352ffc` e o histórico da documentação em dev, sem conflitos.
+- Migração de código/testes/documentação: **`9f270d0`** (`refactor: make static catalog the default data source`).
+- Integração em main: **fast-forward de `d352ffc` para `9f270d0`**. Typecheck e build foram executados novamente na main, sem definir o provider no comando, e passaram.
+- Nova busca antes da integração confirmou que os remotos não haviam mudado: `origin/dev=4607225`, `origin/main=d352ffc`.
+- Tentativa de `git push origin dev`: bloqueada por autenticação ausente (`could not read Username for https://github.com`). Nenhuma referência remota foi atualizada. O push de main, condicionado ao sucesso do primeiro, não chegou a ser executado.
+- Após ser informado, o proprietário escolheu **“Concluir localmente; farei os pushes depois”**. Não haverá nova tentativa nesta tarefa. O registro final é incluído em commit documental local e incorporado também em main, mantendo as duas branches alinhadas.
+- **CI remoto/deploy:** não acionados por esta tarefa. Não há resultado novo para verificar no GitHub ou no painel Cloudflare. A integração existente só receberá o código quando o proprietário publicar as branches.
 
-**Parecer local: PRONTO PARA PRODUÇÃO.** A confirmação do CI remoto e do deployment depende dos resultados posteriores; não se confunde build local aprovado com deploy hospedado concluído.
+Para o proprietário, após autenticar e conferir novamente se os remotos não mudaram:
+
+```bash
+git push origin dev
+git push origin main
+```
+
+Esses comandos são a etapa manual pendente; não foram concluídos pelo agente. O segundo enviará o código para a branch ligada ao deploy automático informado. Não usar força se algum remoto avançar.
+
+**Parecer: PRONTO PARA PRODUÇÃO**, quanto ao código, catálogo e validações locais. Publicação e validação hospedada ficam pendentes do envio pelo proprietário. Nenhum token foi solicitado ou exposto; não houve alteração de settings remotos, execução direta de Wrangler ou chamadas Steam/Firebase.
